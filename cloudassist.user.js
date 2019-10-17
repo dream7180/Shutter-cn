@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name              百度网盘下载助理
 // @namespace         https://github.com/dream7180/Baidu-Could-Assist
-// @version           1.0.1
+// @version           1.0.0
 // @icon              https://www.baidu.com/favicon.ico
-// @description       精简修改自【百度网盘直链下载助手】2.8.5-https://github.com/syhyz1990/baiduyun
+// @description       精简修改自syhyz1990的【百度网盘直链下载助手】2.8.5: https://github.com/syhyz1990/baiduyun
 // @author            syhyz1990,dreamawake
 // @license           MIT
 // @supportURL        https://github.com/dream7180/Baidu-Could-Assist
