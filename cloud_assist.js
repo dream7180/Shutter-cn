@@ -1,12 +1,13 @@
 // ==UserScript==
 // @name              百度网盘下载助理
-// @namespace         https://github.com/syhyz1990/baiduyun
-// @version           1.0.0
+// @namespace         https://github.com/dream7180/Baidu-Could-Assist
+// @version           1.0.1
 // @icon              https://www.baidu.com/favicon.ico
 // @description       精简修改自【百度网盘直链下载助手】2.8.5-https://github.com/syhyz1990/baiduyun
 // @author            syhyz1990,dreamawake
 // @license           MIT
-// @supportURL        https://github.com/syhyz1990/baiduyun
+// @supportURL        https://github.com/dream7180/Baidu-Could-Assist
+// @updateURL         https://raw.githubusercontent.com/dream7180/Baidu-Could-Assist/master/cloud_assist.js
 // @match             *://pan.baidu.com/disk/home*
 // @match             *://yun.baidu.com/disk/home*
 // @match             *://pan.baidu.com/s/*
