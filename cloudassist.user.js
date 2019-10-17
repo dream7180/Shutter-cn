@@ -7,7 +7,7 @@
 // @author            syhyz1990,dreamawake
 // @license           MIT
 // @supportURL        https://github.com/dream7180/Baidu-Could-Assist
-// @updateURL         https://raw.githubusercontent.com/dream7180/Baidu-Could-Assist/master/cloud_assist.js
+// @updateURL         https://raw.githubusercontent.com/dream7180/Baidu-Could-Assist/master/cloudassist.user.js
 // @match             *://pan.baidu.com/disk/home*
 // @match             *://yun.baidu.com/disk/home*
 // @match             *://pan.baidu.com/s/*
