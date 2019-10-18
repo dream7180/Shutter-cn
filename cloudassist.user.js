@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name              百度网盘下载助理
 // @namespace         https://github.com/dream7180/Baidu-Could-Assist
-// @version           1.0.1
+// @version           1.0.2
 // @icon              https://www.baidu.com/favicon.ico
 // @description       精简修改自syhyz1990的【百度网盘直链下载助手】2.8.x: https://github.com/syhyz1990/baiduyun
 // @author            syhyz1990,dreamawake
@@ -482,103 +482,6 @@
       execDownload(downloadLink);
     }
 
-    //我的网盘 - 显示链接
-    function linkClick(event) {
-      clog('选中文件列表：', selectFileList);
-      let id = event.target.id;
-      let linkList, tip;
-
-      if (id.indexOf('direct') != -1) {
-        let downloadType;
-        let downloadLink;
-        if (selectFileList.length === 0) {
-          swal(errorMsg.unselected);
-          return;
-        } else if (selectFileList.length == 1) {
-          if (selectFileList[0].isdir === 1)
-            downloadType = 'batch';
-          else if (selectFileList[0].isdir === 0)
-            downloadType = 'dlink';
-        } else if (selectFileList.length > 1) {
-          downloadType = 'batch';
-        }
-        fid_list = getFidList(selectFileList);
-        let result = getDownloadLinkWithPanAPI(downloadType);
-        if (result.errno === 0) {
-          if (downloadType == 'dlink')
-            downloadLink = result.dlink[0].dlink;
-          else if (downloadType == 'batch') {
-            clog('选中文件列表：', selectFileList);
-            downloadLink = result.dlink;
-            if (selectFileList.length === 1)
-              downloadLink = downloadLink + '&zipname=' + encodeURIComponent(selectFileList[0].filename) + '.zip';
-          } else {
-            swal("发生错误！");
-            return;
-          }
-        } else if (result.errno == -1) {
-          swal('文件不存在或已被百度和谐，无法下载！');
-          return;
-        } else if (result.errno == 112) {
-          swal("页面过期，请刷新重试！");
-          return;
-        } else {
-          swal("发生错误！");
-          return;
-        }
-        let httplink = downloadLink.replace(/^([A-Za-z]+):/, 'http:');
-        let httpslink = downloadLink.replace(/^([A-Za-z]+):/, 'https:');
-        let filename = '';
-        $.each(selectFileList, function (index, element) {
-          if (selectFileList.length == 1)
-            filename = element.filename;
-          else {
-            if (index == 0)
-              filename = element.filename;
-            else
-              filename = filename + ',' + element.filename;
-          }
-        });
-        linkList = {
-          filename: filename,
-          urls: [
-            {url: httplink, rank: 1},
-            {url: httpslink, rank: 2}
-          ]
-        };
-        tip = '显示模拟百度网盘网页获取的链接，可以使用右键迅雷或IDM下载，多文件打包(限300k)下载的链接可以直接复制使用';
-        dialog.open({title: '下载链接', type: 'link', list: linkList, tip: tip});
-      } else {
-        if (selectFileList.length === 0) {
-          swal(errorMsg.unselected);
-          return;
-        } else if (selectFileList.length > 1) {
-          swal(errorMsg.morethan);
-          return;
-        } else {
-          if (selectFileList[0].isdir == 1) {
-            swal(errorMsg.dir);
-            return;
-          }
-        }
-        if (id.indexOf('api') != -1) {
-          let downloadLink = getDownloadLinkWithRESTAPIBaidu(selectFileList[0].path);
-          let httplink = downloadLink.replace(/^([A-Za-z]+):/, 'http:');
-          let httpslink = downloadLink.replace(/^([A-Za-z]+):/, 'https:');
-          linkList = {
-            filename: selectFileList[0].filename,
-            urls: [
-              {url: httplink, rank: 1},
-              {url: httpslink, rank: 2}
-            ]
-          };
-
-          tip = '显示模拟APP获取的链接(使用百度云ID)，可以右键使用迅雷或IDM下载，直接复制链接无效';
-          dialog.open({title: '下载链接', type: 'link', list: linkList, tip: tip});
-        }
-      }
-    }
-
     // 我的网盘 - 批量下载
     function batchClick(event) {
       clog('选中文件列表：', selectFileList);
@@ -587,27 +490,25 @@
         return;
       }
       let id = event.target.id;
-      let linkType, tip;
+      let linkType;//, tip;
       linkType = id.indexOf('https') == -1 ? (id.indexOf('http') == -1 ? location.protocol + ':' : 'http:') : 'https:';
       batchLinkList = [];
       batchLinkListAll = [];
       if (id.indexOf('direct') != -1) {  //直链下载
         batchLinkList = getDirectBatchLink(linkType);
-        let tip = '支持使用IDM批量下载，需升级 <a href="https://www.baiduyun.wiki/zh-cn/assistant.html">[百度网盘万能助手]</a> 至v2.0.1';
         if (batchLinkList.length === 0) {
           swal('没有链接可以显示，不要选中文件夹！');
           return;
         }
-        dialog.open({title: '直链下载', type: 'batch', list: batchLinkList, tip: tip, showcopy: true});
+        dialog.open({title: '直链下载', type: 'batch', list: batchLinkList, tip: null, showcopy: true});
       }
 	  if (id.indexOf('api') != -1) {
         batchLinkList = getAPIBatchLink(linkType);
-        tip = '请先安装 <a href="https://www.baiduyun.wiki/zh-cn/assistant.html">百度网盘万能助手</a> 请将链接复制到“IDM->任务->从剪切板中添加批量下载”';
         if (batchLinkList.length === 0) {
           swal('没有链接可以显示，API链接不要全部选中文件夹！');
           return;
         }
-        dialog.open({title: 'API下载链接', type: 'batch', list: batchLinkList, tip: tip,showcopy: true});
+        dialog.open({title: 'API下载链接', type: 'batch', list: batchLinkList, tip: null,showcopy: true});
       }
     }
 
