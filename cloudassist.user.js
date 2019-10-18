@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name              百度网盘下载助理
 // @namespace         https://github.com/dream7180/Baidu-Could-Assist
-// @version           1.0.0
+// @version           1.0.1
 // @icon              https://www.baidu.com/favicon.ico
-// @description       精简修改自syhyz1990的【百度网盘直链下载助手】2.8.5: https://github.com/syhyz1990/baiduyun
+// @description       精简修改自syhyz1990的【百度网盘直链下载助手】2.8.x: https://github.com/syhyz1990/baiduyun
 // @author            syhyz1990,dreamawake
 // @license           MIT
 // @supportURL        https://github.com/dream7180/Baidu-Could-Assist
@@ -934,11 +934,9 @@
   function PanShareHelper() {
     let yunData, sign, timestamp, bdstoken, channel, clienttype, web, app_id, logid, encrypt, product, uk,
         primaryid, fid_list, extra, shareid;
-    let vcode;
-    let shareType, buttonTarget, currentPath, list_grid_status, observer, dialog, vcodeDialog;
+    let shareType, buttonTarget, currentPath, list_grid_status, observer, dialog;
     let fileList = [], selectFileList = [];
     let panAPIUrl = location.protocol + "//" + location.host + "/api/";
-    let panHighAPIUrl = location.protocol + "//" + location.host + "/share/download?";
     let shareListUrl = location.protocol + "//" + location.host + "/share/list";
 
     this.init = function () {
@@ -954,9 +952,7 @@
       initParams();
       addButton();
       dialog = new Dialog({addCopy: false});
-      vcodeDialog = new VCodeDialog(refreshVCode, confirmClick);
       createIframe();
-      registerVcode();
 
       if (!isSingleShare()) {
         registerEventListener();
@@ -1136,10 +1132,9 @@
       let $saveSettingButton = $('<a data-menu-id="b-menu207" class="g-button-menu" href="javascript:;" style="opacity: 0.8;">自定义保存路径</a>');
       let $downloadButton = $('<a data-menu-id="b-menu207" class="g-button-menu" href="javascript:;">直接下载</a>');
       let $linkButton = $('<a data-menu-id="b-menu208" class="g-button-menu" href="javascript:;">显示直链</a>');
-      let $highButton = $('<a data-menu-id="b-menu209" class="g-button-menu" style="color: #F24C43;font-weight: 700;" href="javascript:;">极速下载</a>');
+      let $outlinkButton = $('<a data-menu-id="b-menu209" class="g-button-menu" style="color: #F24C43;font-weight: 700;" href="javascript:;">免登录下载</a>');
 
-      $dropdownbutton_span.append($downloadButton).append($linkButton)/*.append($ariclinkButton)*/.append($highButton).append($saveButton);
-      //$dropdownbutton_span.append($saveButton)/*.append($saveSettingButton)*/.append($github);
+      $dropdownbutton_span/*.append($downloadButton).append($linkButton)*/.append($outlinkButton).append($saveButton).append($saveSettingButton);
       $dropdownbutton_a.append($dropdownbutton_a_span);
       $dropdownbutton.append($dropdownbutton_a).append($dropdownbutton_span);
 
@@ -1148,9 +1143,9 @@
       });
       $saveButton.click(saveButtonClick);
       $saveSettingButton.click(saveSettingButtonClick);
-      $downloadButton.click(downloadButtonClick);
-      $linkButton.click(linkButtonClick);
-      $highButton.click(highButtonClick);
+      //$downloadButton.click(downloadButtonClick);
+      //$linkButton.click(linkButtonClick);
+      $outlinkButton.click(outlinkButtonClick);
 
       $('div.module-share-top-bar div.bar div.x-button-box').append($dropdownbutton);
     }
@@ -1274,30 +1269,15 @@
           }
         });
       } else {
-        swal('请输入正确的路径，例如/PanHelper');
+        swal('请输入正确的路径，例如/我的资源');
       }
     }
 
-    function highButtonClick() {
-      /*if (bdstoken !== null) {
-        swal('请退出当前账号或使用浏览器小号/隐私模式获取不限速链接！！！');
-        return false;
-      }*/
-
-      clog('选中文件列表：', selectFileList);
-      if (selectFileList.length === 0) {
-        swal(errorMsg.unselected);
-        return false;
-      }
-      if (selectFileList[0].isdir == 1) {
-        swal(errorMsg.toobig);
-      }
-      if (selectFileList.length > 1) {
-        swal('一次只能勾选一个文件');
-        return false;
-      }
-
-      getHighDownloadLink();
+    function outlinkButtonClick() {
+		'use strict';
+		let link = location.href;
+		link = link.replace('baidu.com','baiduwp.com');
+		GM_openInTab(link, { active: true });
     }
 
     function createIframe() {
@@ -1313,12 +1293,6 @@
       registerCheckbox();
       registerAllCheckbox();
       registerFileSelect();
-    }
-
-    function registerVcode() {
-      $(document).on('click', '#changeCode', function () {
-        getHighDownloadLink();
-      });
     }
 
     //监视地址栏#标签变化
@@ -1520,363 +1494,6 @@
             if (response.errno === 0) {
               result = response.list;
             }
-          }
-        });
-      }
-      return result;
-    }
-
-    function downloadButtonClick() {
-      if (bdstoken === null) {
-        swal(errorMsg.unlogin);
-        return false;
-      }
-      clog('选中文件列表：', selectFileList);
-      if (selectFileList.length === 0) {
-        swal(errorMsg.unselected);
-        return false;
-      }
-      if (selectFileList.length > 1) {
-        swal(errorMsg.morethan);
-        return false;
-      }
-
-      if (selectFileList[0].isdir == 1) {
-        swal(errorMsg.dir);
-        return false;
-      }
-      buttonTarget = 'download';
-      let downloadLink = getDownloadLink();
-
-      if (downloadLink === undefined) return;
-
-      if (downloadLink.errno == -20) {
-        vcode = getVCode();
-        if (vcode.errno !== 0) {
-          swal('获取验证码失败！');
-          return;
-        }
-        vcodeDialog.open(vcode);
-      } else if (downloadLink.errno == 112) {
-        swal('页面过期，请刷新重试');
-
-      } else if (downloadLink.errno === 0) {
-        let link = downloadLink.list[0].dlink;
-        execDownload(link);
-      } else {
-        swal(errorMsg.fail);
-
-      }
-    }
-
-    //获取验证码
-    function getVCode() {
-      let url = panAPIUrl + 'getvcode';
-      let result;
-      logid = getLogID();
-      let params = {
-        prod: 'pan',
-        t: Math.random(),
-        bdstoken: bdstoken,
-        channel: channel,
-        clienttype: clienttype,
-        web: web,
-        app_id: app_id,
-        logid: logid
-      };
-      $.ajax({
-        url: url,
-        method: 'GET',
-        async: false,
-        data: params,
-        success: function (response) {
-          result = response;
-        }
-      });
-      return result;
-    }
-
-    //刷新验证码
-    function refreshVCode() {
-      vcode = getVCode();
-      $('#dialog-img').attr('src', vcode.img);
-    }
-
-    //验证码确认提交
-    function confirmClick() {
-      let val = $('#dialog-input').val();
-      if (val.length === 0) {
-        $('#dialog-err').text('请输入验证码');
-        return;
-      } else if (val.length < 4) {
-        $('#dialog-err').text('验证码输入错误，请重新输入');
-        return;
-      }
-      let result = getDownloadLinkWithVCode(val);
-      if (result.errno == -20) {
-        vcodeDialog.close();
-        $('#dialog-err').text('验证码输入错误，请重新输入');
-        refreshVCode();
-        if (!vcode || vcode.errno !== 0) {
-          swal('获取验证码失败！');
-          return;
-        }
-        vcodeDialog.open();
-      } else if (result.errno === 0) {
-        vcodeDialog.close();
-        if (buttonTarget == 'download') {
-          if (result.list.length > 1 || result.list[0].isdir == 1) {
-            swal(errorMsg.morethan);
-            return false;
-          }
-          let link = result.list[0].dlink;
-          execDownload(link);
-        } else if (buttonTarget == 'link') {
-          let tip = '支持使用IDM批量下载，需升级 <a href="https://www.baiduyun.wiki/zh-cn/assistant.html">[百度网盘万能助手]</a> 至v2.0.1';
-          dialog.open({
-            title: '下载链接（仅显示文件链接）',
-            type: 'shareLink',
-            list: result.list,
-            tip: tip,
-            showcopy: true
-          });
-        }
-      } else {
-        swal('发生错误！');
-      }
-    }
-
-    //生成下载用的fid_list参数
-    function getFidList() {
-      let fidlist = [];
-      $.each(selectFileList, function (index, element) {
-        fidlist.push(element.fs_id);
-      });
-      return '[' + fidlist + ']';
-    }
-
-    function linkButtonClick() {
-      if (bdstoken === null) {
-        swal(errorMsg.unlogin);
-        return false;
-      }
-      clog('选中文件列表：', selectFileList);
-      if (selectFileList.length === 0) {
-        swal(errorMsg.unselected);
-        return false;
-      }
-      if (selectFileList[0].isdir == 1) {
-        swal(errorMsg.dir);
-        return false;
-      }
-
-      buttonTarget = 'link';
-      let downloadLink = getDownloadLink();
-
-      if (downloadLink === undefined) return;
-
-      if (downloadLink.errno == -20) {
-        vcode = getVCode();
-        if (!vcode || vcode.errno !== 0) {
-          swal('获取验证码失败！');
-          return false;
-        }
-        vcodeDialog.open(vcode);
-      } else if (downloadLink.errno == 112) {
-        swal('页面过期，请刷新重试');
-        return false;
-      } else if (downloadLink.errno === 0) {
-        let tip = '支持使用IDM批量下载，需升级 <a href="https://www.baiduyun.wiki/zh-cn/assistant.html">[百度网盘万能助手]</a> 至v2.0.1';
-        dialog.open({
-          title: '下载链接（仅显示文件链接）',
-          type: 'shareLink',
-          list: downloadLink.list,
-          tip: tip,
-          showcopy: true
-        });
-      } else {
-        swal(errorMsg.fail);
-      }
-    }
-
-    //获取下载链接
-    function getDownloadLink() {
-      if (bdstoken === null) {
-        swal(errorMsg.unlogin);
-        return '';
-      } else {
-        let result;
-        if (isSingleShare) {
-          fid_list = getFidList();
-          logid = getLogID();
-          let url = panAPIUrl + 'sharedownload?sign=' + sign + '&timestamp=' + timestamp + '&bdstoken=' + bdstoken + '&channel=' + channel + '&clienttype=' + clienttype + '&web=' + web + '&app_id=' + app_id + '&logid=' + logid;
-          let params = {
-            encrypt: encrypt,
-            product: product,
-            uk: uk,
-            primaryid: primaryid,
-            fid_list: fid_list
-          };
-          if (shareType == 'secret') {
-            params.extra = extra;
-          }
-          /*if (selectFileList[0].isdir == 1 || selectFileList.length > 1) {
-            params.type = 'batch';
-          }*/
-          $.ajax({
-            url: url,
-            method: 'POST',
-            async: false,
-            data: params,
-            success: function (response) {
-              result = response;
-            }
-          });
-        }
-        return result;
-      }
-    }
-
-    //获取高速下载链接
-    function getHighDownloadLink() {
-      if (isSingleShare) {
-        let high = {
-          bdstoken: null,
-          web: 5,
-          app_id: 250528,
-          logid: getLogID(),
-          channel: 'chunlei',
-          clienttype: 5,
-          uk: yunData.SHARE_UK,
-          shareid: yunData.SHARE_ID,
-          fid_list: getFidList(),
-          sign: yunData.SIGN,
-          timestamp: yunData.TIMESTAMP,
-        };
-        let url = panHighAPIUrl + 'sign=' + high.sign + '&timestamp=' + high.timestamp + '&bdstoken=' + high.bdstoken + '&channel=' + high.channel + '&clienttype=' + high.clienttype + '&web=' + high.web + '&app_id=' + high.app_id + '&logid=' + high.logid + '&fid_list=' + high.fid_list + '&uk=' + high.uk + '&shareid=' + high.shareid;
-        $.ajax({
-          url: url,
-          method: 'GET',
-          async: false,
-          success: function (res) {
-            if (res.errno == 0) {
-              let tip = '左键或右键下载';
-              dialog.open({title: '不限速链接（仅支持单文件）', type: 'highLink', list: res.dlink, tip: tip});
-            }
-            if (res.errno == -19) {  //验证码
-              vcode = res.vcode;
-              createVCode(res.img);
-            }
-          }
-        });
-      }
-    }
-
-    function createVCode(img) {
-      removeVCode();
-      let $vbody = $('<div class="v-body" style="display: flex;justify-content: center;align-items: center;"></div>');
-      let $input = $('<input type="text" placeholder="验证码" id="input-code" maxlength="4" style="width: 80px;height: 40px;margin: 0;padding: 5px;box-sizing: border-box;border: 1px solid #ddd;font-size: 14px;">');
-      let $img = $('<img id="img-code" alt="验证码获取中" src="' + img + '" style="margin: 0 8px;width: 120px;height: 40px;;box-sizing: border-box;">');
-      let $button = $('<a href="javascript:;" id="changeCode">换一张</a>');
-
-      $vbody.append($input).append($img).append($button);
-      swal({
-        title: "请输入验证码",
-        content: $vbody[0],
-        buttons: true,
-      }).then((handle) => {
-        if (handle) {
-          submitVCode();
-        }
-      });
-    }
-
-    function removeVCode() {
-      $('.v-body').remove();
-    }
-
-    //提交验证码
-    function submitVCode() {
-      let input = $('#input-code').val();
-      if (input.length === 0) {
-        swal({
-          text: "请输入验证码",
-          icon: "error",
-        });
-        return;
-      } else if (input.length < 4) {
-        swal({
-          text: "验证码输入错误，请重新输入",
-          icon: "error",
-        });
-        return;
-      }
-
-      let high = {
-        bdstoken: null,
-        web: 5,
-        app_id: 250528,
-        logid: getLogID(),
-        channel: 'chunlei',
-        clienttype: 5,
-        uk: yunData.SHARE_UK,
-        shareid: yunData.SHARE_ID,
-        fid_list: getFidList(),
-        sign: yunData.SIGN,
-        timestamp: yunData.TIMESTAMP,
-      };
-      let url = panHighAPIUrl + 'sign=' + high.sign + '&timestamp=' + high.timestamp + '&bdstoken=' + high.bdstoken + '&channel=' + high.channel + '&clienttype=' + high.clienttype + '&web=' + high.web + '&app_id=' + high.app_id + '&logid=' + high.logid + '&fid_list=' + high.fid_list + '&uk=' + high.uk + '&shareid=' + high.shareid + '&input=' + input + '&vcode=' + vcode;
-
-      $.ajax({
-        url: url,
-        method: 'GET',
-        async: false,
-        success: function (res) {
-          if (res.errno == 0) {
-            removeVCode();
-            let tip = '左键或右键下载';
-            dialog.open({title: '不限速链接（仅支持单文件）', type: 'highLink', list: res.dlink, tip: tip});
-          }
-          if (res.errno == -19) {  //验证码
-            swal({
-              text: "验证码输入错误，请重新输入",
-              icon: "error",
-            });
-            vcode = res.vcode;
-            createVCode(res.img);
-          }
-        }
-      });
-    }
-
-    //有验证码输入时获取下载链接
-    function getDownloadLinkWithVCode(vcodeInput) {
-      let result;
-      if (isSingleShare) {
-        fid_list = getFidList();
-        let url = panAPIUrl + 'sharedownload?sign=' + sign + '&timestamp=' + timestamp + '&bdstoken=' + bdstoken + '&channel=' + channel + '&clienttype=' + clienttype + '&web=' + web + '&app_id=' + app_id + '&logid=' + logid;
-        let params = {
-          encrypt: encrypt,
-          product: product,
-          vcode_input: vcodeInput,
-          vcode_str: vcode.vcode,
-          uk: uk,
-          primaryid: primaryid,
-          fid_list: fid_list
-        };
-        if (shareType == 'secret') {
-          params.extra = extra;
-        }
-        /*if (selectFileList[0].isdir == 1 || selectFileList.length > 1) {
-          params.type = 'batch';
-        }*/
-        $.ajax({
-          url: url,
-          method: 'POST',
-          async: false,
-          data: params,
-          success: function (response) {
-            result = response;
           }
         });
       }
@@ -2138,14 +1755,6 @@
         });
       }
 
-      if (params.type == 'highLink') {
-        let link = params.list;
-        link = replaceLink(link);
-        $('div.dialog-header h3 span.dialog-title', dialog).text(params.title);
-        let $div = $('<div style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap"><div style="width:100px;float:left;overflow:hidden;text-overflow:ellipsis">普通链接</div><span>：</span><a href="' + link + '">' + link + '</a></div>');
-		$('div.dialog-body', dialog).append($div);
-      }
-
       if (params.tip) {
         $('div.dialog-tip p', dialog).html(params.tip);
       }
@@ -2206,71 +1815,6 @@
 
     dialog = createDialog();
     shadow = createShadow();
-  }
-
-  function VCodeDialog(refreshVCode, confirmClick) {
-    let dialog, shadow;
-
-    function createDialog() {
-      let screenWidth = document.body.clientWidth;
-      let dialogLeft = screenWidth > 520 ? (screenWidth - 520) / 2 : 0;
-      let $dialog_div = $('<div class="dialog" id="dialog-vcode" style="width:520px;top:0px;bottom:auto;left:' + dialogLeft + 'px;right:auto;display:none;visibility:visible;z-index:52"></div>');
-      let $dialog_header = $('<div class="dialog-header"><h3><span class="dialog-header-title"><em class="select-text">提示</em></span></h3></div>');
-      let $dialog_control = $('<div class="dialog-control"><span class="dialog-icon dialog-close icon icon-close"><span class="sicon">x</span></span></div>');
-      let $dialog_body = $('<div class="dialog-body"></div>');
-      let $dialog_body_div = $('<div style="text-align:center;padding:22px"></div>');
-      let $dialog_body_download_verify = $('<div class="download-verify" style="margin-top:10px;padding:0 28px;text-align:left;font-size:12px;"></div>');
-      let $dialog_verify_body = $('<div class="verify-body">请输入验证码：</div>');
-      let $dialog_input = $('<input id="dialog-input" type="text" style="padding:3px;width:85px;height:23px;border:1px solid #c6c6c6;background-color:white;vertical-align:middle;" class="input-code" maxlength="4">');
-      let $dialog_img = $('<img id="dialog-img" class="img-code" style="margin-left:10px;vertical-align:middle;" alt="点击换一张" src="" width="100" height="30">');
-      let $dialog_refresh = $('<a href="javascript:;" style="text-decoration:underline;" class="underline">换一张</a>');
-      let $dialog_err = $('<div id="dialog-err" style="padding-left:84px;height:18px;color:#d80000" class="verify-error"></div>');
-      let $dialog_footer = $('<div class="dialog-footer g-clearfix"></div>');
-      let $dialog_confirm_button = $('<a class="g-button g-button-blue" data-button-id="" data-button-index href="javascript:;" style="padding-left:36px"><span class="g-button-right" style="padding-right:36px;"><span class="text" style="width:auto;">确定</span></span></a>');
-      let $dialog_cancel_button = $('<a class="g-button" data-button-id="" data-button-index href="javascript:;" style="padding-left: 36px;"><span class="g-button-right" style="padding-right: 36px;"><span class="text" style="width: auto;">取消</span></span></a>');
-
-      $dialog_header.append($dialog_control);
-      $dialog_verify_body.append($dialog_input).append($dialog_img).append($dialog_refresh);
-      $dialog_body_download_verify.append($dialog_verify_body).append($dialog_err);
-      $dialog_body_div.append($dialog_body_download_verify);
-      $dialog_body.append($dialog_body_div);
-      $dialog_footer.append($dialog_confirm_button).append($dialog_cancel_button);
-      $dialog_div.append($dialog_header).append($dialog_body).append($dialog_footer);
-      $('body').append($dialog_div);
-
-      $dialog_control.click(dialogControl);
-      $dialog_img.click(refreshVCode);
-      $dialog_refresh.click(refreshVCode);
-      $dialog_input.keypress(function (event) {
-        if (event.which == 13)
-          confirmClick();
-      });
-      $dialog_confirm_button.click(confirmClick);
-      $dialog_cancel_button.click(dialogControl);
-      $dialog_input.click(function () {
-        $('#dialog-err').text('');
-      });
-      return $dialog_div;
-    }
-
-    this.open = function (vcode) {
-      if (vcode)
-        $('#dialog-img').attr('src', vcode.img);
-      dialog.show();
-      shadow.show();
-    };
-    this.close = function () {
-      dialogControl();
-    };
-    dialog = createDialog();
-    shadow = $('div.dialog-shadow');
-
-    function dialogControl() {
-      $('#dialog-img', dialog).attr('src', '');
-      $('#dialog-err').text('');
-      dialog.hide();
-      shadow.hide();
-    }
   }
 
   function PanPlugin() {
