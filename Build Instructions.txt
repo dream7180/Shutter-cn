@@ -1,0 +1,34 @@
+ExifPro build instructions
+
+Build environment:
+
+Visual Studio 2017 Community Edition + MFC.
+NASM The Netwide Assembler
+--------------------------------------------------------------------------------
+
+Dependencies:
+
+Download boost libs 1.62.0 or newer from www.boost.org
+
+Unpack and build boost libraries, starting with bjam build.
+
+Debug:
+b2 architecture=x86 address-model=64 link=static threading=multi variant=debug --with-date_time --with-thread --with-system stage
+
+Release:
+b2 architecture=x86 address-model=64 link=static runtime-link=static threading=multi variant=release --with-date_time --with-thread --with-system stage
+
+Edit CommonProjDefinitions.props to point to boost folder.
+--------------------------------------------------------------------------------
+
+Building libjpeg-turbo:
+First install NASM (http://www.nasm.us/) to build libjpeg-turbo SIMD project.
+Next install and run CMake 3.10.0 (https://cmake.org/download/) to create VS projects.
+Run CMake GUI and choose VS 15 2017.
+Point to source (like E:/GitHub/ExifPro/libs/libjpeg-turbo) and build binaries (E:/GitHub/ExifPro/libs/libjpeg-turbo/bin).
+Press 'Configure' button. ENABLE_SHARD can be unchecked. Press 'Generate' button to create projects.
+Copy jconfig.h & jconfigint.h from libjpeg-turbo/bin to libjpeg-turbo.
+--------------------------------------------------------------------------------
+
+Open ExifPro.sln, select Debug or Release x64 configuration and build solution.
+Binaries are placed in ExifPro/bin folder.

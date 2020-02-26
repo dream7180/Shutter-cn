@@ -1,0 +1,645 @@
+x- fnumber to F/Stops?
+x- magnifier tool--limit to display window union with img rect
+x- thumbs should be displayed like in iPhoto to preserve space (when landscape they need less space vert.)
+x- cool shadow below images
+x- db with thumbnails
+x- db to contain EXIF, thubnail, keywords?, description?
+x?- Esc is broken (doesn't stop reloading)
+x- after closing opt dlg restore active pane (move focus)
+x- after closing viewer focus should return to active pane
+x- expand shadow slightly to form full frame
+x- combo size in hist pane (expanded height is equal to one line only)
+x- error reading CRWs
+x- histogram for non-jpeg images fails with silly msg
+x- Alt+letter in viewer wnd opens menu of underlaying window!
+x- magnif. glass and shifted image--no matching
+x- size of toolbar under w2k is wrong--fix AutoResize()
+x verify nothing's broken: - pg up/down broken because of variable row heights!
+x- img in tile mode is too small
+x- add a header to the db with version number
+//- update img db record when description changes (unless date changes)
+- rotation flag too (ditto) (unless date changes)
+x- current photo in viewer wnd to change current photo in main wnd!
+x- incremental display fails to draw the last line? (preview pane)
+x- select photo in main wnd corresponding to the one in a viewer
+x- save contents of light table
+x- img type marker in wrong position
+
+- screen aspect correction is not active in a magnif. glass tool
+- thumbnail size change should retain current scroll pos
+x- EnableDockingEx to remove?
+- shortcuts to be configurable
+- clicking on the slider on floating toolbar causes tb to close
+- remove virtual Scan() with one param and modify remaining PhotoInfo* classes to use the one with two params
+- delete THM files along with CRWs
+x- exposure bias -> simplify fraction!
+- register it for known extensions so it opens as a viewer!
+- Alt+F4 fails to close ExifPro!
+- main toolbar reset doesn't seem to work: verify that btns are shown/hidden properly
+x- prevent multiple instances? (due to the single db)?
+- tags on the tiny thumbnail do not look good!
+?- img color correction profiles to use?
+- column enums: disjoint
+- adv. options: clearing list of paths and filters
+- row height is too small when no rotation of img is detected (no EXIF images)
+
+x- hit testing for photo should be limited to photo+label area (simplifies lasso select)
+//- tagging is problematic - show tag buttons for all tags present in a photo
+x- clear cache file option
+x- in FileInfo (IPTC) tab should activate edit fields
+x- refresh preview pane after rotation
+- minimize CPU load on mouse move
+- changing photo orientation is problematic if there's EXIF orientation applied too
+- when orientation changes row's height may be effected too in PhotoCtrl
+- reset row height when rotation tool used
+
+x- snap frame detects out of window pane dragging, but in maximized wnd there's no left nor right margin...
+x- magnif. glass should reload image if it's reduced!
+x- uninstall to remove cache db & index
+x- tags in photo: add toggle btn
+//- finish layout management dlg
+x- for black stripe removal: check picture size (in exif): if it's 4:3 do not remove anything
+x- black removal: check tolerance of a sum of differences of each component
+x- drop shadow has problems with very narrow images
+x- full screen support for main window
+x- full screen toggle btn for main toolbar
+x- add option 'sort by similarity' to the main menu (and change index number in browserframe oncreate)
+x- by default remove 'slide show stop' button from viewer toolbar (overload virtual reset fn)
+x- add darker stripes to the info pane
+x- installer: bump up cctl to 5.80?
+x- wrong dlg font under win98 (manage layouts)
+x- alt+A should be blocked when toolbar is hidden
+?- rotation of img with size that is not multiple of 4
+?- 'group by tags' btn initially not checked, but grouping is in effect
+x- add my photos to initially empty favorites menu
+x- add space shortcut in a viewer (next photo)
+x- license agreement in installer
+x- add info about jpeglib in the (c) section of help file!
+x- tag bar shows no check boxes under win98 with cc 5.80
+x- default pos of info pane should be right hand side
+x- under FAT limit db size to 2GB (maybe always?)
+x- move focus when folder pane is closed acting weird
+
+x- maker notes updates
+x- enable flag in color profiles is not used
+x- closing preview pane: remember index of 'full' neghbor window not partial one (or restoring is lousy)
+x- cache may have wrong image! multithreading problems? m_pBmp is written to in both threads
+x- prn dlg: default margins values 0.7874xxx too long
+x- defaults to use color correction is on, should be off.
+x- copy & paste in address bar and find bar do not work (^ shortcuts)
+
+- list view in img viewer: update window after scrolling
+x- slider & auto arrange style in task view
+- rotation problems: display only rotation may not stick as it should
+//- dark backgnd below chevron?
+- zoom tool (rect selection to zoom) in a viewer wnd
+x- config tab (captions) colors in the appearance tab
+- trace folder changes?
+//- help file: shortcut hand icon shows up misaligned in win98 (state requirement: ie5.0 (?))
+- initially btn in the info pane (viewer) is not right aligned
+- balloons do not work (img pane, win 98)
+- eliminate 'zip' files from folder listing in a folder pane
+- list preview in a viewer fails to redraw all tags if there are too many of them
+- layout management dlg sucks a big
+- tile view should be customizable
+?- generated BMP (resize) is buggy
+- transition effects for slide show mode
+- reading and using embedded profiles (TIFF)
+x- reading user comment from EXIF block & JPEG COM field (option?).
+- default pos. of a zoom info bar in a viewer: rightmost (and wrong), it's too small
+x- disable sort by similarity while loading images
+x- make exiting sort by similarity mode obvious
+
+- auto-rotate should be decided here since it is already done in CViewPane::OnPartialLoad()
+- rotate photo in hist tool and img adjust tool
+x- image loss-less cropping tool
+- bmp rotation routines to be written in MMX
+- pre-load more than one img (keep cache of preloaded images?)
+- filter tools? (sharpen, blur?)
+- add img blending to stand alone slide show app
+x- 'best fit' should scale small img up with fancy filter to hide pixels
+x- add photo path, size, dimensions and data to the info pane
+- in img adjust show color sample in addition to numerical values
+- histogram for grayscale image
+x- closing main wnd while sorting popup is active will lead to crash
+x- resize should have an option to preserve EXIF block
+- current img in a viewer to change selection rather than current item in a photo ctrl
+x- limit size of preview img for 'img touch up' to something manageable
+
+x- Esc in a viewer wnd doesn't close magnifier glass: it closes viewer wnd instead
+
+x- closing info pane when PhotoCtrl is in detailed view scrolled to the right messes up display
+- pressing F5 in viewer window shouldn't reload all photos (block main wnd shortcuts)
+
+x- marker no Exif should be drawn on the img boundaries, not item rect (preview mode)
+x- rotation of an img rotates thumbnail, but doesn't rotate photo in previews mode
+- img color correction needs batch mode
+x- saving in img correction tool needs to preserve EXIF block!
+- presets for img correction tool?
+x- cancel sorting by similarity btn remains when sorting changed! (sort by anything to cause it)
+x- fading from small img zoomed to fit is broken (1:1 img is used instead of magnified img)
+- fading is broken (timing)
+- img adjust tool should keep my app marker (comment) and keywords section
+x- do NOT regenerate thumbnails when reading from CompactFlash card?
+- when requested img is in a cache, but it's bigger, consider removing it; it takes too much time to redraw;
+	 scale down existing? support same img in many sizes?
+- in img adjustment tool preview redraws are sometimes missing rightmost column!
+
+========= features ==========
+x- new display mode with big preview photos
+x- exit similarity mode if reload photos
+x- histogram to show 5 F stops rather than 4
+- sort folders! (by date?)
+- transfer dlg to do update rather then copy (?) and to look into folders (so partial updates are possible)
+x- speculative load of images in preview mode
+- when reloaded full size photo is rotated (but thumbnail wasn't) resize PhotoCtrl's item (rotate)
+x- when rotating photo reset EXIF orientation
+x- simplify tags bar: saving automatically after tags editing
+- pause for slide show
+- trace current folder: show open folder icon in folder pane (tracing current image)
+
+- arrows for adj. levels (third slider for gamma?)
+- sort columns in the info pane
+- add tags to the context menu!
+- export exif to use file name of sel. img by default
+- ctx menu entry in Explorer to browse folder
+- check box to show original versus modified img in img adj. tool
+x- connect help btn to tools (like img adj)
+x- crop tool - free-crop is not described
+- screen aspect correction in previews (ctrl+4)?
+
+x- date&time: read sub sec time (for sorting purpouses)
+x- fix log scale on hist. for point sample
+x- simplify tags pane toolbar
+- slide show mode: on mouse move show window with prev, next, stop buttons
+- cache non-JPEGs too?
+- orientation messed up--viewer pane + light table + display rotation
+- tagging mysteriously moves items to the front of groups?
+- more choices for HTML generator; prettier defaults
+- trim spaces & tabs in HTML generation
+
+- uninstall shall remove registry entries
+x- crop tool to support fix ratio, like 4 to 6, etc.
+- add toolbar btn to folder pane: add to favorites!
+x- update size info for file types like TIFF
+
+=================================================================
+USERS WISH LIST
+
+- shell tool tip info: update it
+x- starting exif pro in a viewer mode (?)
+x- history of used folders
+- wrong display compared with old exif?
+x- set img for wallpaper
+- tags files: add unicode signature to allow editing in notepad
+x- tags loading: sync both tag windows!
+o- find: advanced find options (two users wated this) ('and', 'or', 'not' keywords)
+- ability to filter (mask) out pictures by selecting date range or picture size range, camera, etc...
+x- find: partial match!, doesn't use IPTC keywords!
+- multiple tags on a thumbnail are cut off (tooltip or something, transparency?)
+x- center current img in a viewer window?
+- lens effect (whatever that means) for current img (magnify it)
+- error parsing when reading from cache!
+- navigation with arrow keys in a viewer
+x- scrollbars in viewer?
+x- allow using numeric keyboard in a viewer to assign tags!
+- printing: size of paper not always available!
+x- raname individual photos (file names)
+- add file rename tool (detach it from transfer tool)
+- check if description can be toggled with a key in a viewer (add toolbar btn too)
+- hide 'stop slide show' btn by default?
+x- uninstall fails sometimes
+- balloon tool tips are dead sometimes (rework adding tooltips!)
+x- top of the viewer wnd looks "thick"; doesn't blend with black wnd too
+- orientation of order of images on a page (print tool)
+x- date/time adjust tool
+x- splash screen sometimes doesn't update (reportedly network related)
+x- list ctrl with folders in copy/move dlg to facilitate dest folder selection
+x- add new column with file type
+- add new formats: bmp, gif, AVI!
+x- transfer tool: consecutive numbers with given amount of digits (%1, %2, %3?)
+- date/time imprint (or other EXIF info), during print? in adj img tool?
+- ability to print data/time on the image!
+- ability to click on the time line and being taken to the appropriate folder
+- shell folder tree view to refresh folders in a working thread
+- permanent rotation shall reset non-permanent rotation flag
+- color -> b/w conversion
+x- tools invoked from viewer window operate on a wrong photo
+- redrawing speed with color correction profile is too slow!
+- list preview in a viewer to be docked to any side (vert alignment too)
+x- resize tool: Width and Height are swapped if img is rotated
+- copy resized img to clipboard!
+- remember last folder scanned and restore it on start-up!
+x- tree view: right click on directory - menu option 'make directory'
+x - file rename!
+x- right click on an image in a viewer mode - Edit image (followed by starting editing application like in thumbnail mode). Shortcut key would be nice
+
+- rotate: gracefully handle read-only images!
+- viewer mouse click - dlg where users can decide what to do
+x- "Up one level" icon on the toolbar to aid folder navigation
+- "save pictures to folder" in the slide show app
+- comments may include '0xa' EOS (Mac); handle them properly
+x- update copyright year in the the about box
+?- export EXIF tool to export tags and other IPTC fields!
+- viewer wnd shall remember tb visibility and preview vis. separately for wnd mode and full screen mode
+- TIFF doesn't support tags, but still shows 'pen' in the tag pane, instead of crossed pen
+- viewer wnd: scrollbars + navigator window
+x- moving in a viewer window to change selection rather than current image in the main wnd!
+- add tooltip to the list ctrl with tools
+x- add ability to sort by date range: selection in a time line bar to filter!
+- add tooltip to the time line bar
+x- add 'compare' function: multiple img in the viewer window (2, 3 or 4 at a time)
+
+x- sizing grip in img adjust tool when multiple images selected is in the wrong spot!
+x- descr. tool: move img in preview too on next/prev!
+?- XBUTTONs to configure (in a viewer wnd: next/prev img)
+- sorting images manually in light table - later source for HTML generator?
+- viewer: when zoom is 25% fading transition may use wrong size images
+x- add next/prev links in the generated HTML album
+x- add tagging submenu to the light table
+- batch renaming files based on the exif info (ex: Camera model-lens attached-focal length-4digit running number)
+- resizing pane view should check if img is to be reloaded (due to the reduction in size)
+x- magnifier tool--show RGB color of center pixel
+- vert toolbar and info bar in a viewer
+- flex framework in a viewer window to dock tag bar?
+- "Browse with ExifPro" item added to Windows right-click menu
+- bmp & gif format support
+x- crop tool: fix ratios, like 4x6, 5x7 and so on
+x- remove all imgs from the light table option
+- HTML templates to choose from
+- HTML: select what text is to go there (EXIF, descrpt.), edit description for HTML?
+- copy/rename/delete in folder view!
+- moving/reorganizing files (raname?)
+x- 16 bit TIFF
+- MakerNote for KonicaMinolta?
+
+x- add a tool: resize + e-mail photos!
+- enhance Transfer tool to contain a list of photos to be copied; include option not to copy the ones that already exist in dest folder
+x- print tool: footer text to be user configurable!
+x- magnifier shows old photo when going to the next one (pgDn)!
+x- TIFF and zip support (zipped TIFFs not supported?)
+x- option to remove all pictures, but the ones in a light table
+- adv. option to delete files rather than moving them to the bin
+- use EXIF info for rename in transfer tool! (use it for a time stamp & other EXIF fields)
+- del/rename folders
+x- raname files?
+- JPEG2000 support to be added
+x- time line: 'back' button and 'cancel' button
+x- tags to have collapsible folders?
+- support MRW (Minolta raw)
+x- nag screen: counter that counts down, plus expl. text "buy exifPro to get rid of this screen"!
+x- description text to be turned on/off in the preview window
+x- print tool: explicit switch for cm/inch units!
+- permanent rotation of portrait images (Canon D350) causes thumbnail to be upside down!?
+- print dlg: specify desired photo sizes rather than margins!
+- adv. settings: metric vs imperial units?
+- drag&drop support in folders pane and even main window (rolls of film may be drop targets) - organizing files!
+- more checks for color correction lib! bogus ICCs?
+- memory leaks in Win98?
+x- introduce read sharing flag when opening files in image viewer!
+x- when the last used folder (favorite folder?) is gone (like removable drive), ExifPro will complain and quit at start-up!
+x- after filtering status bar should show number of images left, not the original total number!
+- transfer tool folder panel: more filters (by type, by date, by pattern)
+x- transfer and renaming: allow substrings of original file name
+- tags to append while loading them?
+x- add/delete/edit description for a set of photos
+
+- hide tag number column in the info pane
+- info pane big clean up, categorize tags and only show a few that makes sense; more units (s, px, etc.)
+x- reset slide show timer when user advances manually
+- scan EXIF in transfer tool to make EXIF fields available for rename
+x- F5 to refresh pane window(s) in the transfer tool
+- multiple apps to open images with ("open with" kind of)?
+- auto-refresh when folder's content change + incremental update!
+x- edit descr/IPTC -> allow updating all selected files!
+- Explorer auto handler -> transfer tool
+- thumbnail print -> allow less than 5 across and use real image instead of thumbnail? (or use new layout with photos, similar to thumbnail print?)
+
+- sync tags in both tag panes (viewer & main window)!
+x- refresh time line after deleting photos!
+x- %n renaming flag shall support specifying starting number
+
+- light (white) background in the viewer window - matching toolbar!
+x- file rename after images are loaded!
+x- check if recent folder exists before using it in copy/move tool!
+
+- thumbnail caching with catalog photos is broken? (photo path is virtual)
+x- sorting by date/time of catalog photos is broken
+x- add photo types to the factory!
+x- no delete from catalog!
+
+- scan selected subfolders (checked ones?)
+- shortcuts to customize
+x- tool to extract JPEGs from raw files
+- enhance search capabilities in the catalog files
+
+- filtering: ----------------------------------------------------------------------------
+> As far as I understand now there are three types of filtering of the images: Find window for file names, time line for creation date, and grouping for grouping by folders and tags. I would like to emphasize, that grouping is not exactly filtering, since it shows all the images, not only those you  are looking for.
+> From my experience filtering is a much stronger and convenient tool in most working scenarios. So my suggestion is to define most useful attributes (time, folder, file name - that is standard, but add also tags, exif fields) and allow to filter the images by constructing "queries" as any logical combination of those attributes. So that, for example, one could find all images that:
+>    (Tag = Home && Tag = Dog && Date = (1/4/03 : 3/6/05) && ! Date(1/2/04:12/3/04) && Flush = 'on' && ! Res < (1024x768))
+> This is just illustration of logic, not suggestion  of  required interface, which is a different issue. And that is a "complex" filtering.
+> By "simple" I mean to implement only && between the fields, and allow only tags, dates, folders and times, meaning only the attributes you have already implemented queries for, just to do that in form of filters. Even interface is almost ready for that and may require only slight modifications (hopefully :-). Even that simple  implementation may be extremely useful.
+-----------------------------------------------------------------------------------------
+
+- build catalog: report images that failed conversion (at the end)
+- scan folders in the worker thread (folder pane)
+- avoid scanning shortcuts to network drives/folders?
+x- resizing grayscale images introduces lots of artifacts
+x- catalog: NEF files lose exif info, date is wrong
+x- catalog: tags are gone
+- DEBUG only: when overwriting catalog delete it first!
+- RELEASE: make sure overwriting is not possible or delete file first
+
+x- NTFS with restricted access rights: EXIF scanning doesn't work?
+- build catalog: check boxes next to the drives to select multiple of them
+
+- canon 30D: the camera body number is being reported incorrectly in info pane
+- canon 30D: The ISO (Tag ..10) is not displayed
+- info pane: too many tags (organize)
+x- rename file(s)
+x- tab key in the viewer - switch panes (if there are two panes)
+x- up/down, left/right to double page up/dn
+x- file rename!
+- save to the remote location (via FTP) (resize, html gen tools)
+
+x- printing thumbnails: add font selection dlg
+
+- refresh info pane and preview when viewer is open in different monitors (refresh is normally blocked)
+x- support for Pentax raw images
+
+- database with paths to the tagged images for quick access (virtual folder)
+
+x- fix sorting (case insensitive)
+x- fix time/date tool (implement it)
+x- fix name alignment in the detailed view
+x- add option to the slide generation (endless loop)
+- tags listed in a submenu of context menu in the viewer window
+x- arbitrary location for a cache file (different drive)
+
+- to add crop and resize info (adj. tool) to the XMP metadata instead of actually do cropping/resizing (info to be used when printing)
+
+- mouse wheel scroll doesn't work in the viewer window on the secondary monitor?
+
+- select EXIF fields to show up in the info pane
+- allow specifying multiple words in a quick filter (info pane)
+- multi line info in the viewer window
+- add move tool to the light table!
+
+x- auto rotate modifies date?
+x- cursor keys to scroll img in a viewer window!
+x- copy & move tools to remember settings separately!
+
+- request to right click drag&drop and show 'create shortcut' option
+
+- break long descriptions so they fit in the pane view
+
+- permanent "rotation" of raw files (save rotation flag in the metadata)
+?- adjust date/time tool to have an option to copy EXIF d/t to file d/t stamp
+
+- adjust img tool: remember last crop ratio constraint
+- have a crop tool available in a list of tools
+- have a photo's original ratio available in a list of crop constraints
+
+x- smooth scrolling 'off' doesn't stick!
+- vert. toolbar in a viewer...
+- folder pane to populate folders in a different thread!
+x- file transfer: date&time is off! (system time versus local time?)
+- img crop: show img size based on a given dpi number
+x- raw formats: launch raw img editor...
+x- rename function for loaded images, not just part of a transfer tool
+- print tool: rotate images to orient them such that top is either at the top or right side; important for photo printers that add "postcard" marks
+- print tool: two full page layouts: one shrunk to fit in a page, another to fit with cropping.
+x- remember selected printer; it may not be a default one, but a photo dedicated printer.
+- add print btn to the viewer's toolbar
+- crop tool: add "rule of thirds" aids: lines that divide image into three columns & three rows
+- burn a CD tool!
+- use dcraw, when there is no big usable preview image embedded (sony alpha 1100)
+
+x- rotate img + EXIF block -> clear orientation field!
+
+x- allow moving images using 'folder pane' folders as destinations
+- read "track" file from GPS and matching date/time stamps with photos update photo's GPS info
+
+x- NEF extension is given instead of JPG in img adj tool!!!!!!!
+
+x- add CR LF to exported EXIF text file?
+x- "Use Defaults" instead of "Use Default Colors"
+- Adjustment->Image Crop, please include something like "Lock largest side at max" to extend cropping rectangle to maximum;
+x- filter based on stars/rating
+x- shortcuts to assign stars
+x- four viewer panes and Alt+digit to switch to a given one
+- load consecutive images into multi panes in a viewer instead of leaving them empty
+- rotated image, then ran an Image Adjustment on it, to adjust brightness and contrast, and saved the result as a new file.  The new file then has a thumbnail that is back in landscape mode, although the image itself is still in portrait mode...
+
+- put a watermark when resizing images...
+
+x- copy XMP file when moving/copying photo!
+
+- exif pro update notification (and/or manual option to check for updates)
+
+- open files with different apps
+o- filter: allowing the filter bar to filter explicitly based on tag (obsolete, superseded by filter pane)
+???- Esc does not stop reloading? (raw files, tiffs only?) verified: works for me.
+- viewer: hide toolbar and info bar separately!
+x- viewer: info bar -> hide names, leave only values (switch)
+- viewer: info bar -> two or more lines of text; fixed size fields (so they don't jump)
+
+x- transfer tool: add current folder into the list of folder shortcuts!
+- check boxes to select which folders to load/scan
+
+- rename tool for selected (multiple) images, not a part of transfer tool
+- in a hierarchy of tags, clicking sub-node shall apply a node's tag (click 'dog' to apply both 'dog' and 'pets' that dog belongs to)
+- show IPTC info in a tool tip!
+x- scan / catalog tool: do not stop on errors, capture them & continue!
+- perspective correction and/or distortion tool
+x- "best fit" cuts off parts of photo when img aspect correction is on (non-square pixels)
+x- filter: use path and IPTC/XMP data to search too
+- rotate tool is badly broken for photos with orientation info!!!!!!!!!!
+- export MakerNote fields too (specifically D70's white balance bias)
+- delete both raw+jpeg if there are pairs
+x- drag&drop to folders for move/copy!
+- remember text entry history in the resize dlg box (& other tools)
+- add shortcut key to center image in a viewer
+- drill down to hours in the time line view?
+x- and/or select and highlight a day instead of swiching to it (to avoid going back to full month)
+
+x- 1. There's no identification of thumbnails from the Preview Bar that are expanded into the 4 panes - if I'm looking at number of similar photos (which is what Viewer Window is for) - I need to know which is which. The best way to do it, is to identify each one by a surround colour (which right now is blue for thumbnails in the Preview Bar) - so, there's should be four colours for 4 thumbnails and 4 panes.
+
+x- 2. It's more natural to use the mouse drag the thumbnails from the Preview Bar into the panes, then to select the panes and then select the thumbnail to expand it into the pane;
+
+- 3. additional function to, using mouse wheel, to scroll through the Preview Bar and at same time have the four panes show the four expanded thumbnails; however, I sho> (maybe)
+
+- 4. If I select multi-view pane (C), then all four panes should display the first four expanded thumbnails from the current view of Preview Bar, rather than one and 3 blank. (maybe, maybe not!)
+
+
+- add curves to image adjustment tool
+x- add favorites to the list of folders in the copy/move boxes
+- scan folder for changes and update list of photos automatically (currently buggy & disabled)
+x- select font for tags
+- group images in the preview bar (selected in the panes to be on the side) - very low priority feature
+- option to populate newly open panes in the viewer with images (consecutive ones)
+- when both raw & jpg are present treat them as one (move, copy, delete together)
+
+x- when filtering is active, show little funnel icon in the stat bar
+x- viewer: right click menu item for file rename.
+x- print data & time below photos (thumbnails)
+- disable screen saver while in a slide show!
+- sort by third column (maybe fourth)
+- filter cancel - remember and restore current image!
+- XMP read/write from/to NEF files, like some editing tools do...
+- print both file name and date/time stamp in thumbnail mode
+x- set as wallpaper function
+x- add seconds to the date/time adjust tool
+- store EXIF in JPEGs exported from raw files
+- cataloging: select multiple folders to scan
+x- repeatedly requested search for multiple tags
+- bigger "after" window in the adj. tools, smaller controls, hotkeys
+- img adjustment in the viewer? small controls overlaid there?
+- add custom ratio to cropping tool
+- add "best fill" button to the viewer. Unlike "best fit" this zoom should cover entire display with image, to leave no empty stripes at any side
+- remove spaces at the end of filter text...
+- build the engine for image processing, leaving image transformations to the plug-ins
+- press a key, and matching file shall be selected in the main window (just like list ctrl does)
+
+- while d&d images into explorer folder, allow for copying/recreating the same dir structure as in source (SHFILEOPSTRUCT allows for multiple destinations, so they can be prepared for each file, such that source dir tree would be recreated at the destination).
+- dbl-click on a 'film roll' icon is to scan this folder only (?).
+x- new column with rates (stars), to sort by rate
+- rename folder option
+- option to prevent adj. tool from blowing up highlights (instead of clipping at 255 shift entire image down a little bit in intensity).
+x- custom columns with user-defined expressions using image params
+- update cache when photos are moved inside ExifPro, to save time on future rescans
+x- d&d file into a shortcut in the folders view, and bad things happen...
+- add move tool access to the viewer
+- linked images (raw+jpeg) (delete linked for instance)
+x- customizable text under thumbnail in multi lines!
+- uploaders of images to Flickr, and such
+- add rename fn to the Move tool! use EXIF fileds too
+x- use Lua to construct rename rule?
+- resize to reconstruct original folder hierarchy in destination place
+x- extract jpeg to use crw too
+- store settings in an XML/INI file to make ExifPro more portable
+- folder panel refresh bug - only one folder disappears after refresh, when several has been removed in Explorer
+x- dbl click to resize "Photo" column to fit, miscalcs width when very long name is present (50 chars).
+- round() fn to really round, not truncate.
+x- viewer: dbl click to switch between best fit and 100% zoom.
+x- viewer: middle mouse btn at activate magnifying glass
+- press a key and go to the image with matching name in a list ctrl!
+- sort tags?
+x- searching for tags to be easier/better/faster
+- provide a list of apps that can open an image!!!
+x- decode DNGs to show better previews: jpeg in a subIfd
+- add GPS info (to EXIF block) (hard)
+- sort folders too (rolls of film), say by name or date
+- wnd with tags in a viewer to be docked to the side
+- allow sets of tags, that are all loaded and then available in a menu to switch between them
+- groupping: by camera, by date/time
+- start supporting DDE, so parameter passing will work for running instance of ExifPro hopefully.
+@rejected - dbl click in a multipane view to maximize this pane
+x- add file names to the thumbnails in a viewer!
+- when option "Close ExifPro when exiting Viewer..." is on, provide a way (ctx menu option) to but switch to the main window (do not exit the app)
+- allow folder deleting
+x- multi line text label
+x- location of thumbnail cache to be configurable
+- portable version: settings in a file
+@rejected- dbl click to close image viewer?
+- scrollbar in a viewer on an extented desktop snd. monitor doesn't work
+- img.tag column if feasible
+x- group by tags to not group by rating, or separate group by rating
+- edit metadata directly in NEF files
+x- exif export misses custom tag values!
+- customize colors of all panes: folders, info, tags...
+x- tags bar in a viewer doesn't retain it's size!
+x- advanced filter: use XMP fields too
+x- sorting is broken: "1, 2, 001, 002, 10, 020, 20, 21, 0020, 021", or "1, 2, 001, 002, 10, 20, 020, 21, 0020, 021"
+x- viewer zoom: zoom to fit is bogus when image cannot be made bigger than 100% (due to settings) while it should (to fit)
+x- retain timestamp while editing photo description!
+x- cancel in a histogram with filters is messed up:
+	1) create a filter
+	2) run the filter with the new rule.
+	3) use the original filter bar (date or month) to select a specific day.
+	4) press the Escape key supposed to cancel the filtering. This has no effect. Pressing the back key is Okay, but as s soon as the Escape key is pressed the filter is always on with the date selected.
+- explorer-like semitransp. selection rect instead of dotted line
+- after adding descr. text (F2) it is not immediately available to the preview pane (it'll show up after reloading images)
+x- adj. tool - remember last used tab and restore it
+- adding stars, switching between folder/date group and rating grouping -> two images disappeared from list ctrl?!
+
+- unify/cleanup exception throwing and catching
+- unify/cleanup notification system using signals
+
+- one hot key to turn off the raw files (so that the raw files won't show up in the file list)
+- grupping by similarity; show images in stacks, with top image representing similar photos below
+x- when applying tag to more than 1 image, show progress bar, and allow operation to be cancelled
+x- tagged image is not considered tagged unless reloaded; ctrl+7 moves it into limbo
+x- file info dlg: disable next/previous at the end of sequence of images
+- fix jpeg decoder to enable decoding at 1/16 the size, apart from half-, quater-, & 1/8-th the size (thumbnail gen. speed)
+- CRW doesn't store tags properly (make it xmp-compat)
+- tag filter: 'any', 'all' very confusing for "excluded tags"!
+x- option to show file names with extension!
+x- clicking on timeline drills down, even when it should highlight a day/month (broken, was working)
+- add folder rename/delete/create!
+x- add file rename and file batch rename!
+- add option to show units in detailed view (exposure time 1/60 s, F3.5, exposure bias 0.0 EV, focal length 16.5 mm, image width 2000 px) (a very few columns would use it, and a few others already do as a part of presented info)
+- multi folder selection (for image scanning)!!!
+x- img rotation buttons in preview pane
+- add database of cameras with field of view crop factor; populate it from EXIF data somehow (find out te lowest FL in a bunch of photos); read camera name from EXIF data, supplied factor (guess); export/import/merge of the master table
+- provide icons/images that can be used instead of tags
+- enable 'define custom columns' when no photos selected
+- provide support for Panasonic G1 raw images
+- edit XMP inside DNF files (hard)
+- XMP bugs (?):
+	1. The F2 File Info Dialog should read XMP Contact/Information etc. not IPTC
+	2. When I enter a City under IPTC Information this is written to the "city" XMP field but not the "city" IPTC field
+	3. When I enter a Creator's City under IPTC Contact this is written to the correct XMP field and to "city" IPTC
+	4. Also XMP "Location" strangly goes to IPTC "contact"
+- magnif. glass: cross is between pixels, it should be at the center of some pixel (say at x16 is bad, fine at x12)
+- shortcut key to switch between hotz/vert pane layout (in a viewer window)
+- del in viewer to show a red cross (deleted photo marker) instead of deleting (no confirmation)
+- img. viewer: ctrl+num0..9 to rate? (or tag?)
+- viewer/preview - zoom in to zoom around the center pixel
+- for partially visible photos show/highlight that part that's visible in a preview.
+- magnif. glass - should it use original pixels or transformed by a color profile (-> original)?
+- show pixel's coordinates? (in magnifier window)
+- delete to show a red cross and move img to the trash can area (w/o confirmation), real delete to be postponed
+- vert preview bar in a viewer: scrolling by one image ignores text label (at the bottom)
+- mosaic disp mode? tiny thumbnails, no space between them, no text label
+- calendar view? like a real calendar with photos stacked
+x- ctrl+2 in viewer closes viewer wnd!
+- transfer tool enhancements to move photos to different folders based on some attribs, like date
+- adv. option to keep viewer and main wnd in sync (always), dual monitor users may need that
+x- IPTC fields to be available as columns (or at least available to custom columns)
+- tagging moves current image (and preview pane shows first image - incorrectly)
+- auto hide preview bar in the viewer
+- dock tagging bar in the viewer
+- adj img brightness/contrast on the fly (non-permanent) in the viewer
+- custom/incremental rotate (free angle?)
+- customize all toolbars!
+- inconsistent ICC profile application (when enabled for wnd/view, but not img, it's aplied in viewer only)
+- option to build a tree of folders to scan
+- option to clear MRU list of paths/folders
+- bug: click on image in explorer window brings up EP, but not entire folder is scanned (scan stops after encountering clicked image)
+- allow reading images with broken metadata (broken MakerNotes, ect)
+- add ability to collapse filtering pane in user defined filters, and resizing to the ctrl+f filter pane
+- extra button to toggle 100% - zoom to fit (and not on a numeric kbd!)
+- also it would be nice if when toggling back and forth between 100% and fit to screen, if at 100% the same location was used as last time. So it doesn't always go back to the top left corner
+- adj. time -> file info shows cached (old) time, and reflects changes only after reload
+- statistical module - charts with selected attrib (focal length, exp. bias, iso, ect.)
+- add adv. processing tool that can copy files to different folders, rename them, tag them, etc. (or enhance Transfer tool)
+- make MakerNote binary data available to scripts through img.mnote[]; unknown fields could be tested in script
+- configure what's displayed as a description of photo in a viewer (any IPTC/metadata field may be good)
+- script-based power move/copy tool
+x- add mirror option to rotation dlg
+x- add option to hide bottom toolbar
+- ignore JPEG description/comment field when metadata (IPTC or XML) is present in the photo (to get rid of those persistent comments)
+x- multiline image labels
+x- increase supported date/time range (that is allow dates below Jan 1 1970)
+- GPS editing tool
+- resize dialog: add file prefix option apart from a suffix
+- add GPS view with a map
+- select two images and have kbd option to compare them side by side
+- customize toolbar in viewer
+- make tool bar (big one) allow access to buttons that are cut off (off-screen)
+- if there is a sound file accompanying photo, allow play back
+- add ability to update metadata (only select fields) for many images at once (today editing overwrites everything); request is to do it selectively
+
+1) The first would be an ability to read the makernote data that Reconyx Cameras (one of the world's most popular camera traps) add to each photograph, so we could export temperature and moonphase data from each file.
+2) We'd love to be able to easily add GPS location data in batches

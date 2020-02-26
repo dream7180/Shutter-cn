@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <Bin>$(SolutionDir)bin\$(Platform)-$(Configuration)\</Bin>
+    <Int>$(SolutionDir)out\$(Platform)-$(Configuration)\$(ProjectName)\</Int>
+    <Libraries>$(SolutionDir)libs</Libraries>
+    <Libs>$(SolutionDir)out\$(Platform)-$(Configuration)\libs</Libs>
+    <LibsDbg>$(SolutionDir)out\$(Platform)-Debug\libs</LibsDbg>
+    <LibsRel>$(SolutionDir)out\$(Platform)-Release\libs</LibsRel>
+    <Boost>E:\include\boost_1_62_0</Boost>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_ProjectFileVersion>11.0.51106.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <ItemDefinitionGroup />
+  <ItemGroup>
+    <BuildMacro Include="Bin">
+      <Value>$(Bin)</Value>
+    </BuildMacro>
+    <BuildMacro Include="Int">
+      <Value>$(Int)</Value>
+    </BuildMacro>
+    <BuildMacro Include="Libs">
+      <Value>$(Libs)</Value>
+    </BuildMacro>
+    <BuildMacro Include="LibsDbg">
+      <Value>$(LibsDbg)</Value>
+    </BuildMacro>
+    <BuildMacro Include="LibsRel">
+      <Value>$(LibsRel)</Value>
+    </BuildMacro>
+    <BuildMacro Include="Boost">
+      <Value>$(Boost)</Value>
+    </BuildMacro>
+    <BuildMacro Include="Libraries">
+      <Value>$(Libraries)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

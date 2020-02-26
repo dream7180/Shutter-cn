@@ -1,0 +1,3 @@
+Note: HighRes PNGs have DPI of 192 (which, in PNG, is expressed as 7,558 (0x1d86) pixels per meter).
+
+ExifPro will scale PNGs to match system DPI setting.

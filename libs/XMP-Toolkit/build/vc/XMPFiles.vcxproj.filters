@@ -1,0 +1,317 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Common Code">
+      <UniqueIdentifier>{a6d7bf25-22a6-4a7a-b5e0-a644c324464b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\File Handlers">
+      <UniqueIdentifier>{36a54085-e119-4cd8-9669-bb2c038eecee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Format Support">
+      <UniqueIdentifier>{573a9d8c-fa86-46b3-8be2-970fc1d3344e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Third Party">
+      <UniqueIdentifier>{d3a30be5-49bc-45aa-ada9-683e80085bc1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Third Party\zlib">
+      <UniqueIdentifier>{f2b21867-9f7a-4793-b6f9-cd6fd1207f45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Third Party\MD5">
+      <UniqueIdentifier>{2c1950fa-df67-496a-b237-b9cf9b66b927}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Common Code\NativeMetadataSupport">
+      <UniqueIdentifier>{2a090c3d-7715-4571-995d-2785fb499e7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Common Code\PluginHandler">
+      <UniqueIdentifier>{7c5eb72b-51d9-4f8d-add4-02f21d567be0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Format Support\AIFF">
+      <UniqueIdentifier>{727f7f59-0647-41a7-8e97-654fb59d7cdd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Format Support\IFF">
+      <UniqueIdentifier>{3dec415f-bca5-4cb6-95a8-10f9ae8f3c07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Format Support\WAVE">
+      <UniqueIdentifier>{0489930f-4229-4bc8-9c7b-d294a05f40c5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\XMPFiles\source\HandlerRegistry.cpp">
+      <Filter>Source Files\Common Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\WXMPFiles.cpp">
+      <Filter>Source Files\Common Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\XMPFiles.cpp">
+      <Filter>Source Files\Common Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\XMPFiles_Impl.cpp">
+      <Filter>Source Files\Common Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\UnicodeConversions.cpp">
+      <Filter>Source Files\Common Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\XML_Node.cpp">
+      <Filter>Source Files\Common Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\XMP_LibUtils.cpp">
+      <Filter>Source Files\Common Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\third-party\zlib\deflate.c">
+      <Filter>Source Files\Third Party\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\third-party\zlib\inffast.c">
+      <Filter>Source Files\Third Party\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\third-party\zlib\inflate.c">
+      <Filter>Source Files\Third Party\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\third-party\zlib\inftrees.c">
+      <Filter>Source Files\Third Party\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\third-party\zlib\trees.c">
+      <Filter>Source Files\Third Party\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\third-party\zlib\uncompr.c">
+      <Filter>Source Files\Third Party\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\third-party\zlib\zutil.c">
+      <Filter>Source Files\Third Party\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\third-party\zlib\adler32.c">
+      <Filter>Source Files\Third Party\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\third-party\zlib\compress.c">
+      <Filter>Source Files\Third Party\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\third-party\zlib\crc32.c">
+      <Filter>Source Files\Third Party\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\TIFF_FileWriter.cpp">
+      <Filter>Source Files\Format Support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\TIFF_MemoryReader.cpp">
+      <Filter>Source Files\Format Support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\TIFF_Support.cpp">
+      <Filter>Source Files\Format Support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\XDCAM_Support.cpp">
+      <Filter>Source Files\Format Support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\XMPScanner.cpp">
+      <Filter>Source Files\Format Support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\ASF_Support.cpp">
+      <Filter>Source Files\Format Support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\ID3_Support.cpp">
+      <Filter>Source Files\Format Support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\IPTC_Support.cpp">
+      <Filter>Source Files\Format Support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\ISOBaseMedia_Support.cpp">
+      <Filter>Source Files\Format Support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\MOOV_Support.cpp">
+      <Filter>Source Files\Format Support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\PNG_Support.cpp">
+      <Filter>Source Files\Format Support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\PSIR_FileWriter.cpp">
+      <Filter>Source Files\Format Support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\PSIR_MemoryReader.cpp">
+      <Filter>Source Files\Format Support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\QuickTime_Support.cpp">
+      <Filter>Source Files\Format Support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\Reconcile_Impl.cpp">
+      <Filter>Source Files\Format Support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\ReconcileIPTC.cpp">
+      <Filter>Source Files\Format Support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\ReconcileLegacy.cpp">
+      <Filter>Source Files\Format Support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\ReconcileTIFF.cpp">
+      <Filter>Source Files\Format Support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\RIFF.cpp">
+      <Filter>Source Files\Format Support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\RIFF_Support.cpp">
+      <Filter>Source Files\Format Support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\SWF_Support.cpp">
+      <Filter>Source Files\Format Support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\SonyHDV_Handler.cpp">
+      <Filter>Source Files\File Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\SWF_Handler.cpp">
+      <Filter>Source Files\File Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\TIFF_Handler.cpp">
+      <Filter>Source Files\File Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\Trivial_Handler.cpp">
+      <Filter>Source Files\File Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\UCF_Handler.cpp">
+      <Filter>Source Files\File Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\WAVE_Handler.cpp">
+      <Filter>Source Files\File Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\XDCAM_Handler.cpp">
+      <Filter>Source Files\File Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\XDCAMEX_Handler.cpp">
+      <Filter>Source Files\File Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\AIFF_Handler.cpp">
+      <Filter>Source Files\File Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\ASF_Handler.cpp">
+      <Filter>Source Files\File Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\AVCHD_Handler.cpp">
+      <Filter>Source Files\File Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\Basic_Handler.cpp">
+      <Filter>Source Files\File Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\FLV_Handler.cpp">
+      <Filter>Source Files\File Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\InDesign_Handler.cpp">
+      <Filter>Source Files\File Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\JPEG_Handler.cpp">
+      <Filter>Source Files\File Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\MP3_Handler.cpp">
+      <Filter>Source Files\File Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\MPEG2_Handler.cpp">
+      <Filter>Source Files\File Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\MPEG4_Handler.cpp">
+      <Filter>Source Files\File Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\P2_Handler.cpp">
+      <Filter>Source Files\File Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\PNG_Handler.cpp">
+      <Filter>Source Files\File Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\PostScript_Handler.cpp">
+      <Filter>Source Files\File Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\PSD_Handler.cpp">
+      <Filter>Source Files\File Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\RIFF_Handler.cpp">
+      <Filter>Source Files\File Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\Scanner_Handler.cpp">
+      <Filter>Source Files\File Handlers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\third-party\zlib\infback.c">
+      <Filter>Source Files\Third Party\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\NativeMetadataSupport\IMetadata.cpp">
+      <Filter>Source Files\Common Code\NativeMetadataSupport</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\NativeMetadataSupport\IReconcile.cpp">
+      <Filter>Source Files\Common Code\NativeMetadataSupport</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\NativeMetadataSupport\MetadataSet.cpp">
+      <Filter>Source Files\Common Code\NativeMetadataSupport</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\PluginHandler\HostAPIImpl.cpp">
+      <Filter>Source Files\Common Code\PluginHandler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\PluginHandler\OS_Utils_WIN.cpp">
+      <Filter>Source Files\Common Code\PluginHandler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\PluginHandler\Module.cpp">
+      <Filter>Source Files\Common Code\PluginHandler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\PluginHandler\PluginManager.cpp">
+      <Filter>Source Files\Common Code\PluginHandler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\PluginHandler\XMPAtoms.cpp">
+      <Filter>Source Files\Common Code\PluginHandler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\PluginHandler\FileHandlerInstance.cpp">
+      <Filter>Source Files\Common Code\PluginHandler</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\AIFF\AIFFBehavior.cpp">
+      <Filter>Source Files\Format Support\AIFF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\AIFF\AIFFMetadata.cpp">
+      <Filter>Source Files\Format Support\AIFF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\AIFF\AIFFReconcile.cpp">
+      <Filter>Source Files\Format Support\AIFF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\IFF\ChunkPath.cpp">
+      <Filter>Source Files\Format Support\IFF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\IFF\IChunkBehavior.cpp">
+      <Filter>Source Files\Format Support\IFF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\IFF\Chunk.cpp">
+      <Filter>Source Files\Format Support\IFF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\IFF\ChunkController.cpp">
+      <Filter>Source Files\Format Support\IFF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\WAVE\BEXTMetadata.cpp">
+      <Filter>Source Files\Format Support\WAVE</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\WAVE\CartMetadata.cpp">
+      <Filter>Source Files\Format Support\WAVE</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\WAVE\Cr8rMetadata.cpp">
+      <Filter>Source Files\Format Support\WAVE</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\WAVE\DISPMetadata.cpp">
+      <Filter>Source Files\Format Support\WAVE</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\WAVE\INFOMetadata.cpp">
+      <Filter>Source Files\Format Support\WAVE</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\WAVE\PrmLMetadata.cpp">
+      <Filter>Source Files\Format Support\WAVE</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\WAVE\WAVEReconcile.cpp">
+      <Filter>Source Files\Format Support\WAVE</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\WAVE\WAVEBehavior.cpp">
+      <Filter>Source Files\Format Support\WAVE</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\third-party\zuid\interfaces\MD5.cpp">
+      <Filter>Source Files\Third Party\MD5</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\XIO.cpp">
+      <Filter>Source Files\Common Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\XMPFiles_IO.cpp">
+      <Filter>Source Files\Common Code</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Host_IO-Win.cpp">
+      <Filter>Source Files\Common Code</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

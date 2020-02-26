@@ -1,0 +1,309 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{B9A2E1F1-4E5C-49AC-B052-604CAE21F56E}</ProjectGuid>
+    <RootNamespace>XMPFilesStatic</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\public\libraries\windows\debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\intermediate\$(ProjectName)\windows\debug\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\public\libraries\windows_x64\debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\intermediate\$(ProjectName)\windows_x64\debug\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\public\libraries\windows\release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\intermediate\$(ProjectName)\windows\release\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\public\libraries\windows_x64\release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\intermediate\$(ProjectName)\windows_x64\release\</IntDir>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.\;..\..\;..\..\public\include\;..\..\XMPFilesPlugins\api\source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32=1;_WINDOWS=1;WIN_ENV=1;XMP_StaticBuild=1;DEBUG=1;_CRT_SECURE_NO_WARNINGS=1;_DEBUG=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalOptions> /J</AdditionalOptions>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <ObjectFileName>..\..\intermediate\windows\debug\</ObjectFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)XMPFilesStatic.lib</OutputFile>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+    </Lib>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.\;..\..\;..\..\public\include\;..\..\XMPFilesPlugins\api\source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32=1;_WINDOWS=1;WIN_ENV=1;XMP_StaticBuild=1;DEBUG=1;_DEBUG=1;_CRT_SECURE_NO_WARNINGS=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalOptions> /J</AdditionalOptions>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <ObjectFileName>..\..\intermediate\windows_x64\debug\</ObjectFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Lib>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+      <OutputFile>$(OutDir)XMPFilesStatic.lib</OutputFile>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+    </Lib>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MinSpace</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>.\;..\..\;..\..\public\include\;..\..\XMPFilesPlugins\api\source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32=1;_WINDOWS=1;WIN_ENV=1;XMP_StaticBuild=1;NDEBUG=1;_CRT_SECURE_NO_WARNINGS=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <AdditionalOptions> /J</AdditionalOptions>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)XMPFilesStatic.lib</OutputFile>
+      <IgnoreAllDefaultLibraries>
+      </IgnoreAllDefaultLibraries>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+    </Lib>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>MinSpace</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>.\;..\..\;..\..\public\include\;..\..\XMPFilesPlugins\api\source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32=1;_WINDOWS=1;WIN_ENV=1;XMP_StaticBuild=1;NDEBUG=1;_CRT_SECURE_NO_WARNINGS=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <AdditionalOptions> /J</AdditionalOptions>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <ObjectFileName>..\..\intermediate\windows_x64\release\</ObjectFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Lib>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+      <OutputFile>$(OutDir)XMPFilesStatic.lib</OutputFile>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+    </Lib>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\source\Host_IO-Win.cpp" />
+    <ClCompile Include="..\..\source\UnicodeConversions.cpp" />
+    <ClCompile Include="..\..\source\XIO.cpp" />
+    <ClCompile Include="..\..\source\XML_Node.cpp" />
+    <ClCompile Include="..\..\source\XMPFiles_IO.cpp" />
+    <ClCompile Include="..\..\source\XMP_LibUtils.cpp" />
+    <ClCompile Include="..\..\third-party\zlib\adler32.c" />
+    <ClCompile Include="..\..\third-party\zlib\compress.c" />
+    <ClCompile Include="..\..\third-party\zlib\crc32.c" />
+    <ClCompile Include="..\..\third-party\zlib\deflate.c" />
+    <ClCompile Include="..\..\third-party\zlib\infback.c" />
+    <ClCompile Include="..\..\third-party\zlib\inffast.c" />
+    <ClCompile Include="..\..\third-party\zlib\inflate.c" />
+    <ClCompile Include="..\..\third-party\zlib\inftrees.c" />
+    <ClCompile Include="..\..\third-party\zlib\trees.c" />
+    <ClCompile Include="..\..\third-party\zlib\uncompr.c" />
+    <ClCompile Include="..\..\third-party\zlib\zutil.c" />
+    <ClCompile Include="..\..\third-party\zuid\interfaces\MD5.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\AIFF_Handler.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\ASF_Handler.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\AVCHD_Handler.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\Basic_Handler.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\FLV_Handler.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\InDesign_Handler.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\JPEG_Handler.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\MP3_Handler.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\MPEG2_Handler.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\MPEG4_Handler.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\P2_Handler.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\PNG_Handler.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\PostScript_Handler.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\PSD_Handler.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\RIFF_Handler.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\Scanner_Handler.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\SonyHDV_Handler.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\SWF_Handler.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\TIFF_Handler.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\Trivial_Handler.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\UCF_Handler.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\WAVE_Handler.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\XDCAMEX_Handler.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FileHandlers\XDCAM_Handler.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\AIFF\AIFFBehavior.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\AIFF\AIFFMetadata.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\AIFF\AIFFReconcile.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\ASF_Support.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\ID3_Support.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\IFF\Chunk.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\IFF\ChunkController.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\IFF\ChunkPath.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\IFF\IChunkBehavior.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\IPTC_Support.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\ISOBaseMedia_Support.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\MOOV_Support.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\PNG_Support.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\PSIR_FileWriter.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\PSIR_MemoryReader.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\QuickTime_Support.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\ReconcileIPTC.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\ReconcileLegacy.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\ReconcileTIFF.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\Reconcile_Impl.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\RIFF.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\RIFF_Support.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\SWF_Support.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\TIFF_FileWriter.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\TIFF_MemoryReader.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\TIFF_Support.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\WAVE\BEXTMetadata.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\WAVE\CartMetadata.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\WAVE\Cr8rMetadata.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\WAVE\DISPMetadata.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\WAVE\INFOMetadata.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\WAVE\PrmLMetadata.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\WAVE\WAVEBehavior.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\WAVE\WAVEReconcile.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\XDCAM_Support.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\FormatSupport\XMPScanner.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\HandlerRegistry.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\NativeMetadataSupport\IMetadata.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\NativeMetadataSupport\IReconcile.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\NativeMetadataSupport\MetadataSet.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\PluginHandler\FileHandlerInstance.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\PluginHandler\HostAPIImpl.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\PluginHandler\Module.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\PluginHandler\OS_Utils_WIN.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\PluginHandler\PluginManager.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\PluginHandler\XMPAtoms.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\WXMPFiles.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\XMPFiles.cpp" />
+    <ClCompile Include="..\..\XMPFiles\source\XMPFiles_Impl.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

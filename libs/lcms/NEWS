@@ -1,0 +1,22 @@
+
+ New in ver 1.19
+ ===============
+
+
+Fixed copyright notice in some files
+  
+Changes in API
+----------------------
+*none*
+
+Implementation
+----------------------
+fixed minor vulnerabilities
+removed cosmetic comparation with zero in floating point
+
+
+Utilities
+----------
+    
+
+

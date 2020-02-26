@@ -1,0 +1,1756 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DebugANSI|Win32">
+      <Configuration>DebugANSI</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DebugANSI|x64">
+      <Configuration>DebugANSI</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseANSI|Win32">
+      <Configuration>ReleaseANSI</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseANSI|x64">
+      <Configuration>ReleaseANSI</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{83399A46-1776-4216-8B8F-ACF66DC52AB1}</ProjectGuid>
+    <RootNamespace>ExifPro</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseANSI|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugANSI|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseANSI|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugANSI|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseANSI|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+    <Import Project="../CommonProjDefinitions.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugANSI|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+    <Import Project="../CommonProjDefinitions.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="../CommonProjDefinitions.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+    <Import Project="../CommonProjDefinitions.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseANSI|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+    <Import Project="../CommonProjDefinitions.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugANSI|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+    <Import Project="../CommonProjDefinitions.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="../CommonProjDefinitions.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+    <Import Project="../CommonProjDefinitions.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>11.0.51106.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(Bin)</OutDir>
+    <IntDir>$(Int)</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(Boost);$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(Bin)</OutDir>
+    <IntDir>$(Int)</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(Boost);$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(Bin)</OutDir>
+    <IntDir>$(Int)</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(Boost);$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(Bin)</OutDir>
+    <IntDir>$(Int)</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(Boost);$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugANSI|Win32'">
+    <OutDir>$(Bin)</OutDir>
+    <IntDir>$(Int)</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(Boost);$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugANSI|x64'">
+    <OutDir>$(Bin)</OutDir>
+    <IntDir>$(Int)</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(Boost);$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseANSI|Win32'">
+    <OutDir>$(Bin)</OutDir>
+    <IntDir>$(Int)</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(Boost);$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseANSI|x64'">
+    <OutDir>$(Bin)</OutDir>
+    <IntDir>$(Int)</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(Boost);$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\DebugUnicode/ExifPro.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/Zm150 /MP %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(Libraries);$(Boost);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;USE_GDI_PLUS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <MinimalRebuild>true</MinimalRebuild>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <BrowseInformation />
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies><!--jpeglib-mmx.lib;-->vfw32.lib;dbghelp.lib;gdiplus.lib;d2d1.lib;UxTheme.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ShowProgress>NotSet</ShowProgress>
+      <OutputFile>$(Bin)$(ProjectName).exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>$(LibsDbg);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <StackReserveSize>4194304</StackReserveSize>
+      <EntryPointSymbol>wWinMainCRTStartup</EntryPointSymbol>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Manifest>
+      <AdditionalManifestFiles>res/manifest.txt;%(AdditionalManifestFiles)</AdditionalManifestFiles>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>X64</TargetEnvironment>
+      <TypeLibraryName>.\DebugUnicode/ExifPro.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/Zm210 /MP %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(Libraries);$(Boost);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;_WINDOWS;WIN64;USE_GDI_PLUS;USE_DIRECT2D;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <BrowseInformation />
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>vfw32.lib;dbghelp.lib;gdiplus.lib;d2d1.lib;UxTheme.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ShowProgress>NotSet</ShowProgress>
+      <OutputFile>$(Bin)$(ProjectName).exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>$(LibsDbg);%(AdditionalLibraryDirectories);$(Boost)\stage\lib</AdditionalLibraryDirectories>
+      <DelayLoadDLLs>d2d1.dll;%(DelayLoadDLLs)</DelayLoadDLLs>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+    </Link>
+    <Manifest>
+      <AdditionalManifestFiles>res/manifest64.txt;%(AdditionalManifestFiles)</AdditionalManifestFiles>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>$(Configuration)\$(TargetName).tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MinSpace</Optimization>
+      <AdditionalIncludeDirectories>$(Libraries);$(Boost);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_SECURE_SCL=0;_HAS_ITERATOR_DEBUGGING=0;USE_GDI_PLUS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalOptions>/FORCE:MULTIPLE %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>UAFXCW.LIB;LIBCMT.LIB;vfw32.lib;<!--jpeglib-mmx.lib;-->UxTheme.lib;Imm32.lib;gdiplus.lib;d2d1.lib;DbgHelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ShowProgress>NotSet</ShowProgress>
+      <OutputFile>$(Bin)$(ProjectName).exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>$(LibsRel);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <EnableUAC>false</EnableUAC>
+      <IgnoreSpecificDefaultLibraries>UAFXCW.LIB LIBCMT.LIB;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <DelayLoadDLLs>d2d1.dll;%(DelayLoadDLLs)</DelayLoadDLLs>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <StripPrivateSymbols>$(TargetDir)$(TargetName)-sml.pdb</StripPrivateSymbols>
+      <SubSystem>Windows</SubSystem>
+      <StackReserveSize>4194304</StackReserveSize>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <EntryPointSymbol>wWinMainCRTStartup</EntryPointSymbol>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Manifest>
+      <AdditionalManifestFiles>res/manifest.txt;%(AdditionalManifestFiles)</AdditionalManifestFiles>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>X64</TargetEnvironment>
+      <TypeLibraryName>$(Configuration)\$(TargetName).tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/Zm1000 /MP %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MinSpace</Optimization>
+      <AdditionalIncludeDirectories>$(Libraries);D:\Develop\boost;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;_WINDOWS;_SECURE_SCL=0;WIN64;USE_GDI_PLUS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalOptions>/FORCE:MULTIPLE %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>UAFXCW.LIB;LIBCMT.LIB;vfw32.lib;UxTheme.lib;gdiplus.lib;d2d1.lib;Imm32.lib;DbgHelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(Bin)$(ProjectName).exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>$(LibsRel);%(AdditionalLibraryDirectories);D:\Develop\boost\stage\lib</AdditionalLibraryDirectories>
+      <EnableUAC>false</EnableUAC>
+      <IgnoreSpecificDefaultLibraries>UAFXCW.LIB LIBCMT.LIB %(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <DelayLoadDLLs>d2d1.dll;%(DelayLoadDLLs)</DelayLoadDLLs>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <StripPrivateSymbols>$(TargetDir)$(TargetName)-sml.pdb</StripPrivateSymbols>
+      <SubSystem>Windows</SubSystem>
+      <StackReserveSize>4194304</StackReserveSize>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX64</TargetMachine>
+      <EntryPointSymbol>wWinMainCRTStartup</EntryPointSymbol>
+    </Link>
+    <Manifest>
+      <AdditionalManifestFiles>res/manifest64.txt;%(AdditionalManifestFiles)</AdditionalManifestFiles>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugANSI|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Debug/ExifPro.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/EHa %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(Libraries);$(Boost);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling />
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalOptions>/SECTION:shared,RWS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies><!--jpeglib-mmxD.lib;-->tifflibD.lib;pnglibD.lib;lua5.1D.lib;vfw32.lib;zlibD.lib;lcmsD.lib;coolsbD.lib;giflibD.lib;libexpatMTd.lib;XMPCoreD.lib;dbghelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(Bin)$(ProjectName).exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>$(Libraries);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <StackReserveSize>4194304</StackReserveSize>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Manifest>
+      <AdditionalManifestFiles>res/manifest.txt;%(AdditionalManifestFiles)</AdditionalManifestFiles>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugANSI|x64'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>X64</TargetEnvironment>
+      <TypeLibraryName>.\Debug/ExifPro.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(Libraries);$(Boost);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalOptions>/SECTION:shared,RWS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies><!--jpeglib-mmxD.lib;-->tifflibD.lib;pnglibD.lib;lua5.1D.lib;vfw32.lib;zlibD.lib;lcmsD.lib;coolsbD.lib;giflibD.lib;libexpatMTd.lib;XMPCoreD.lib;dbghelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>..\libs\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <StackReserveSize>4194304</StackReserveSize>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+    <Manifest>
+      <AdditionalManifestFiles>res/manifest.txt;%(AdditionalManifestFiles)</AdditionalManifestFiles>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseANSI|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Release/ExifPro.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/EHa %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Full</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
+      <AdditionalIncludeDirectories>$(Libraries);$(Boost);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <ExceptionHandling />
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>NAFXCW.LIB;LIBCMT.LIB;vfw32.lib;jpeglib.lib;pnglib.lib;tifflib.lib;zlib.lib;lua5.1.lib;lcms.lib;coolsb.lib;giflib.lib;expat.lib;XMPCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(Bin)$(ProjectName).exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>$(Libraries);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>NAFXCW.LIB LIBCMT.LIB;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <StackReserveSize>4194304</StackReserveSize>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Manifest>
+      <AdditionalManifestFiles>res/manifest.txt;%(AdditionalManifestFiles)</AdditionalManifestFiles>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseANSI|x64'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>X64</TargetEnvironment>
+      <TypeLibraryName>.\Release/ExifPro.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <Optimization>Full</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
+      <AdditionalIncludeDirectories>$(Libraries);$(Boost);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>NAFXCW.LIB;LIBCMT.LIB;vfw32.lib;jpeglib.lib;pnglib.lib;tifflib.lib;zlib.lib;lua5.1.lib;lcms.lib;coolsb.lib;giflib.lib;libexpatMT.lib;XMPCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>..\libs\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>NAFXCW.LIB LIBCMT.LIB;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <StackReserveSize>4194304</StackReserveSize>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+    <Manifest>
+      <AdditionalManifestFiles>res/manifest.txt;%(AdditionalManifestFiles)</AdditionalManifestFiles>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="AboutDlg.cpp" />
+    <ClCompile Include="Accelerator.cpp" />
+    <ClCompile Include="AddFavoriteDlg.cpp" />
+    <ClCompile Include="AppColors.cpp" />
+    <ClCompile Include="AppSettings.cpp" />
+    <ClCompile Include="BrowserFrame.cpp" />
+    <ClCompile Include="BrowserToolbar.cpp" />
+    <ClCompile Include="CalibrationDlg.cpp" />
+    <ClCompile Include="CalibrationWnd.cpp" />
+    <ClCompile Include="CmdLineInfo.cpp" />
+    <ClCompile Include="ColorConfiguration.cpp" />
+    <ClCompile Include="ColorMenu.cpp" />
+    <ClCompile Include="ColorMngDlg.cpp" />
+    <ClCompile Include="Columns.cpp" />
+    <ClCompile Include="Config.cpp" />
+    <ClCompile Include="ConnectionPoint.cpp" />
+    <ClCompile Include="CopyPhoto.cpp" />
+    <ClCompile Include="CustomColumns.cpp" />
+    <ClCompile Include="CustomColumnsDlg.cpp" />
+    <ClCompile Include="CustomFilter.cpp" />
+    <ClCompile Include="CustomFilters.cpp" />
+    <ClCompile Include="DateTimeUtils.cpp" />
+    <ClCompile Include="DefaultColors.cpp" />
+    <ClCompile Include="DialogBase.cpp" />
+    <ClCompile Include="EditFilterDlg.cpp" />
+    <ClCompile Include="ErrorDlg.cpp" />
+    <ClCompile Include="EstimatedTime.cpp" />
+    <ClCompile Include="Exception.cpp" />
+    <ClCompile Include="ExifPro.cpp" />
+    <ClCompile Include="ExifProView.cpp" />
+    <ClCompile Include="ExifStatusBar.cpp" />
+    <ClCompile Include="ExifViewReBar.cpp" />
+    <ClCompile Include="ExprCalculator.cpp" />
+    <ClCompile Include="ExtractExifBlock.cpp" />
+    <ClCompile Include="FavoritesFolders.cpp" />
+    <ClCompile Include="FileErrorDlg.cpp" />
+    <ClCompile Include="FileStatus.cpp" />
+    <ClCompile Include="FilterBar.cpp" />
+    <ClCompile Include="FilterData.cpp" />
+    <ClCompile Include="FilterDialogs.cpp" />
+    <ClCompile Include="FilterPanelDlg.cpp" />
+    <ClCompile Include="FixRotatedPhoto.cpp" />
+    <ClCompile Include="GetDefaultGuiFont.cpp" />
+    <ClCompile Include="ImageLabelDlg.cpp" />
+    <ClCompile Include="ImageLoader.cpp" />
+    <ClCompile Include="ImageManipulationDlg.cpp" />
+    <ClCompile Include="ImageProcessorDlg.cpp" />
+    <ClCompile Include="ImageStat.cpp" />
+    <ClCompile Include="ImgLogger.cpp" />
+    <ClCompile Include="ItemIdList.cpp" />
+    <ClCompile Include="LoadErrorsDlg.cpp" />
+    <ClCompile Include="MainFrm.cpp" />
+    <ClCompile Include="ManagePaneLayouts.cpp" />
+    <ClCompile Include="NameToNumber.cpp" />
+    <ClCompile Include="NewFolderDlg.cpp" />
+    <ClCompile Include="ParseRange.cpp" />
+    <ClCompile Include="PhotoCache.cpp" />
+    <ClCompile Include="PhotoCollection.cpp" />
+    <ClCompile Include="PhotoQueue.cpp" />
+    <ClCompile Include="PhotoTags.cpp" />
+    <ClCompile Include="PhotoTagsCollection.cpp" />
+    <ClCompile Include="PropField.cpp" />
+    <ClCompile Include="RDialog.cpp" />
+    <ClCompile Include="RecentPaths.cpp" />
+    <ClCompile Include="RecentStrings.cpp" />
+    <ClCompile Include="ReloadJob.cpp" />
+    <ClCompile Include="RenamePanelAdvanced.cpp" />
+    <ClCompile Include="RenamePanelBasic.cpp" />
+    <ClCompile Include="RenamePhoto.cpp" />
+    <ClCompile Include="RenameToolDlg.cpp" />
+    <ClCompile Include="ResizeWnd.cpp" />
+    <ClCompile Include="RMenu.cpp" />
+    <ClCompile Include="RPropertyPage.cpp" />
+    <ClCompile Include="RString.cpp" />
+    <ClCompile Include="SamplePhoto.cpp" />
+    <ClCompile Include="SetCacheSize.cpp" />
+    <ClCompile Include="Settings.cpp" />
+    <ClCompile Include="SetupFavoritesDlg.cpp" />
+    <ClCompile Include="ShellFolder.cpp" />
+    <ClCompile Include="SortingOptions.cpp" />
+    <ClCompile Include="StdAfx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugANSI|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugANSI|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseANSI|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseANSI|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="StringFormat.cpp" />
+    <ClCompile Include="Subclass.cpp" />
+    <ClCompile Include="TaskToolbar.cpp" />
+    <ClCompile Include="UpdateCheck.cpp" />
+    <ClCompile Include="ViewerExampleWnd.cpp" />
+    <ClCompile Include="YellowText.cpp" />
+    <ClCompile Include="BMPDecoder.cpp" />
+    <ClCompile Include="BMPReader.cpp" />
+    <ClCompile Include="CreateDecoderJob.cpp" />
+    <ClCompile Include="DecoderProgress.cpp" />
+    <ClCompile Include="FileDataDestination.cpp" />
+    <ClCompile Include="FileDataSource.cpp" />
+    <ClCompile Include="GIFDecoder.cpp" />
+    <ClCompile Include="GIFReader.cpp" />
+    <ClCompile Include="ImageDecoder.cpp" />
+    <ClCompile Include="JPEGDataDestination.cpp" />
+    <ClCompile Include="JPEGDataSource.cpp" />
+    <ClCompile Include="JPEGDecoder.cpp" />
+    <ClCompile Include="JPEGEncoder.cpp" />
+    <ClCompile Include="JPEGException.cpp" />
+    <ClCompile Include="MemoryDataDestination.cpp" />
+    <ClCompile Include="MemoryDataSource.cpp" />
+    <ClCompile Include="MemoryDataSource2.cpp" />
+    <ClCompile Include="NEFDecoder.cpp" />
+    <ClCompile Include="NEFReader.cpp" />
+    <ClCompile Include="PNGDecoder.cpp" />
+    <ClCompile Include="PNGReader.cpp" />
+    <ClCompile Include="PSDDecoder.cpp" />
+    <ClCompile Include="PSDReader.cpp" />
+    <ClCompile Include="RGB_to_BGR.cpp" />
+    <ClCompile Include="ThumbnailDecoder.cpp" />
+    <ClCompile Include="TIFFDecoder.cpp" />
+    <ClCompile Include="TIFFReader.cpp" />
+    <ClCompile Include="SnapFrame\CaptionWindow.cpp" />
+    <ClCompile Include="SnapFrame\DragControl.cpp" />
+    <ClCompile Include="SnapFrame\SnapFrame.cpp" />
+    <ClCompile Include="SnapFrame\SnapView.cpp" />
+    <ClCompile Include="viewer\ViewCaption.cpp" />
+    <ClCompile Include="ViewPane.cpp" />
+    <ClCompile Include="Database\Database.cpp" />
+    <ClCompile Include="DbOperations.cpp" />
+    <ClCompile Include="Database\ImageDatabase.cpp" />
+    <ClCompile Include="ImgDb.cpp" />
+    <ClCompile Include="Database\StdFile.cpp" />
+    <ClCompile Include="Database\StorageFile.cpp" />
+    <ClCompile Include="ImgManipulation.cpp" />
+    <ClCompile Include="viewer\BmpRoutines.cpp" />
+    <ClCompile Include="viewer\DarkCloseBar.cpp" />
+    <ClCompile Include="viewer\DrawParentBkgnd.cpp" />
+    <ClCompile Include="viewer\DrawSeparatorBar.cpp" />
+    <ClCompile Include="viewer\FancyToolBar.cpp" />
+    <ClCompile Include="LightTable.cpp" />
+    <ClCompile Include="viewer\PreviewBandWnd.cpp" />
+    <ClCompile Include="viewer\SeparatorWnd2.cpp" />
+    <ClCompile Include="viewer\SimpleReBar.cpp" />
+    <ClCompile Include="ViewerDlg.cpp" />
+    <ClCompile Include="ViewerTagPane.cpp" />
+    <ClCompile Include="ViewerToolBar.cpp" />
+    <ClCompile Include="MemoryStatus\MemoryStatDlg.cpp" />
+    <ClCompile Include="FilePaneWnd.cpp" />
+    <ClCompile Include="FolderPane.cpp" />
+    <ClCompile Include="FolderSelect.cpp" />
+    <ClCompile Include="FolderView.cpp" />
+    <ClCompile Include="HistogramPane.cpp" />
+    <ClCompile Include="InfoBand.cpp" />
+    <ClCompile Include="InfoDisplay.cpp" />
+    <ClCompile Include="InfoPane.cpp" />
+    <ClCompile Include="InfoPaneBar.cpp" />
+    <ClCompile Include="Pane.cpp" />
+    <ClCompile Include="PreviewBar.cpp" />
+    <ClCompile Include="PreviewPane.cpp" />
+    <ClCompile Include="TagBarView.cpp" />
+    <ClCompile Include="TaskBarView.cpp" />
+    <ClCompile Include="CopyMoveDlg.cpp" />
+    <ClCompile Include="CopyProgressDlg.cpp" />
+    <ClCompile Include="CopyTaggedDlg.cpp" />
+    <ClCompile Include="DateAdjustDlg.cpp" />
+    <ClCompile Include="DateTimeAdjThread.cpp" />
+    <ClCompile Include="DeleteConfirmationDlg.cpp" />
+    <ClCompile Include="DescriptionPane.cpp" />
+    <ClCompile Include="EditFileInfo.cpp" />
+    <ClCompile Include="ExifExport.cpp" />
+    <ClCompile Include="ExportExifDlg.cpp" />
+    <ClCompile Include="ExtractingThread.cpp" />
+    <ClCompile Include="ExtractJpegDlg.cpp" />
+    <ClCompile Include="FileCopyMove.cpp" />
+    <ClCompile Include="FileOperDlg.cpp" />
+    <ClCompile Include="FileRenameDlg.cpp" />
+    <ClCompile Include="FileSend.cpp" />
+    <ClCompile Include="GenHTMLAlbumDlg.cpp" />
+    <ClCompile Include="GenSlideShowDlg.cpp" />
+    <ClCompile Include="HistogramDlg.cpp" />
+    <ClCompile Include="ImageInfoDlg.cpp" />
+    <ClCompile Include="ImageSaveOptions.cpp" />
+    <ClCompile Include="ImgBatchModeDlg.cpp" />
+    <ClCompile Include="ImgBrightnessPage.cpp" />
+    <ClCompile Include="ImgColorBalancePage.cpp" />
+    <ClCompile Include="ImgCropPage.cpp" />
+    <ClCompile Include="ImgLevelsPage.cpp" />
+    <ClCompile Include="ImgPage.cpp" />
+    <ClCompile Include="PrintDlg.cpp" />
+    <ClCompile Include="PrintEngine.cpp" />
+    <ClCompile Include="PrinterList.cpp" />
+    <ClCompile Include="PrintPhotos.cpp" />
+    <ClCompile Include="PrintPreviewWnd.cpp" />
+    <ClCompile Include="PrintThumbnails.cpp" />
+    <ClCompile Include="PrnPageRangeDlg.cpp" />
+    <ClCompile Include="PrnPhotoOptionsDlg.cpp" />
+    <ClCompile Include="PrnThumbsOptionsDlg.cpp" />
+    <ClCompile Include="PrnUserParams.cpp" />
+    <ClCompile Include="ProcessingProgressDlg.cpp" />
+    <ClCompile Include="ProcessorCropForm.cpp" />
+    <ClCompile Include="ProcessorResizeForm.cpp" />
+    <ClCompile Include="ProcessorSharpenForm.cpp" />
+    <ClCompile Include="PropertyDlg.cpp" />
+    <ClCompile Include="PropertyField.cpp" />
+    <ClCompile Include="PropertyFormStar.cpp" />
+    <ClCompile Include="PropertyPane.cpp" />
+    <ClCompile Include="ResizeDlg.cpp" />
+    <ClCompile Include="ResizeOptionsDlg.cpp" />
+    <ClCompile Include="RotateDlg.cpp" />
+    <ClCompile Include="SendEMailDlg.cpp" />
+    <ClCompile Include="SlideShowGenerator.cpp" />
+    <ClCompile Include="SlideShowOptDlg.cpp" />
+    <ClCompile Include="Tasks.cpp" />
+    <ClCompile Include="ToolDlg.cpp" />
+    <ClCompile Include="TransferDlg.cpp" />
+    <ClCompile Include="TransferFiles.cpp" />
+    <ClCompile Include="TransferOptionsDlg.cpp" />
+    <ClCompile Include="CatalogDlg.cpp" />
+    <ClCompile Include="CatalogFile.cpp" />
+    <ClCompile Include="CatalogFolder.cpp" />
+    <ClCompile Include="CatalogHeader.cpp" />
+    <ClCompile Include="CatalogHelpDlg.cpp" />
+    <ClCompile Include="CatalogImages.cpp" />
+    <ClCompile Include="CatalogImgRecord.cpp" />
+    <ClCompile Include="CatalogOptionsDlg.cpp" />
+    <ClCompile Include="CatalogPath.cpp" />
+    <ClCompile Include="CatalogScanner.cpp" />
+    <ClCompile Include="CatalogTool.cpp" />
+    <ClCompile Include="ACListWnd.cpp" />
+    <ClCompile Include="AddressBox.cpp" />
+    <ClCompile Include="ArrowButton.cpp" />
+    <ClCompile Include="BalloonMsg.cpp" />
+    <ClCompile Include="CloseBar.cpp" />
+    <ClCompile Include="ColorButton.cpp" />
+    <ClCompile Include="ColumnTree.cpp" />
+    <ClCompile Include="CoolScrollBar.cpp" />
+    <ClCompile Include="CtrlDraw.cpp" />
+    <ClCompile Include="CustomTabCtrl.cpp" />
+    <ClCompile Include="DialogChild.cpp" />
+    <ClCompile Include="DialogHostCtrl.cpp" />
+    <ClCompile Include="DistributionBar.cpp" />
+    <ClCompile Include="DlgAutoResize.cpp" />
+    <ClCompile Include="DlgListCtrl.cpp" />
+    <ClCompile Include="DockedPane.cpp" />
+    <ClCompile Include="DragAndDrop.cpp" />
+    <ClCompile Include="EditCombo.cpp" />
+    <ClCompile Include="EditEsc.cpp" />
+    <ClCompile Include="EnableCtrl.cpp" />
+    <ClCompile Include="ExtTreeCtrl.cpp" />
+    <ClCompile Include="ExtTreeItem.cpp" />
+    <ClCompile Include="ExtTreeNode.cpp" />
+    <ClCompile Include="ExtTreeRow.cpp" />
+    <ClCompile Include="FileListCtrl.cpp" />
+    <ClCompile Include="FindTabCtrl.cpp" />
+    <ClCompile Include="FolderListCtrl.cpp" />
+    <ClCompile Include="GridCtrl.cpp" />
+    <ClCompile Include="HeaderDialog.cpp" />
+    <ClCompile Include="HelpButton.cpp" />
+    <ClCompile Include="Histogram.cpp" />
+    <ClCompile Include="HistogramCtrl.cpp" />
+    <ClCompile Include="HistogramImg.cpp" />
+    <ClCompile Include="HorzReBar.cpp" />
+    <ClCompile Include="ImageCtrl.cpp" />
+    <ClCompile Include="ImageListCtrl.cpp" />
+    <ClCompile Include="LineSeparatorCtrl.cpp" />
+    <ClCompile Include="LinkWnd.cpp" />
+    <ClCompile Include="ListViewCtrl.cpp" />
+    <ClCompile Include="MagnifierWnd.cpp" />
+    <ClCompile Include="MemoryDC.cpp" />
+    <ClCompile Include="MenuBar.cpp" />
+    <ClCompile Include="MenuFolders.cpp" />
+    <ClCompile Include="MonitorCtrl.cpp" />
+    <ClCompile Include="MultiMonitor.cpp" />
+    <ClCompile Include="PagerCtrl.cpp" />
+    <ClCompile Include="PathEdit.cpp" />
+    <ClCompile Include="PhotoCtrl.cpp" />
+    <!--ClCompile Include="PhotoList.cpp" /-->
+    <ClCompile Include="PopupMenuCtrl.cpp" />
+    <ClCompile Include="PreviewCtrl.cpp" />
+    <ClCompile Include="RadioListBox.cpp" />
+    <ClCompile Include="ScintillaCtrl.cpp" />
+    <ClCompile Include="ScriptEditCtrl.cpp" />
+    <ClCompile Include="SeparatorWnd.cpp" />
+    <ClCompile Include="SliderCtrlEx.cpp" />
+    <ClCompile Include="SliderEditForm.cpp" />
+    <ClCompile Include="SmoothScroll.cpp" />
+    <ClCompile Include="StarCtrl.cpp" />
+    <ClCompile Include="TaggingPopup.cpp" />
+    <ClCompile Include="TagsBar.cpp" />
+    <ClCompile Include="TagsBarCommon.cpp" />
+    <ClCompile Include="TagsCommonCode.cpp" />
+    <ClCompile Include="TagsManageDlg.cpp" />
+    <ClCompile Include="ToolBarPopup.cpp" />
+    <ClCompile Include="ToolBarWnd.cpp" />
+    <ClCompile Include="TopSeparatorCtrl.cpp" />
+    <ClCompile Include="TwoFilePanesWnd.cpp" />
+    <ClCompile Include="UIElements.cpp" />
+    <ClCompile Include="UniqueLetter.cpp" />
+    <ClCompile Include="WhistlerLook.cpp" />
+    <ClCompile Include="AdvancedOptions.cpp" />
+    <ClCompile Include="OptionsAppearance.cpp" />
+    <ClCompile Include="OptionsBalloons.cpp" />
+    <ClCompile Include="OptionsColumns.cpp" />
+    <ClCompile Include="OptionsDescription.cpp" />
+    <ClCompile Include="OptionsDlg.cpp" />
+    <ClCompile Include="OptionsFileTypes.cpp" />
+    <ClCompile Include="OptionsGeneral.cpp" />
+    <ClCompile Include="OptionsShortcuts.cpp" />
+    <ClCompile Include="Attributes.cpp" />
+    <ClCompile Include="IPTCReadWrite.cpp" />
+    <ClCompile Include="IPTCRecord.cpp" />
+    <ClCompile Include="MakerNote.cpp" />
+    <ClCompile Include="PhotoAttr.cpp" />
+    <ClCompile Include="PhotoAttrAccess.cpp" />
+    <ClCompile Include="PhotoFactory.cpp" />
+    <ClCompile Include="PhotoInfo.cpp" />
+    <ClCompile Include="PhotoInfo_XMP.cpp" />
+    <ClCompile Include="PhotoInfoARW.cpp" />
+    <ClCompile Include="PhotoInfoBMP.cpp" />
+    <ClCompile Include="PhotoInfoCatalog.cpp" />
+    <ClCompile Include="PhotoInfoCR2.cpp" />
+    <ClCompile Include="PhotoInfoCRW.cpp" />
+    <ClCompile Include="PhotoInfoDNG.cpp" />
+    <ClCompile Include="PhotoInfoGIF.cpp" />
+    <ClCompile Include="PhotoInfoJPEG.cpp" />
+    <ClCompile Include="PhotoInfoNEF.cpp" />
+    <ClCompile Include="PhotoInfoORF.cpp" />
+    <ClCompile Include="PhotoInfoPEF.cpp" />
+    <ClCompile Include="PhotoInfoPNG.cpp" />
+    <ClCompile Include="PhotoInfoPSD.cpp" />
+    <ClCompile Include="PhotoInfoRAF.cpp" />
+    <ClCompile Include="PhotoInfoRW2.cpp" />
+    <ClCompile Include="PhotoInfoSRW.cpp" />
+    <ClCompile Include="PhotoInfoStorage.cpp" />
+    <ClCompile Include="PhotoInfoTIFF.cpp" />
+    <ClCompile Include="PhotoInfoX3F.cpp" />
+    <ClCompile Include="SpecificData.cpp" />
+    <ClCompile Include="TaggedValues.cpp" />
+    <ClCompile Include="XMPAccess.cpp" />
+    <ClCompile Include="XmpData.cpp" />
+    <ClCompile Include="AlphaBlend.cpp" />
+    <ClCompile Include="BmpAlpha .cpp" />
+    <ClCompile Include="BmpFunc.cpp" />
+    <ClCompile Include="Dib.cpp" />
+    <ClCompile Include="DibDC.cpp" />
+    <ClCompile Include="Direct2D.cpp" />
+    <ClCompile Include="DirectRender.cpp" />
+    <ClCompile Include="DrawAlphaRect.cpp" />
+    <ClCompile Include="DrawBmpEffects.cpp" />
+    <ClCompile Include="DrawFunctions.cpp" />
+    <ClCompile Include="ImageDraw.cpp" />
+    <ClCompile Include="AutoComplete.cpp" />
+    <ClCompile Include="BoldFont.cpp" />
+    <ClCompile Include="Color.cpp" />
+    <ClCompile Include="DibColorTransform.cpp" />
+    <ClCompile Include="DrawFields.cpp" />
+    <ClCompile Include="GetDefaultLineHeight.cpp" />
+    <ClCompile Include="IsDialogResizable.cpp" />
+    <ClCompile Include="LoadImageList.cpp" />
+    <ClCompile Include="LoadJpeg.cpp" />
+    <ClCompile Include="PNGImage.cpp" />
+    <ClCompile Include="SetWindowSize.cpp" />
+    <ClCompile Include="Cache.cpp" />
+    <ClCompile Include="CatchAll.cpp" />
+    <ClCompile Include="ColorProfile.cpp" />
+    <ClCompile Include="Data.cpp" />
+    <ClCompile Include="DecoderJob.cpp" />
+    <ClCompile Include="DelayedDirectoryChangeHandler.cpp" />
+    <ClCompile Include="DibCache.cpp" />
+    <ClCompile Include="DirectoryChanges.cpp" />
+    <ClCompile Include="DirectoryChangeWatcher.cpp" />
+    <ClCompile Include="DirectoryPath.cpp" />
+    <ClCompile Include="ExifBlock.cpp" />
+    <ClCompile Include="File.cpp" />
+    <ClCompile Include="FileGuard.cpp" />
+    <ClCompile Include="FolderPathHelpers.cpp" />
+    <ClCompile Include="FormatFileSize.cpp" />
+    <ClCompile Include="GetDateTime.cpp" />
+    <ClCompile Include="GetPhysicalMemoryStatus.cpp" />
+    <ClCompile Include="GPSData.cpp" />
+    <ClCompile Include="ICMProfile.cpp" />
+    <ClCompile Include="Index.cpp" />
+    <ClCompile Include="IsMMXAvailable.cpp" />
+    <ClCompile Include="Jpeg.cpp" />
+    <ClCompile Include="jpegtran.cpp" />
+    <ClCompile Include="LinkList.cpp" />
+    <ClCompile Include="viewer\LoadPing.cpp" />
+    <ClCompile Include="Logger.cpp" />
+    <ClCompile Include="Lua.cpp" />
+    <ClCompile Include="MemMappedFile.cpp" />
+    <ClCompile Include="MemPointer.cpp" />
+    <ClCompile Include="OutputStr.cpp" />
+    <ClCompile Include="Path.cpp" />
+    <ClCompile Include="Profile.cpp" />
+    <ClCompile Include="Rational.cpp" />
+    <ClCompile Include="SEException.cpp" />
+    <ClCompile Include="SetWallpaper.cpp" />
+    <ClCompile Include="ShellItem.cpp" />
+    <ClCompile Include="StringConversions.cpp" />
+    <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="transupp.cpp" />
+    <ClCompile Include="WndTimer.cpp" />
+    <ClCompile Include="YCbCr_to_BGR.cpp" />
+    <ClCompile Include="DirScanner.cpp" />
+    <ClCompile Include="ExifTags.cpp" />
+    <ClCompile Include="ICCScanner.cpp" />
+    <ClCompile Include="ImageScanner.cpp" />
+    <ClCompile Include="ImgScanner.cpp" />
+    <ClCompile Include="scan.cpp" />
+    <ClCompile Include="ApplyMetadataThread.cpp" />
+    <ClCompile Include="ImgProcessingPool.cpp" />
+    <ClCompile Include="ImgProcessingThread.cpp" />
+    <ClCompile Include="RenameFileThread.cpp" />
+    <ClCompile Include="ResizingThread.cpp" />
+    <ClCompile Include="TransformationThread.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ExifPro.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AboutDlg.h" />
+    <ClInclude Include="Accelerator.h" />
+    <ClInclude Include="ACListWnd.h" />
+    <ClInclude Include="adapters.h" />
+    <ClInclude Include="AddFavoriteDlg.h" />
+    <ClInclude Include="AddressBox.h" />
+    <ClInclude Include="AdvancedOptions.h" />
+    <ClInclude Include="AnyPointer.h" />
+    <ClInclude Include="AppColors.h" />
+    <ClInclude Include="ApplyMetadataThread.h" />
+    <ClInclude Include="AppSettings.h" />
+    <ClInclude Include="ArrowButton.h" />
+    <ClInclude Include="Attributes.h" />
+    <ClInclude Include="AutoComplete.h" />
+    <ClInclude Include="AutoPtr.h" />
+    <ClInclude Include="BalloonMsg.h" />
+    <ClInclude Include="BmpAlpha.h" />
+    <ClInclude Include="BMPDecoder.h" />
+    <ClInclude Include="BmpFunc.h" />
+    <ClInclude Include="BMPReader.h" />
+    <ClInclude Include="BoldFont.h" />
+    <ClInclude Include="BrowserFrame.h" />
+    <ClInclude Include="BrowserToolbar.h" />
+    <ClInclude Include="Cache.h" />
+    <ClInclude Include="CalibrationDlg.h" />
+    <ClInclude Include="CalibrationWnd.h" />
+    <ClInclude Include="CatalogDlg.h" />
+    <ClInclude Include="CatalogFile.h" />
+    <ClInclude Include="CatalogFolder.h" />
+    <ClInclude Include="CatalogHeader.h" />
+    <ClInclude Include="CatalogHelpDlg.h" />
+    <ClInclude Include="CatalogImages.h" />
+    <ClInclude Include="CatalogImgRecord.h" />
+    <ClInclude Include="CatalogOptionsDlg.h" />
+    <ClInclude Include="CatalogPath.h" />
+    <ClInclude Include="CatalogScanner.h" />
+    <ClInclude Include="CatalogTool.h" />
+    <ClInclude Include="CatchAll.h" />
+    <ClInclude Include="CloseBar.h" />
+    <ClInclude Include="CmdLineInfo.h" />
+    <ClInclude Include="Color.h" />
+    <ClInclude Include="ColorButton.h" />
+    <ClInclude Include="ColorConfiguration.h" />
+    <ClInclude Include="ColorMenu.h" />
+    <ClInclude Include="ColorMngDlg.h" />
+    <ClInclude Include="ColorProfile.h" />
+    <ClInclude Include="Columns.h" />
+    <ClInclude Include="ColumnTree.h" />
+    <ClInclude Include="Config.h" />
+    <ClInclude Include="ConnectionPoint.h" />
+    <ClInclude Include="CoolScrollBar.h" />
+    <ClInclude Include="CopyMoveDlg.h" />
+    <ClInclude Include="CopyPhoto.h" />
+    <ClInclude Include="CopyProgressDlg.h" />
+    <ClInclude Include="CopyTaggedDlg.h" />
+    <ClInclude Include="CreateDecoderJob.h" />
+    <ClInclude Include="CtrlDraw.h" />
+    <ClInclude Include="CustomColumns.h" />
+    <ClInclude Include="CustomColumnsDlg.h" />
+    <ClInclude Include="CustomFilter.h" />
+    <ClInclude Include="CustomFilters.h" />
+    <ClInclude Include="CustomTabCtrl.h" />
+    <ClInclude Include="Data.h" />
+    <ClInclude Include="DateTimeUtils.h" />
+    <ClInclude Include="DateAdjustDlg.h" />
+    <ClInclude Include="DateTimeAdjThread.h" />
+    <ClInclude Include="DecoderJob.h" />
+    <ClInclude Include="DecoderJobInterface.h" />
+    <ClInclude Include="DecoderProgress.h" />
+    <ClInclude Include="DefaultColors.h" />
+    <ClInclude Include="DelayedDirectoryChangeHandler.h" />
+    <ClInclude Include="DeleteConfirmationDlg.h" />
+    <ClInclude Include="DescriptionPane.h" />
+    <ClInclude Include="DialogBase.h" />
+    <ClInclude Include="DialogChild.h" />
+    <ClInclude Include="DialogHostCtrl.h" />
+    <ClInclude Include="Dib.h" />
+    <ClInclude Include="DibCache.h" />
+    <ClInclude Include="DibColorTransform.h" />
+    <ClInclude Include="DibDC.h" />
+    <ClInclude Include="DibDispMethod.h" />
+    <ClInclude Include="DirectoryChanges.h" />
+    <ClInclude Include="DirectoryChangeWatcher.h" />
+    <ClInclude Include="DirectoryPath.h" />
+    <ClInclude Include="DirectRender.h" />
+    <ClInclude Include="DirScanner.h" />
+    <ClInclude Include="DistributionBar.h" />
+    <ClInclude Include="DlgAutoResize.h" />
+    <ClInclude Include="DlgListCtrl.h" />
+    <ClInclude Include="DockedPane.h" />
+    <ClInclude Include="DockingBar.h" />
+    <ClInclude Include="DragAndDrop.h" />
+    <ClInclude Include="DrawBmpEffects.h" />
+    <ClInclude Include="DrawFields.h" />
+    <ClInclude Include="DrawFunctions.h" />
+    <ClInclude Include="EditEsc.h" />
+    <ClInclude Include="EditFileInfo.h" />
+    <ClInclude Include="EditFilterDlg.h" />
+    <ClInclude Include="EditFld.h" />
+    <ClInclude Include="EditHistory.h" />
+    <ClInclude Include="ErrorDlg.h" />
+    <ClInclude Include="EstimatedTime.h" />
+    <ClInclude Include="Exception.h" />
+    <ClInclude Include="ExifBlock.h" />
+    <ClInclude Include="ExifExport.h" />
+    <ClInclude Include="ExifPro.h" />
+    <ClInclude Include="ExifProView.h" />
+    <ClInclude Include="ExifStatusBar.h" />
+    <ClInclude Include="ExifTags.h" />
+    <ClInclude Include="ExifViewReBar.h" />
+    <ClInclude Include="ExportExifDlg.h" />
+    <ClInclude Include="ExprCalculator.h" />
+    <ClInclude Include="ExtractingThread.h" />
+    <ClInclude Include="ExtractJpegDlg.h" />
+    <ClInclude Include="ExtTreeCtrl.h" />
+    <ClInclude Include="ExtTreeItem.h" />
+    <ClInclude Include="ExtTreeNode.h" />
+    <ClInclude Include="ExtTreeRow.h" />
+    <ClInclude Include="FavoritesFolders.h" />
+    <ClInclude Include="File.h" />
+    <ClInclude Include="FileCopyMove.h" />
+    <ClInclude Include="FileDataDestination.h" />
+    <ClInclude Include="FileDataSource.h" />
+    <ClInclude Include="FileErrorDlg.h" />
+    <ClInclude Include="FileGuard.h" />
+    <ClInclude Include="FileListCtrl.h" />
+    <ClInclude Include="FileOperDlg.h" />
+    <ClInclude Include="FilePaneWnd.h" />
+    <ClInclude Include="FileRenameDlg.h" />
+    <ClInclude Include="FileSend.h" />
+    <ClInclude Include="FilterBar.h" />
+    <ClInclude Include="FilterData.h" />
+    <ClInclude Include="FilterDialogs.h" />
+    <ClInclude Include="FilterPanelDlg.h" />
+    <ClInclude Include="FindTabCtrl.h" />
+    <ClInclude Include="FolderListCtrl.h" />
+    <ClInclude Include="FolderPane.h" />
+    <ClInclude Include="FolderPath.h" />
+    <ClInclude Include="FolderPathHelpers.h" />
+    <ClInclude Include="FolderSelect.h" />
+    <ClInclude Include="FolderView.h" />
+    <ClInclude Include="FormatFileSize.h" />
+    <ClInclude Include="GenHTMLAlbumDlg.h" />
+    <ClInclude Include="GenSlideShowDlg.h" />
+    <ClInclude Include="GenThumbMode.h" />
+    <ClInclude Include="GetDateTime.h" />
+    <ClInclude Include="GIFDecoder.h" />
+    <ClInclude Include="GIFReader.h" />
+    <ClInclude Include="GlobalLock.h" />
+    <ClInclude Include="GPSData.h" />
+    <ClInclude Include="GridCtrl.h" />
+    <ClInclude Include="HeaderDialog.h" />
+    <ClInclude Include="HelpButton.h" />
+    <ClInclude Include="Histogram.h" />
+    <ClInclude Include="HistogramCtrl.h" />
+    <ClInclude Include="HistogramDlg.h" />
+    <ClInclude Include="HistogramImg.h" />
+    <ClInclude Include="HistogramPane.h" />
+    <ClInclude Include="HorzReBar.h" />
+    <ClInclude Include="ICCScanner.h" />
+    <ClInclude Include="ICMProfile.h" />
+    <ClInclude Include="ImageCtrl.h" />
+    <ClInclude Include="ImageDecoder.h" />
+    <ClInclude Include="ImageDraw.h" />
+    <ClInclude Include="ImageInfoDlg.h" />
+    <ClInclude Include="ImageLabelDlg.h" />
+    <ClInclude Include="ImageListCtrl.h" />
+    <ClInclude Include="ImageLoader.h" />
+    <ClInclude Include="ImageManipulationDlg.h" />
+    <ClInclude Include="ImageProcessorDlg.h" />
+    <ClInclude Include="ImageSaveOptions.h" />
+    <ClInclude Include="ImageScanner.h" />
+    <ClInclude Include="ImgBatchModeDlg.h" />
+    <ClInclude Include="ImgBrightnessPage.h" />
+    <ClInclude Include="ImgColorBalancePage.h" />
+    <ClInclude Include="ImgCropPage.h" />
+    <ClInclude Include="ImgLevelsPage.h" />
+    <ClInclude Include="ImgLogger.h" />
+    <ClInclude Include="ImgPage.h" />
+    <ClInclude Include="ImgProcessingPool.h" />
+    <ClInclude Include="ImgProcessingThread.h" />
+    <ClInclude Include="ImgScanner.h" />
+    <ClInclude Include="Index.h" />
+    <ClInclude Include="InfoBand.h" />
+    <ClInclude Include="InfoDisplay.h" />
+    <ClInclude Include="InfoPane.h" />
+    <ClInclude Include="InfoPaneBar.h" />
+    <ClInclude Include="IPTCReadWrite.h" />
+    <ClInclude Include="IPTCRecord.h" />
+    <ClInclude Include="IsDialogResizable.h" />
+    <ClInclude Include="IsMMXAvailable.h" />
+    <ClInclude Include="ItemIdList.h" />
+    <ClInclude Include="Jpeg.h" />
+    <ClInclude Include="JPEGDataDestination.h" />
+    <ClInclude Include="JPEGDataSource.h" />
+    <ClInclude Include="JPEGDecoder.h" />
+    <ClInclude Include="JPEGDecoderMethod.h" />
+    <ClInclude Include="JPEGEncoder.h" />
+    <ClInclude Include="JPEGException.h" />
+    <ClInclude Include="LightTable.h" />
+    <ClInclude Include="LineSeparatorCtrl.h" />
+    <ClInclude Include="LinkList.h" />
+    <ClInclude Include="LinkWnd.h" />
+    <ClInclude Include="ListViewCtrl.h" />
+    <ClInclude Include="LoadErrorsDlg.h" />
+    <ClInclude Include="Logger.h" />
+    <ClInclude Include="Lua.h" />
+    <ClInclude Include="MagnifierWnd.h" />
+    <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="MakerNote.h" />
+    <ClInclude Include="ManagePaneLayouts.h" />
+    <ClInclude Include="Markers.h" />
+    <ClInclude Include="MemMappedFile.h" />
+    <ClInclude Include="MemoryDataDestination.h" />
+    <ClInclude Include="MemoryDataSource.h" />
+    <ClInclude Include="MemoryDataSource2.h" />
+    <ClInclude Include="MemoryDC.h" />
+    <ClInclude Include="MemPointer.h" />
+    <ClInclude Include="MenuBar.h" />
+    <ClInclude Include="MenuFolders.h" />
+    <ClInclude Include="MonitorCtrl.h" />
+    <ClInclude Include="MultiMonitor.h" />
+    <ClInclude Include="NEFDecoder.h" />
+    <ClInclude Include="NEFReader.h" />
+    <ClInclude Include="NewFolderDlg.h" />
+    <ClInclude Include="OptionsAppearance.h" />
+    <ClInclude Include="OptionsBalloons.h" />
+    <ClInclude Include="OptionsColumns.h" />
+    <ClInclude Include="OptionsDescription.h" />
+    <ClInclude Include="OptionsDlg.h" />
+    <ClInclude Include="OptionsFileTypes.h" />
+    <ClInclude Include="OptionsGeneral.h" />
+    <ClInclude Include="OptionsShortcuts.h" />
+    <ClInclude Include="OutputStr.h" />
+    <ClInclude Include="PagerCtrl.h" />
+    <ClInclude Include="Pane.h" />
+    <ClInclude Include="PaneNotification.h" />
+    <ClInclude Include="ParseRange.h" />
+    <ClInclude Include="Path.h" />
+    <ClInclude Include="PathEdit.h" />
+    <ClInclude Include="PhotoAttr.h" />
+    <ClInclude Include="PhotoAttrAccess.h" />
+    <ClInclude Include="PhotoCache.h" />
+    <ClInclude Include="PhotoCollection.h" />
+    <ClInclude Include="PhotoCtrl.h" />
+    <ClInclude Include="PhotoFactory.h" />
+    <ClInclude Include="PhotoInfo.h" />
+    <ClInclude Include="PhotoInfo_XMP.h" />
+    <ClInclude Include="PhotoInfoARW.h" />
+    <ClInclude Include="PhotoInfoBMP.h" />
+    <ClInclude Include="PhotoInfoCatalog.h" />
+    <ClInclude Include="PhotoInfoCR2.h" />
+    <ClInclude Include="PhotoInfoCRW.h" />
+    <ClInclude Include="PhotoInfoDNG.h" />
+    <ClInclude Include="PhotoInfoGIF.h" />
+    <ClInclude Include="PhotoInfoJPEG.h" />
+    <ClInclude Include="PhotoInfoNEF.h" />
+    <ClInclude Include="PhotoInfoORF.h" />
+    <ClInclude Include="PhotoInfoPEF.h" />
+    <ClInclude Include="PhotoInfoPNG.h" />
+    <ClInclude Include="PhotoInfoPSD.h" />
+    <ClInclude Include="PhotoInfoRAF.h" />
+    <ClInclude Include="PhotoInfoRW2.h" />
+    <ClInclude Include="PhotoInfoSRW.h" />
+    <ClInclude Include="PhotoInfoStorage.h" />
+    <ClInclude Include="PhotoInfoTIFF.h" />
+    <ClInclude Include="PhotoInfoX3F.h" />
+    <!--ClInclude Include="PhotoList.h" /-->
+    <ClInclude Include="PhotoQueue.h" />
+    <ClInclude Include="PhotoTags.h" />
+    <ClInclude Include="PhotoTagsCollection.h" />
+    <ClInclude Include="PNGDecoder.h" />
+    <ClInclude Include="PNGImage.h" />
+    <ClInclude Include="PNGReader.h" />
+    <ClInclude Include="PopupMenuCtrl.h" />
+    <ClInclude Include="PreviewBar.h" />
+    <ClInclude Include="PreviewCtrl.h" />
+    <ClInclude Include="PreviewPane.h" />
+    <ClInclude Include="PrintDlg.h" />
+    <ClInclude Include="PrintEngine.h" />
+    <ClInclude Include="PrinterList.h" />
+    <ClInclude Include="PrintPhotos.h" />
+    <ClInclude Include="PrintPreviewWnd.h" />
+    <ClInclude Include="PrintThumbnails.h" />
+    <ClInclude Include="PrnPageRangeDlg.h" />
+    <ClInclude Include="PrnPhotoOptionsDlg.h" />
+    <ClInclude Include="PrnThumbsOptionsDlg.h" />
+    <ClInclude Include="PrnUserParams.h" />
+    <ClInclude Include="ProcessingProgressDlg.h" />
+    <ClInclude Include="ProcessorCropForm.h" />
+    <ClInclude Include="ProcessorResizeForm.h" />
+    <ClInclude Include="ProcessorSharpenForm.h" />
+    <ClInclude Include="Profile.h" />
+    <ClInclude Include="ProfileVector.h" />
+    <ClInclude Include="PropertyDlg.h" />
+    <ClInclude Include="PropertyField.h" />
+    <ClInclude Include="PropertyFormStar.h" />
+    <ClInclude Include="PropertyPane.h" />
+    <ClInclude Include="PSDDecoder.h" />
+    <ClInclude Include="PSDReader.h" />
+    <ClInclude Include="RadioListBox.h" />
+    <ClInclude Include="Rational.h" />
+    <ClInclude Include="RDialog.h" />
+    <ClInclude Include="ReadMarker.h" />
+    <ClInclude Include="RecentPaths.h" />
+    <ClInclude Include="ReloadJob.h" />
+    <ClInclude Include="RenameFileThread.h" />
+    <ClInclude Include="RenamePanelAdvanced.h" />
+    <ClInclude Include="RenamePanelBasic.h" />
+    <ClInclude Include="RenameToolDlg.h" />
+    <ClInclude Include="ResizeDlg.h" />
+    <ClInclude Include="ResizeOptionsDlg.h" />
+    <ClInclude Include="ResizeWnd.h" />
+    <ClInclude Include="ResizingThread.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="RGB_to_BGR.h" />
+    <ClInclude Include="RMenu.h" />
+    <ClInclude Include="RotateDlg.h" />
+    <ClInclude Include="RPropertyPage.h" />
+    <ClInclude Include="RString.h" />
+    <ClInclude Include="SamplePhoto.h" />
+    <ClInclude Include="ScriptEditCtrl.h" />
+    <ClInclude Include="SEException.h" />
+    <ClInclude Include="SendEMailDlg.h" />
+    <ClInclude Include="SeparatorWnd.h" />
+    <ClInclude Include="SerialNumberDlg.h" />
+    <ClInclude Include="set.h" />
+    <ClInclude Include="Settings.h" />
+    <ClInclude Include="SetupFavoritesDlg.h" />
+    <ClInclude Include="SetWindowSize.h" />
+    <ClInclude Include="ShellFolder.h" />
+    <ClInclude Include="ShellItem.h" />
+    <ClInclude Include="SliderCtrlEx.h" />
+    <ClInclude Include="SliderEditForm.h" />
+    <ClInclude Include="SliderToolBar.h" />
+    <ClInclude Include="SlideShowGenerator.h" />
+    <ClInclude Include="SlideShowOptDlg.h" />
+    <ClInclude Include="SmoothScroll.h" />
+    <ClInclude Include="SortingOptions.h" />
+    <ClInclude Include="SpecificData.h" />
+    <ClInclude Include="StarCtrl.h" />
+    <ClInclude Include="StdAfx.h" />
+    <ClInclude Include="StringConversions.h" />
+    <ClInclude Include="StringFormat.h" />
+    <ClInclude Include="StringFormatter.h" />
+    <ClInclude Include="TagBarView.h" />
+    <ClInclude Include="TaggingPopup.h" />
+    <ClInclude Include="TagsBar.h" />
+    <ClInclude Include="TagsBarCommon.h" />
+    <ClInclude Include="TagsCommonCode.h" />
+    <ClInclude Include="TagsManageDlg.h" />
+    <ClInclude Include="TaskBarView.h" />
+    <ClInclude Include="Tasks.h" />
+    <ClInclude Include="TaskToolbar.h" />
+    <ClInclude Include="ThumbnailDecoder.h" />
+    <ClInclude Include="ThumbnailSize.h" />
+    <ClInclude Include="TIFFDecoder.h" />
+    <ClInclude Include="TIFFReader.h" />
+    <ClInclude Include="ToolBarPopup.h" />
+    <ClInclude Include="ToolBarWnd.h" />
+    <ClInclude Include="ToolDlg.h" />
+    <ClInclude Include="TransferDlg.h" />
+    <ClInclude Include="TransferFiles.h" />
+    <ClInclude Include="TransferOptionsDlg.h" />
+    <ClInclude Include="Transform.h" />
+    <ClInclude Include="TransformationThread.h" />
+    <ClInclude Include="TransparentBar.h" />
+    <ClInclude Include="TwoFilePanesWnd.h" />
+    <ClInclude Include="UIElements.h" />
+    <ClInclude Include="UniqueLetter.h" />
+    <ClInclude Include="UpdateCheck.h" />
+    <ClInclude Include="viewer\ViewCaption.h" />
+    <ClInclude Include="ViewerDlg.h" />
+    <ClInclude Include="ViewerDlgNotifications.h" />
+    <ClInclude Include="ViewerExampleWnd.h" />
+    <ClInclude Include="ViewerTagPane.h" />
+    <ClInclude Include="ViewerToolBar.h" />
+    <ClInclude Include="ViewPane.h" />
+    <ClInclude Include="WhistlerLook.h" />
+    <ClInclude Include="XMPAccess.h" />
+    <ClInclude Include="XmpData.h" />
+    <ClInclude Include="XmpInclude.h" />
+    <ClInclude Include="YCbCr_to_BGR.h" />
+    <ClInclude Include="YellowText.h" />
+    <ClInclude Include="SnapFrame\CaptionWindow.h" />
+    <ClInclude Include="SnapFrame\DragControl.h" />
+    <ClInclude Include="SnapFrame\SnapFrame.h" />
+    <ClInclude Include="SnapFrame\SnapMsg.h" />
+    <ClInclude Include="SnapFrame\SnapView.h" />
+    <ClInclude Include="Database\Database.h" />
+    <ClInclude Include="DbOperations.h" />
+    <ClInclude Include="Database\ImageDatabase.h" />
+    <ClInclude Include="Database\StdFile.h" />
+    <ClInclude Include="Database\StorageFile.h" />
+    <ClInclude Include="ImgManipulation.h" />
+    <ClInclude Include="viewer\DarkCloseBar.h" />
+    <ClInclude Include="viewer\FancyToolBar.h" />
+    <ClInclude Include="viewer\PreviewBandWnd.h" />
+    <ClInclude Include="viewer\SeparatorWnd2.h" />
+    <ClInclude Include="viewer\SimpleReBar.h" />
+    <ClInclude Include="MemoryStatus\MemoryStatDlg.h" />
+    <ClInclude Include="MemoryStatus\Toolhelp.h" />
+    <ClInclude Include="EditCombo.h" />
+    <ClInclude Include="TaggedValues.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\about-alpha.png" />
+    <Image Include="res\about.png" />
+    <Image Include="res\active_view_marker.png" />
+    <Image Include="res\address_tb.png" />
+    <Image Include="res\aparat.jpg" />
+    <Image Include="res\arrow_down.bmp" />
+    <Image Include="res\arrow_up.bmp" />
+    <Image Include="res\ascending.bmp" />
+    <Image Include="res\auto-complete.png" />
+    <Image Include="res\bitmap1.bmp" />
+    <!--Image Include="res\browser.ico" /-->
+    <Image Include="res\browser_tbar.bmp" />
+    <Image Include="res\BrowserToolBar.png" />
+    <!--<Image Include="res\BrowserToolBar30.png" />-->
+    <Image Include="res\BrowserTools.png" />
+    <!--Image Include="res\camera.ico" /-->
+    <Image Include="res\cancel-filter.png" />
+    <Image Include="res\cancel.png" />
+    <!--Image Include="res\catalog.ico" /-->
+    <Image Include="res\CatalogHelp_1.png" />
+    <Image Include="res\CatalogHelp_2.png" />
+    <Image Include="res\CatalogHelp_3.png" />
+    <Image Include="res\CatalogHelp_4.png" />
+    <Image Include="res\CatalogHelp_arrow.png" />
+    <Image Include="res\character.bmp" />
+    <Image Include="res\checked_btn.png" />
+    <Image Include="res\chevron-hot.png" />
+    <Image Include="res\chevron.bmp" />
+    <Image Include="res\chevron.png" />
+    <Image Include="res\chevron_big.bmp" />
+    <Image Include="res\chevron_big_hot.bmp" />
+    <Image Include="res\chevron_hot.bmp" />
+    <Image Include="res\close_bar.bmp" />
+    <!--Image Include="res\close_bar_hot.bmp" /-->
+    <Image Include="res\close_tb.png" />
+    <Image Include="res\closebar.bmp" />
+    <Image Include="res\closebar.png" />
+    <!--Image Include="res\copy.ico" /-->
+    <Image Include="res\ctrl_draw_images.bmp" />
+    <Image Include="res\CustomFilters.png" />
+    <Image Include="res\descending.bmp" />
+    <Image Include="res\dock_bar.bmp" />
+    <Image Include="res\draw_toolbar.bmp" />
+    <Image Include="res\empty.bmp" />
+    <Image Include="res\empty2.bmp" />
+    <Image Include="res\empty_bmp.bmp" />
+    <Image Include="res\enter_tb.png" />
+    <Image Include="res\Envelope.bmp" />
+    <Image Include="res\error_icon.bmp" />
+    <!--Image Include="res\ExifPro.ico" />
+    <Image Include="res\ExifProDoc.ico" /-->
+    <Image Include="res\ExifProVista.ico" />
+    <Image Include="res\eye_drop.bmp" />
+    <Image Include="res\file1.ico" />
+    <Image Include="res\file2.ico" />
+    <Image Include="res\file_icons.png" />
+    <Image Include="res\FilePaneFilterTb.png" />
+    <Image Include="res\FilePaneTb.png" />
+    <Image Include="res\FileTypeIndicators.png" />
+    <Image Include="res\filter_b.bmp" />
+    <Image Include="res\filter_bar.bmp" />
+    <Image Include="res\find_tb.png" />
+    <Image Include="res\flip_horizontally.png" />
+    <Image Include="res\flip_vertically.png" />
+    <Image Include="res\folder.ico" />
+    <Image Include="res\folder_pane_big_tb.png" />
+    <Image Include="res\folder_pane_tb.png" />
+    <Image Include="res\folder_popup.bmp" />
+    <Image Include="res\FolderViewCtrlTb.png" />
+    <Image Include="res\funnel-icon.png" />
+    <Image Include="res\funnel-small.png" />
+    <Image Include="res\funnel.png" />
+    <Image Include="res\grid_pattern.bmp" />
+    <Image Include="res\grip.bmp" />
+    <!--<Image Include="res\group_header_icons.bmp" />-->
+    <Image Include="res\GroupHeaderIcons.png" />
+    <!--Image Include="res\HeaderImages.png" /-->
+    <Image Include="res\HelpBtn.bmp" />
+    <Image Include="res\HelpBtn.png" />
+    <Image Include="res\horz_scrollbar.bmp" />
+    <Image Include="res\horz_vert_tb.png" />
+    <Image Include="res\hot_arr_btn.png" />
+    <Image Include="res\hot_arr_overlay.png" />
+    <Image Include="res\hot_img.png" />
+    <Image Include="res\hot_overlay.png" />
+    <Image Include="res\icm_icons.bmp" />
+    <Image Include="res\icm_toolbar.bmp" />
+    <Image Include="res\icon1.ico" />
+    <Image Include="res\img_effects.bmp" />
+    <Image Include="res\img_error.bmp" />
+    <Image Include="res\img_manip_icons.bmp" />
+    <Image Include="res\indicators.bmp" />
+    <Image Include="res\Indicators.png" />
+    <Image Include="res\indicators2.bmp" />
+    <Image Include="res\info_band_opt.png" />
+    <Image Include="res\info_band_opt_hot.png" />
+    <Image Include="res\info_bar.bmp" />
+    <Image Include="res\info_toolbar.bmp" />
+    <!--Image Include="res\info_toolbar.png" /-->
+    <Image Include="res\infobar.bmp" />
+    <Image Include="res\InfoToolbar.png" />
+    <Image Include="res\InfoToolBarBig.png" />
+    <Image Include="res\layouts.bmp" />
+    <Image Include="res\layouts.png" />
+    <Image Include="res\layouts_thumbs.bmp" />
+    <Image Include="res\light-bulb.png" />
+    <!--Image Include="res\light_table_bgnd.bmp" /-->
+    <Image Include="res\light_table_sep.bmp" />
+    <Image Include="res\light_table_tb.bmp" />
+    <Image Include="res\light_table_tb.png" />
+    <Image Include="res\light_table_tb_dis.bmp" />
+    <Image Include="res\LightTableHeader.bmp" />
+    <Image Include="res\LightTableHeader.png" />
+    <Image Include="res\main_toolbar.bmp" />
+    <Image Include="res\marked.bmp" />
+    <Image Include="res\mask.bmp" />
+    <Image Include="res\menu-btn-right.bmp" />
+    <Image Include="res\menu_btn.bmp" />
+    <Image Include="res\monitor.ico" />
+    <Image Include="res\move.ico" />
+    <Image Include="res\navigation.bmp" />
+    <Image Include="res\navigation_dis.bmp" />
+    <Image Include="res\noExif.png" />
+    <Image Include="res\obj_list.bmp" />
+    <Image Include="res\obj_list3.bmp" />
+    <Image Include="res\obj_list4.bmp" />
+    <Image Include="res\obj_list_2.bmp" />
+    <Image Include="res\operation.bmp" />
+    <Image Include="res\output.bmp" />
+    <Image Include="res\pane_too.bmp" />
+    <Image Include="res\pane_toolbar.bmp" />
+    <Image Include="res\pane_toolbar.png" />
+    <!--Image Include="res\pane_toolbar_big.bmp" />
+    <Image Include="res\pane_toolbar_big_hot.bmp" />
+    <Image Include="res\pane_toolbar_hot.png" /-->
+    <Image Include="res\pattern.bmp" />
+    <Image Include="res\photo.bmp" />
+    <Image Include="res\photo.ico" />
+    <Image Include="res\photo_1.bmp" />
+    <Image Include="res\photo_2.bmp" />
+    <Image Include="res\photo_3.bmp" />
+    <Image Include="res\photo_4.bmp" />
+    <Image Include="res\photo_5.bmp" />
+    <Image Include="res\photo_6.bmp" />
+    <Image Include="res\photo_7.bmp" />
+    <Image Include="res\photo_8.bmp" />
+    <!--Image Include="res\photos_dis_tb.bmp" />
+    <Image Include="res\photos_dis_tb.png" />-->
+    <!--Image Include="res\photos_tb.bmp" /-->
+    <Image Include="res\photos_tb.png" />
+    <!--<Image Include="res\PhotosToolbarBig.png" />-->
+    <Image Include="res\placeholder.bmp" />
+    <Image Include="res\placeholder3.bmp" />
+    <Image Include="res\placeholder_2.bmp" />
+    <Image Include="res\png6.png" />
+    <Image Include="res\preview_backgnd.bmp" />
+    <Image Include="res\preview_backgnd_btm.bmp" />
+    <Image Include="res\preview_backgnd_top.bmp" />
+    <Image Include="res\preview_backgnd_vert.bmp" />
+    <Image Include="res\preview_backgnd_vert_right.bmp" />
+    <!--Image Include="res\preview_backgnd_vert_top.bmp" /-->
+    <Image Include="res\preview_scrollbar.bmp" />
+    <Image Include="res\preview_scrollbar_v.bmp" />
+    <Image Include="res\preview_version.jpg" />
+    <Image Include="res\print_dlg_tb.bmp" />
+    <Image Include="res\rainbow.ico" />
+    <Image Include="res\rotate_180.png" />
+    <Image Include="res\rotate_automatically.png" />
+    <Image Include="res\rotate_left.png" />
+    <Image Include="res\rotate_right.png" />
+    <Image Include="res\rotation_90ccw.bmp" />
+    <Image Include="res\rotation_90cw.bmp" />
+    <Image Include="res\rotation_auto.bmp" />
+    <Image Include="res\RunSlideShow.bmp" />
+    <Image Include="res\separator_img.png" />
+    <Image Include="res\Shadow.bmp" />
+    <Image Include="res\shortcuts.bmp" />
+    <Image Include="res\slider_bar.bmp" />
+    <Image Include="res\small_arrow_down.png" />
+    <Image Include="res\Stars.png" />
+    <Image Include="res\TabCaption.png" />
+    <Image Include="res\TabCaptionBig.png" />
+    <Image Include="res\TabCaptionEnd.png" />
+    <Image Include="res\TabCaptionEndBig.png" />
+    <Image Include="res\TabShape.png" />
+    <Image Include="res\TabShapeBig.png" />
+    <Image Include="res\TabShapeEnd.png" />
+    <Image Include="res\TabShapeEndBig.png" />
+    <Image Include="res\TaggedSeparateDirs.bmp" />
+    <Image Include="res\TaggedSingleDir.bmp" />
+    <Image Include="res\tags_checkboxes.bmp" />
+    <Image Include="res\tags_checkboxes_dis.bmp" />
+    <!--Image Include="res\tags_edit.ico" />
+    <Image Include="res\tags_no_edit.ico" /-->
+    <Image Include="res\tags_ok.bmp" />
+    <Image Include="res\tags_ok_dis.bmp" />
+    <Image Include="res\tags_toolbar.bmp" />
+    <Image Include="res\TagsToolbar.png" />
+    <!--Image Include="res\TagsToolbarBig.png" />-->
+    <Image Include="res\task_bar.bmp" />
+    <Image Include="res\task_bar.png" />
+    <Image Include="res\task_bar_tb.bmp" />
+    <Image Include="res\tb_edit.bmp" />
+    <Image Include="res\template_frames.bmp" />
+    <Image Include="res\template_grid.bmp" />
+    <Image Include="res\templates.bmp" />
+    <Image Include="res\TimeLineTb.png" />
+    <!--Image Include="res\TimeLineTbDis.png" /-->
+    <Image Include="res\toolbar_close.bmp" />
+    <Image Include="res\toolbar_close_2.bmp" />
+    <Image Include="res\TransferToolOper.png" />
+    <Image Include="res\TransferToolOper1.png" />
+    <Image Include="res\TransferToolOper2.png" />
+    <Image Include="res\TransferToolOper3.png" />
+    <Image Include="res\transparent_bar.bmp" />
+    <Image Include="res\trashcan.jpg" />
+    <Image Include="res\trashcan.png" />
+    <Image Include="res\Triangles.png" />
+    <Image Include="res\vert_scrollbar.bmp" />
+    <Image Include="res\view_caption.png" />
+    <Image Include="res\viewer.ico" />
+    <Image Include="res\viewer_rebar_backgnd.bmp" />
+    <Image Include="res\viewer_toolbar.bmp" />
+    <Image Include="res\ViewerToolbar.bmp" />
+    <Image Include="res\ViewerToolbar.png" />
+    <!--Image Include="res\ViewerToolbarBig.png" />-->
+    <!--<Image Include="res\ViewerToolbarDis.bmp" />
+    <Image Include="res\ViewerToolbarDis.png" />-->
+    <Image Include="res\warning.ico" />
+    <Image Include="res\warning_2.ico" />
+    <Image Include="res\zoombar.bmp" />
+    <Image Include="res\ZoomBar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\copy-anim.avi" />
+    <None Include="res\cross.cur" />
+    <None Include="res\ExifPro.rc2" />
+    <None Include="res\eye_drop.cur" />
+    <None Include="res\horz_line_res.cur" />
+    <None Include="res\horz_resize.cur" />
+    <None Include="res\link.cur" />
+    <None Include="res\move.cur" />
+    <None Include="res\move_pane.cur" />
+    <None Include="res\nodrop.cur" />
+    <None Include="res\png3.bin" />
+    <None Include="res\png5.bin" />
+    <None Include="res\pointing.cur" />
+    <None Include="res\pointing_hand.cur" />
+    <None Include="res\pointing_hand_inv.cur" />
+    <None Include="res\progress.avi" />
+    <None Include="res\scroll.cur" />
+    <None Include="res\SlideShow.app" />
+    <None Include="res\vert_resize.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="res\manifest.txt" />
+    <Text Include="TODO list.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\libs\coolsb\coolsb.vcxproj">
+      <Project>{eeef7e0f-faf8-4291-b848-56a0543a514b}</Project>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+      <Private>false</Private>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\libs\giflib\giflib.vcxproj">
+      <Project>{451d2401-5ef7-464b-9b54-e00840bc1a71}</Project>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+      <Private>false</Private>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\libs\lcms\Projects\VC7\lcms111.vcxproj">
+      <Project>{7760788e-d243-4c89-a2fb-184900624a05}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <Private>false</Private>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\libs\libjpeg-turbo\bin\jpeg-static.vcxproj">
+      <Project>{20a0dde6-8470-4c48-9a4b-15d8deb228e1}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\libs\libjpeg-turbo\bin\simd\simd.vcxproj">
+      <Project>{1c2d8388-af45-46fc-8e2d-179a1eb3650d}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\libs\pnglib\pnglib.vcxproj">
+      <Project>{8a842318-3eec-412d-a1c7-5ccb0f2ea805}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <Private>false</Private>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\libs\scintilla\Scintilla\Scintilla.vcxproj">
+      <Project>{b67ec390-1b8f-44bf-9bd0-80daf97113b3}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <Private>false</Private>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\libs\tifflib\tifflib.vcxproj">
+      <Project>{e0e851a7-3d38-419f-9597-3ec0ff1c5ca4}</Project>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+      <Private>false</Private>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\libs\XMP-Toolkit\build\vc\XMPCore.vcxproj">
+      <Project>{c5bb1536-3776-4474-861d-b5923c610fe4}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\libs\zlib\zlib.vcxproj">
+      <Project>{3365df31-6d41-4b36-b22f-9c3d640ccad2}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\lua\luavc\luavc.vcxproj">
+      <Project>{cffafc5f-a97a-4ac4-8187-40695fcd210b}</Project>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+      <Private>false</Private>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="ExifPro.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
