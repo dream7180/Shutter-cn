@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -217,51 +217,51 @@ String GetImgAttribsHelpString(unsigned int include_help)
 	if (include_help & IAH_FILE_INFO)
 	{
 		help <<
-			_T("File name attributes:\r\n")
-			_T("file.fname\t- full file name with extension (\"DCS01234.JPG\")\r\n")
-			_T("file.name\t- file name without extension (\"DCS01234\")\r\n")
-			_T("file.ext\t- file name extension (\"JPG\")\r\n");
+			_T("文件名属性:\r\n")
+			_T("file.fname\t- 完整文件名含扩展名 (\"DCS01234.JPG\")\r\n")
+			_T("file.name\t- 文件名不含扩展名 (\"DCS01234\")\r\n")
+			_T("file.ext\t- 文件扩展名 (\"JPG\")\r\n");
 	}
 
 	help <<
-		_T("Image attributes:\r\n")
-		_T("img.date\t- creation date & time (text)\r\n")
-		_T("img.expprog\t- exposure program\r\n")
-		_T("img.et\t- exposure time\r\n")
-		_T("img.expbias\t- exposure bias\r\n")
-		_T("img.ext\t- file extension name\r\n")
-		_T("img.fl\t- focal length\r\n")
-		_T("img.fl35\t- focal length (35 mm equivalent)\r\n")
-		_T("img.flash\t- flash information\r\n")
-		_T("img.fn\t- F/Stop (F Number, aperture)\r\n")
-		_T("img.fovc\t- field of view crop\r\n")
-		_T("img.h\t- image height\r\n")
-		_T("img.iso\t- sensitivity\r\n")
-		_T("img.lensmodel\t- lens model\r\n")
-		_T("img.lightsrc\t- light source\r\n")
-		_T("img.make\t- camera make\r\n")
-		_T("img.metmode\t- metering mode\r\n")
-		_T("img.model\t- camera model\r\n")
-		_T("img.name\t- file name\r\n")
-		_T("img.path\t- complete path to the image\r\n")
-		_T("img.portrait\t- true if image is in portrait orientation, false if it's in landscape\r\n")
-		_T("img.rating\t- number of stars\r\n")
-		_T("img.size\t- file size in bytes\r\n")
-		_T("img.srgb\t- true if sRGB color space, false otherwise\r\n")
-		_T("img.subdist\t- subject distance\r\n");
+		_T("图像属性:\r\n")
+		_T("img.date\t- 创建日期和时间 (text)\r\n")
+		_T("img.expprog\t- 曝光程序\r\n")
+		_T("img.et\t- 曝光时长\r\n")
+		_T("img.expbias\t- 曝光补偿\r\n")
+		_T("img.ext\t- 文件扩展名\r\n")
+		_T("img.fl\t- 焦距\r\n")
+		_T("img.fl35\t- 焦距 (35 mm 等效)\r\n")
+		_T("img.flash\t- 闪光灯信息\r\n")
+		_T("img.fn\t- F/Stop (F Number, 光圈)\r\n")
+		_T("img.fovc\t- 裁切系数\r\n")
+		_T("img.h\t- 图像高度\r\n")
+		_T("img.iso\t- 感光度\r\n")
+		_T("img.lensmodel\t- 镜头型号\r\n")
+		_T("img.lightsrc\t- 光源\r\n")
+		_T("img.make\t- 相机厂商\r\n")
+		_T("img.metmode\t- 测光模式\r\n")
+		_T("img.model\t- 相机型号\r\n")
+		_T("img.name\t- 文件名\r\n")
+		_T("img.path\t- 图像完整路径\r\n")
+		_T("img.portrait\t- 图像竖向为 true, 横向为 false\r\n")
+		_T("img.rating\t- 评级\r\n")
+		_T("img.size\t- 文件大小(字节)\r\n")
+		_T("img.srgb\t- 色彩空间 sRGB 为 true, 其他为 false\r\n")
+		_T("img.subdist\t- 物距\r\n");
 
 	if (include_help & IAH_TAG_INFO)
-		help << _T("img.tags\t- dictionary of image tags\r\n");
+		help << _T("img.tags\t- 图像标记字典\r\n");
 
 	help <<
-		_T("img.time\t- creation time stamp (number)\r\n")
-		_T("img.w\t- image width\r\n")
+		_T("img.time\t- 创建时间戳 (number)\r\n")
+		_T("img.w\t- 图像宽度\r\n")
 		_T("\r\n")
-		_T("String functions:\t string.lower, string.upper, string.len, string.sub(str, from, to), string.find(str, what)\r\n")
+		_T("字符串函数:\t string.lower, string.upper, string.len, string.sub(str, from, to), string.find(str, what)\r\n")
 		_T("\r\n")
-		_T("Mathematical functions:\t math.abs math.acos math.asin math.atan math.atan2 math.ceil math.cos math.cosh math.deg math.exp math.floor math.fmod math.frexp math.huge math.ldexp math.log math.log10 math.max math.min math.modf math.pi math.pow math.rad math.random math.randomseed math.sin math.sinh math.sqrt math.tan math.tanh math.mod\r\n")
+		_T("数学函数:\t math.abs math.acos math.asin math.atan math.atan2 math.ceil math.cos math.cosh math.deg math.exp math.floor math.fmod math.frexp math.huge math.ldexp math.log math.log10 math.max math.min math.modf math.pi math.pow math.rad math.random math.randomseed math.sin math.sinh math.sqrt math.tan math.tanh math.mod\r\n")
 		_T("\r\n")
-		_T("For a complete list of functions and documentation check www.lua.org");
+		_T("完整函数和文档清单请访问 www.lua.org");
 
 /*
 	if (including_tags)

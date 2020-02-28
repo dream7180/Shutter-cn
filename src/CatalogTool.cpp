@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -17,7 +17,7 @@ extern void BuildCatalog(const TCHAR* path)
 	CWnd* parent= AfxGetMainWnd();
 
 	CatalogDlg dlg(parent, path);
-	HeaderDialog dlgHdr(dlg, _T("Catalog Images"), HeaderDialog::IMG_ALBUM);
+	HeaderDialog dlgHdr(dlg, _T("图像分类"), HeaderDialog::IMG_ALBUM);
 	if (dlgHdr.DoModal() != IDOK)
 		return;
 

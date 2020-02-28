@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -107,7 +107,7 @@ tool_bar_sort_wnd_.SetOnIdleUpdateState(false);*/
 	tool_bar_view_wnd_.CreateDisabledImageList(bmp_id);
 	tool_bar_view_wnd_.SetOwner(parent);
 	tool_bar_view_wnd_.CWnd::SetOwner(parent);
-	tool_bar_pos_.push_back(PositionBar(tool_bar_view_wnd_, _T("View")));
+	tool_bar_pos_.push_back(PositionBar(tool_bar_view_wnd_, _T("查看")));
 
 	tool_bar_thumb_wnd_.SetPadding(0, 7);
 	tool_bar_thumb_wnd_.Create(".........ppp.......", g_cmd, bmp_id, 0, this, AFX_IDW_CONTROLBAR_LAST - 2);
@@ -135,13 +135,13 @@ tool_bar_sort_wnd_.SetOnIdleUpdateState(false);*/
 	thumb_size_wnd_.Create(dwStyle, CRect(0,0,0,0), &tool_bar_thumb_wnd_, ID_THUMB_SIZE);
 	SetSliderPos();
 
-	tool_bar_pos_.push_back(PositionBar(tool_bar_thumb_wnd_, _T("Thumbnails")));
+	tool_bar_pos_.push_back(PositionBar(tool_bar_thumb_wnd_, _T("缩略图")));
 
 	tool_bar_group_wnd_.Create("...............xxxx", g_cmd, bmp_id, 0, this, AFX_IDW_CONTROLBAR_LAST - 4);
 	tool_bar_group_wnd_.CreateDisabledImageList(bmp_id);
 	tool_bar_group_wnd_.SetOwner(parent);
 	tool_bar_group_wnd_.CWnd::SetOwner(parent);
-	tool_bar_pos_.push_back(PositionBar(tool_bar_group_wnd_, _T("Group")));
+	tool_bar_pos_.push_back(PositionBar(tool_bar_group_wnd_, _T("分组")));
 
 	if (WhistlerLook::IsAvailable())
 		tool_bar_sort_wnd_.SetPadding(-1, -1);	// btn with down arrow section inflates total buttons height
@@ -150,7 +150,7 @@ tool_bar_sort_wnd_.SetOnIdleUpdateState(false);*/
 	tool_bar_sort_wnd_.CreateDisabledImageList(bmp_id);
 	tool_bar_sort_wnd_.SetOwner(parent);
 	tool_bar_sort_wnd_.CWnd::SetOwner(parent);
-	tool_bar_pos_.push_back(PositionBar(tool_bar_sort_wnd_, _T("Sort")));
+	tool_bar_pos_.push_back(PositionBar(tool_bar_sort_wnd_, _T("排序")));
 	tool_bar_pos_.back().tool_bar_width -= EXTRASPACE;
 
 	thumb_size_wnd_.SetRange(0, thumb_index_range - 1);
@@ -449,7 +449,7 @@ void ExifViewReBar::ImgSizeLabel(bool thumbs)
 {
 	if (tool_bar_pos_.size() > 2)
 	{
-		tool_bar_pos_[2].label = thumbs ? _T("Thumbnails") : _T("Images");
+		tool_bar_pos_[2].label = thumbs ? _T("缩略图") : _T("图像");
 		Invalidate();
 	}
 }

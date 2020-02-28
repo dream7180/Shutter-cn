@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -111,7 +111,7 @@ void ExifStatusBar::OptionsPopup(CPoint pos)
 		const int ID_RESET_COLUMNS= 99998;
 
 		menu.AppendMenu(MF_SEPARATOR);
-		menu.AppendMenu(MF_STRING, ID_RESET_COLUMNS, _T("Reset to Defaults"));
+		menu.AppendMenu(MF_STRING, ID_RESET_COLUMNS, _T("重置为默认值"));
 
 		if (pos.x == -1 && pos.y == -1)
 			GetCursorPos(&pos);

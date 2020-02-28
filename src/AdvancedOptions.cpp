@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -235,7 +235,7 @@ void AdvancedOptions::SetRAMLabel()
 	int RAM_MB= percent > 0 ? static_cast<int>(total_phys_mem / 1024 * percent / 100 / 1024) : 0;
 
 	CString ram;
-	ram.Format(_T("= %d MB RAM"), RAM_MB);
+	ram.Format(_T("= %d MB 内存"), RAM_MB);
 
 	SetDlgItemText(IDC_RAM, ram);
 }
@@ -307,7 +307,7 @@ void AdvancedOptions::OnSetDbPath()
 {
 	CFolderSelect fs(this);
 
-	String path= fs.DoSelectPath(_T("Select place where the cache file will be stored"), db_path_.c_str());
+	String path= fs.DoSelectPath(_T("选择缓存文件的储存位置"), db_path_.c_str());
 
 	if (!path.empty() && path != db_path_)
 	{

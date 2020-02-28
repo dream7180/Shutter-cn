@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -172,8 +172,8 @@ bool CustomColumnsDlg::ReadCol(size_t col)
 		name_.GetWindowText(caption);
 		if (caption.IsEmpty())
 		{
-			new BalloonMsg(&name_, _T("Column Name Expected"),
-				_T("Please enter column caption, it cannot be empty."), BalloonMsg::IERROR);
+			new BalloonMsg(&name_, _T("需要列名称"),
+				_T("请输入列标题, 不能为空."), BalloonMsg::IERROR);
 			return false;
 		}
 
@@ -183,8 +183,8 @@ bool CustomColumnsDlg::ReadCol(size_t col)
 		String err_msg;
 		if (!VerifyExpr(expr, &err_msg))
 		{
-			SetDlgItemText(IDC_STATUS, (_T("Error: ") + err_msg).c_str());
-			new BalloonMsg(expression_.GetWnd(), _T("Invalid Expression"), err_msg.c_str(), BalloonMsg::IERROR);
+			SetDlgItemText(IDC_STATUS, (_T("错误: ") + err_msg).c_str());
+			new BalloonMsg(expression_.GetWnd(), _T("无效的表达式"), err_msg.c_str(), BalloonMsg::IERROR);
 			return false;
 		}
 
@@ -217,9 +217,9 @@ void CustomColumnsDlg::OnVerifyExpr()
 
 		String err_msg;
 		if (VerifyExpr(expr, &err_msg))
-			SetDlgItemText(IDC_STATUS, (_T("Result: ") + err_msg).c_str());
+			SetDlgItemText(IDC_STATUS, (_T("结果: ") + err_msg).c_str());
 		else
-			SetDlgItemText(IDC_STATUS, (_T("Error: ") + err_msg).c_str());
+			SetDlgItemText(IDC_STATUS, (_T("错误: ") + err_msg).c_str());
 	}
 	CATCH_ALL
 }
@@ -231,7 +231,7 @@ bool CustomColumnsDlg::VerifyExpr(const CString& expr, String* err_message)
 	if (expr.IsEmpty())
 	{
 		if (err_message)
-			*err_message = _T("Please enter valid expression, it cannot be empty.");
+			*err_message = _T("请输入有效的表达式, 不能为空.");
 
 		return false;
 	}

@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -293,8 +293,8 @@ String FilterPanelDlg::GetFilterName() const
 
 void FilterPanelDlg::ShowNameInUseErr()
 {
-	new BalloonMsg(&impl_->filter_name_, _T("Filter Name in Use"),
-		_T("Please provide unique name for a filter."), BalloonMsg::IERROR);
+	new BalloonMsg(&impl_->filter_name_, _T("过滤器名称使用中"),
+		_T("请提供唯一的过滤器名称."), BalloonMsg::IERROR);
 }
 
 

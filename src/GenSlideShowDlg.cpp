@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -236,7 +236,7 @@ void GenSlideShowDlg::OnBrowse()
 
 	CFileDialog dlg(false, _T(".exe"), _T("SlideShow.exe"),
 		OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT | OFN_PATHMUSTEXIST | OFN_NOREADONLYRETURN,
-		_T("Slide Show Applications (*.exe)|*.exe|All Files (*.*)|*.*||"));
+		_T("幻灯片应用程序 (*.exe)|*.exe|所有文件 (*.*)|*.*||"));
 //	CFolderSelect fs(this);
 //	CString path= fs.DoSelectPath(RString(IDS_SELECT_OUTPUT_FOLDER), dest_path);
 
@@ -274,10 +274,10 @@ void GenSlideShowDlg::UpdateFmt()
 		}
 		CString ratio;
 		if (denominator > 0.0f)
-			ratio.Format(_T("(about 1:%0.*f)"),
+			ratio.Format(_T("(大约 1:%0.*f)"),
 				static_cast<int>(denominator * 10) % 10 > 0 ? 1 : 0, static_cast<double>(denominator));
 		else
-			ratio = _T("(about 1:?)");
+			ratio = _T("(大约 1:?)");
 		compr_ratio_wnd_.SetWindowText(ratio);
 
 		ReadOnlyCtrl(&edit_compr_level_, !custom);

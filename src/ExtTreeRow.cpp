@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -68,7 +68,7 @@ void ExtTreeRow::GetColumn(int column_index, CString& buff) const
 
 	case COL_PROFILE:
 		if (icm_->default_s_rgb_)
-			buff = _T("Default sRGB Color Profile");
+			buff = _T("默认 sRGB 颜色配置");
 		else
 			buff = icm_->profile_path_.GetFileNameAndExt().c_str();
 		break;
@@ -79,7 +79,7 @@ void ExtTreeRow::GetColumn(int column_index, CString& buff) const
 		break;
 
 	case COL_ENABLE_FLAG:
-		buff = icm_->enabled_ ? _T("[yes]") : _T("[no]");
+		buff = icm_->enabled_ ? _T("[是]") : _T("[否]");
 		break;
 
 	default:
@@ -170,8 +170,8 @@ void ExtTreeRow::Draw(CDC* dc, std::vector<std::pair<int, int>> column_info, COL
 		bool bold= false;
 		GetDisplayText(col, buffer, bold);
 
-		bool on= buffer == _T("[yes]");
-		if (on || buffer == _T("[no]"))
+		bool on= buffer == _T("[是]");
+		if (on || buffer == _T("[否]"))
 		{
 			CSize size= CtrlDraw::GetCheckBoxSize(dc->GetWindow());
 			if (cell.Width() >= size.cx)

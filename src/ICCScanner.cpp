@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -40,7 +40,7 @@ bool ICCScanner::FileScan(Path path, int64 file_length, const CFileFind& find, i
 		}
 		catch (ColorException& ex)
 		{
-			CString msg= _T("Error reading profile file.\n");
+			CString msg= _T("读取配置文件错误.\n");
 //			msg += path.c_str();
 
 			const TCHAR* message= ex.GetMessage();
@@ -54,7 +54,7 @@ bool ICCScanner::FileScan(Path path, int64 file_length, const CFileFind& find, i
 
 			if (ex.GetErrorCode() != 0)
 			{
-				msg += _T("\nError code: ");
+				msg += _T("\n错误代码: ");
 				TCHAR code[64];
 				msg += _itot(ex.GetErrorCode(), code, 10);
 			}

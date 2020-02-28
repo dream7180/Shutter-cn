@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    EXIF Image Viewer
 
@@ -197,7 +197,7 @@ int DecoderJob::Impl::Decode()
 	catch (CMemoryException* ex)
 	{
 		pending_ = false;
-		wnd->MessageBox(_T("Out of memory."));
+		wnd->MessageBox(_T("内存溢出."));
 		ex->Delete();
 		stat = IS_OUT_OF_MEM;
 		ret = 3;
@@ -210,7 +210,7 @@ int DecoderJob::Impl::Decode()
 			if (ex->GetErrorMessage(error_message, array_count(error_message)))
 				DisplayErrorDialog(err_caption, wnd, error_message, 0, false);
 			else
-				DisplayErrorDialog(L"MFC Exception Encountered", wnd, error_message, 0, false);
+				DisplayErrorDialog(L"MFC 遭遇错误", wnd, error_message, 0, false);
 		}
 		ex->Delete();
 		stat = IS_OUT_OF_MEM;
@@ -219,11 +219,11 @@ int DecoderJob::Impl::Decode()
 	catch (JPEGException& ex)
 	{
 		pending_ = false;
-		std::wstring ttl= L"Error decoding \"" + file_ + L'"';
+		std::wstring ttl= L"读取错误 \"" + file_ + L'"';
 		std::wstring details;
 		if (const wchar_t* msg= ex.GetMessage())
 		{
-			details += L"\nJPEG decoding error: ";
+			details += L"\nJPEG 解码错误: ";
 			details += msg;
 		}
 		DisplayErrorDialog(err_caption, wnd, ttl.c_str(), details.c_str(), false);
@@ -233,7 +233,7 @@ int DecoderJob::Impl::Decode()
 	catch (...)		// fatal error
 	{
 		pending_ = false;
-		String ttl= L"Error reading " + file_;
+		String ttl= L"读取错误 " + file_;
 		DisplayErrorDialog(err_caption, wnd, ttl.c_str(), 0, false);
 		stat = IS_DECODING_FAILED;
 		ret = 4;

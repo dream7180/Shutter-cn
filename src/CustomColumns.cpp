@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -54,12 +54,12 @@ void CustomColumns::Defaults()
 	{
 		if (i == 0)
 		{
-			columns_[i].caption_ = _T("Mega Pixels");
+			columns_[i].caption_ = _T("百万像素");
 			columns_[i].expression_ = _T("-- image size in mega pixels") eol eol _T("return round(img.w * img.h / 1024^2, 2)") eol;
 		}
 		else if (i == 1)
 		{
-			columns_[i].caption_ = _T("Camera's Gain");
+			columns_[i].caption_ = _T("相机增益");
 			columns_[i].expression_ = _T("-- camera's amplification") eol eol
 				_T("if img.fn > 0 then") eol
 				_T("    local x= 1 / img.fn") eol
@@ -70,7 +70,7 @@ void CustomColumns::Defaults()
 		}
 		else
 		{
-			wsprintf(buf, _T("Custom Colum %d"), static_cast<int>(i + 1));
+			wsprintf(buf, _T("自定义列 %d"), static_cast<int>(i + 1));
 			columns_[i].caption_ = buf;
 
 			wsprintf(buf, _T("-- expression defining column's value\r\n\r\nreturn %d"), static_cast<int>(i + 1));

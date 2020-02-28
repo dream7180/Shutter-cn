@@ -38,7 +38,7 @@ InfoPane::InfoPane()
 	const TCHAR* REGISTRY_INFO_PANE= _T("InfoPane");
 	profile_show_preview_.Register(REGISTRY_INFO_PANE, _T("ShowPreview"), false);
 	profile_raw_info_.Register(REGISTRY_INFO_PANE, _T("RawInfo"), false);
-	profile_hide_unknown_.Register(REGISTRY_INFO_PANE, _T("HideUnknown"), false);
+	profile_hide_unknown_.Register(REGISTRY_INFO_PANE, _T("HideUnknown"), true);
 
 	img_preview_ = profile_show_preview_;
 	raw_data_ = profile_raw_info_;

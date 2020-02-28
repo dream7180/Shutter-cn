@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -161,9 +161,9 @@ BOOL AboutDlg::OnInitDialog()
 		about_2 += _T("Little CMS: 1.19");
 		
 		link_txt_1 = _T("Mod by dreamawake:");
-		link_txt_2 = _T("dreamawake's Blog:");
+		link_txt_2 = _T("dreamawake 的博客:");
 		link_txt_3 = _T("Mod from ExifPro V2.3:");
-		link_txt_4 = _T("ExifPro V2.1 Website:");
+		link_txt_4 = _T("ExifPro V2.1 网站:");
 
 		libs_ =
 			_T("\n")

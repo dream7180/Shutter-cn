@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -33,13 +33,13 @@ void ColumnTree::InitTree()
 {
 	tree_wnd_.ModifyStyle(0, TVS_CHECKBOXES);
 
-	item_common_		= tree_wnd_.InsertItem(_T("Generic"), -1, -1);
-	item_canon_			= tree_wnd_.InsertItem(_T("Canon"), -1, -1);
-	item_nikon_			= tree_wnd_.InsertItem(_T("Nikon"), -1, -1);
-	item_fuji_			= tree_wnd_.InsertItem(_T("Fuji"), -1, -1);
-	item_olympus_		= tree_wnd_.InsertItem(_T("Olympus"), -1, -1);
-	metadata_columns_	= tree_wnd_.InsertItem(_T("File Info"), -1, -1);
-	custom_columns_		= tree_wnd_.InsertItem(_T("Custom Columns"), -1, -1);
+	item_common_		= tree_wnd_.InsertItem(_T("通用"), -1, -1);
+	item_canon_			= tree_wnd_.InsertItem(_T("佳能"), -1, -1);
+	item_nikon_			= tree_wnd_.InsertItem(_T("尼康"), -1, -1);
+	item_fuji_			= tree_wnd_.InsertItem(_T("富士"), -1, -1);
+	item_olympus_		= tree_wnd_.InsertItem(_T("奥林巴斯"), -1, -1);
+	metadata_columns_	= tree_wnd_.InsertItem(_T("文件信息"), -1, -1);
+	custom_columns_		= tree_wnd_.InsertItem(_T("自定义列"), -1, -1);
 
 	RemoveCheckBox(item_common_);
 	RemoveCheckBox(item_canon_);

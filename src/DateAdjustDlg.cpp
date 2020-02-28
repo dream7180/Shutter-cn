@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -129,8 +129,8 @@ BOOL DateAdjustDlg::InitDlg()
 
 	results_.SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_DOUBLEBUFFER | LVS_EX_LABELTIP);
 	//results_.InsertColumn(0, _T("File Name"), LVCFMT_LEFT, 100);
-	results_.InsertColumn(0, _T("Existing Date/Time"), LVCFMT_LEFT, Pixels(150));
-	results_.InsertColumn(1, _T("New Date/Time"), LVCFMT_LEFT, Pixels(150));
+	results_.InsertColumn(0, _T("现有的日期/时间"), LVCFMT_LEFT, Pixels(150));
+	results_.InsertColumn(1, _T("新的日期/时间"), LVCFMT_LEFT, Pixels(150));
 	results_.SetItemCount(static_cast<int>(photos_.size()));
 
 	time_edit_.ModifyStyle(0, DTS_TIMEFORMAT);
@@ -201,8 +201,8 @@ void DateAdjustDlg::OnOK()
 				UpdateExampleAndOkBtn();
 
 				oStringstream ost;
-				ost << _T("This time adjustment will not work for image ") << invalid->GetName() << _T(".");
-				new BalloonMsg(GetDlgItem(IDC_ADJUST), _T("Relative Adjustment Out of Range"),
+				ost << _T("本次调整不会对图像生效 ") << invalid->GetName() << _T(".");
+				new BalloonMsg(GetDlgItem(IDC_ADJUST), _T("相关调整超出范围"),
 					ost.str().c_str(), BalloonMsg::IERROR);
 			}
 			// if invalid == null then span itself is bogus
@@ -545,7 +545,7 @@ BOOL DateAdjustDlg::OnGetDispInfo(UINT id, NMHDR* nmhdr, LRESULT* result)
 			if (valid_)
 			{
 				// in case of failure show error msg
-				_tcsncpy(disp_info->item.pszText, _T("invalid date"), disp_info->item.cchTextMax);
+				_tcsncpy(disp_info->item.pszText, _T("无效的日期"), disp_info->item.cchTextMax);
 
 				try
 				{

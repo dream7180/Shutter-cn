@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -327,7 +327,7 @@ void FilePaneWnd::Impl::BuildPathMenu(CMenuFolders& menu, const TCHAR* section)
 		AppendPaths(current_paths_, recent_paths_);
 	}
 
-	menu.InsertItem(ID_BROWSE, _T("&Browse..."));
+	menu.InsertItem(ID_BROWSE, _T("浏览(&B)..."));
 	menu.AppendMenu(MF_SEPARATOR);
 
 	const size_t count= current_paths_.size();
@@ -552,7 +552,7 @@ void FilePaneWnd::Impl::Browse(CWnd* parent)
 
 	CFolderSelect fs(parent);
 	currentPath_ = ItemIdListPtr(new ItemIdList(path));
-	if (!fs.DoSelect(_T("Select folder"), *currentPath_))
+	if (!fs.DoSelect(_T("选择文件夹"), *currentPath_))
 		return;
 
 	last_path_ = currentPath_->GetPath();
@@ -569,11 +569,11 @@ void FilePaneWnd::Impl::SetInfo()
 
 	CString str;
 	if (count <= 0)
-		str = _T("No Items");
+		str = _T("无项目");
 	else if (count == 1)
-		str = _T("1 Item");
+		str = _T("1 个项目");
 	else
-		str.Format(_T("%d Items"), count);
+		str.Format(_T("%d 项目"), count);
 
 	const TCHAR* p= str;
 	status_bar_.SendMessage(SB_SETTEXT, SBT_NOBORDERS, LPARAM(p));
@@ -678,7 +678,7 @@ bool FilePaneWnd::Impl::ValidatePathField(bool createDir, CString& outPath)
 	if (str.IsEmpty() || !::PathCanonicalize(path, str))
 	{
 		// error
-		new BalloonMsg(&address_, _T("Invalid Path"), _T("Destination path is not valid."), BalloonMsg::IERROR);
+		new BalloonMsg(&address_, _T("无效路径"), _T("目标路径无效."), BalloonMsg::IERROR);
 		return false;
 	}
 
@@ -692,7 +692,7 @@ bool FilePaneWnd::Impl::ValidatePathField(bool createDir, CString& outPath)
 
 		if (!::PathIsDirectory(buf))
 		{
-			new BalloonMsg(&address_, _T("Invalid Path"), _T("Destination path is not valid."), BalloonMsg::IERROR);
+			new BalloonMsg(&address_, _T("无效路径"), _T("目标路径无效."), BalloonMsg::IERROR);
 			return false;
 		}
 
@@ -702,7 +702,7 @@ bool FilePaneWnd::Impl::ValidatePathField(bool createDir, CString& outPath)
 			if (!::CreateDirectory(path, 0))
 			{
 				// error
-				new BalloonMsg(&address_, _T("Cannot Create Folder"), _T("Specified folder cannot be created."),
+				new BalloonMsg(&address_, _T("未能创建文件夹"), _T("指定的文件夹未能创建."),
 					BalloonMsg::IERROR);
 				return false;
 			}

@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -209,21 +209,21 @@ String ColorProfile::GetDeviceClassName() const
 	switch (GetDeviceClass())
 	{
 	case icSigInputClass:
-		return _T("Input Device");
+		return _T("输入设备");
 	case icSigDisplayClass:
-		return _T("Display Device");
+		return _T("显示设备");
 	case icSigOutputClass:
-		return _T("Output Device");
+		return _T("输出设备");
 	case icSigLinkClass:
-		return _T("Link");
+		return _T("链接");
 	case icSigAbstractClass:
-		return _T("Abstract");
+		return _T("摘要");
 	case icSigColorSpaceClass:
-		return _T("Color Space");
+		return _T("色彩空间");
 	case icSigNamedColorClass:
-		return _T("Named Color");
+		return _T("命名的颜色");
 	default:
-		return _T("Unknown");
+		return _T("未知");
 	}
 }
 

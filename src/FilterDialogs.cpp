@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -260,7 +260,7 @@ void UpdateNames(CTreeCtrl& tree, HTREEITEM node, const PhotoTagsCollection& tag
 	bool changed= false;
 	HTREEITEM leaf= tree.GetNextItem(node, TVGN_CHILD);
 
-	CString prefix= !any ? _T("and ") : _T("or ");
+	CString prefix= !any ? _T("和 ") : _T("或 ");
 	size_t index= 0;
 
 	while (leaf && index < tags.GetCount())
@@ -301,13 +301,13 @@ void CFilterDialog_1::PopulateTree(const PhotoTagsCollection& tags)
 
 	exclude_ = include_ = 0;
 
-	include_ = tags_.InsertItem(_T("Find Tags"), -1, -1);
-	exclude_ = tags_.InsertItem(_T("Exclude Tags"), -1, -1);
+	include_ = tags_.InsertItem(_T("查找标记"), -1, -1);
+	exclude_ = tags_.InsertItem(_T("排除标记"), -1, -1);
 
 	RemoveCheckBox(tags_, include_);
 	RemoveCheckBox(tags_, exclude_);
 
-	CString prefix= IsDlgButtonChecked(IDC_ALL) ? _T("and ") : _T("or ");
+	CString prefix= IsDlgButtonChecked(IDC_ALL) ? _T("和 ") : _T("或 ");
 
 	const size_t count= tags.GetCount();
 	for (size_t i= 0; i < count; ++i)
@@ -815,11 +815,11 @@ void CFilterDialog_4::SetStars(int stars)
 
 	CString label;
 	if (stars == 1)
-		label = _T("Show images with at least 1 star");
+		label = _T("显示至少 1 星的图像");
 	else if (stars > 0)
-		label.Format(_T("Show images with at least %d stars"), stars);
+		label.Format(_T("显示至少 %d 星"), stars);
 	else
-		label = _T("Show all images");
+		label = _T("显示全部图像");
 
 	label_.SetWindowText(label);
 }

@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -530,19 +530,19 @@ void CatalogImages::Impl::ProcessFiles(int img_size, int jpeg_compression_level)
 		}
 		catch (MemPointer::MemPtrException&)
 		{
-			CString msg= _T("Error parsing file: ");
+			CString msg= _T("解析文件出错: ");
 			msg += path.c_str();
 			::ShowMessageBox(msg);
 		}
 		catch (CMemoryException*)
 		{
-			CString msg= _T("Out of memory reading file: ");
+			CString msg= _T("读取文件时内存溢出: ");
 			msg += path.c_str();
 			::ShowMessageBox(msg);
 		}
 		catch (JPEGException& ex)
 		{
-			CString msg= _T("Error processing file: ");
+			CString msg= _T("处理文件出错: ");
 			msg += path.c_str();
 			msg += _T("\n\n");
 			msg += ex.GetMessage();

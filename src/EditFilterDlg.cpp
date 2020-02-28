@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -121,8 +121,8 @@ bool EditFilterDlg::ReadExpr(String& filter_rule)
 		String err_msg;
 		if (!VerifyExpr(expr, &err_msg))
 		{
-			SetDlgItemText(IDC_STATUS, (_T("Error: ") + err_msg).c_str());
-			new BalloonMsg(expression_.GetWnd(), _T("Invalid Expression"), err_msg.c_str(), BalloonMsg::IERROR);
+			SetDlgItemText(IDC_STATUS, (_T("错误: ") + err_msg).c_str());
+			new BalloonMsg(expression_.GetWnd(), _T("无效的表达式"), err_msg.c_str(), BalloonMsg::IERROR);
 			return false;
 		}
 
@@ -158,9 +158,9 @@ void EditFilterDlg::OnVerifyExpr()
 
 		String err_msg;
 		if (VerifyExpr(expr, &err_msg))
-			SetDlgItemText(IDC_STATUS, (_T("Result: ") + err_msg).c_str());
+			SetDlgItemText(IDC_STATUS, (_T("结果: ") + err_msg).c_str());
 		else
-			SetDlgItemText(IDC_STATUS, (_T("Error: ") + err_msg).c_str());
+			SetDlgItemText(IDC_STATUS, (_T("错误: ") + err_msg).c_str());
 	}
 	CATCH_ALL
 }

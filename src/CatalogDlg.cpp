@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -366,7 +366,7 @@ void CatalogDlg::Impl::StartBuild(const TCHAR* path, const TCHAR* save_here, int
 		abort_.ShowWindow(SW_SHOWNA);
 	}
 	else
-		wnd_->MessageBox(_T("Error creating thread"));
+		wnd_->MessageBox(_T("创建线程错误"));
 }
 
 
@@ -512,8 +512,8 @@ void CatalogDlg::Impl::Build()
 		catalog_fname_.GetWindowText(name);
 		if (name.IsEmpty())
 		{
-			new BalloonMsg(&catalog_fname_, _T("Catalog File Name Expected"),
-				_T("Please enter file name for a catalog."), BalloonMsg::IERROR);
+			new BalloonMsg(&catalog_fname_, _T("需要分类文件名"),
+				_T("请输入分类的文件名."), BalloonMsg::IERROR);
 			return;
 		}
 
@@ -527,8 +527,8 @@ void CatalogDlg::Impl::Build()
 #ifdef _DEBUG
 			::DeleteFile(save.c_str());
 #else
-			new BalloonMsg(&catalog_fname_, _T("File Already Exists"),
-				_T("Please enter new file name for a catalog."), BalloonMsg::IERROR);
+			new BalloonMsg(&catalog_fname_, _T("文件已经存在"),
+				_T("请输入新的分类文件名."), BalloonMsg::IERROR);
 			return;
 #endif
 		}
@@ -574,8 +574,8 @@ void CatalogDlg::Impl::Build()
 		}
 		else
 		{
-			new BalloonMsg(&folder_to_scan_, _T("Path to a Folder Expected"),
-				_T("Please enter path to the folder to scan for images."), BalloonMsg::IERROR);
+			new BalloonMsg(&folder_to_scan_, _T("需要文件夹路径"),
+				_T("请输入文件夹路径来扫描图像."), BalloonMsg::IERROR);
 		}
 	}
 	else	// drive selected?
@@ -590,8 +590,8 @@ void CatalogDlg::Impl::Build()
 		}
 		else
 		{
-			new BalloonMsg(&drives_, _T("Drive Selection Expected"),
-				_T("Please select a drive to scan for images."), BalloonMsg::IERROR);
+			new BalloonMsg(&drives_, _T("需要选择驱动器"),
+				_T("请选择驱动器来扫描图像."), BalloonMsg::IERROR);
 		}
 	}
 }
@@ -718,7 +718,7 @@ void CatalogDlg::Impl::Progress(int step, size_t count)
 
 			file_counter_.SetWindowText(_T(""));
 			file_counter_.ShowWindow(SW_SHOWNA);
-			action_.SetWindowText(_T("Processing images:"));
+			action_.SetWindowText(_T("正在处理图像:"));
 
 			::GetSystemTimeAsFileTime(&start_time_);
 		}
@@ -835,7 +835,7 @@ LRESULT CatalogDlg::OnBeginEnd(WPARAM count, LPARAM finished)
 	else	// just starting
 	{
 		pImpl_->ResetControls();
-		pImpl_->action_.SetWindowText(_T("Searching for images:"));
+		pImpl_->action_.SetWindowText(_T("正在搜索图像:"));
 		pImpl_->file_counter_.SetWindowText(_T("-"));
 		pImpl_->est_size_.SetWindowText(_T("-"));
 		pImpl_->ShowControls();
@@ -922,7 +922,7 @@ void CatalogDlg::Impl::OnSaveAs()
 	catalog_fname_.GetWindowText(name);
 
 	CFileDialog dlg(false, _T(".catalog"), name, OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,
-		_T("Catalog Files (*.catalog)|*.catalog|All Files (*.*)|*.*||"), wnd_, sizeof(OPENFILENAME));
+		_T("分类文件 (*.catalog)|*.catalog|全部文件 (*.*)|*.*||"), wnd_, sizeof(OPENFILENAME));
 
 	dlg.m_pOFN->lpstrInitialDir = save_as_path_.Value();
 	//dlg.m_pOFN->Flags |= ;
@@ -952,7 +952,7 @@ void CatalogDlg::Impl::OnBrowse()
 
 	CString path;
 	folder_to_scan_.GetWindowText(path);
-	CString str= browse.DoSelectPath(_T("Select folder to scan"), path);
+	CString str= browse.DoSelectPath(_T("选择文件夹进行扫描"), path);
 
 	if (str.IsEmpty())
 		return;

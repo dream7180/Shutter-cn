@@ -791,7 +791,7 @@ BEGIN
         MENUITEM "评级\timg.rating",  21
         MENUITEM "文件尺寸(字节)\timg.size", 22
         MENUITEM "sRGB 色彩空间\timg.srgb",  23
-        MENUITEM "物距\timg.subdist", 24
+        MENUITEM "主体距离\timg.subdist", 24
         MENUITEM "创建时间戳\timg.time", 25
         MENUITEM "图像宽度\timg.w",          26
     END
@@ -2736,8 +2736,8 @@ FONT 8, "Tahoma", 400, 0, 0x0
 BEGIN
     CONTROL         "Custom1",IDC_DLG_LIST,"DialogListCtrl",WS_TABSTOP,0,0,105,214,WS_EX_CONTROLPARENT
     CONTROL         "",IDC_SEPARATOR,"Static",SS_ETCHEDHORZ,0,214,106,1
-    LTEXT           "过滤器名称:",IDC_LABEL_1,4,222,40,9
-    EDITTEXT        IDC_FILTER_NAME,44,220,56,14,ES_AUTOHSCROLL
+    LTEXT           "过滤器名称:",IDC_LABEL_1,4,222,48,9
+    EDITTEXT        IDC_FILTER_NAME,53,220,48,14,ES_AUTOHSCROLL
     CONTROL         "Custom1",IDC_TOOLBAR,"ToolbarWindow32",0x984d,3,238,98,14
 END
 
@@ -2749,8 +2749,8 @@ FONT 8, "Tahoma", 400, 0, 0x0
 BEGIN
     CONTROL         "",IDC_TREE,"SysTreeView32",TVS_HASBUTTONS | TVS_LINESATROOT | TVS_DISABLEDRAGDROP | TVS_NOTOOLTIPS | TVS_TRACKSELECT | WS_BORDER | WS_HSCROLL | WS_TABSTOP,4,3,111,127
     LTEXT           "匹配标记:",IDC_LABEL_1,4,135,38,9
-    CONTROL         "全部",IDC_ALL,"Button",BS_AUTORADIOBUTTON,48,134,23,10
-    CONTROL         "任何",IDC_ANY,"Button",BS_AUTORADIOBUTTON,74,134,28,10
+    CONTROL         "全部",IDC_ALL,"Button",BS_AUTORADIOBUTTON,48,134,28,10
+    CONTROL         "任何",IDC_ANY,"Button",BS_AUTORADIOBUTTON,79,134,28,10
     CONTROL         "Custom1",IDC_EDIT_TAGS,"ToolbarWindow32",0x984d,4,147,62,14
     CONTROL         "Custom1",IDC_CANCEL,"ToolbarWindow32",0x984d,67,147,50,14
     CONTROL         "显示在使用的标记",IDC_TAGS_IN_USE,"Button",BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_DISABLED | WS_TABSTOP,4,160,67,10
@@ -2763,9 +2763,9 @@ EXSTYLE WS_EX_CONTROLPARENT
 CAPTION "通过文本过滤"
 FONT 8, "Tahoma", 400, 0, 0x0
 BEGIN
-    LTEXT           "显示包含以下文本的图像:",IDC_STATIC,6,2,90,9
+    LTEXT           "显示包含以下文本的图像:",IDC_STATIC,6,2,96,9
     EDITTEXT        IDC_INCLUDE_TEXT,4,13,96,14,ES_AUTOHSCROLL
-    LTEXT           "排除使用以下文本的图像:",IDC_STATIC,6,31,80,9
+    LTEXT           "排除包含以下文本的图像:",IDC_STATIC,6,31,96,9
     EDITTEXT        IDC_EXCLUDE_TEXT,4,41,96,14,ES_AUTOHSCROLL
     CONTROL         "Custom1",IDC_CANCEL,"ToolbarWindow32",0x984d,52,59,48,14
 END

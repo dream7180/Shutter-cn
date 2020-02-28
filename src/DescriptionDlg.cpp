@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -144,7 +144,7 @@ BOOL CDescriptionDlg::InitDlg()
 	{
 		EnableCtrl(&navigation_wnd_, false, true);
 		oStringstream ost;
-		ost << selected_.size() << _T(" images selected.");
+		ost << selected_.size() << _T(" 图像被选定.");
 		infoText_.SetWindowText(ost.str().c_str());
 		EnableCtrl(&infoText_, true, true);
 	}

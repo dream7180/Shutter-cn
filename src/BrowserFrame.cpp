@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -397,10 +397,10 @@ bool BrowserFrame::CreateWindows()
 	bool underscore= WhistlerLook::IsAvailable(); //g_common_control_lib_version >= PACKVERSION(6,0);
 	
 	filter_bar_wnd_.GetWindowRect(rect);
-	rebar_wnd_.AddBand(&filter_bar_wnd_, CSize(300, rect.Height()), underscore ? _T("Fi&nd") : _T("Find"), BAND_FILTER, 100);
+	rebar_wnd_.AddBand(&filter_bar_wnd_, CSize(300, rect.Height()), _T("查找")/*underscore ? _T("Fi&nd") : _T("Find")*/, BAND_FILTER, 100);
 
 	addr_box_wnd_.GetWindowRect(rect);
-	rebar_wnd_.AddBand(&addr_box_wnd_, CSize(300, rect.Height()), underscore ? _T("A&ddress") : _T("Address"), BAND_ADDRESS, 150);
+	rebar_wnd_.AddBand(&addr_box_wnd_, CSize(300, rect.Height()), _T("地址")/*underscore ? _T("A&ddress") : _T("Address")*/, BAND_ADDRESS, 150);
 
 	rebar_wnd_.MaximizeBand(0);
 
@@ -476,12 +476,12 @@ bool BrowserFrame::CreateWindows()
 	{
 		// initial layout of pane windows; all sizes are relative (0-100%) and provided as corners: left-top, right-bottom.
 		// entire window area has to be covered by panes, without overlaps, but some of them may be hidden
-		PaneLayoutInfo(folders,   CRect( 0,  0,  20,  60), L"Folders",   PANE_NORMAL | PANE_NO_CLOSE | PANE_NO_MAXIMIZE, -1, EDGE_NONE, EDGE_LEFT),
-		PaneLayoutInfo(tagbar,    CRect( 0, 60,  20,  70), L"Tags",      PANE_NORMAL | PANE_NO_CLOSE | PANE_NO_MAXIMIZE, 0, EDGE_BOTTOM, EDGE_NONE, 200 / 8),
-		PaneLayoutInfo(histogram, CRect( 0, 70,  20, 100), L"Histogram", PANE_HIDDEN | PANE_NO_CLOSE, 0, EDGE_BOTTOM, EDGE_NONE, 200 / 8),
-		PaneLayoutInfo(preview,   CRect(20,  0,  75,  35), L"Preview",   PANE_NORMAL, -1, EDGE_NONE, EDGE_NONE),
-		PaneLayoutInfo(mainview,  CRect(20, 35,  75, 100), L"Images",    PANE_NORMAL | PANE_NO_CLOSE, -1, EDGE_NONE, EDGE_NONE),
-		PaneLayoutInfo(infobar,   CRect(75,  0, 100, 100), L"Info ",     PANE_HIDDEN, -1, EDGE_NONE, EDGE_RIGHT, 300 / 8),
+		PaneLayoutInfo(folders,   CRect( 0,  0,  20,  60), L"文件夹",   PANE_NORMAL | PANE_NO_CLOSE | PANE_NO_MAXIMIZE, -1, EDGE_NONE, EDGE_LEFT),
+		PaneLayoutInfo(tagbar,    CRect( 0, 60,  20,  70), L"标记",      PANE_NORMAL | PANE_NO_CLOSE | PANE_NO_MAXIMIZE, 0, EDGE_BOTTOM, EDGE_NONE, 200 / 8),
+		PaneLayoutInfo(histogram, CRect( 0, 70,  20, 100), L"直方图", PANE_HIDDEN | PANE_NO_CLOSE, 0, EDGE_BOTTOM, EDGE_NONE, 200 / 8),
+		PaneLayoutInfo(preview,   CRect(20,  0,  75,  35), L"预览",   PANE_NORMAL, -1, EDGE_NONE, EDGE_NONE),
+		PaneLayoutInfo(mainview,  CRect(20, 35,  75, 100), L"图像",    PANE_NORMAL | PANE_NO_CLOSE, -1, EDGE_NONE, EDGE_NONE),
+		PaneLayoutInfo(infobar,   CRect(75,  0, 100, 100), L"信息 ",     PANE_HIDDEN, -1, EDGE_NONE, EDGE_RIGHT, 300 / 8),
 	};
 	static PaneLayoutInfoArray panes(layout, array_count(layout), _T("PaneLayout"), _T("Current"), _T("Name"), 0);
 
@@ -489,7 +489,7 @@ bool BrowserFrame::CreateWindows()
 
 	if (!frame_wnd_.CreatePanes(panes, &fcc))
 	{
-		MessageBox(_T("Pane window creation failed.\nPlease make sure there is enough system resources available."),
+		MessageBox(_T("面板窗口创建失败.\n请确认系统资源是否足够."),
 			0, MB_OK | MB_ICONERROR);
 		return false;
 	}
@@ -699,8 +699,8 @@ void BrowserFrame::BuildFolderListMenu(CMenuFolders& menu)
 	while (count-- > 0)
 		menu.DeleteMenu(0, MF_BYPOSITION);
 
-	menu.InsertItem(ID_ADD_TO_FAVORITES,  _T("&Add to Favorites..."));
-	menu.InsertItem(ID_SET_FAVORITES, _T("&Setup Favorites..."));
+	menu.InsertItem(ID_ADD_TO_FAVORITES,  _T("添加到收藏夹(&A)..."));
+	menu.InsertItem(ID_SET_FAVORITES, _T("收藏夹设置(&S)..."));
 
 	if (favorite_folders_->GetCount() > 0)
 	{
@@ -739,7 +739,7 @@ bool BrowserFrame::FavoriteFolder(int index)
 
 		if (path == 0)
 		{
-			AfxMessageBox(_T("Favorite folder '") + folder->GetDisplayName() + _T("' does not exist."), MB_OK | MB_ICONWARNING);
+			AfxMessageBox(_T("收藏的文件夹 '") + folder->GetDisplayName() + _T("' 不存在."), MB_OK | MB_ICONWARNING);
 			return false;
 		}
 
@@ -1382,7 +1382,7 @@ void BrowserFrame::OnPathTyped()
 
 			if (!FolderSelected(path))
 			{
-				new BalloonMsg(&edit, _T("Wrong Path"), _T("Please type in existing directory."), BalloonMsg::IERROR);
+				new BalloonMsg(&edit, _T("路径错误"), _T("请输入存在的目录."), BalloonMsg::IERROR);
 				return;
 			}
 
@@ -1643,7 +1643,7 @@ void BrowserFrame::OnPanesStoreLayout()
 	// name it & save
 	ManagePaneLayouts dlg(this, true);
 	frame_wnd_.PaneLayoutList(dlg.names_);
-	dlg.name_ = _T("My Favorite Layout");
+	dlg.name_ = _T("收藏夹布局");
 
 	if (dlg.DoModal() == IDOK)
 	{

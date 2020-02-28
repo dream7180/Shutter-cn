@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -28,8 +28,8 @@ FileOperDlg::FileOperDlg(bool copy, const TCHAR* dest_path, CWnd* parent /*=NULL
 	: DialogChild(FileOperDlg::IDD, parent)
 {
 	copy_operation_ = copy;
-	label_ = copy ? _T("Copy") : _T("Move");
-	label_ += _T(" selected images to this folder:");
+	label_ = copy ? _T("复制") : _T("移动");
+	label_ += _T(" 选定的图像到此文件夹:");
 //	label_ = RString(copy ? IDS_COPY_FILES : IDS_MOVE_FILES);
 	path_ = dest_path;
 	//{{AFX_DATA_INIT(FileOperDlg)
@@ -64,8 +64,8 @@ BOOL FileOperDlg::OnInitDialog()
 
 	SubclassHelpBtn(copy_operation_ ? _T("ToolCopy.htm") : _T("ToolMove.htm"));
 
-	SetWindowText(copy_operation_ ? _T("Copy Photographs") : _T("Move Photographs"));
-	btn_ok_.SetWindowText(copy_operation_ ? _T("Copy") : _T("Move"));
+	SetWindowText(copy_operation_ ? _T("复制照片") : _T("移动照片"));
+	btn_ok_.SetWindowText(copy_operation_ ? _T("复制") : _T("移动"));
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
@@ -77,7 +77,7 @@ void FileOperDlg::OnBrowse()
 	UpdateData();
 
 	CFolderSelect fs(AfxGetMainWnd());
-	CString path= fs.DoSelectPath(_T("Select destination folder")/*RString(IDS_SELECT_DEST)*/, path_);
+	CString path= fs.DoSelectPath(_T("选择目标文件夹")/*RString(IDS_SELECT_DEST)*/, path_);
 
 	if (path.IsEmpty())
 		return;

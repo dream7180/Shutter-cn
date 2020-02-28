@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -85,7 +85,7 @@ void CCopyTaggedDlg::OnBrowse()
 	UpdateData();
 
 	CFolderSelect fs(AfxGetMainWnd());
-	CString path= fs.DoSelectPath(_T("Select destination folder")/*RString(IDS_SELECT_DEST)*/, path_);
+	CString path= fs.DoSelectPath(_T("选择目标文件夹")/*RString(IDS_SELECT_DEST)*/, path_);
 
 	if (path.IsEmpty())
 		return;

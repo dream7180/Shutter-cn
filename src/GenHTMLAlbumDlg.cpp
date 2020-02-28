@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -310,15 +310,15 @@ void GenHTMLAlbumDlg::OnOK()
 		DWORD attrib= ::GetFileAttributes(root_dir_);
 		if (attrib == INVALID_FILE_ATTRIBUTES || (attrib & FILE_ATTRIBUTE_DIRECTORY) == 0)
 		{
-			new BalloonMsg(GetDlgItem(IDC_ROOT_DIR), _T("Valid Directory Reguired"),
-				_T("Please select an existing directory."), BalloonMsg::IERROR);
+			new BalloonMsg(GetDlgItem(IDC_ROOT_DIR), _T("要求有效的目录"),
+				_T("请选择一个存在的目录."), BalloonMsg::IERROR);
 			return;
 		}
 
 		if (page_file_name_.IsEmpty())
 		{
-			new BalloonMsg(GetDlgItem(IDC_FILENAME), _T("Page File Name Reguired"),
-				_T("Please enter the name of an HTML destination file."), BalloonMsg::IERROR);
+			new BalloonMsg(GetDlgItem(IDC_FILENAME), _T("要求页面文件名"),
+				_T("请输入 HTML 目标文件的名称."), BalloonMsg::IERROR);
 			return;
 		}
 	}

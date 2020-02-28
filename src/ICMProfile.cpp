@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -50,16 +50,16 @@ String ICMProfile::GetRenderingIntent(bool is_short/*= true*/) const
 	switch (rendering_)
 	{
 	case PICTURE:
-		return is_short ? _T("Perceptual") : _T("Perceptual (general photographs)");
+		return is_short ? _T("可感知") : _T("可感知 (常规照片)");
 
 	case GRAPHIC:
-		return is_short ? _T("Saturation") : _T("Saturation (graphics, charts)");
+		return is_short ? _T("饱和度") : _T("饱和度 (图形, 图表)");
 
 	case PROOF:
-		return is_short ? _T("Proof") : _T("Proof (relative colorimetric)");
+		return is_short ? _T("校样") : _T("校样 (相对色度)");
 
 	case MATCH:
-		return is_short ? _T("Match") : _T("Match (absolute colorimetric)");
+		return is_short ? _T("匹配") : _T("匹配 (绝对色度)");
 
 	default:
 		ASSERT(false);

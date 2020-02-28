@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -206,11 +206,11 @@ String DateFmt(const SYSTEMTIME& time, DateFmtType fmt)
 			CTime now= CTime::GetCurrentTime();
 			SYSTEMTIME t1;
 			if (now.GetAsSystemTime(t1) && t1.wYear == time.wYear && t1.wMonth == time.wMonth && t1.wDay == time.wDay)
-				return _T("Today");
+				return _T("今日");
 
 			now -= CTimeSpan(1, 0, 0, 0);	// go back one day
 			if (now.GetAsSystemTime(t1) && t1.wYear == time.wYear && t1.wMonth == time.wMonth && t1.wDay == time.wDay)
-				return _T("Yesterday");
+				return _T("昨日");
 
 			TCHAR* format= fmt_buf;
 			if (::GetLocaleInfo(LOCALE_USER_DEFAULT, LOCALE_SLONGDATE, fmt_buf, MAX) > 0)

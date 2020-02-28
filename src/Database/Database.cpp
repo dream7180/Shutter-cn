@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -298,7 +298,7 @@ std::vector<uint64>::iterator Database::Index::Find(const String& key, String& k
 uint64 Database::FindRecord(const String& key, String& key_found)
 {
 	if (!IsOpen())
-		throw String(_T("Image database is not opened"));
+		throw String(_T("图像数据库未打开"));
 
 	std::vector<uint64>::iterator it= index_.Find(key, key_found);
 

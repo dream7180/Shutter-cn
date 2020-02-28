@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -150,14 +150,14 @@ BOOL ColorMngDlg::OnInitDialog()
 	tool_bar_wnd_.SetOnIdleUpdateState(false);
 	tool_bar_wnd_.AddButtons("PP.", commands, IDB_ICM_TOOLBAR, IDS_ICM_TOOLBAR);
 
-	tree_wnd_.InsertColumn(0, _T("Item"), Pixels(140));
-	tree_wnd_.InsertColumn(1, _T("Color Profile"), Pixels(160));
-	tree_wnd_.InsertColumn(2, _T("Rendering Intent"), Pixels(100));
-	tree_wnd_.InsertColumn(3, _T("Enabled"), Pixels(70), HDF_CENTER);
+	tree_wnd_.InsertColumn(0, _T("项目"), Pixels(140));
+	tree_wnd_.InsertColumn(1, _T("色彩配置"), Pixels(160));
+	tree_wnd_.InsertColumn(2, _T("渲染意向"), Pixels(100));
+	tree_wnd_.InsertColumn(3, _T("启用"), Pixels(70), HDF_CENTER);
 
-	monitors_ = new CExtTreeRootNode(_T("Monitors"), 0);
-	printers_ = new CExtTreeRootNode(_T("Printers"), 1);
-	images_ = new CExtTreeRootNode(_T("Images"), 2);
+	monitors_ = new CExtTreeRootNode(_T("监视器"), 0);
+	printers_ = new CExtTreeRootNode(_T("打印机"), 1);
+	images_ = new CExtTreeRootNode(_T("图像"), 2);
 
 	new ExtTreeRow(monitors_.get(), monitor_main_wnd_);
 	new ExtTreeRow(monitors_.get(), monitor_viewer_);
@@ -440,13 +440,13 @@ void ColorMngDlg::ShowProfilesMenu(ExtTreeRow* item, CPoint pos)
 	const UINT_PTR CMD_LAST= CMD_DEFAULT_sRGB;
 
 	UniqueLetter short_cuts;
-	String item_text= _T("Select Color Profile File...");
+	String item_text= _T("选择颜色配置文件...");
 	short_cuts.SelectUniqueLetter(item_text);
 	menu.AppendMenu(MF_STRING, CMD_SELECT_FILE, item_text.c_str());
 
 	UINT_PTR selected_item= 0;
 
-	item_text = _T("Default sRGB Color Profile");
+	item_text = _T("默认 sRGB 颜色配置");
 	short_cuts.SelectUniqueLetter(item_text);
 	menu.AppendMenu(MF_STRING, CMD_DEFAULT_sRGB, item_text.c_str());
 	if (item->icm_->default_s_rgb_)
@@ -540,12 +540,12 @@ void ColorMngDlg::ShowProfilesMenu(ExtTreeRow* item, CPoint pos)
 			ColorProfilePtr profile= new ColorProfile();
 			if (!profile->Open(str))
 			{
-				MessageBox(_T("Selected file cannot be opened or is not a valid color profile."));
+				MessageBox(_T("选定的文件不能打开或者不是可用的颜色配置."));
 				return;
 			}
 			if (!item->IsMatchingProfile(profile))
 			{
-				MessageBox(_T("Selected color profile's class doesn't match current item."));
+				MessageBox(_T("选定的颜色配置类型不匹配当前项目."));
 				return;
 			}
 			item->icm_->AssignProfile(Path(str), profile);
@@ -611,7 +611,7 @@ void ColorMngDlg::UpdateInfo(ICMProfilePtr icm)
 	{
 		SetDlgItemText(IDC_NAME, _T("sRGB"));
 		//SetDlgItemText(IDC_DESC, _T(""));
-		SetDlgItemText(IDC_INFO, _T("Default sRGB Color Profile"));
+		SetDlgItemText(IDC_INFO, _T("默认 sRGB 颜色配置"));
 	}
 	else if (icm == 0 || icm->profile_ == 0)
 	{

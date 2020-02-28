@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -893,18 +893,18 @@ CString GetMonthName(int month)
 {
 	switch (month)
 	{
-	case 1:		return _T("Jan");
-	case 2:		return _T("Feb");
-	case 3:		return _T("Mar");
-	case 4:		return _T("Apr");
-	case 5:		return _T("May");
-	case 6:		return _T("Jun");
-	case 7:		return _T("Jul");
-	case 8:		return _T("Aug");
-	case 9:		return _T("Sep");
-	case 10:	return _T("Oct");
-	case 11:	return _T("Nov");
-	case 12:	return _T("Dec");
+	case 1:		return _T("一月");
+	case 2:		return _T("二月");
+	case 3:		return _T("三月");
+	case 4:		return _T("四月");
+	case 5:		return _T("五月");
+	case 6:		return _T("六月");
+	case 7:		return _T("七月");
+	case 8:		return _T("八月");
+	case 9:		return _T("九月");
+	case 10:	return _T("十月");
+	case 11:	return _T("十一月");
+	case 12:	return _T("十二月");
 
 	default:	ASSERT(false); return _T("");
 	}

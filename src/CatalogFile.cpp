@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -33,17 +33,17 @@ struct CatalogFile::Impl
 		try
 		{
 			if (!catalog_.Open(path, CATALOG_DB_VERSION, true))
-				throw String(_T("Cannot open catalog file: ") + path);
+				throw String(_T("不能打开分类文件: ") + path);
 
 			std::vector<uint8> header;
 			if (!catalog_.ReadNext(header))
-				throw String(_T("Cannot read catalog header: ") + path);
+				throw String(_T("不能读取分类头: ") + path);
 
 			header_.Read(header);
 		}
 		catch (int)
 		{
-			throw String(_T("Error reading catalog file: " + path));
+			throw String(_T("读取分类文件错误: " + path));
 		}
 	}
 
@@ -66,7 +66,7 @@ struct CatalogFile::Impl
 		}
 		catch (int)
 		{
-			throw String(_T("Error reading catalog record"));
+			throw String(_T("读取分类记录错误"));
 		}
 
 		return true;
@@ -88,7 +88,7 @@ struct CatalogFile::Impl
 		}
 		catch (int)
 		{
-			throw String(_T("Error reading catalog record"));
+			throw String(_T("读取分类记录错误"));
 		}
 
 		return true;

@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -182,9 +182,9 @@ void HistogramImg::OnLButtonUp(UINT flags, CPoint point)
 		rect.bottom = (rect.bottom - image_rect_.top) * bmp_rect.Height() / image_rect_.Height();
 		oStringstream ost;
 		if (rect == bmp_rect)
-			ost << _T("the whole photograph");
+			ost << _T("整张照片");
 		else
-			ost << _T("rectangle from (") << rect.left << _T(", ") << rect.top << _T(") to (") << rect.right << _T(", ") << rect.bottom << _T(")");
+			ost << _T("矩形 从 (") << rect.left << _T(", ") << rect.top << _T(") 至 (") << rect.right << _T(", ") << rect.bottom << _T(")");
 		rect_label_wnd_->SetWindowText(ost.str().c_str());
 		//	CWaitCursor wait;
 		if (selection_rect_.Width() * selection_rect_.Height() > 1000)

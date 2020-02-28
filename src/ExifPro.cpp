@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -132,7 +132,7 @@ BOOL App::InitInstance()
 	}
 	catch (...)
 	{
-		::MessageBox(0, _T("ExifPro initialization failed."), _T("ExifPro"), MB_ICONERROR | MB_OK);
+		::MessageBox(0, _T("ExifPro 初始化失败."), _T("ExifPro"), MB_ICONERROR | MB_OK);
 	}
 	return false;
 }
@@ -205,8 +205,8 @@ bool App::InitializeInstance()
 		else
 		{
 			::MessageBox(0,
-				_T("There is already an instance of ExifPro running.\n")
-				_T("If it doesn't respond you may need to terminate it in the TaskManager."),
+				_T("已经有一个 ExifPro 实例正在运行.\n")
+				_T("如果没有响应你需要在任务管理器中终止它."),
 				_T("ExifPro"), MB_OK | MB_ICONWARNING);
 		}
 

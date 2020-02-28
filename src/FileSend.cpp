@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -233,84 +233,84 @@ void FileSend::SendFiles(const std::vector<Path>& files, const std::vector<Strin
 		switch (error)
 		{
 		case MAPI_E_FAILURE:
-			msg = _T("failure");
+			msg = _T("失败");
 			break;
 		case MAPI_E_LOGIN_FAILURE:
-			msg = _T("login failure");
+			msg = _T("登录失败");
 			break;
 		case MAPI_E_DISK_FULL:
-			msg = _T("disk full");
+			msg = _T("磁盘已满");
 			break;
 		case MAPI_E_INSUFFICIENT_MEMORY:
-			msg = _T("insufficient memory");
+			msg = _T("内存不足");
 			break;
 		case MAPI_E_ACCESS_DENIED:
-			msg = _T("access denied");
+			msg = _T("拒绝访问");
 			break;
 		case MAPI_E_TOO_MANY_SESSIONS:
-			msg = _T("too many sessions");
+			msg = _T("会话太多");
 			break;
 		case MAPI_E_TOO_MANY_FILES:
-			msg = _T("too many files");
+			msg = _T("文件太多");
 			break;
 		case MAPI_E_TOO_MANY_RECIPIENTS:
-			msg = _T("too many recipients");
+			msg = _T("收件人太多");
 			break;
 		case MAPI_E_ATTACHMENT_NOT_FOUND:
-			msg = _T("attachment not found");
+			msg = _T("未找到附件");
 			break;
 		case MAPI_E_ATTACHMENT_OPEN_FAILURE:
-			msg = _T("attachment open failure");
+			msg = _T("附件打开失败");
 			break;
 		case MAPI_E_ATTACHMENT_WRITE_FAILURE:
-			msg = _T("failure");
+			msg = _T("失败");
 			break;
 		case MAPI_E_UNKNOWN_RECIPIENT:
-			msg = _T("unknown recipient");
+			msg = _T("未知收件人");
 			break;
 		case MAPI_E_BAD_RECIPTYPE:
-			msg = _T("bad recipient");
+			msg = _T("错误的收件人");
 			break;
 		case MAPI_E_NO_MESSAGES:
-			msg = _T("no messages");
+			msg = _T("无消息");
 			break;
 		case MAPI_E_INVALID_MESSAGE:
-			msg = _T("invalid message");
+			msg = _T("无效的消息");
 			break;
 		case MAPI_E_TEXT_TOO_LARGE:
-			msg = _T("text too large");
+			msg = _T("文本太大");
 			break;
 		case MAPI_E_INVALID_SESSION:
-			msg = _T("invalid session");
+			msg = _T("无效的会话");
 			break;
 		case MAPI_E_TYPE_NOT_SUPPORTED:
-			msg = _T("type not supported");
+			msg = _T("类型不支持");
 			break;
 		case MAPI_E_AMBIGUOUS_RECIPIENT:
-			msg = _T("ambiguous recipient");
+			msg = _T("收件人不明确");
 			break;
 		case MAPI_E_MESSAGE_IN_USE:
-			msg = _T("message in use");
+			msg = _T("消息正在使用");
 			break;
 		case MAPI_E_NETWORK_FAILURE:
-			msg = _T("network failure");
+			msg = _T("网络错误");
 			break;
 		case MAPI_E_INVALID_EDITFIELDS:
-			msg = _T("invalid edit fields");
+			msg = _T("无效的编辑字段");
 			break;
 		case MAPI_E_INVALID_RECIPS:
-			msg = _T("invalid recips");
+			msg = _T("无效的方法");
 			break;
 		case MAPI_E_NOT_SUPPORTED:
-			msg = _T("not supported");
+			msg = _T("不支持");
 			break;
 		default:
-			msg = _T("unknown failure");
+			msg = _T("未知错误");
 			break;
 		}
 
 		TCHAR err[200];
-		wsprintf(err, _T("Sending mail failed with message '%s', code %d."), msg, error);
+		wsprintf(err, _T("发送邮件错误, 信息为 '%s', code %d."), msg, error);
 
 		AfxMessageBox(err, MB_OK | MB_ICONERROR);
 

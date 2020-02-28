@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -92,11 +92,11 @@ void FileGuard::BackUp(const TCHAR* file)
 			_com_error error(err);
 			const TCHAR* error_text= error.ErrorMessage();
 
-			THROW_EXCEPTION(_T("Cannot create temporary copy of an image file."), SF(L"All attempts to create temporary file have failed.\n" << original_file_ << L"\n" << error_text));
+			THROW_EXCEPTION(_T("未能创建图像文件的临时拷贝."), SF(L"创建临时文件的尝试失败.\n" << original_file_ << L"\n" << error_text));
 		}
 	}
 
-	THROW_EXCEPTION(_T("Cannot create temporary copy of image file."), SF("All attempts to create temporary file have failed.\n" << original_file_));
+	THROW_EXCEPTION(_T("未能创建图像文件的临时拷贝."), SF("创建临时文件的尝试失败.\n" << original_file_));
 }
 
 
@@ -169,7 +169,7 @@ void FileGuard::DeleteBackup()
 BOOL FileGuardExceptionBackup::GetErrorMessage(LPTSTR error, UINT maxError, PUINT pnHelpContext/* = NULL*/)
 {
 	CString msg;
-	msg.Format(_T("An attempt to create a backup copy of file\n%s\nfailed with an error code 0x%x"), file_.c_str(), last_error_);
+	msg.Format(_T("创建文件备份的尝试\n%s\n已失败, 代码 0x%x"), file_.c_str(), last_error_);
 	if (!message_.empty())
 	{
 		msg += _T("\n");
@@ -191,7 +191,7 @@ void FileGuardExceptionBackup::ReportError(CWnd* parent)
 	try
 	{
 		CString msg;
-		msg.Format(_T("An attempt to create a backup copy of file\n%s\nfailed with an error code 0x%x"), file_.c_str(), last_error_);
+		msg.Format(_T("创建文件备份的尝试\n%s\n已失败, 代码 0x%x"), file_.c_str(), last_error_);
 		if (!message_.empty())
 		{
 			msg += _T("\n");

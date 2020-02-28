@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -171,7 +171,7 @@ public:
 	template <typename T>
 	result_type operator () (T& val) const
 	{
-		throw String(_T("unsupported type"));
+		throw String(_T("不支持的类型"));
 	}
 };
 

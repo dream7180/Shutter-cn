@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -72,7 +72,7 @@ BOOL FileErrorDlg::OnEraseBkgnd(CDC* dc)
 	const int HEADER= 52;
 	const COLORREF rgbWHITE= RGB(255,255,255);
 	const COLORREF rgbRED= RGB(255,0,0);
-	const TCHAR* error= _T("      Error Modifying File");
+	const TCHAR* error= _T("      编辑文件出错");
 
 	CRect header_rect= rect;
 	header_rect.bottom = rect.top + HEADER;

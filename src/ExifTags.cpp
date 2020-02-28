@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -26,143 +26,143 @@ extern const SRational g_UninitializedRationalVal(0x7ffe1234, 0x7ffdabcd);
 
 const TCHAR* TagName(uint16 tag)
 {
-	const TCHAR* name= _T("Unknown");
+	const TCHAR* name= _T("未知");
 
 	switch (tag)
 	{
-	case 0x001: name =	_T("Interoperability Index");		break;
-	case 0x002: name =	_T("Interoperability Version");		break;
+	case 0x001: name =	_T("互用索引");		break;
+	case 0x002: name =	_T("互用版本");		break;
 
-	case 0x0fe:	name =	_T("New Subfile Type");				break;
-	case 0x0ff:	name =	_T("Subfile Type");					break;
+	case 0x0fe:	name =	_T("新建子文件类型");				break;
+	case 0x0ff:	name =	_T("子文件类型");					break;
 
-	case 0x100: name =	_T("Image Width");					break;
-	case 0x101: name =	_T("Image Length");					break;
-	case 0x102: name =	_T("Bits Per Sample");				break;
-	case 0x103: name =	_T("Compression");					break;
-	case 0x106: name =	_T("Photometric Interpretation");	break;
-	case 0x10A: name =	_T("Fill Order");					break;
-	case 0x10D: name =	_T("Document Name");				break;
-	case 0x10E: name =	_T("Image Description");			break;
-	case 0x10F: name =	_T("Make");							break;
-	case 0x110: name =	_T("Model");						break;
-	case 0x111: name =	_T("Strip Offsets");				break;
-	case 0x112: name =	_T("Orientation");					break;
-	case 0x115: name =	_T("Samples Per Pixel");			break;
-	case 0x116: name =	_T("Rows Per Strip");				break;
-	case 0x117: name =	_T("Strip Byte Counts");			break;
-	case 0x11A: name =	_T("X Resolution");					break;
-	case 0x11B: name =	_T("Y Resolution");					break;
-	case 0x11C: name =	_T("Planar Configuration");			break;
-	case 0x128: name =	_T("Resolution Unit");				break;
-	case 0x12D: name =	_T("Transfer Function");			break;
-	case 0x131: name =	_T("Software");						break;
-	case 0x132: name =	_T("Date Time");					break;
-	case 0x13B: name =	_T("Artist");						break;
-	case 0x13E: name =	_T("White Point");					break;
-	case 0x13F: name =	_T("Primary Chromaticities");		break;
+	case 0x100: name =	_T("图像宽度");					break;
+	case 0x101: name =	_T("图像长度");					break;
+	case 0x102: name =	_T("数据位数");				break;
+	case 0x103: name =	_T("压缩");					break;
+	case 0x106: name =	_T("像素合成");	break;
+	case 0x10A: name =	_T("填充顺序");					break;
+	case 0x10D: name =	_T("文档名称");				break;
+	case 0x10E: name =	_T("图像描述");			break;
+	case 0x10F: name =	_T("厂商");							break;
+	case 0x110: name =	_T("型号");						break;
+	case 0x111: name =	_T("图像资料位置");				break;
+	case 0x112: name =	_T("拍摄方向");					break;
+	case 0x115: name =	_T("每像素数据数");			break;
+	case 0x116: name =	_T("每带行数");				break;
+	case 0x117: name =	_T("每压缩带比特数");			break;
+	case 0x11A: name =	_T("X 解析度");					break;
+	case 0x11B: name =	_T("Y 解析度");					break;
+	case 0x11C: name =	_T("平面配置");			break;
+	case 0x128: name =	_T("分辨率单位");				break;
+	case 0x12D: name =	_T("转移功能");			break;
+	case 0x131: name =	_T("软件");						break;
+	case 0x132: name =	_T("日期时间");					break;
+	case 0x13B: name =	_T("作者");						break;
+	case 0x13E: name =	_T("白点色度");					break;
+	case 0x13F: name =	_T("主要色度");		break;
 	case 0x14A: name =	_T("Sub IFDs");						break;
-	case 0x156: name =	_T("Transfer Range");				break;
+	case 0x156: name =	_T("转移范围");				break;
 	case 0x200: name =	_T("JPEG Proc");					break;
-	case 0x201: name =	_T("JPEG Interchange Format Offset");	break;
-	case 0x202: name =	_T("JPEG Interchange Format Length");	break;
-	case 0x211: name =	_T("YCbCr Coefficients");			break;
-	case 0x212: name =	_T("YCbCr Subsampling");			break;
-	case 0x213: name =	_T("YCbCr Positioning");			break;
-	case 0x214: name =	_T("Reference Black White");		break;
+	case 0x201: name =	_T("JPEG SOI 偏移量");	break;
+	case 0x202: name =	_T("JPEG 比特数");	break;
+	case 0x211: name =	_T("颜色空间转换矩阵系数");			break;
+	case 0x212: name =	_T("色相抽样比率");			break;
+	case 0x213: name =	_T("色相定位");			break;
+	case 0x214: name =	_T("黑白参照值");		break;
 
-	case 0x1000: name =	_T("Related Image File Format");	break;
-	case 0x1001: name =	_T("Related Image Width");			break;
-	case 0x1002: name =	_T("Related Image Height");			break;
+	case 0x1000: name =	_T("关联的图像文件格式");	break;
+	case 0x1001: name =	_T("关联的图像宽度");			break;
+	case 0x1002: name =	_T("关联的图像高度");			break;
 
 	case 0x828D: name =	_T("CFA Repeat Pattern Dim");		break;
-	case 0x828E: name =	_T("CFA Pattern");					break;
-	case 0x828F: name =	_T("Battery Level");				break;
-	case 0x8298: name =	_T("Copyright");					break;
-	case 0x829A: name =	_T("Exposure Time");				break;
-	case 0x829D: name =	_T("F-Number");						break;
+	case 0x828E: name =	_T("CFA 模式");					break;
+	case 0x828F: name =	_T("电池电量");				break;
+	case 0x8298: name =	_T("版权");					break;
+	case 0x829A: name =	_T("曝光时长");				break;
+	case 0x829D: name =	_T("光圈");						break;
 	case 0x83BB: name =	_T("IPTC/NAA");						break;
-	case 0x8769: name =	_T("Exif Offset");					break;
-	case 0x8773: name =	_T("Inter Color Profile");			break;
-	case 0x8822: name =	_T("Exposure Program");				break;
-	case 0x8824: name =	_T("Spectral Sensitivity");			break;
-	case 0x8825: name =	_T("GPS Info");						break;
-	case 0x8827: name =	_T("ISO Speed Ratings");			break;
-	case 0x8828: name =	_T("Optoelectric Coefficient");		break;
-	case 0x9000: name =	_T("Exif Version");					break;
-	case 0x9003: name =	_T("Date Time Original");			break;
-	case 0x9004: name =	_T("Date Time Digitized");			break;
-	case 0x9101: name =	_T("Components Configuration");		break;
-	case 0x9102: name =	_T("Compressed Bits Per Pixel");	break;
-	case 0x9201: name =	_T("Shutter Speed Value");			break;
-	case 0x9202: name =	_T("Aperture Value");				break;
-	case 0x9203: name =	_T("Brightness Value");				break;
-	case 0x9204: name =	_T("Exposure Bias Value");			break;
-	case 0x9205: name =	_T("Max Aperture Value");			break;
-	case 0x9206: name =	_T("Subject Distance");				break;
-	case 0x9207: name =	_T("Metering Mode");				break;
-	case 0x9208: name =	_T("Light Source");					break;
-	case 0x9209: name =	_T("Flash");						break;
-	case 0x920A: name =	_T("Focal Length");					break;
-	case 0x9214: name =	_T("Subject Area");					break;
-	case 0x9217: name =	_T("Sensing Method");				break;	// TIFF/EP
-	case 0x927C: name =	_T("Maker Note");					break;
-	case 0x9286: name =	_T("User Comment");					break;
-	case 0x9290: name =	_T("Subsecond Time");				break;
-	case 0x9291: name =	_T("Subsecond Time Original");		break;
-	case 0x9292: name =	_T("Subsecond Time Digitized");		break;
+	case 0x8769: name =	_T("Exif 偏移");					break;
+	case 0x8773: name =	_T("内部颜色配置");			break;
+	case 0x8822: name =	_T("曝光程序");				break;
+	case 0x8824: name =	_T("光谱灵敏度");			break;
+	case 0x8825: name =	_T("GPS 信息");						break;
+	case 0x8827: name =	_T("感光度");			break;
+	case 0x8828: name =	_T("光电系数");		break;
+	case 0x9000: name =	_T("Exif 版本");					break;
+	case 0x9003: name =	_T("原始日期时间");			break;
+	case 0x9004: name =	_T("数字化日期时间");			break;
+	case 0x9101: name =	_T("组件配置");		break;
+	case 0x9102: name =	_T("压缩时每像素色彩位");	break;
+	case 0x9201: name =	_T("快门速度");			break;
+	case 0x9202: name =	_T("光圈");				break;
+	case 0x9203: name =	_T("亮度");				break;
+	case 0x9204: name =	_T("曝光补偿");			break;
+	case 0x9205: name =	_T("最大光圈");			break;
+	case 0x9206: name =	_T("主体距离");				break;
+	case 0x9207: name =	_T("测光模式");				break;
+	case 0x9208: name =	_T("光源");					break;
+	case 0x9209: name =	_T("闪光");						break;
+	case 0x920A: name =	_T("焦距");					break;
+	case 0x9214: name =	_T("主体区域");					break;
+	case 0x9217: name =	_T("感光器类型");				break;	// TIFF/EP
+	case 0x927C: name =	_T("厂商信息");					break;
+	case 0x9286: name =	_T("用户评价");					break;
+	case 0x9290: name =	_T("时间(秒)");				break;
+	case 0x9291: name =	_T("原始时间(秒)");		break;
+	case 0x9292: name =	_T("数字化时间(秒)");		break;
 
-	case 0xA000: name =	_T("Flash Pix Version");			break;
-	case 0xA001: name =	_T("Color Space");					break;
-	case 0xA002: name =	_T("EXIF Image Width");				break;
-	case 0xA003: name =	_T("EXIF Image Length");			break;
-	case 0xA004: name =	_T("Related Sound File");			break;
-	case 0xA005: name =	_T("Interoperability Offset");		break;
-	case 0xA20B: name =	_T("Flash Energy");					break;	//case 0x920B in TIFF/EP
-	case 0xA20C: name =	_T("Spatial Frequency Response");	break;	//case 0x920C    -  -
-	case 0xA20E: name =	_T("Focal Plane X Resolution");		break;	//case 0x920E    -  -
-	case 0xA20F: name =	_T("Focal Plane Y Resolution");		break;	//case 0x920F    -  -
-	case 0xA210: name =	_T("Focal Plane Resolution Unit");	break;	//case 0x9210    -  -
-	case 0xA214: name =	_T("Subject Location");				break;	//case 0x9214    -  -
-	case 0xA215: name =	_T("Exposure Index");				break;	//case 0x9215    -  -
-	case 0xA217: name =	_T("Sensing Method");				break;	//case 0x9217    -  -
+	case 0xA000: name =	_T("FlashPix 版本");			break;
+	case 0xA001: name =	_T("色彩空间");					break;
+	case 0xA002: name =	_T("EXIF 图像宽度");				break;
+	case 0xA003: name =	_T("EXIF 图像长度");			break;
+	case 0xA004: name =	_T("关联的声音文件");			break;
+	case 0xA005: name =	_T("互用偏移量");		break;
+	case 0xA20B: name =	_T("闪光能量");					break;	//case 0x920B in TIFF/EP
+	case 0xA20C: name =	_T("空间频率响应");	break;	//case 0x920C    -  -
+	case 0xA20E: name =	_T("焦平面 X 轴解析度");		break;	//case 0x920E    -  -
+	case 0xA20F: name =	_T("焦平面 Y 轴解析度");		break;	//case 0x920F    -  -
+	case 0xA210: name =	_T("焦平面分辨率单位");	break;	//case 0x9210    -  -
+	case 0xA214: name =	_T("主体位置");				break;	//case 0x9214    -  -
+	case 0xA215: name =	_T("曝光指数");				break;	//case 0x9215    -  -
+	case 0xA217: name =	_T("感光器类型");				break;	//case 0x9217    -  -
 
-	case 0xA300: name =	_T("File Source");					break;
-	case 0xA301: name =	_T("Scene Type");					break;
-	case 0xA302: name =	_T("CFA Pattern");					break;
+	case 0xA300: name =	_T("源文件");					break;
+	case 0xA301: name =	_T("场景类型");					break;
+	case 0xA302: name =	_T("CFA 模式");					break;
 
-	case 0xA401: name =	_T("Custom Rendered");				break;
-	case 0xA402: name =	_T("Exposure Mode");				break;
-	case 0xA403: name =	_T("White Balance");				break;
-	case 0xA404: name =	_T("Digital Zoom Ratio");			break;
-	case 0xA405: name =	_T("Focal Length in 35 mm Film");	break;
-	case 0xA406: name =	_T("Scene Capture Type");			break;
-	case 0xA407: name =	_T("Gain Control");					break;
-	case 0xA408: name =	_T("Contrast");						break;
-	case 0xA409: name =	_T("Saturation");					break;
-	case 0xA40A: name =	_T("Sharpness");					break;
-	case 0xA40B: name =	_T("Device Setting Description");	break;
-	case 0xA40C: name =	_T("Subject Distance Range");		break;
-	case 0xA420: name =	_T("Image Unique ID");				break;
+	case 0xA401: name =	_T("自定义图像处理");				break;
+	case 0xA402: name =	_T("曝光模式");				break;
+	case 0xA403: name =	_T("白平衡");				break;
+	case 0xA404: name =	_T("数字变焦");			break;
+	case 0xA405: name =	_T("35毫米胶片焦距");	break;
+	case 0xA406: name =	_T("场景拍摄类型");			break;
+	case 0xA407: name =	_T("增益控制");					break;
+	case 0xA408: name =	_T("对比度");						break;
+	case 0xA409: name =	_T("饱和度");					break;
+	case 0xA40A: name =	_T("锐度");					break;
+	case 0xA40B: name =	_T("设备设定描述");	break;
+	case 0xA40C: name =	_T("主体距离范围");		break;
+	case 0xA420: name =	_T("图像唯一 ID");				break;
 
 	// Lens
 	// DC-010-2017
 	// Exif 2.31 metadata for XMP
 	// http://www.cipa.jp/std/documents/e/DC-010-2017_E.pdf
-	case 0xA432: name = _T("Lens Specification");			break;
-	case 0xA433: name = _T("Lens Manufacturer");			break;
-	case 0xA434: name = _T("Lens Model");					break;
-	case 0xA435: name = _T("Lens Serial Number");			break;
+	case 0xA432: name = _T("镜头规格");			break;
+	case 0xA433: name = _T("镜头制造商");			break;
+	case 0xA434: name = _T("镜头型号");					break;
+	case 0xA435: name = _T("镜头序列号");			break;
 
 	// PrintIM?
-	case 0xc4a5: name =	_T("Print Image Matching");			break;
+	case 0xc4a5: name =	_T("打印图像匹配");			break;
 
 	// Windows
-	case 0x9c9b: name =	_T("Windows Title");				break;
-	case 0x9c9c: name =	_T("Windows Comment");				break;
-	case 0x9c9d: name =	_T("Windows Author");				break;
-	case 0x9c9e: name =	_T("Windows Keywords");				break;
-	case 0x9c9f: name =	_T("Windows Subject");				break;
+	case 0x9c9b: name =	_T("窗口标题");				break;
+	case 0x9c9c: name =	_T("窗口注释");				break;
+	case 0x9c9d: name =	_T("窗口作者");				break;
+	case 0x9c9e: name =	_T("窗口关键字");				break;
+	case 0x9c9f: name =	_T("窗口主题");				break;
 
 	}
 
@@ -184,7 +184,7 @@ const TCHAR* SceneType(int scene_type)
 {
 	switch (scene_type)
 	{
-	case 1: return _T("Directly photographed image");
+	case 1: return _T("直接拍摄");
 	default: return _T("?");
 	}
 }
@@ -195,7 +195,7 @@ const TCHAR* ColorSpace(int16 space)
 	switch (space)
 	{
 	case 1: return _T("sRGB");
-	case -1: return _T("Uncalibrated");
+	case -1: return _T("未校正的");
 	default: return _T("?");
 	}
 }
@@ -205,8 +205,8 @@ const TCHAR* CustomRendered(int16 val)
 {
 	switch (val)
 	{
-	case 0: return _T("Normal process");
-	case 1: return _T("Custom process");
+	case 0: return _T("常规处理");
+	case 1: return _T("自定义处理");
 	default: return _T("?");
 	}
 }
@@ -216,9 +216,9 @@ const TCHAR* ExposureMode(int16 val)
 {
 	switch (val)
 	{
-	case 0: return _T("Auto exposure");
-	case 1: return _T("Manual exposure");
-	case 2: return _T("Auto bracket");
+	case 0: return _T("自动曝光");
+	case 1: return _T("手动曝光");
+	case 2: return _T("自动包围曝光");
 	default: return _T("?");
 	}
 }
@@ -228,8 +228,8 @@ const TCHAR* WhiteBalance(int16 val)
 {
 	switch (val)
 	{
-	case 0: return _T("Auto white balance");
-	case 1: return _T("Manual white balance");
+	case 0: return _T("自动白平衡");
+	case 1: return _T("手动白平衡");
 	default: return _T("?");
 	}
 }
@@ -239,7 +239,7 @@ const TCHAR* SensingMethod(int method)
 {
 	switch (method)
 	{
-	case 1: return _T("Not defined");
+	case 1: return _T("未定义");
 	case 2: return _T("One-chip color area sensor");
 	case 3: return _T("Two-chip color area sensor");
 	case 4: return _T("Three-chip color area sensor");
@@ -255,10 +255,10 @@ const TCHAR* SceneCaptureType(int scene_type)
 {
 	switch (scene_type)
 	{
-	case 0: return _T("Standard");
-	case 1: return _T("Landscape");
-	case 2: return _T("Portrait");
-	case 3: return _T("Night Scene");
+	case 0: return _T("标准");
+	case 1: return _T("风景");
+	case 2: return _T("肖像");
+	case 3: return _T("夜景");
 	default: return _T("?");
 	}
 }
@@ -268,11 +268,11 @@ const TCHAR* GainControl(int val)
 {
 	switch (val)
 	{
-	case 0: return _T("None");
-	case 1: return _T("Low gain up");
-	case 2: return _T("High gain up");
-	case 3: return _T("Low gain down");
-	case 4: return _T("High gain down");
+	case 0: return _T("无");
+	case 1: return _T("低增益加");
+	case 2: return _T("高增益加");
+	case 3: return _T("低增益减");
+	case 4: return _T("高增益减");
 	default: return _T("?");
 	}
 }
@@ -282,9 +282,9 @@ const TCHAR* Contrast(int val)
 {
 	switch (val)
 	{
-	case 0: return _T("Normal");
-	case 1: return _T("Soft");
-	case 2: return _T("Hard");
+	case 0: return _T("常规");
+	case 1: return _T("柔和");
+	case 2: return _T("高对比度");
 	default: return _T("?");
 	}
 }
@@ -294,9 +294,9 @@ const TCHAR* Saturation(int val)
 {
 	switch (val)
 	{
-	case 0: return _T("Normal");
-	case 1: return _T("Low saturation");
-	case 2: return _T("High saturation");
+	case 0: return _T("常规");
+	case 1: return _T("低饱和度");
+	case 2: return _T("高饱和度");
 	default: return _T("?");
 	}
 }
@@ -306,9 +306,9 @@ const TCHAR* Sharpness(int val)
 {
 	switch (val)
 	{
-	case 0: return _T("Normal");
-	case 1: return _T("Soft");
-	case 2: return _T("Hard");
+	case 0: return _T("常规");
+	case 1: return _T("柔和");
+	case 2: return _T("锐利");
 	default: return _T("?");
 	}
 }
@@ -318,10 +318,10 @@ const TCHAR* SubjectDistanceRange(int val)
 {
 	switch (val)
 	{
-	case 0: return _T("Unknown");
-	case 1: return _T("Macro");
-	case 2: return _T("Close view");
-	case 3: return _T("Distant view");
+	case 0: return _T("未知");
+	case 1: return _T("微距");
+	case 2: return _T("近距");
+	case 3: return _T("远距");
 	default: return _T("?");
 	}
 }
@@ -426,8 +426,8 @@ extern const TCHAR* ResolutionUnit(int n)
 {
 	switch (n)
 	{
-	case 2: return _T("inch");
-	case 3: return _T("cm");
+	case 2: return _T("英寸");
+	case 3: return _T("厘米");
 	default: return _T("?");
 	}
 }
@@ -437,7 +437,7 @@ extern const TCHAR* ImgCompressionType(int n)
 {
 	switch (n)
 	{
-	case 1:		return _T("Uncompressed");
+	case 1:		return _T("未压缩");
 	case 2:		return _T("CCIT 1D Modified Huffman RLE");
 	case 3:		return _T("Group 3 Fax");
 	case 4:		return _T("Group 4 Fax");
@@ -472,9 +472,9 @@ extern const TCHAR* ImgCompressionType(int n)
 extern String BrightnessValue(SRational bv)
 {
 	if (!bv.Valid() || bv.numerator_ == 0)
-		return _T("Unknown");
+		return _T("未知");
 	else if (bv.numerator_ == ~0)
-		return _T("Unknown");
+		return _T("未知");
 	else
 	{
 		oStringstream ost;
@@ -511,10 +511,10 @@ extern String FNumber(Rational fnumber)
 extern String SubjectDistance(Rational dist)
 {
 	if (!dist.Valid() || dist.numerator_ == 0)
-		return _T("Unknown");
+		return _T("未知");
 	else if (dist.numerator_ == ~0)
 //		|| dist.numerator_ == 0xffff)	// some lame Canon's cameras...
-		return _T("Infinity");
+		return _T("无穷远");
 	else
 	{
 		oStringstream ost;
@@ -735,22 +735,22 @@ extern String LightSource(uint32 light_source)
 	case 3:		return RString(IDS_PHOTO_LIGHT_0 + light_source).CStr();
 	case 4:		return RString(IDS_PHOTO_LIGHT_10).CStr();
 
-	case 9:		return _T("Fine weather");
-	case 10:	return _T("Cloudy weather");
-	case 11:	return _T("Shade");
-	case 12:	return _T("Daylight fluorescent (D 5700 � 7100K)");
-	case 13:	return _T("Day white fluorescent (N 4600 � 5400K)");
-	case 14:	return _T("Cool white fluorescent (W 3900 � 4500K)");
-	case 15:	return _T("White fluorescent (WW 3200 � 3700K)");
-	case 17:	return _T("Standard light A");
-	case 18:	return _T("Standard light B");
-	case 19:	return _T("Standard light C");
+	case 9:		return _T("晴朗");
+	case 10:	return _T("多云");
+	case 11:	return _T("阴影");
+	case 12:	return _T("日光荧光灯 (D 5700 � 7100K)");
+	case 13:	return _T("白昼荧光灯 (N 4600 � 5400K)");
+	case 14:	return _T("冷白光荧光灯 (W 3900 � 4500K)");
+	case 15:	return _T("白光荧光灯 (WW 3200 � 3700K)");
+	case 17:	return _T("标准光 A");
+	case 18:	return _T("标准光 B");
+	case 19:	return _T("标准光 C");
 	case 20:	return _T("D55");
 	case 21:	return _T("D65");
 	case 22:	return _T("D75");
 	case 23:	return _T("D50");
-	case 24:	return _T("ISO studio tungsten");
-	case 255:	return _T("Other light source");
+	case 24:	return _T("ISO 工作室钨灯");
+	case 255:	return _T("其他光源");
 
 	default:
 		return _T("-");
@@ -765,31 +765,31 @@ extern String Flash(uint16 flash)
 
 	switch (flash)
 	{
-	case 0x0000: return _T("Not fired");
-	case 0x0001: return _T("Flash fired");
-	case 0x0005: return _T("Strobe return light not detected");
-	case 0x0007: return _T("Strobe return light detected");
-	case 0x0008: return _T("Flash did not fire, compulsory flash mode");	// ??? Canon G5 reports this too
-	case 0x0009: return _T("Flash fired, compulsory flash mode");
-	case 0x000D: return _T("Flash fired, compulsory flash mode, return light not detected");
-	case 0x000F: return _T("Flash fired, compulsory flash mode, return light detected");
-	case 0x0010: return _T("Not fired, compulsory flash mode");
-	case 0x0014: return _T("Compulsory flash suppression, strobe return light not detected");	// HP
-	case 0x0018: return _T("Not fired, auto mode");
-	case 0x0019: return _T("Flash fired, auto mode");
-	case 0x001D: return _T("Flash fired, auto mode, return light not detected");
-	case 0x001F: return _T("Flash fired, auto mode, return light detected");
-	case 0x0020: return _T("No flash function");
-	case 0x0041: return _T("Flash fired, red-eye reduction mode");
-	case 0x0045: return _T("Flash fired, red-eye reduction mode, return light not detected");
-	case 0x0047: return _T("Flash fired, red-eye reduction mode, return light detected");
-	case 0x0049: return _T("Flash fired, compulsory flash mode, red-eye reduction mode");
-	case 0x004D: return _T("Flash fired, compulsory flash mode, red-eye reduction mode, return light not detected");
-	case 0x004F: return _T("Flash fired, compulsory flash mode, red-eye reduction mode, return light detected");
-	case 0x0050: return _T("Not fired, compulsory flash suppression");
-	case 0x0059: return _T("Flash fired, auto mode, red-eye reduction mode");
-	case 0x005D: return _T("Flash fired, auto mode, return light not detected, red-eye reduction mode");
-	case 0x005F: return _T("Flash fired, auto mode, return light detected, red-eye reduction mode");
+	case 0x0000: return _T("无闪光");
+	case 0x0001: return _T("闪光灯闪光");
+	case 0x0005: return _T("未检测到频闪反射光");
+	case 0x0007: return _T("检测到频闪反射光");
+	case 0x0008: return _T("闪光灯未闪光, 强制闪光模式");	// ??? Canon G5 reports this too
+	case 0x0009: return _T("闪光灯闪光, 强制闪光模式");
+	case 0x000D: return _T("闪光灯闪光, 强制闪光模式, 未检测到反射光");
+	case 0x000F: return _T("闪光灯闪光, 强制闪光模式, 检测到反射光");
+	case 0x0010: return _T("未闪光, 强制闪光模式");
+	case 0x0014: return _T("强制闪光被抑制, 未检测到频闪反射光");	// HP
+	case 0x0018: return _T("未闪光, 自动模式");
+	case 0x0019: return _T("闪光灯闪光, 自动模式");
+	case 0x001D: return _T("闪光灯闪光, 自动模式, 未检测到反射光");
+	case 0x001F: return _T("闪光灯闪光, 自动模式, 检测到反射光");
+	case 0x0020: return _T("无闪光灯功能");
+	case 0x0041: return _T("闪光灯闪光, 消除红眼模式");
+	case 0x0045: return _T("闪光灯闪光, 消除红眼模式, 未检测到反射光");
+	case 0x0047: return _T("闪光灯闪光, 消除红眼模式, 检测到反射光");
+	case 0x0049: return _T("闪光灯闪光, 强制闪光模式, 消除红眼模式");
+	case 0x004D: return _T("闪光灯闪光, 强制闪光模式, 消除红眼模式, 未检测到反射光");
+	case 0x004F: return _T("闪光灯闪光, 强制闪光模式, 消除红眼模式, 检测到反射光");
+	case 0x0050: return _T("未闪光, 强制闪光被抑制");
+	case 0x0059: return _T("闪光灯闪光, 自动模式, 消除红眼模式");
+	case 0x005D: return _T("闪光灯闪光, 自动模式, 未检测到反射光, 消除红眼模式");
+	case 0x005F: return _T("闪光灯闪光, 自动模式, 检测到反射光, 消除红眼模式");
 	}
 
 	ASSERT(false);

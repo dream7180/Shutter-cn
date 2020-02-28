@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -72,9 +72,9 @@ BOOL CExportExifDlg::OnInitDialog()
 	separator_ = _T("\t");
 
 	if (all_)
-		expl_ = _T("EXIF data from all loaded photographs will be exported to the text file.");
+		expl_ = _T("全部载入的照片的 EXIF 数据将会被导出到文本文件.");
 	else
-		expl_ = _T("EXIF data from selected photographs will be exported to the text file.");
+		expl_ = _T("选定的照片的 EXIF 数据将会被导出到文本文件.");
 
 	out_file_ = AfxGetApp()->GetProfileString(REGISTRY_ENTRY_EXPORT, REG_FILENAME, _T("c:\\ExifFields.txt"));
 	separator_ = AfxGetApp()->GetProfileString(REGISTRY_ENTRY_EXPORT, REG_SEPARATOR, _T(";"));
@@ -114,15 +114,15 @@ void CExportExifDlg::OnOK()
 
 	if (out_file_.IsEmpty())
 	{
-		new BalloonMsg(&out_file_wnd_, _T("Missing Filename"),
-			_T("Please enter name and path of text output file."), BalloonMsg::IERROR);
+		new BalloonMsg(&out_file_wnd_, _T("文件名缺失"),
+			_T("请输入文本输出文件的名称和路径."), BalloonMsg::IERROR);
 		return;
 	}
 
 	if (separator_.IsEmpty())
 	{
-		new BalloonMsg(&separator_wnd_, _T("Missing Separator"),
-			_T("Please enter fields separator character."), BalloonMsg::IERROR);
+		new BalloonMsg(&separator_wnd_, _T("分隔符缺失"),
+			_T("请输入字段分隔符号."), BalloonMsg::IERROR);
 		return;
 	}
 

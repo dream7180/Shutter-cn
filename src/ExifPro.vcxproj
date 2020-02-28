@@ -219,7 +219,8 @@
       <Culture>0x0409</Culture>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies><!--jpeglib-mmx.lib;-->vfw32.lib;dbghelp.lib;gdiplus.lib;d2d1.lib;UxTheme.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>
+        <!--jpeglib-mmx.lib;-->vfw32.lib;dbghelp.lib;gdiplus.lib;d2d1.lib;UxTheme.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ShowProgress>NotSet</ShowProgress>
       <OutputFile>$(Bin)$(ProjectName).exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -418,7 +419,8 @@
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/SECTION:shared,RWS %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies><!--jpeglib-mmxD.lib;-->tifflibD.lib;pnglibD.lib;lua5.1D.lib;vfw32.lib;zlibD.lib;lcmsD.lib;coolsbD.lib;giflibD.lib;libexpatMTd.lib;XMPCoreD.lib;dbghelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>
+        <!--jpeglib-mmxD.lib;-->tifflibD.lib;pnglibD.lib;lua5.1D.lib;vfw32.lib;zlibD.lib;lcmsD.lib;coolsbD.lib;giflibD.lib;libexpatMTd.lib;XMPCoreD.lib;dbghelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(Bin)$(ProjectName).exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(Libraries);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -464,7 +466,8 @@
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/SECTION:shared,RWS %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies><!--jpeglib-mmxD.lib;-->tifflibD.lib;pnglibD.lib;lua5.1D.lib;vfw32.lib;zlibD.lib;lcmsD.lib;coolsbD.lib;giflibD.lib;libexpatMTd.lib;XMPCoreD.lib;dbghelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>
+        <!--jpeglib-mmxD.lib;-->tifflibD.lib;pnglibD.lib;lua5.1D.lib;vfw32.lib;zlibD.lib;lcmsD.lib;coolsbD.lib;giflibD.lib;libexpatMTd.lib;XMPCoreD.lib;dbghelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\libs\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>

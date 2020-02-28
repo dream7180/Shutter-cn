@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -1132,7 +1132,7 @@ a[0] = int(tmr[0].QuadPart);
 a[1] = int(tmr[1].QuadPart);
 
 TCHAR str[256];
-wsprintf(str, _T("magnify: %d\n"), a[0]);
+wsprintf(str, _T("放大: %d\n"), a[0]);
 ::OutputDebugString(str);
 #endif
 }

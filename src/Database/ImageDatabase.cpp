@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -215,7 +215,7 @@ uint64 ImageDatabase::FindImage(const String& file_path, ImgDataRecord& img)
 		// db error -> regenerate
 
 #ifdef _DEBUG
-		AfxMessageBox(_T("Db error encountered. Clearing db file."), MB_OK);
+		AfxMessageBox(_T("数据库遇到错误, 正在清空数据库文件."), MB_OK);
 #endif
 
 		err = err;

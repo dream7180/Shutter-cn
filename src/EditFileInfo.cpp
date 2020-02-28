@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -73,7 +73,7 @@ Path GetTemplateDir()
 {
 	Path templates= GetDocumentsFolder(_T("c:\\"));
 
-	templates.AppendDir(_T("File Info Templates"));
+	templates.AppendDir(_T("文件信息模板"));
 
 	if (!templates.IsFolder())
 		templates.CreateFolders();
@@ -82,7 +82,7 @@ Path GetTemplateDir()
 }
 
 
-static TCHAR* XMP_FILTER= _T("XMP Template Files (*.xmp)|*.xmp|All Files (*.*)|*.*||");
+static TCHAR* XMP_FILTER= _T("XMP 模板文件 (*.xmp)|*.xmp|所有文件 (*.*)|*.*||");
 static TCHAR* XMP_EXT= _T("XMP");
 
 // save XMP file in the template folder
@@ -184,8 +184,8 @@ static void SaveMetadata(VectPhotoInfo& photos, const XmpData& xmp, CWnd* parent
 {
 	ImgProcessingPool proc(std::auto_ptr<ImgProcessingThread>(new ApplyMetadataThread(photos, xmp, 0)));
 
-	ProcessingProgressDlg progress(parent, proc, _T("Saving File Info in Progress"),
-		_T("Saving metadata"), ProcessingProgressDlg::AUTO_CLOSE | ProcessingProgressDlg::OUTPUT_ONLY);
+	ProcessingProgressDlg progress(parent, proc, _T("正在保存文件信息"),
+		_T("正在保存元数据"), ProcessingProgressDlg::AUTO_CLOSE | ProcessingProgressDlg::OUTPUT_ONLY);
 
 	progress.DoModal();
 
@@ -395,8 +395,8 @@ bool EditFileInfo::DoModal()
 	if (!photo.CanEditIPTC(err_code))
 	{
 		String msg= err_code == -1 ?
-			_T("Photograph '") + photo.GetOriginalPath() + _T("'\ncannot be opened for writing.") :
-			_T("Editing File Info is not supported for this type of image.");
+			_T("照片 '") + photo.GetOriginalPath() + _T("'\n不能打开以写入.") :
+			_T("此类型图像不支持编辑文件信息.");
 		parent_wnd_->MessageBox(msg.c_str(), 0, MB_OK | MB_ICONWARNING);
 		return false;
 	}
@@ -433,7 +433,7 @@ bool EditFileInfo::DoModal()
 		CPropertyDlg dlg(boost::bind(&EditFileInfo::FileInfoCallback, this, _1, _2, _3, _4, _5, _6),
 			boost::bind(&EditFileInfo::PopupMenuInit, this, _1, _2), parent_wnd_, count, enable_next_prev, _T("FileInfoDlg"));
 
-		HeaderDialog dlgHdr(dlg, _T("File Info"), HeaderDialog::IMG_PENCIL);
+		HeaderDialog dlgHdr(dlg, _T("文件信息"), HeaderDialog::IMG_PENCIL);
 		dlgHdr.SetTitleDuringInit(false);	// file info dlg provides its own title
 		return dlgHdr.DoModal() == IDOK;
 	}

@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -16,7 +16,7 @@ bool MarkRecordAsStale(const TCHAR* file_path)
 	ImageDatabase& db= GetImageDataBase(false, true);
 
 	if (!db.IsOpen())
-		throw String(_T("Cannot open cache database to modify stale image record."));
+		throw String(_T("未能打开缓存数据库以修改陈旧的图像记录."));
 
 	ImgDataRecord record;
 	if (uint64 offset= db.FindImage(file_path, record))

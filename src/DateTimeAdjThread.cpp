@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -79,7 +79,7 @@ void DateTimeAdjThread::Process(size_t index)
 		{
 			// handle error: cannot open file for writing
 
-			throw String(_T("Cannot open file for writing operation: ")) + path;
+			throw String(_T("未能打开文件进行写入操作: ")) + path;
 		}
 		else
 		{
@@ -94,7 +94,7 @@ void DateTimeAdjThread::Process(size_t index)
 			::ScanExif(path.c_str(), ifs, photo->exif_info_.offset_to_Ifd_start, rangeExif, photo->GetMake(), photo->GetModel(), 0, 0, 0, false, &fn);
 
 			if (!date_time_changed)
-				throw String(_T("Cannot find valid date/time EXIF field in the file: ")) + path;
+				throw String(_T("未能在文件中找到有效的日期/时间 EXIF 字段: ")) + path;
 		}
 	}
 
@@ -132,7 +132,7 @@ bool DateTimeAdjThread::ModifyDate(FileStream& ifs, const Data& val, PhotoInfoPt
 			char date_time[200];
 			wsprintfA(date_time, "%04d:%02d:%02d %02d:%02d:%02d", dt->GetYear(), dt->GetMonth(), dt->GetDay(), dt->GetHour(), dt->GetMinute(), dt->GetSecond()); */
 			if (exif_date.length() > LEN)
-				throw String(_T("Incorrect date encountered: ")) + photo->GetPhysicalPath();
+				throw String(_T("不正确的日期: ")) + photo->GetPhysicalPath();
 
 			ifs.Write(exif_date.c_str(), val.Components() > LEN ? LEN + 1 : LEN);
 

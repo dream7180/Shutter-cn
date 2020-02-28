@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -73,29 +73,29 @@ Config::Config()
 	thumbnail_sharpening_ = cores > 1 ? 30 : 0;
 
 	file_types_.reserve(FT_LAST + 1);
-	file_types_.push_back(FileTypeConfig(_T("Jpeg Images"), _T("jpeg; jpg; jpe"), _T("JPEG"), false));
-	file_types_.push_back(FileTypeConfig(_T("Photoshop Documents"), _T("psd"), _T("PSD")));
-	file_types_.push_back(FileTypeConfig(_T("Tiff Images"), _T("tiff; tif"), _T("TIFF")));
-	file_types_.push_back(FileTypeConfig(_T("Portable Network Graphics"), _T("png"), _T("PNG")));
-	file_types_.push_back(FileTypeConfig(_T("Canon Raw Files"), _T("crw+thm; cr2"), _T("CRW")));
-	file_types_.push_back(FileTypeConfig(_T("Nikon Raw Files"), _T("nef"), _T("NEF")));
-	file_types_.push_back(FileTypeConfig(_T("Olympus Raw Files"), _T("orf"), _T("ORF")));
-	file_types_.push_back(FileTypeConfig(_T("Digital Negative Files"), _T("dng"), _T("DNG")));
-	file_types_.push_back(FileTypeConfig(_T("Fuji Raw Files"), _T("raf"), _T("RAF")));
-	file_types_.push_back(FileTypeConfig(_T("Graphics Interchange Format"), _T("gif"), _T("GIF")));
-	file_types_.push_back(FileTypeConfig(_T("Windows Bitmap Files"), _T("bmp"), _T("BMP")));
-	file_types_.push_back(FileTypeConfig(_T("Pentax Raw Files"), _T("pef"), _T("PEF")));
-	file_types_.push_back(FileTypeConfig(_T("Sony DSLR Raw Files"), _T("arw"), _T("ARW")));
-	file_types_.push_back(FileTypeConfig(_T("Panasonic Raw Files"), _T("rw2"), _T("RW2")));
-	file_types_.push_back(FileTypeConfig(_T("Sigma Raw Files"), _T("x3f"), _T("X3F")));
-	file_types_.push_back(FileTypeConfig(_T("Samsung Raw Files"), _T("srw"), _T("SRW")));
-	file_types_.push_back(FileTypeConfig(_T("ExifPro Catalog Files"), _T("catalog"), _T("catalog"), false));
+	file_types_.push_back(FileTypeConfig(_T("Jpeg 图像"), _T("jpeg; jpg; jpe"), _T("JPEG"), false));
+	file_types_.push_back(FileTypeConfig(_T("Photoshop 文档"), _T("psd"), _T("PSD")));
+	file_types_.push_back(FileTypeConfig(_T("Tiff 图像"), _T("tiff; tif"), _T("TIFF")));
+	file_types_.push_back(FileTypeConfig(_T("便携式网络图形"), _T("png"), _T("PNG")));
+	file_types_.push_back(FileTypeConfig(_T("佳能 RAW 文件"), _T("crw+thm; cr2"), _T("CRW")));
+	file_types_.push_back(FileTypeConfig(_T("尼康 RAW 文件"), _T("nef"), _T("NEF")));
+	file_types_.push_back(FileTypeConfig(_T("奥林巴斯 RAW 文件"), _T("orf"), _T("ORF")));
+	file_types_.push_back(FileTypeConfig(_T("数字负片文件"), _T("dng"), _T("DNG")));
+	file_types_.push_back(FileTypeConfig(_T("富士 RAW 文件"), _T("raf"), _T("RAF")));
+	file_types_.push_back(FileTypeConfig(_T("图形交换格式"), _T("gif"), _T("GIF")));
+	file_types_.push_back(FileTypeConfig(_T("Windows 位图文件"), _T("bmp"), _T("BMP")));
+	file_types_.push_back(FileTypeConfig(_T("宾得 RAW 文件"), _T("pef"), _T("PEF")));
+	file_types_.push_back(FileTypeConfig(_T("索尼 DSLR RAW 文件"), _T("arw"), _T("ARW")));
+	file_types_.push_back(FileTypeConfig(_T("松下 RAW 文件"), _T("rw2"), _T("RW2")));
+	file_types_.push_back(FileTypeConfig(_T("适马 RAW 文件"), _T("x3f"), _T("X3F")));
+	file_types_.push_back(FileTypeConfig(_T("三星 RAW 文件"), _T("srw"), _T("SRW")));
+	file_types_.push_back(FileTypeConfig(_T("ExifPro 分类文件"), _T("catalog"), _T("catalog"), false));
 
 	//open_photo_app_
-	main_wnd_ = new ICMProfile(_T("Main Window"));
-	viewer_ = new ICMProfile(_T("Image Viewer"));
-	default_photo_ = new ICMProfile(_T("Default Image"));
-	default_printer_ = new ICMProfile(_T("Default Printer"));
+	main_wnd_ = new ICMProfile(_T("浏览器主窗口"));
+	viewer_ = new ICMProfile(_T("图像查看器"));
+	default_photo_ = new ICMProfile(_T("默认图像"));
+	default_printer_ = new ICMProfile(_T("默认打印机"));
 
 	main_wnd_->AssignDefault_sRGB();
 	viewer_->AssignDefault_sRGB();
@@ -456,32 +456,32 @@ void Config::Restore()
 	if (g_first_time_up)
 	{
 		field_of_view_crop_.push_back(make_pair(_T("CYBERSHOT"), _T("35 / 7.1")));
-		field_of_view_crop_.push_back(make_pair(_T("NIKON D80"), _T("1.5")));
-		field_of_view_crop_.push_back(make_pair(_T("NIKON D70"), _T("1.5")));
-		field_of_view_crop_.push_back(make_pair(_T("NIKON D50"), _T("1.5")));
-		field_of_view_crop_.push_back(make_pair(_T("NIKON D200"), _T("1.5")));
-		field_of_view_crop_.push_back(make_pair(_T("Canon 10D"), _T("1.6")));
-		field_of_view_crop_.push_back(make_pair(_T("Canon 300D"), _T("1.6")));
-		field_of_view_crop_.push_back(make_pair(_T("Canon EOS 300D DIGITAL"), _T("1.6")));
-		field_of_view_crop_.push_back(make_pair(_T("Canon EOS 10D"), _T("1.6")));
-		field_of_view_crop_.push_back(make_pair(_T("Canon EOS 20D"), _T("1.6")));
-		field_of_view_crop_.push_back(make_pair(_T("Canon EOS 30D"), _T("1.6")));
-		field_of_view_crop_.push_back(make_pair(_T("Canon EOS D60"), _T("1.6")));
-		field_of_view_crop_.push_back(make_pair(_T("Canon EOS D30"), _T("1.6")));
-		field_of_view_crop_.push_back(make_pair(_T("Canon EOS 1D"), _T("1.3")));
+		field_of_view_crop_.push_back(make_pair(_T("尼康 D80"), _T("1.5")));
+		field_of_view_crop_.push_back(make_pair(_T("尼康 D70"), _T("1.5")));
+		field_of_view_crop_.push_back(make_pair(_T("尼康 D50"), _T("1.5")));
+		field_of_view_crop_.push_back(make_pair(_T("尼康 D200"), _T("1.5")));
+		field_of_view_crop_.push_back(make_pair(_T("佳能 10D"), _T("1.6")));
+		field_of_view_crop_.push_back(make_pair(_T("佳能 300D"), _T("1.6")));
+		field_of_view_crop_.push_back(make_pair(_T("佳能 EOS 300D DIGITAL"), _T("1.6")));
+		field_of_view_crop_.push_back(make_pair(_T("佳能 EOS 10D"), _T("1.6")));
+		field_of_view_crop_.push_back(make_pair(_T("佳能 EOS 20D"), _T("1.6")));
+		field_of_view_crop_.push_back(make_pair(_T("佳能 EOS 30D"), _T("1.6")));
+		field_of_view_crop_.push_back(make_pair(_T("佳能 EOS D60"), _T("1.6")));
+		field_of_view_crop_.push_back(make_pair(_T("佳能 EOS D30"), _T("1.6")));
+		field_of_view_crop_.push_back(make_pair(_T("佳能 EOS 1D"), _T("1.3")));
 		field_of_view_crop_.push_back(make_pair(_T("DSC-F828"), _T("28 / 5.6")));
 		field_of_view_crop_.push_back(make_pair(_T("C8080WZ"), _T("28 / 7.1")));
 		field_of_view_crop_.push_back(make_pair(_T("E5400"), _T("28 / 5.8")));
 		field_of_view_crop_.push_back(make_pair(_T("E5700"), _T("35 / 8.9")));
 		field_of_view_crop_.push_back(make_pair(_T("E8700"), _T("35 / 8.9")));	// Nikon Coolpix
 		field_of_view_crop_.push_back(make_pair(_T("E-1"), _T("2")));
-		field_of_view_crop_.push_back(make_pair(_T("Canon PowerShot A70"), _T("35 / 5.4")));
-		field_of_view_crop_.push_back(make_pair(_T("Canon PowerShot A75"), _T("35 / 5.4")));
-		field_of_view_crop_.push_back(make_pair(_T("Canon PowerShot G2"), _T("34 / 7")));
-		field_of_view_crop_.push_back(make_pair(_T("Canon PowerShot G1"), _T("34 / 7")));
-		field_of_view_crop_.push_back(make_pair(_T("Canon PowerShot S1 IS"), _T("38 / 5.8")));
-		field_of_view_crop_.push_back(make_pair(_T("Canon PowerShot G5"), _T("35 / 7.2")));
-		field_of_view_crop_.push_back(make_pair(_T("Canon PowerShot Pro1"), _T("35 / 7.2")));
+		field_of_view_crop_.push_back(make_pair(_T("佳能 PowerShot A70"), _T("35 / 5.4")));
+		field_of_view_crop_.push_back(make_pair(_T("佳能 PowerShot A75"), _T("35 / 5.4")));
+		field_of_view_crop_.push_back(make_pair(_T("佳能 PowerShot G2"), _T("34 / 7")));
+		field_of_view_crop_.push_back(make_pair(_T("佳能 PowerShot G1"), _T("34 / 7")));
+		field_of_view_crop_.push_back(make_pair(_T("佳能 PowerShot S1 IS"), _T("38 / 5.8")));
+		field_of_view_crop_.push_back(make_pair(_T("佳能 PowerShot G5"), _T("35 / 7.2")));
+		field_of_view_crop_.push_back(make_pair(_T("佳能 PowerShot Pro1"), _T("35 / 7.2")));
 
 		sort(field_of_view_crop_.begin(), field_of_view_crop_.end(), cmp_fov());
 

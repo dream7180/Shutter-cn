@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -73,12 +73,12 @@ bool HistogramPane::Create(CWnd* parent)
 	//channels_wnd_.SendMessage(WM_SETFONT, WPARAM(::GetStockObject(DEFAULT_GUI_FONT)));
 	channels_wnd_.InitStorage(5, 15);
 	channels_wnd_.AddString(_T("RGB"));
-	channels_wnd_.AddString(_T("RGB Overlaid"));
-	channels_wnd_.AddString(_T("RGB Lines"));
-	channels_wnd_.AddString(_T("Red"));
-	channels_wnd_.AddString(_T("Green"));
-	channels_wnd_.AddString(_T("Blue"));
-	channels_wnd_.AddString(_T("Luminosity"));
+	channels_wnd_.AddString(_T("RGB 覆盖"));
+	channels_wnd_.AddString(_T("RGB 线条"));
+	channels_wnd_.AddString(_T("红"));
+	channels_wnd_.AddString(_T("绿"));
+	channels_wnd_.AddString(_T("蓝"));
+	channels_wnd_.AddString(_T("亮度"));
 	channels_wnd_.SetCurSel(channels_);
 	channels_wnd_.SetDroppedWidth(w);
 	channels_wnd_.SetExtendedUI();

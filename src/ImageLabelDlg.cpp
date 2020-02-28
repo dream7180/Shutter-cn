@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -55,8 +55,8 @@ BOOL ImageLabelDlg::OnInitDialog()
 	VERIFY(::LoadImageList(imageList_, IDB_PHOTOS_TB, 18, ::GetSysColor(COLOR_3DFACE)));
 	tab_ctrl_.SetImageList(&imageList_);
 
-	tab_ctrl_.InsertItem(0, _T("Thumbnail Mode"), 4);
-	tab_ctrl_.InsertItem(1, _T("Preview Mode"), 7);
+	tab_ctrl_.InsertItem(0, _T("缩略图模式"), 4);
+	tab_ctrl_.InsertItem(1, _T("预览模式"), 7);
 
 	if (m_pParentWnd)
 		CenterWindow(m_pParentWnd);

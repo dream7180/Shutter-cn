@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -463,8 +463,8 @@ ExifView::ExifView(Columns& columns)
 	customInfoFields_[1].push_back(COL_FNUMBER);
 
 	// names used for first two tabs
-	main_page_.name_ = _T("All Images");
-	filter_page_.name_ = _T("Filter Images");
+	main_page_.name_ = _T("全部图像");
+	filter_page_.name_ = _T("过滤图像");
 
 	profile_thumb_size_.Register(REGISTRY_ENTRY_EXIF, _T("ThumbSize"), img_size_index_);
 	profile_sticky_selection_.Register(REGISTRY_ENTRY_EXIF, _T("StickySelection"), false);
@@ -2049,14 +2049,14 @@ CString ExifView::GetImagesStat() const
 	{
 		// thanks to this simple trick with rounding to full tens status bar refreshes itself only
 		// once every ten times SetText is invoked (due to identical text being provided)
-		status.Format(_T("Scanning... (%d)"), count > 10 ? count - count % 10 : count);
+		status.Format(_T("扫描中... (%d)"), count > 10 ? count - count % 10 : count);
 	}
 	else if (count == 0)
-		status = _T("No Images");
-	else if (count == 1)
-		status = _T("1 Image");
+		status = _T("无图像");
+	//else if (count == 1)
+	//	status = _T("1 图像");
 	else
-		status.Format(_T("%d Images"), count);
+		status.Format(_T("%d 图像"), count);
 
 	if (!scanning)
 	{
@@ -2064,13 +2064,13 @@ CString ExifView::GetImagesStat() const
 
 		int selected= GetListCtrl().GetSelectedCount();
 		if (selected == 0)
-			status += _T("None selected");
+			status += _T("无选定");
 		else if (selected == all_photos_.size())
-			status += _T("All selected");
+			status += _T("全部选定");
 		else
 		{
 			CString s;
-			s.Format(_T("%d selected"), selected);
+			s.Format(_T("%d 选定"), selected);
 			status += s;
 		}
 
@@ -2571,7 +2571,7 @@ void ExifView::ViewPhoto(PhotoInfoPtr photo, ViewerType type)
 	{
 		ViewerDlg* viewer= new ViewerDlg(&viewer_link_, viewer_photos_, all_photos_, this, cols_);
 		viewer_link_.Connect(viewer);
-		viewer->Create(_T("Photo Viewer"));
+		viewer->Create(_T("图像查看器"));
 	}
 	else
 	{
@@ -2782,7 +2782,7 @@ void ExifView::AddTaggedPhotos(VectPhotoInfo::iterator begin, VectPhotoInfo::ite
 		// wsprintf used over stringstream for speed...
 		TCHAR buf[128];
 		int rating= photo.GetRating();
-		wsprintf(buf, rating > 1 ? _T("%d Stars") : _T("%d Star"), rating);
+		wsprintf(buf, rating > 1 ? _T("%d 星") : _T("%d 星"), rating);
 		label = buf;
 		icon = PhotoCtrl::STAR;
 	}
@@ -2827,7 +2827,7 @@ void ExifView::AddTaggedPhotos(VectPhotoInfo::iterator begin, VectPhotoInfo::ite
 
 #ifdef MULTI_GROUPS
 #else
-	String label= photo.GetTags().size() > 1 ? _T("Multiple Tags") : _T("Tag \"") + tags + _T("\"");
+	String label= photo.GetTags().size() > 1 ? _T("多个标记") : _T("标记 \"") + tags + _T("\"");
 #endif
 
 	if (add_photo != 0 && end - begin == 1)
@@ -3297,7 +3297,7 @@ void ExifView::SortBySimilarity()
 				old_grouping_ = grouping_mode_;
 			grouping_mode_ = GROUP_BY_SIMILARITY;
 
-			GetListCtrl().AddItems(sorted, _T("Sorted by similarity to \"") + photo->GetName() + _T("\""), PhotoCtrl::SIMILARITY, 0);
+			GetListCtrl().AddItems(sorted, _T("按相似度排序 \"") + photo->GetName() + _T("\""), PhotoCtrl::SIMILARITY, 0);
 
 			tool_bar_wnd_.ShowCancelSortBtn(true);
 		}
@@ -3319,8 +3319,8 @@ void ExifView::OnViewSortPopupMenu(CPoint pos)
 
 	// add custom rules item to bring up custom columns dlg
 	menu.AppendMenu(MF_SEPARATOR);
-	menu.AppendMenu(MF_STRING, ID_SELECT_COLUMNS, _T("Select Columns for Sorting..."));
-	menu.AppendMenu(MF_STRING, ID_CUSTOM_RULES, _T("Custom Sorting Rules...\tShift+Ctrl+F"));
+	menu.AppendMenu(MF_STRING, ID_SELECT_COLUMNS, _T("选择列进行排序..."));
+	menu.AppendMenu(MF_STRING, ID_CUSTOM_RULES, _T("自定义排序规则...\tShift+Ctrl+F"));
 
 	int column= menu.TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON | TPM_RETURNCMD | TPM_NONOTIFY, pos.x, pos.y, this);
 
@@ -3774,11 +3774,11 @@ int ExifView::OnCreate(LPCREATESTRUCT create_struct)
 		tab_ctrl_.InsertItem(i, filter->name_.c_str());
 	}
 	SetCurFilterTab(0);
-	tab_ctrl_.SetItemTooltipText(0, _T("Main image gallery (Ctrl+F)"));
-	tab_ctrl_.SetItemTooltipText(1, _T("Image filtering panel (Ctrl+F)"));
+	tab_ctrl_.SetItemTooltipText(0, _T("浏览器主界面 (Ctrl+F)"));
+	tab_ctrl_.SetItemTooltipText(1, _T("图像过滤面板 (Ctrl+F)"));
 	tab_ctrl_.SetIdealHeight(GetDefaultLineHeight() * 20 / 10);
 
-	filter_page_.name_ = _T("Filter");
+	filter_page_.name_ = _T("过滤");
 
 	if (!filter_dlg_.Create(this, Tags::GetTagCollection(), this))
 		return -1;
@@ -4207,8 +4207,8 @@ void ExifView::DeletePhotos(bool warn)
 		if (selected.empty())
 		{
 			if (warn)
-				new BalloonMsg(&GetListCtrl(), _T("There Are No Photographs Selected"),
-					_T("Please select photographs to delete."), BalloonMsg::IERROR);
+				new BalloonMsg(&GetListCtrl(), _T("没有选定的照片"),
+					_T("请选择要删除的照片."), BalloonMsg::IERROR);
 			return;
 		}
 
@@ -4217,8 +4217,8 @@ void ExifView::DeletePhotos(bool warn)
 			if (!selected[i]->CanDelete())
 			{
 				if (warn)
-					new BalloonMsg(&GetListCtrl(), _T("Cannot Delete Photographs"),
-					_T("Selected photographs cannot be deleted."), BalloonMsg::IERROR);
+					new BalloonMsg(&GetListCtrl(), _T("未能删除照片"),
+					_T("选定的照片不能删除."), BalloonMsg::IERROR);
 				return;
 			}
 
@@ -4227,12 +4227,12 @@ void ExifView::DeletePhotos(bool warn)
 			CString msg;
 			if (selected.size() == 1)
 			{
-				msg = _T("There is one photograph selected,\n\n");
+				msg = _T("有一张选定的照片,\n\n");
 				msg += selected.front()->GetOriginalPath().GetFileNameAndExt().c_str();
-				msg += _T("\n\nDelete it?");
+				msg += _T("\n\n删除它?");
 			}
 			else
-				msg.Format(_T("There are %d photographs selected.\n\nDelete them?"), static_cast<int>(selected.size()));
+				msg.Format(_T("有 %d 张选定的照片.\n\n删除它们?"), static_cast<int>(selected.size()));
 
 			DeleteConfirmationDlg dlg(this, msg);
 			if (dlg.DoModal() != IDOK)
@@ -4317,8 +4317,8 @@ void ExifView::FileOperation(bool copy)
 
 		if (selected.empty())
 		{
-			new BalloonMsg(&GetListCtrl(), _T("There Are No Selected Photographs"),
-				_T("Please select photographs to copy/move first."), BalloonMsg::IERROR);
+			new BalloonMsg(&GetListCtrl(), _T("没有选定的照片"),
+				_T("请先选择要复制/移动的照片."), BalloonMsg::IERROR);
 			return;
 		}
 
@@ -4342,7 +4342,7 @@ void ExifView::FileOperation(const VectPhotoInfo& photos, bool copy, CWnd* paren
 			if (src.empty())
 			{
 				if (!photos.empty())
-					AfxMessageBox(_T("Selected images cannot be copied."), MB_OK | MB_ICONWARNING);
+					AfxMessageBox(_T("选定的图像不能复制."), MB_OK | MB_ICONWARNING);
 				return;
 			}
 		}
@@ -4351,7 +4351,7 @@ void ExifView::FileOperation(const VectPhotoInfo& photos, bool copy, CWnd* paren
 		String dest_path= profileDestPath;
 //		FileOperDlg dlg(copy, dest_path.c_str(), this);
 		CopyMoveDlg dlg(copy, dest_path.c_str(), parent, current_folder_);
-		HeaderDialog dlgHdr(dlg, copy ? _T("Copy") : _T("Move"), copy ? HeaderDialog::IMG_COPY : HeaderDialog::IMG_MOVE, parent);
+		HeaderDialog dlgHdr(dlg, copy ? _T("复制") : _T("移动"), copy ? HeaderDialog::IMG_COPY : HeaderDialog::IMG_MOVE, parent);
 		if (dlgHdr.DoModal() != IDOK)
 			return;
 
@@ -4416,8 +4416,8 @@ void ExifView::OnTaskResize()
 
 		if (selected.empty())
 		{
-			new BalloonMsg(&GetListCtrl(), _T("There Are No Selected Photographs"),
-				_T("Please select photographs to resize first."), BalloonMsg::IERROR);
+			new BalloonMsg(&GetListCtrl(), _T("没有选定的照片"),
+				_T("请先选择要改变尺寸的照片."), BalloonMsg::IERROR);
 			return;
 		}
 
@@ -4438,8 +4438,8 @@ void ExifView::OnTaskGenSlideShow()
 
 		if (selected.empty())
 		{
-			new BalloonMsg(&GetListCtrl(), _T("There Are No Selected Photographs"),
-				_T("Please select photographs to generate slide show first."), BalloonMsg::IERROR);
+			new BalloonMsg(&GetListCtrl(), _T("没有选定的照片"),
+				_T("请先选择要制作幻灯片的照片."), BalloonMsg::IERROR);
 			return;
 		}
 
@@ -4460,8 +4460,8 @@ void ExifView::OnTaskGenHTMLAlbum()
 
 		if (selected.empty())
 		{
-			new BalloonMsg(&GetListCtrl(), _T("There Are No Selected Photographs"),
-				_T("Please select photographs to generate HTML album first."), BalloonMsg::IERROR);
+			new BalloonMsg(&GetListCtrl(), _T("没有选定的照片"),
+				_T("请先选择要制作 HTML 相册的照片."), BalloonMsg::IERROR);
 			return;
 		}
 
@@ -4485,7 +4485,7 @@ void ExifView::OnTaskHistogram()
 		if (PhotoInfoPtr photo= CurrentItem())
 		{
 			HistogramDlg dlgHist(*photo, global_photo_cache.get());
-			HeaderDialog dlg(dlgHist, _T("Histogram"), HeaderDialog::IMG_HISTOGRAM);
+			HeaderDialog dlg(dlgHist, _T("直方图"), HeaderDialog::IMG_HISTOGRAM);
 
 			if (dlgHist.PhotoLoaded())
 				dlg.DoModal();
@@ -5053,9 +5053,9 @@ void ExifView::ColumnRClick(int col_index)
 
 	menu.AppendMenu(MF_SEPARATOR);
 	if (CurrentItem())
-		menu.AppendMenu(MF_STRING, DEFINE_CUSTOM_COLUMNS, _T("Define Custom Columns\tShift+Ctrl+F"));
-	menu.AppendMenu(MF_STRING, ID_RESET_COLUMNS, _T("Reset Columns"));
-	menu.AppendMenu(MF_STRING, ID_RESET_COLUMN_ORDER, _T("Reset Column Order"));
+		menu.AppendMenu(MF_STRING, DEFINE_CUSTOM_COLUMNS, _T("自定义列\tShift+Ctrl+F"));
+	menu.AppendMenu(MF_STRING, ID_RESET_COLUMNS, _T("重置列"));
+	menu.AppendMenu(MF_STRING, ID_RESET_COLUMN_ORDER, _T("重置列顺序"));
 
 	CPoint cursor;
 	GetCursorPos(&cursor);
@@ -5146,7 +5146,7 @@ void ExifView::ContextMenu(CPoint pos, const String& path)
 	if (!path.empty())
 	{
 		popup->AppendMenu(MF_SEPARATOR);
-		popup->AppendMenu(MF_STRING, ID_BUILD_CATALOG_2, _T("&Build Image Catalog..."));
+		popup->AppendMenu(MF_STRING, ID_BUILD_CATALOG_2, _T("构建图像分类(&B)..."));
 		build_catalog_path_ = path;
 	}
 
@@ -5286,8 +5286,8 @@ void ExifView::RotatePhotos()
 		if (rotate_images.empty())
 		{
 			// none of selected images can be rotated
-			new BalloonMsg(&GetListCtrl(), _T("Selected Images Cannot Be Rotated"),
-				_T("Rotation of selected images is not supported."), BalloonMsg::IERROR);
+			new BalloonMsg(&GetListCtrl(), _T("选定的图像不能旋转"),
+				_T("选定的图像不支持旋转."), BalloonMsg::IERROR);
 			return;
 		}
 
@@ -5467,8 +5467,8 @@ void ExifView::OnTaskCopyTagged()
 
 		if (tagged_photos.empty())
 		{
-			new BalloonMsg(&GetListCtrl(), _T("There Are No Tagged Photographs"),
-				_T("Please press 'Tagging' button and assign tags first."), BalloonMsg::IERROR);
+			new BalloonMsg(&GetListCtrl(), _T("没有标记的照片"),
+				_T("请先给图片进行标记."), BalloonMsg::IERROR);
 			return;
 		}
 
@@ -5581,7 +5581,7 @@ extern void OpenPhotograph(const TCHAR* photo_path, CWnd* wnd, bool raw_photo)
 		::ShellExecute(*wnd, _T("open"), app, file.c_str(), dir.c_str(), SW_SHOW);
 	}
 	else
-		wnd->MessageBox(_T("Please first select application for opening images\nin the options dialog."), 0, MB_OK);
+		wnd->MessageBox(_T("请在选项对话框里选择用于打开图像的应用程序."), 0, MB_OK);
 }
 
 

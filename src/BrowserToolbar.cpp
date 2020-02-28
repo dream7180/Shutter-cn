@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -84,7 +84,7 @@ namespace {
 	float lightness= +0.15f;
 }
 
-const static wchar_t LABEL[]= L"Panels";
+const static wchar_t LABEL[]= L"面板";
 
 
 bool BrowserToolbar::Create(CWnd* parent, UINT id1, UINT id2, UINT rebar_band_id)

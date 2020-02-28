@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -22,7 +22,7 @@ void FileOperation(const VectPhotoInfo& photos, bool copy, String destPath, CWnd
 		String dest_path = profileDestPath;
 //		FileOperDlg dlg(copy, dest_path.c_str(), this);
 		CopyMoveDlg dlg(copy, destPath.c_str(), parent);
-		HeaderDialog dlgHdr(dlg, copy ? _T("Copy") : _T("Move"), copy ? HeaderDialog::IMG_COPY : HeaderDialog::IMG_MOVE, parent);
+		HeaderDialog dlgHdr(dlg, copy ? _T("复制") : _T("移动"), copy ? HeaderDialog::IMG_COPY : HeaderDialog::IMG_MOVE, parent);
 		if (dlgHdr.DoModal() != IDOK)
 			return;
 

@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -202,9 +202,9 @@ bool ExtractJpegDlg::Finish()
 	if (!suffix_.IsEmpty())
 		if (suffix_.FindOneOf(PathIllegalChars()) >= 0)
 		{
-			String msg= _T("Suffix text cannot contain any of the following characters: ");
+			String msg= _T("后缀文本不能包含以下字符: ");
 			msg += PathIllegalChars();
-			new BalloonMsg(&suffix_edit_, _T("Illegal Characters"), msg.c_str(), BalloonMsg::IERROR);
+			new BalloonMsg(&suffix_edit_, _T("非法字符"), msg.c_str(), BalloonMsg::IERROR);
 			return false;
 		}
 
@@ -218,8 +218,8 @@ bool ExtractJpegDlg::Finish()
 	{
 		if (path.empty())
 		{
-			new BalloonMsg(&dest_path_combo_, _T("Missing Destination Folder"),
-				_T("Please specify folder where resized images will be stored."), BalloonMsg::IERROR);
+			new BalloonMsg(&dest_path_combo_, _T("目标文件夹缺失"),
+				_T("请指定调整尺寸后的图像的储存文件夹."), BalloonMsg::IERROR);
 			return false;
 		}
 	}

@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -157,7 +157,7 @@ bool ImageManipulationDlg::InitDialog()
 		{
 			// message and bail
 			//
-			MessageBox(_T("Cannot load selected photograph."));
+			MessageBox(_T("未能载入选定的照片."));
 
 			EndDialog(IDCANCEL);
 			return true;
@@ -191,10 +191,10 @@ bool ImageManipulationDlg::InitDialog()
 	}
 
 	tab_wnd_.SetImageList(&image_list_);
-	tab_wnd_.InsertItem(0, _T("Image Levels"), 0);
-	tab_wnd_.InsertItem(1, _T("Brightness/Contrast"), 1);
-	tab_wnd_.InsertItem(2, _T("Color Balance"), 2);
-	tab_wnd_.InsertItem(3, _T("Image Crop"), 3);
+	tab_wnd_.InsertItem(0, _T("图像级别"), 0);
+	tab_wnd_.InsertItem(1, _T("亮度/对比度"), 1);
+	tab_wnd_.InsertItem(2, _T("色彩平衡"), 2);
+	tab_wnd_.InsertItem(3, _T("图像裁切"), 3);
 
 	tab_wnd_.ModifyStyle(0, WS_CLIPCHILDREN);
 	tab_wnd_.ModifyStyleEx(0, WS_EX_CONTROLPARENT);
@@ -551,8 +551,8 @@ void ImageManipulationDlg::OnOK()
 	if (effect_stack_.empty())
 	{
 		// there's nothing to do
-		new BalloonMsg(&tab_wnd_, _T("No Transformations Selected"),
-			_T("Please select desired image transformation before proceeding."), BalloonMsg::IWARNING);
+		new BalloonMsg(&tab_wnd_, _T("没有选择任何变化"),
+			_T("处理前请选择想要的图像变化."), BalloonMsg::IWARNING);
 		return;
 	}
 
@@ -585,8 +585,8 @@ void ImageManipulationDlg::OnOK()
 			//TODO: lift this limitation... (use temp copy)
 			if (_tcsicmp(params.dest_file_.c_str(), photos_.front()->GetPhysicalPath().c_str()) == 0)
 			{
-				new BalloonMsg(GetDlgItem(IDOK), _T("Cannot Overwrite Original Image"),
-					_T("Overwriting original image file is not supported."), BalloonMsg::IWARNING);
+				new BalloonMsg(GetDlgItem(IDOK), _T("不能改写源图像"),
+					_T("不支持改写源图像."), BalloonMsg::IWARNING);
 				return;
 			}
 		}
@@ -620,7 +620,7 @@ void ImageManipulationDlg::OnOK()
 
 		ImgProcessingPool proc(std::auto_ptr<ImgProcessingThread>(new CTransformationThread(photos_, transforms, params)));
 
-		ProcessingProgressDlg dlg(AfxGetMainWnd(), proc, _T("Transformation in Progress"), 0,
+		ProcessingProgressDlg dlg(AfxGetMainWnd(), proc, _T("变化处理中"), 0,
 			ProcessingProgressDlg::AUTO_CLOSE | ProcessingProgressDlg::INPUT_OUTPUT);
 
 		HideWnd temp(*GetParent());
@@ -641,7 +641,7 @@ void ImageManipulationDlg::OnOK()
 			else
 			{
 				// prepare error msg
-				String str= _T("Cannot process file:\n") + photo.path_;
+				String str= _T("不能处理文件:\n") + photo.path_;
 				MessageBox(str.c_str());
 			}
 		}
@@ -679,7 +679,7 @@ void ImageManipulationDlg::OnOK()
 
 				if (!encoder.Encode(fdest, &dib, &exif))
 				{
-					MessageBox(_T("Error encoding JPEG file."));
+					MessageBox(_T("解码 JPEG 文件出错."));
 					return;
 				}
 			}
@@ -687,7 +687,7 @@ void ImageManipulationDlg::OnOK()
 			{
 				// message and bail
 				//
-				MessageBox(_T("Cannot load selected photograph."));
+				MessageBox(_T("不能载入选定的照片."));
 				return;
 			}
 		}

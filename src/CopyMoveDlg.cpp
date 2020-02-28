@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -181,8 +181,8 @@ BOOL CopyMoveDlg::InitDialog()
 
 	SubclassHelpBtn(impl_.copy_operation_ ? _T("ToolCopy.htm") : _T("ToolMove.htm"));
 
-	SetWindowText(impl_.copy_operation_ ? _T("Copy Photographs") : _T("Move Photographs"));
-	btn_ok_.SetWindowText(impl_.copy_operation_ ? _T("Copy") : _T("Move"));
+	SetWindowText(impl_.copy_operation_ ? _T("复制照片") : _T("移动照片"));
+	btn_ok_.SetWindowText(impl_.copy_operation_ ? _T("复制") : _T("移动"));
 
 	COLORREF dark= ::CalcShade(::GetSysColor(COLOR_3DFACE), -21.5f);
 	impl_.recent_.SetBackgndColor(dark);
@@ -369,7 +369,7 @@ void CopyMoveDlg::OnBrowse()
 
 	CFolderSelect fs(this);
 	ItemIdList folder(path_);
-	if (!fs.DoSelect(_T("Select destination folder"), folder))
+	if (!fs.DoSelect(_T("选择目标文件夹"), folder))
 		return;
 //	CString path= fs.DoSelectPath(_T("Select destination folder")/*RString(IDS_SELECT_DEST)*/, path_);
 
@@ -425,7 +425,7 @@ void CopyMoveDlg::OnOK()
 		if (!::PathCanonicalize(path, str))
 		{
 			// error
-			new BalloonMsg(&impl_.edit_path_, _T("Invalid Path"), _T("Destination path is not valid."), BalloonMsg::IERROR);
+			new BalloonMsg(&impl_.edit_path_, _T("路径无效"), _T("目标路径不可用."), BalloonMsg::IERROR);
 			return;
 		}
 
@@ -439,7 +439,7 @@ void CopyMoveDlg::OnOK()
 
 			if (!::PathIsDirectory(buf))
 			{
-				new BalloonMsg(&impl_.edit_path_, _T("Invalid Path"), _T("Destination path is not valid."), BalloonMsg::IERROR);
+				new BalloonMsg(&impl_.edit_path_, _T("路径无效"), _T("目标路径不可用."), BalloonMsg::IERROR);
 				return;
 			}
 
@@ -447,7 +447,7 @@ void CopyMoveDlg::OnOK()
 			if (!::CreateDirectory(path, 0))
 			{
 				// error
-				new BalloonMsg(&impl_.edit_path_, _T("Cannot Create Folder"), _T("Specified folder cannot be created."),
+				new BalloonMsg(&impl_.edit_path_, _T("创建文件夹失败"), _T("指定的文件夹未能创建."),
 					BalloonMsg::IERROR);
 				return;
 			}
