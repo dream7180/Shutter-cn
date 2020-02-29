@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -108,7 +108,7 @@ BOOL ProcessingProgressDlg::OnInitDialog()
 
 		est_time_left_.Start();
 		last_update_ = ::GetTickCount();
-		time_left_.SetWindowText(L"Calculating...");
+		time_left_.SetWindowText(L"计算中...");
 		SetProgressBar(0, 0);
 
 		photo_wnd_.SetWindowText(L"-");
@@ -193,11 +193,11 @@ void ProcessingProgressDlg::EnableSlideShowBtn()
 
 	if (!slide_show_->Finish())	// generate slide show app
 	{
-		photo_wnd_.SetWindowText(_T("Writing slide show failed."));
+		photo_wnd_.SetWindowText(_T("写入幻灯片失败."));
 	}
 	else
 	{
-		SetDlgItemText(IDC_LABEL_3, L"Slide Show:");
+		SetDlgItemText(IDC_LABEL_3, L"幻灯片:");
 		CString written;
 		written.Format(_T("%d KB"),
 			/*static_cast<const TCHAR*>(slide_show_->GetSlideShowApp()),*/ static_cast<int>(slide_show_->GetSlideShowSize() / 1024));
@@ -351,7 +351,7 @@ LRESULT ProcessingProgressDlg::OnException(WPARAM index_file, LPARAM message)
 		std::auto_ptr<String> s(reinterpret_cast<String*>(message));
 		//todo: error dialog, more exception details
 //		AfxMessageBox(s->c_str(), MB_OK | MB_ICONERROR);
-		::DisplayErrorDialog(this, L"File processing failed.", s->c_str());
+		::DisplayErrorDialog(this, L"文件处理失败.", s->c_str());
 	}
 
 	return 0;

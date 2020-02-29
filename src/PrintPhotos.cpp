@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -108,19 +108,19 @@ bool PrintPhotos::PrintFn(CDC& dc, CRect page_rect, VectPhotoInfo& photos, int p
 	catch (ColorException& ex)
 	{
 		oStringstream ost;
-		ost << _T("Color management printing error: ") << ex.GetErrorCode() << std::endl << std::endl;
+		ost << _T("色彩管理打印错误: ") << ex.GetErrorCode() << std::endl << std::endl;
 		ost << _T("\"") << ex.GetMessage() << _T("\"");
 		AfxMessageBox(ost.str().c_str(), MB_OK | MB_ICONERROR);
 	}
 	catch (ImageStat status)
 	{
 		oStringstream ost;
-		ost << _T("Error reading image file:") << std::endl << ImageStatMsg(status);
+		ost << _T("读取图像文件出错:") << std::endl << ImageStatMsg(status);
 		AfxMessageBox(ost.str().c_str(), MB_OK | MB_ICONERROR);
 	}
 	catch (...)
 	{
-		AfxMessageBox(_T("Fatal error encountered while printing images."), MB_OK | MB_ICONERROR);
+		AfxMessageBox(_T("打印时遇到致命错误."), MB_OK | MB_ICONERROR);
 	}
 	return false;
 }

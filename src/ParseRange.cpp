@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -210,19 +210,19 @@ String ParseRange::GetErrMessage(Status stat)
 		break;
 
 	case UNEXPECTED_CHAR:
-		return _T("Unexpected character encountered");
+		return _T("遇到非法字符");
 
 	case EXPECTED_NUM:
-		return _T("Missing expected number");
+		return _T("缺少需要的数字");
 
 	case NUM_RANGE_ERR:
-		return _T("Number out of range");
+		return _T("数字超出范围");
 
 	case OUT_OF_MEM:
-		return _T("Out of memory");
+		return _T("内存溢出");
 
 	case WRONG_RANGE:
-		return _T("Second number in range greater than first");
+		return _T("第二个数字在范围内大于第一个");
 
 	default:
 		ASSERT(false);

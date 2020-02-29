@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -169,7 +169,7 @@ BOOL CRotateDlg::OnInitDialog()
 	SubclassHelpBtn(_T("ToolRotate.htm"));
 
 	if (all_)
-		SetDlgItemText(IDOK, L"Rotate All!");
+		SetDlgItemText(IDOK, L"全部旋转!");
 
 	GetDlgItemText(IDOK, original_ok_btn_text_);
 

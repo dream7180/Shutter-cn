@@ -118,7 +118,7 @@ static const ColDef g_column_definitions[]=
 	{ _T("光圈"),					_T("光圈"),				_T(""),		LVCFMT_LEFT,	 60 },
 	{ _T("镜头类型"),					_T("镜头类型"),			_T(""),		LVCFMT_LEFT,	 70 },
 	{ _T("手动对焦距离"),		_T("MF 距离"),			_T(""),		LVCFMT_RIGHT,	 60 },
-	{ _T("数字变焦"),				_T("数字变焦"),			_T(""),		LVCFMT_RIGHT,	 60 },
+	{ _T("数码变焦"),				_T("数码变焦"),			_T(""),		LVCFMT_RIGHT,	 60 },
 	{ _T("自动对焦位置"),		_T("AF 位置"),			_T(""),		LVCFMT_LEFT,	 60 },
 
 	// Fuji
@@ -147,7 +147,7 @@ static const ColDef g_column_definitions[]=
 	{ _T("特殊模式"),				_T("特殊模式"),			_T(""),		LVCFMT_LEFT,	 90 },
 	{ _T("JPEG 品质"),				_T("JPEG 品质"),			_T(""),		LVCFMT_LEFT,	 70 },
 	{ _T("微距模式"),					_T("微距"),				_T(""),		LVCFMT_LEFT,	 60 },
-	{ _T("数字变焦"),				_T("数字变焦"),			_T(""),		LVCFMT_LEFT,	 65 },
+	{ _T("数码变焦"),				_T("数码变焦"),			_T(""),		LVCFMT_LEFT,	 65 },
 	{ _T("软件版本"),			_T("软件版本"),		_T(""),		LVCFMT_LEFT,	 60 },
 	{ _T("图像信息"),				_T("图像信息"),			_T(""),		LVCFMT_LEFT,	 70 },
 	{ _T("相机编号"),					_T("相机编号"),			_T(""),		LVCFMT_LEFT,	 70 }

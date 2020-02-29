@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -43,7 +43,7 @@ bool PhotoAttrAccess::Open(bool silent)
 	{
 		if (!silent)
 		{
-			String msg= _T("Photograph '") + path_ + _T("'\ncannot be opened for writing.");
+			String msg= _T("照片 '") + path_ + _T("'\n未能打开以写入.");
 			parent_->MessageBox(msg.c_str(), 0, MB_OK);
 		}
 		return false;

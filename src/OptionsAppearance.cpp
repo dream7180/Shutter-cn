@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -151,12 +151,12 @@ struct OptionsAppearance::Impl : GridCtrlNotification, PhotoCtrlNotification
 			{
 				//_T("Background"),
 				//_T("Text"),
-				_T("Selection"),
+				_T("选定项"),
 				//_T("Selected Text"),
 				//_T("Disabled Text"),
-				_T("Tag Background"),
-				_T("Tag Text"),
-				_T("Tag Font")//,
+				_T("标记背景"),
+				_T("标记文本"),
+				_T("标记字体")//,
 				//_T("Sorting Column"),
 				//_T("Group Separator"),
 				//_T("Tile Dim Text"),
@@ -182,14 +182,14 @@ struct OptionsAppearance::Impl : GridCtrlNotification, PhotoCtrlNotification
 
 			static const TCHAR* names[]=
 			{
-				_T("Background"),
-				_T("Description Text"),
-				_T("Description Font"),
-				_T("Preview Bar Brightness"),
+				_T("背景"),
+				_T("描述文本"),
+				_T("描述字体"),
+				_T("预览栏亮度"),
 			//	_T("Reserved, unused"),
-				_T("Selected Photo"),
-				_T("Tag Background"),
-				_T("Tag Text"),
+				_T("选定的照片"),
+				_T("标记背景"),
+				_T("标记文本"),
 				0
 			};
 
@@ -242,9 +242,9 @@ struct OptionsAppearance::Impl : GridCtrlNotification, PhotoCtrlNotification
 
 		ui_items_.SetHost(this);
 
-		ui_items_.InsertColumn(0, _T("UI Element"), LVCFMT_LEFT, Pixels(140));
-		ui_items_.InsertColumn(1, _T("Use Defaults"), LVCFMT_CENTER, Pixels(80), 0);
-		ui_items_.InsertColumn(2, _T("Current Setting"), LVCFMT_LEFT, Pixels(170), 0);
+		ui_items_.InsertColumn(0, _T("UI 元素"), LVCFMT_LEFT, Pixels(140));
+		ui_items_.InsertColumn(1, _T("使用默认值"), LVCFMT_CENTER, Pixels(80), 0);
+		ui_items_.InsertColumn(2, _T("当前设置"), LVCFMT_LEFT, Pixels(170), 0);
 	}
 
 	// notifications from the grid ctrl
@@ -516,9 +516,9 @@ void OptionsAppearance::ChangeActiveElement()
 const TCHAR* StyleName(const LOGFONT& lf)
 {
 	if (lf.lfWeight >= FW_BOLD)
-		return lf.lfItalic ? _T("Bold Italic") : _T("Bold");
+		return lf.lfItalic ? _T("粗斜体") : _T("粗体");
 	else
-		return lf.lfItalic ? _T("Italic") : _T("Regular");
+		return lf.lfItalic ? _T("斜体") : _T("常规");
 }
 
 
@@ -536,7 +536,7 @@ void OptionsAppearance::Impl::GetCellText(GridCtrl& ctrl, size_t row, size_t col
 	else if (col == 1)
 	{
 		if (el.use_custom)
-			text = *el.use_custom ? _T("Custom") : _T("Default");
+			text = *el.use_custom ? _T("自定义") : _T("默认");
 		else
 			text = _T("-");
 	}

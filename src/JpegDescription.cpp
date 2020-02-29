@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -182,7 +182,7 @@ bool InsertUserDesc(PhotoInfo& inf, const wstring& description, bool silent, CWn
 	{
 		// original file restored; warn about failed InsertUserDescHelper()
 		CString msg;
-		msg.Format(_T("An attempt to modify file %s failed."), path.c_str());
+		msg.Format(_T("尝试修改文件 %s 失败."), path.c_str());
 		parent->MessageBox(msg, 0, MB_OK | MB_ICONERROR);
 	}
 

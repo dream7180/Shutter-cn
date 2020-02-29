@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -123,10 +123,10 @@ BOOL OptionsFileTypes::InitDialog()
 
 	types_wnd_.SetExtendedStyle(LVS_EX_CHECKBOXES | LVS_EX_FULLROWSELECT);
 
-	types_wnd_.InsertColumn(0, _T("File Type"), LVCFMT_LEFT, Pixels(190));
-	types_wnd_.InsertColumn(1, _T("Extension"), LVCFMT_LEFT, Pixels(80));
-	types_wnd_.InsertColumn(2, _T("Marker"), LVCFMT_LEFT, Pixels(55));
-	types_wnd_.InsertColumn(3, _T("No EXIF"), LVCFMT_LEFT, Pixels(57));
+	types_wnd_.InsertColumn(0, _T("文件类型"), LVCFMT_LEFT, Pixels(190));
+	types_wnd_.InsertColumn(1, _T("扩展名"), LVCFMT_LEFT, Pixels(80));
+	types_wnd_.InsertColumn(2, _T("厂商"), LVCFMT_LEFT, Pixels(55));
+	types_wnd_.InsertColumn(3, _T("无 EXIF"), LVCFMT_LEFT, Pixels(57));
 
 	const auto count= g_Settings.file_types_.size();
 	no_marker_entry_ = static_cast<int>(count - 1);	// catalog files have no markers of its own
@@ -277,14 +277,14 @@ void OptionsFileTypes::OnGetDispInfo(NMHDR* nmhdr, LRESULT* result)
 
 		case 2:		// type marker
 			if (disp_info->item.iItem != no_marker_entry_)
-				_tcsncpy(disp_info->item.pszText, markers_[disp_info->item.iItem] ? _T("show") : _T("hide"), disp_info->item.cchTextMax);
+				_tcsncpy(disp_info->item.pszText, markers_[disp_info->item.iItem] ? _T("显示") : _T("隐藏"), disp_info->item.cchTextMax);
 			else
 				_tcscpy(disp_info->item.pszText, _T("-"));
 			break;
 
 		case 3:		// no EXIF indicator
 			if (disp_info->item.iItem != no_marker_entry_)
-				_tcsncpy(disp_info->item.pszText, no_exif_[disp_info->item.iItem] ? _T("show") : _T("hide"), disp_info->item.cchTextMax);
+				_tcsncpy(disp_info->item.pszText, no_exif_[disp_info->item.iItem] ? _T("显示") : _T("隐藏"), disp_info->item.cchTextMax);
 			else
 				_tcscpy(disp_info->item.pszText, _T("-"));
 			break;

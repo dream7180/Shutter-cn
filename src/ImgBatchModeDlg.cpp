@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -70,9 +70,9 @@ bool ImgBatchModeDlg::Finish()
 	if (!suffix_.IsEmpty())
 		if (suffix_.FindOneOf(PathIllegalChars()) >= 0)
 		{
-			String msg= _T("Suffix text cannot contain any of the following characters: ");
+			String msg= _T("后缀文本不能包含以下字符: ");
 			msg += PathIllegalChars();
-			new BalloonMsg(&edit_suffix_, _T("Illegal Characters"), msg.c_str(), BalloonMsg::IERROR);
+			new BalloonMsg(&edit_suffix_, _T("非法字符"), msg.c_str(), BalloonMsg::IERROR);
 			return false;
 		}
 
@@ -80,8 +80,8 @@ bool ImgBatchModeDlg::Finish()
 	{
 		if (suffix_.IsEmpty())
 		{
-			new BalloonMsg(&edit_suffix_, _T("Empty Suffix"),
-				_T("Please enter suffix text, so the destination file names differ from the source file names."), BalloonMsg::IERROR);
+			new BalloonMsg(&edit_suffix_, _T("缺少后缀"),
+				_T("请输入后缀文本, 使目标文件名和原文件名不相同."), BalloonMsg::IERROR);
 			return false;
 		}
 	}
@@ -90,8 +90,8 @@ bool ImgBatchModeDlg::Finish()
 		Path path(dest_folder_str_);
 		if (path.empty())
 		{
-			new BalloonMsg(&edit_dest_path_, _T("Missing Destination Folder"),
-				_T("Please specify folder where transformed images will be stored."), BalloonMsg::IERROR);
+			new BalloonMsg(&edit_dest_path_, _T("缺少目标文件夹"),
+				_T("请指定被移动图像的储存文件夹."), BalloonMsg::IERROR);
 			return false;
 		}
 		else

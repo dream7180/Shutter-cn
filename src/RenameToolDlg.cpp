@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -105,7 +105,7 @@ std::vector<RenameRule>& GetFileRenamingRules()
 		for (size_t i= 0; i < count; ++i)
 		{
 			oStringstream ost;
-			ost << i + 1 << _T(". Renaming Rule");
+			ost << i + 1 << _T(". 命名规则");
 			rules[i].name_ = ost.str();
 			//TODO: examples
 
@@ -394,17 +394,17 @@ bool RenameToolDlg::Impl::InitDialog(CWnd* self)
 {
 	VERIFY(tab_.SubclassDlgItem(IDC_TAB, self));
 
-	tab_.InsertItem(0, _T("Pattern-based Rename"), 0);
-	tab_.InsertItem(1, _T("Advanced Rename"), 1);
+	tab_.InsertItem(0, _T("按预设重命名"), 0);
+	tab_.InsertItem(1, _T("高级重命名"), 1);
 
 	tab_.ModifyStyle(0, WS_CLIPCHILDREN);
 	tab_.ModifyStyleEx(0, WS_EX_CONTROLPARENT);
 
 	if (!basic_panel_.Create(&tab_))
-		throw "Pattern panel creation failed";
+		throw "预设面板创建失败";
 	basic_panel_.SetHost(this);
 	if (!advanced_panel_.Create(&tab_))
-		throw "Advanced panel creation failed";
+		throw "高级面板创建失败";
 	advanced_panel_.SetHost(this);
 
 	VERIFY(results_.SubclassDlgItem(IDC_LIST, self));
@@ -432,8 +432,8 @@ bool RenameToolDlg::Impl::InitDialog(CWnd* self)
 	if (w2 < min_width)
 		w2= min_width;
 	//TODO: calc width based on actual string
-	results_.InsertColumn(0, _T("Existing Name"), LVCFMT_LEFT, w1);
-	results_.InsertColumn(1, _T("New Name"), LVCFMT_LEFT, w2);
+	results_.InsertColumn(0, _T("当前名称"), LVCFMT_LEFT, w1);
+	results_.InsertColumn(1, _T("新名称"), LVCFMT_LEFT, w2);
 
 	//TODO:
 	//SetFooterDlg(&options_dlg_);
@@ -625,19 +625,19 @@ BOOL RenameToolDlg::OnGetToolTipInfo(UINT id, NMHDR* nmhdr, LRESULT* result)
 		switch (impl_->new_names_[line].error_)
 		{
 		case RenameFileThread::NoFile:
-			tip = L"Photograph is not available";
+			tip = L"照片不可用";
 			break;
 		case RenameFileThread::ReadOnlyFile:
-			tip = L"Photograph file is read-only";
+			tip = L"照片仅只读";
 			break;
 		case RenameFileThread::FileNameConflict:
-			tip = L"File with new name already exists";
+			tip = L"照片的新名称已存在";
 			break;
 		case RenameFileThread::DirNameConflict:
-			tip = L"Cannot use new name because there is a folder with such name already";
+			tip = L"不能使用新名称, 因为有一个文件夹已有相同名字";
 			break;
 		case RenameFileThread::InvalidPath:
-			tip = L"New path is too long";
+			tip = L"新路径过长";
 			break;
 		case RenameFileThread::OK:
 			break;	// no tool tip
@@ -647,25 +647,25 @@ BOOL RenameToolDlg::OnGetToolTipInfo(UINT id, NMHDR* nmhdr, LRESULT* result)
 		}
 		break;
 	case NewName::NameConflict:
-		tip = L"New name has already been used";
+		tip = L"新名称已被占用N";
 		break;
 	case NewName::InvalidName:
-		tip = L"Invalid file name";
+		tip = L"无效文件名";
 		break;
 	case NewName::InvalidPath:
-		tip = L"Invalid file path";
+		tip = L"无效文件路径";
 		break;
 	case NewName::NoFileName:
-		tip = L"Missing file name";
+		tip = L"缺少文件名";
 		break;
 	case NewName::NoFileNameExt:
-		tip = L"Missing file name extension";
+		tip = L"缺少文件扩展名";
 		break;
 	case NewName::NotAbsPath:
-		tip = L"Absolute path expected";
+		tip = L"需要绝对路径";
 		break;
 	case NewName::NoPath:
-		tip = L"Expected absolute path and a file name";
+		tip = L"需要绝对路径和文件名";
 		break;
 	default:
 		ASSERT(false);
@@ -904,7 +904,7 @@ bool RenameToolDlg::Impl::Finish(CDialog* self)
 		if (new_names_[i].status_ != NewName::OK)
 		{
 			// highlight error
-			new BalloonMsg(&results_, _T("Please Correct Problems"), L"Some files cannot be renamed.\nMouse over warning icon to see the details.", BalloonMsg::IERROR);
+			new BalloonMsg(&results_, _T("请修正问题"), L"部分文件未能重命名.\n鼠标移动到警告图标以查看详情.", BalloonMsg::IERROR);
 			return false;
 		}
 
@@ -1067,7 +1067,7 @@ LRESULT RenameToolDlg::OnRenameError(WPARAM indexFile, LPARAM message)
 			msg += impl_->photos_[indexFile]->GetPhysicalPath().c_str();
 		}
 
-		::DisplayErrorDialog(this, L"Changing file name failed.", msg);
+		::DisplayErrorDialog(this, L"更改文件名失败.", msg);
 	}
 
 	OnAbort();

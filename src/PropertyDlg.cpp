@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -492,52 +492,52 @@ void CPropertyDlg::Impl::InitDlg(DialogChild* wnd)
 	{
 		boost::ptr_vector<Field>& fields= fields1_;
 		fields.reserve(4);
-		fields.push_back(new Field(_T("Author"), &data_.Author));
-		fields.push_back(new Field(_T("Image Rating"), Field::STARS, &data_.ImageRating));
-		fields.push_back(new Field(_T("Copyright Notice"), 1, &data_.CopyrightNotice));
-		fields.push_back(new Field(_T("Keywords (Tags)"), 3, &data_.Keywords));
+		fields.push_back(new Field(_T("作者"), &data_.Author));
+		fields.push_back(new Field(_T("图像评级"), Field::STARS, &data_.ImageRating));
+		fields.push_back(new Field(_T("版权信息"), 1, &data_.CopyrightNotice));
+		fields.push_back(new Field(_T("关键字 (标记)"), 3, &data_.Keywords));
 	}
 	//-------------------------------------------------
 	{
 		boost::ptr_vector<Field>& fields= fields2_;
 		fields.reserve(14);
-		fields.push_back(new Field(_T("Description Writer"), &data_.DescriptionWriter));
-		fields.push_back(new Field(_T("Headline"), 2, &data_.Headline));
+		fields.push_back(new Field(_T("描述作者"), &data_.DescriptionWriter));
+		fields.push_back(new Field(_T("标题"), 2, &data_.Headline));
 		fields.push_back(new Field());
-		fields.push_back(new Field(_T("Creator's Job"), &data_.CreatorsJob));
-		fields.push_back(new Field(_T("Address"), 2, &data_.Address));
-		fields.push_back(new Field(_T("City"), &data_.City));
-		fields.push_back(new Field(_T("State"), &data_.State));
-		fields.push_back(new Field(_T("Postal Code"), &data_.PostalCode));
-		fields.push_back(new Field(_T("Country"), &data_.Country));
+		fields.push_back(new Field(_T("创作者工作"), &data_.CreatorsJob));
+		fields.push_back(new Field(_T("地址"), 2, &data_.Address));
+		fields.push_back(new Field(_T("城市"), &data_.City));
+		fields.push_back(new Field(_T("省"), &data_.State));
+		fields.push_back(new Field(_T("邮编"), &data_.PostalCode));
+		fields.push_back(new Field(_T("国家"), &data_.Country));
 		fields.push_back(new Field());
-		fields.push_back(new Field(_T("Phone"), 2, &data_.Phones));
-		fields.push_back(new Field(_T("E-mail"), 2, &data_.EMails));
-		fields.push_back(new Field(_T("Web Site"), 2, &data_.WebSites));
+		fields.push_back(new Field(_T("电话"), 2, &data_.Phones));
+		fields.push_back(new Field(_T("邮件"), 2, &data_.EMails));
+		fields.push_back(new Field(_T("网址"), 2, &data_.WebSites));
 	}
 	//-------------------------------------------------
 	{
 		boost::ptr_vector<Field>& fields= fields3_;
 		fields.reserve(18);
 	//	fields.push_back(new Field(_T("Title (Object Name)"), &data_.Title));
-		fields.push_back(new Field(_T("Document Title"), &data_.DocumentTitle));
-		fields.push_back(new Field(_T("Job Identifier"), &data_.JobIdentifier));
-		fields.push_back(new Field(_T("Instructions"), 3, &data_.Instructions));
-		fields.push_back(new Field(_T("Provider"), &data_.Provider));
-		fields.push_back(new Field(_T("Source"), &data_.Source));
-		fields.push_back(new Field(_T("Rights Usage Terms"), 3, &data_.RightsUsageTerms));
-		fields.push_back(new Field(_T("Copyright Info URL"), 2, &data_.CopyrightInfoURL));
+		fields.push_back(new Field(_T("文档标题"), &data_.DocumentTitle));
+		fields.push_back(new Field(_T("作业标识"), &data_.JobIdentifier));
+		fields.push_back(new Field(_T("说明"), 3, &data_.Instructions));
+		fields.push_back(new Field(_T("提供者"), &data_.Provider));
+		fields.push_back(new Field(_T("来源"), &data_.Source));
+		fields.push_back(new Field(_T("使用期限"), 3, &data_.RightsUsageTerms));
+		fields.push_back(new Field(_T("版权信息网址"), 2, &data_.CopyrightInfoURL));
 		fields.push_back(new Field());
-		fields.push_back(new Field(_T("Date Created"), Field::DATE_TIME, &data_.CreationDate));
-		fields.push_back(new Field(_T("Intellectual Genre"), &data_.IntellectualGenre));
-		fields.push_back(new Field(_T("Location"), &data_.Location));
-		fields.push_back(new Field(_T("City"), &data_.City2));
-		fields.push_back(new Field(_T("State/Province"), &data_.StateProvince));
-		fields.push_back(new Field(_T("Country"), &data_.Country2));
-		fields.push_back(new Field(_T("ISO Country Code"), &data_.ISOCountryCode));
+		fields.push_back(new Field(_T("创建日期"), Field::DATE_TIME, &data_.CreationDate));
+		fields.push_back(new Field(_T("流派"), &data_.IntellectualGenre));
+		fields.push_back(new Field(_T("位置"), &data_.Location));
+		fields.push_back(new Field(_T("城市"), &data_.City2));
+		fields.push_back(new Field(_T("省"), &data_.StateProvince));
+		fields.push_back(new Field(_T("国家"), &data_.Country2));
+		fields.push_back(new Field(_T("ISO 国家代码"), &data_.ISOCountryCode));
 		fields.push_back(new Field());
-		fields.push_back(new Field(_T("IPTC Scene"), 2, &data_.IPTCScene));
-		fields.push_back(new Field(_T("IPTC Subject Code"), 2, &data_.IPTCSubjectCode));
+		fields.push_back(new Field(_T("IPTC 场景"), 2, &data_.IPTCScene));
+		fields.push_back(new Field(_T("IPTC 主体代码"), 2, &data_.IPTCSubjectCode));
 	}
 
 	CFont* font= wnd->GetFont();
@@ -580,7 +580,7 @@ void CPropertyDlg::Impl::InitDlg(DialogChild* wnd)
 	else
 	{
 		ASSERT(false);
-		throw String(_T("Error creating description pane"));
+		throw String(_T("创建描述面板出错"));
 	}
 
 	unique.Reserve('d');	// &Description
@@ -591,10 +591,10 @@ void CPropertyDlg::Impl::InitDlg(DialogChild* wnd)
 
 	WriteToDlgControls();
 
-	dlg_container_.AddSubDialog(&panes_[0], 0, _T("Image Description"), expand_pane_0_);
-	dlg_container_.AddSubDialog(&panes_[1], 0, _T("Image Information"), expand_pane_1_);
-	dlg_container_.AddSubDialog(&panes_[2], 0, _T("IPTC Contact"), expand_pane_2_);
-	dlg_container_.AddSubDialog(&panes_[3], 0, _T("IPTC Information"), expand_pane_3_);
+	dlg_container_.AddSubDialog(&panes_[0], 0, _T("图像描述"), expand_pane_0_);
+	dlg_container_.AddSubDialog(&panes_[1], 0, _T("图像信息"), expand_pane_1_);
+	dlg_container_.AddSubDialog(&panes_[2], 0, _T("IPTC 联系"), expand_pane_2_);
+	dlg_container_.AddSubDialog(&panes_[3], 0, _T("IPTC 信息"), expand_pane_3_);
 
 //	ShowImage(photo_);
 }
@@ -872,9 +872,9 @@ void CPropertyDlg::PhotoLoaded(PhotoInfoPtr photo, const XmpData& data)
 		{
 			CString title;
 #ifdef _UNICODE
-			title.Format(_T("%s\x2014%d images selected"),
+			title.Format(_T("%s\x2014%d 图像被选定"),
 #else
-			title.Format(_T("%s - %d images selected"),
+			title.Format(_T("%s - %d 图像被选定"),
 #endif
 				static_cast<const TCHAR*>(pImpl_->title_), static_cast<int>(pImpl_->count_of_images_));
 

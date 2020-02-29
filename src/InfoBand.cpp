@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -272,18 +272,18 @@ void InfoBand::OptionsPopup(CPoint pos)
 		const int ID_ZOOM= 99997;
 		const int ID_NAME= 99996;
 
-		menu.InsertMenu(0, MF_BYPOSITION | MF_STRING, ID_ZOOM, _T("Zoom"));
+		menu.InsertMenu(0, MF_BYPOSITION | MF_STRING, ID_ZOOM, _T("缩放"));
 		if (show_zoom_)
 			menu.CheckMenuItem(ID_ZOOM, MF_BYCOMMAND | MF_CHECKED);
 
-		menu.InsertMenu(1, MF_BYPOSITION, ID_NAME, _T("Name && Count"));
+		menu.InsertMenu(1, MF_BYPOSITION, ID_NAME, _T("名称和数量"));
 		if (show_name_)
 			menu.CheckMenuItem(ID_NAME, MF_BYCOMMAND | MF_CHECKED);
 
 		menu.InsertMenu(2, MF_BYPOSITION | MF_SEPARATOR);
 		menu.AppendMenu(MF_SEPARATOR);
-		menu.AppendMenu(MF_STRING, ID_RESET_COLUMNS, _T("Reset to Defaults"));
-		menu.AppendMenu(MF_STRING | (show_field_names_ ? MF_CHECKED : 0), ID_SHOW_FIELD_NAMES, _T("Show Field Names"));
+		menu.AppendMenu(MF_STRING, ID_RESET_COLUMNS, _T("重置到默认值"));
+		menu.AppendMenu(MF_STRING | (show_field_names_ ? MF_CHECKED : 0), ID_SHOW_FIELD_NAMES, _T("显示字段名称"));
 
 		if (pos.x == -1 && pos.y == -1)
 			GetCursorPos(&pos);

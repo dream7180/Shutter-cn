@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -2138,14 +2138,14 @@ void CanonNote::RecordInfo(uint16 tag, const Data& val, OutputStr& output)
 	switch (tag)
 	{
 	case 0x01:
-		RecordTag(tag, _T("Camera Settings"), _T(""), output);
+		RecordTag(tag, _T("照相机设置"), _T(""), output);
 		output.Indent();
 			ReportTag1Info(val, output, data_);
 		output.Outdent();
 		break;
 
 	case 0x04:
-		RecordTag(tag, _T("Shot Info"), _T(""), output);
+		RecordTag(tag, _T("拍摄信息"), _T(""), output);
 		output.Indent();
 			ReportTag4Info(val, output, data_);
 		output.Outdent();
@@ -2153,29 +2153,29 @@ void CanonNote::RecordInfo(uint16 tag, const Data& val, OutputStr& output)
 
 	case 0x06:	// img type
 		data_.image_type_ = val.AsString();
-		RecordTag(tag, _T("Image Type"), data_.ImageType().c_str(), output);
+		RecordTag(tag, _T("图像类型"), data_.ImageType().c_str(), output);
 		break;
 	case 0x07:	// firmware version
 		data_.firmware_ = val.AsString();
-		RecordTag(tag, _T("Firmware"), data_.Firmware().c_str(), output);
+		RecordTag(tag, _T("紧固件"), data_.Firmware().c_str(), output);
 		break;
 	case 0x08:	// file number
-		RecordTag(tag, _T("File Number"), val.AsString().c_str(), output);
+		RecordTag(tag, _T("文件编号"), val.AsString().c_str(), output);
 		break;
 	case 0x09:	// owner name
 		data_.owner_name_ = val.AsString();
-		RecordTag(tag, _T("Owner Name"), data_.OwnerName().c_str(), output);
+		RecordTag(tag, _T("主人名字"), data_.OwnerName().c_str(), output);
 		break;
 	case 0x0c:	// camera serial no
 		data_.camera_body_number_ = val.GetData();
-		RecordTag(tag, _T("Camera Body Number"), data_.CameraBodyNumber().c_str(), output);
+		RecordTag(tag, _T("机身编号"), data_.CameraBodyNumber().c_str(), output);
 		break;
 	case 0x0e:	// file length
-		RecordTag(tag, _T("File Length"), val.AsString().c_str(), output);
+		RecordTag(tag, _T("文件长度"), val.AsString().c_str(), output);
 		break;
 
 	case 0x0f:	// custom functions
-		RecordTag(tag, _T("Custom Functions"), _T(""), output);
+		RecordTag(tag, _T("自定义功能"), _T(""), output);
 		output.Indent();
 		switch (model_)
 		{
@@ -2190,7 +2190,7 @@ void CanonNote::RecordInfo(uint16 tag, const Data& val, OutputStr& output)
 		break;
 
 	case 0x90:	// custom functions of EOS-1D
-		RecordTag(tag, _T("Custom Functions"), _T(""), output);
+		RecordTag(tag, _T("自定义功能"), _T(""), output);
 		output.Indent();
 			ReportTagFInfoEOS_1D(val, output);
 		output.Outdent();
@@ -2209,7 +2209,7 @@ void CanonNote::CompletePhotoInfo(PhotoInfo& photo) const
 	{
 		String iso= data_.ISO();
 
-		if (iso == _T("Auto"))
+		if (iso == _T("自动"))
 			photo.SetAutoISOSpeed();
 		else
 		{
@@ -2352,24 +2352,24 @@ String FujiNote::TagName(uint16 tag)
 
 	switch (tag)
 	{
-	case 0x0000: name = _T("Version");				break;
-	case 0x1000: name = _T("Quality");				break;
-	case 0x1001: name = _T("Sharpness");			break;
-	case 0x1002: name = _T("White Balance");		break;
-	case 0x1003: name = _T("Color");				break;
-	case 0x1004: name = _T("Tone");					break;
-	case 0x1010: name = _T("Flash Mode");			break;
-	case 0x1011: name = _T("Flash Strength");		break;
-	case 0x1020: name = _T("Macro");				break;
-	case 0x1021: name = _T("Focus Mode");			break;
-	case 0x1030: name = _T("Slow Sync");			break;
-	case 0x1031: name = _T("Picture Mode");			break;
-	case 0x1032: name = _T("unknown");				break;
-	case 0x1100: name = _T("ContinuesTake/Bracket");	break;
-	case 0x1200: name = _T("unknown");				break;
-	case 0x1300: name = _T("Blur Warning");			break;
-	case 0x1301: name = _T("Focus Warning");		break;
-	case 0x1302: name = _T("AE Warning");			break;
+	case 0x0000: name = _T("版本");				break;
+	case 0x1000: name = _T("品质");				break;
+	case 0x1001: name = _T("锐度");			break;
+	case 0x1002: name = _T("白平衡");		break;
+	case 0x1003: name = _T("色彩");				break;
+	case 0x1004: name = _T("色调");					break;
+	case 0x1010: name = _T("闪光模式");			break;
+	case 0x1011: name = _T("闪光强度");		break;
+	case 0x1020: name = _T("微距");				break;
+	case 0x1021: name = _T("对焦模式");			break;
+	case 0x1030: name = _T("低速同步");			break;
+	case 0x1031: name = _T("图像模式");			break;
+	case 0x1032: name = _T("未知");				break;
+	case 0x1100: name = _T("连拍/包围曝光");	break;
+	case 0x1200: name = _T("未知");				break;
+	case 0x1300: name = _T("模糊警告");			break;
+	case 0x1301: name = _T("对焦警示");		break;
+	case 0x1302: name = _T("AE 警告");			break;
 	}
 
 	return name;
@@ -2488,17 +2488,17 @@ String OlympusNote::TagName(uint16 tag)
 
 	switch (tag)
 	{
-	case 0x0200: name = _T("Special Mode");			break;
-	case 0x0201: name = _T("JPEG Quality");			break;
-	case 0x0202: name = _T("Macro");				break;
-	case 0x0203: name = _T("unknown");				break;
-	case 0x0204: name = _T("Digital Zoom");			break;
-	case 0x0205: name = _T("unknown");				break;
-	case 0x0206: name = _T("unknown");				break;
-	case 0x0207: name = _T("Software Release");		break;
-	case 0x0208: name = _T("Picture Info");			break;
-	case 0x0209: name = _T("Camera ID");			break;
-	case 0x0f00: name = _T("Data Dump");			break;
+	case 0x0200: name = _T("特殊模式");			break;
+	case 0x0201: name = _T("JPEG 品质");			break;
+	case 0x0202: name = _T("微距");				break;
+	case 0x0203: name = _T("未知");				break;
+	case 0x0204: name = _T("数码变焦");			break;
+	case 0x0205: name = _T("未知");				break;
+	case 0x0206: name = _T("未知");				break;
+	case 0x0207: name = _T("软件版本");		break;
+	case 0x0208: name = _T("图像信息");			break;
+	case 0x0209: name = _T("相机 ID");			break;
+	case 0x0f00: name = _T("数据转储");			break;
 	}
 
 	return name;
@@ -2553,28 +2553,28 @@ String CasioNote::TagName(uint16 tag)
 
 	switch (tag)
 	{
-	case 0x0001: name = _T("RecordingMode");	break;
-	case 0x0002: name = _T("Quality");			break;
-	case 0x0003: name = _T("FocusMode");		break;
-	case 0x0004: name = _T("FlashMode");		break;
-	case 0x0005: name = _T("FlashIntensity");	break;
-	case 0x0006: name = _T("ObjectDistance");	break;
-	case 0x0007: name = _T("WhiteBalance");		break;
+	case 0x0001: name = _T("录像模式");	break;
+	case 0x0002: name = _T("品质");			break;
+	case 0x0003: name = _T("对焦模式");		break;
+	case 0x0004: name = _T("闪光灯模式");		break;
+	case 0x0005: name = _T("闪光灯强度");	break;
+	case 0x0006: name = _T("主体距离");	break;
+	case 0x0007: name = _T("白平衡");		break;
 //	case 0x0008: name = _T("unknown");			break;
 //	case 0x0009: name = _T("unknown");			break;
-	case 0x000a: name = _T("DigitalZoom");		break;
-	case 0x000b: name = _T("Sharpness");		break;
-	case 0x000c: name = _T("Contrast");			break;
-	case 0x000d: name = _T("Saturation");		break;
+	case 0x000a: name = _T("数码变焦");		break;
+	case 0x000b: name = _T("锐度");		break;
+	case 0x000c: name = _T("对比度");			break;
+	case 0x000d: name = _T("饱和度");		break;
 //	case 0x000e: name = _T("unknown");			break;
 //	case 0x000f: name = _T("unknown");			break;
 //	case 0x0010: name = _T("unknown");			break;
 //	case 0x0011: name = _T("unknown");			break;
 //	case 0x0012: name = _T("unknown");			break;
 //	case 0x0013: name = _T("unknown");			break;
-	case 0x0014: name = _T("CCDSensitivity");	break;
+	case 0x0014: name = _T("CCD 感光度");	break;
 
-	default:	 name = _T("unknown");			break;
+	default:	 name = _T("未知");			break;
 	}
 
 	return name;
@@ -2590,11 +2590,11 @@ String CasioNote::TagValue(uint16 tag, const Data& value)
 	case 0x0001:
 		switch (value.GetData())
 		{
-		case 1: val = _T("Single shutter");	break;
-		case 2: val = _T("Panorama");		break;
-		case 3: val = _T("Night scene");	break;
-		case 4: val = _T("Portrait");		break;
-		case 5: val = _T("Landscape");		break;
+		case 1: val = _T("单次快门");	break;
+		case 2: val = _T("全景");		break;
+		case 3: val = _T("夜景");	break;
+		case 4: val = _T("肖像");		break;
+		case 5: val = _T("风景");		break;
 		default: val = _T('(') + value.AsString() + _T(')');	break;
 		}
 		return val;
@@ -2602,9 +2602,9 @@ String CasioNote::TagValue(uint16 tag, const Data& value)
 	case 0x0002:
 		switch (value.GetData())
 		{
-		case 1: val = _T("Economy");	break;
-		case 2: val = _T("Normal");		break;
-		case 3: val = _T("Fine");		break;
+		case 1: val = _T("粗糙");	break;
+		case 2: val = _T("正常");		break;
+		case 3: val = _T("精细");		break;
 		default: val = _T('(') + value.AsString() + _T(')');	break;
 		}
 		return val;
@@ -2612,10 +2612,10 @@ String CasioNote::TagValue(uint16 tag, const Data& value)
 	case 0x0003:
 		switch (value.GetData())
 		{
-		case 2: val = _T("Macro");		break;
-		case 3: val = _T("Auto");		break;
-		case 4: val = _T("Manual");		break;
-		case 5: val = _T("Infinity");	break;
+		case 2: val = _T("微距");		break;
+		case 3: val = _T("自动");		break;
+		case 4: val = _T("手动");		break;
+		case 5: val = _T("无穷远");	break;
 		default: val = _T('(') + value.AsString() + _T(')');	break;
 		}
 		return val;
@@ -2623,10 +2623,10 @@ String CasioNote::TagValue(uint16 tag, const Data& value)
 	case 0x0004:
 		switch (value.GetData())
 		{
-		case 1: val = _T("Auto");	break;
-		case 2: val = _T("On");		break;
-		case 3: val = _T("Off");	break;
-		case 4: val = _T("Red-eye reduction");	break;
+		case 1: val = _T("自动");	break;
+		case 2: val = _T("打开");		break;
+		case 3: val = _T("关闭");	break;
+		case 4: val = _T("消除红眼");	break;
 		default: val = _T('(') + value.AsString() + _T(')');	break;
 		}
 		return val;
@@ -2634,9 +2634,9 @@ String CasioNote::TagValue(uint16 tag, const Data& value)
 	case 0x0005:
 		switch (value.GetData())
 		{
-		case 11: val = _T("Weak");		break;
-		case 13: val = _T("Normal");	break;
-		case 15: val = _T("Strong");	break;
+		case 11: val = _T("弱");		break;
+		case 13: val = _T("正常");	break;
+		case 15: val = _T("强");	break;
 		default: val = _T('(') + value.AsString() + _T(')');	break;
 		}
 		return val;
@@ -2644,12 +2644,12 @@ String CasioNote::TagValue(uint16 tag, const Data& value)
 	case 0x0007:
 		switch (value.GetData())
 		{
-		case 1: val = _T("Auto");			break;
-		case 2: val = _T("Tungsten");		break;
-		case 3: val = _T("Daylight");		break;
-		case 4: val = _T("Fluorescent");	break;
-		case 5: val = _T("Shade");			break;
-		case 129: val = _T("Manual");		break;
+		case 1: val = _T("自动");			break;
+		case 2: val = _T("钨灯");		break;
+		case 3: val = _T("日光灯");		break;
+		case 4: val = _T("荧光灯");	break;
+		case 5: val = _T("阴影");			break;
+		case 129: val = _T("手动");		break;
 		default: val = _T('(') + value.AsString() + _T(')');	break;
 		}
 		return val;
@@ -2657,7 +2657,7 @@ String CasioNote::TagValue(uint16 tag, const Data& value)
 	case 0x000a:
 		switch (value.GetData())
 		{
-		case 65536: val = _T("Off");	break;
+		case 65536: val = _T("关闭");	break;
 		case 65537: val = _T("x2");		break;
 		default: val = _T('(') + value.AsString() + _T(')');	break;
 		}
@@ -2666,9 +2666,9 @@ String CasioNote::TagValue(uint16 tag, const Data& value)
 	case 0x000b:
 		switch (value.GetData())
 		{
-		case 0: val = _T("Normal");		break;
-		case 1: val = _T("Soft");		break;
-		case 2: val = _T("Hard");		break;
+		case 0: val = _T("正常");		break;
+		case 1: val = _T("柔和");		break;
+		case 2: val = _T("锐利");		break;
 		default: val = _T('(') + value.AsString() + _T(')');	break;
 		}
 		return val;
@@ -2676,9 +2676,9 @@ String CasioNote::TagValue(uint16 tag, const Data& value)
 	case 0x000c:
 		switch (value.GetData())
 		{
-		case 0: val = _T("Normal");		break;
-		case 1: val = _T("Low");		break;
-		case 2: val = _T("High");		break;
+		case 0: val = _T("正常");		break;
+		case 1: val = _T("低");		break;
+		case 2: val = _T("高");		break;
 		default: val = _T('(') + value.AsString() + _T(')');	break;
 		}
 		return val;
@@ -2686,9 +2686,9 @@ String CasioNote::TagValue(uint16 tag, const Data& value)
 	case 0x000d:
 		switch (value.GetData())
 		{
-		case 0: val = _T("Normal");		break;
-		case 1: val = _T("Low");		break;
-		case 2: val = _T("High");		break;
+		case 0: val = _T("正常");		break;
+		case 1: val = _T("低");		break;
+		case 2: val = _T("高");		break;
 		default: val = _T('(') + value.AsString() + _T(')');	break;
 		}
 		return val;
@@ -2696,12 +2696,12 @@ String CasioNote::TagValue(uint16 tag, const Data& value)
 	case 0x0014:
 		switch (value.GetData())
 		{
-		case 64:  val = _T("Normal");	break;
+		case 64:  val = _T("正常");	break;
 		case 125: val = _T("+1.0");		break;
 		case 250: val = _T("+2.0");		break;
 		case 244: val = _T("+3.0");		break;
-		case 80:  val = _T("Normal");	break;
-		case 100: val = _T("High");		break;
+		case 80:  val = _T("正常");	break;
+		case 100: val = _T("高");		break;
 		default:  val = _T('(') + value.AsString() + _T(')');	break;
 		}
 		return val;
@@ -2780,36 +2780,36 @@ String Casio2Note::TagName(uint16 tag)
 
 	switch (tag)
 	{
-	case 0x0002: name = _T("Preview Thumbnail Dimensions");	break;
-	case 0x0003: name = _T("Preview Thumbnail Size");		break;
-	case 0x0004: name = _T("Preview Thumbnail Offset");		break;
-	case 0x0008: name = _T("Quality Mode");					break;
-	case 0x0009: name = _T("Image Size");					break;
-	case 0x000d: name = _T("Focus Mode");					break;
-	case 0x0014: name = _T("ISO Sensitivity");				break;
-	case 0x0019: name = _T("White Balance");				break;
-	case 0x001d: name = _T("Focal Length");					break;
-	case 0x001f: name = _T("Saturation");					break;
-	case 0x0020: name = _T("Contrast");						break;
-	case 0x0021: name = _T("Sharpness");					break;
-	case 0x0e00: name = _T("Print Image Matching Info");	break;
-	case 0x2000: name = _T("Casio Preview Thumbnail");		break;
-	case 0x2011: name = _T("White Balance Bias");			break;
-	case 0x2012: name = _T("White Balance");				break;
-	case 0x2022: name = _T("Object Distance");				break;
-	case 0x2034: name = _T("Flash Distance");				break;
-	case 0x3000: name = _T("Record Mode");					break;
-	case 0x3001: name = _T("Self Timer");					break;
-	case 0x3002: name = _T("Quality");						break;
-	case 0x3003: name = _T("Focus Mode");					break;
-	case 0x3006: name = _T("Time Zone");					break;
-	case 0x3007: name = _T("BestShot Mode");				break;
-	case 0x3014: name = _T("CCD ISO Sensitivity");			break;
-	case 0x3015: name = _T("Color Mode");					break;
-	case 0x3016: name = _T("Enhancement");					break;
-	case 0x3017: name = _T("Filter");						break;
+	case 0x0002: name = _T("预览缩略图尺寸");	break;
+	case 0x0003: name = _T("预览缩略图大小");		break;
+	case 0x0004: name = _T("预览缩略图偏移");		break;
+	case 0x0008: name = _T("品质");					break;
+	case 0x0009: name = _T("图像大小");					break;
+	case 0x000d: name = _T("对焦模式");					break;
+	case 0x0014: name = _T("感光度");				break;
+	case 0x0019: name = _T("白平衡");				break;
+	case 0x001d: name = _T("焦距");					break;
+	case 0x001f: name = _T("饱和度");					break;
+	case 0x0020: name = _T("对比度");						break;
+	case 0x0021: name = _T("锐度");					break;
+	case 0x0e00: name = _T("打印图像匹配信息");	break;
+	case 0x2000: name = _T("卡西欧预览缩略图");		break;
+	case 0x2011: name = _T("白平衡补偿");			break;
+	case 0x2012: name = _T("白平衡");				break;
+	case 0x2022: name = _T("主体距离");				break;
+	case 0x2034: name = _T("闪光距离");				break;
+	case 0x3000: name = _T("记录模式");					break;
+	case 0x3001: name = _T("自拍定时");					break;
+	case 0x3002: name = _T("品质");						break;
+	case 0x3003: name = _T("对焦模式");					break;
+	case 0x3006: name = _T("时区");					break;
+	case 0x3007: name = _T("最佳拍摄模式");				break;
+	case 0x3014: name = _T("CCD 感光度");			break;
+	case 0x3015: name = _T("色彩模式");					break;
+	case 0x3016: name = _T("增强");					break;
+	case 0x3017: name = _T("滤镜");						break;
 
-	default:	 name = _T("unknown");						break;
+	default:	 name = _T("未知");						break;
 	}
 
 	return name;
@@ -2876,40 +2876,40 @@ String PentaxNote::TagName(uint16 tag)
 {
 	switch (tag)
 	{
-	case 0x02:	return _T("Thumbnail Dimensions");
-	case 0x06:	return _T("Date");
-	case 0x07:	return _T("Time");
-	case 0x08:	return _T("Quality Mode");
-	case 0x0d:	return _T("Focus Mode");
-	case 0x0f:	return _T("Auto Focus Point");
-	case 0x10:	return _T("Focus Position");
-	case 0x12:	return _T("Exposure Time");
-	case 0x13:	return _T("FNumber");
-	case 0x16:	return _T("Exposure Compensation");
-	case 0x17:	return _T("Metering Mode");
-	case 0x19:	return _T("White Balance");
-	case 0x1a:	return _T("White Balance Mode");
-	case 0x1b:	return _T("Blue Balance");
-	case 0x1c:	return _T("Red Balance");
-	case 0x1d:	return _T("Focal Length");
-	case 0x1e:	return _T("Digital Zoom");
-	case 0x1f:	return _T("Saturation");
-	case 0x20:	return _T("Contrast");
-	case 0x21:	return _T("Sharpness");
-	case 0x22:	return _T("World Time Location");
-	case 0x23:	return _T("Hometown City");
-	case 0x24:	return _T("Destination City");
-	case 0x25:	return _T("Hometown DST");
-	case 0x26:	return _T("Destination DST");
-	case 0x29:	return _T("Frame Number");
-	case 0x37:	return _T("Color Space");
-	case 0x39:	return _T("Raw Image Size");
-	case 0x3f:	return _T("Lens Type");
-	case 0x49:	return _T("Noise Reduction");
-	case 0x403:	return _T("Tone Curves");
+	case 0x02:	return _T("缩略图尺寸");
+	case 0x06:	return _T("日期");
+	case 0x07:	return _T("时间");
+	case 0x08:	return _T("品质");
+	case 0x0d:	return _T("对焦模式");
+	case 0x0f:	return _T("自动对焦点");
+	case 0x10:	return _T("对焦位置");
+	case 0x12:	return _T("曝光时长");
+	case 0x13:	return _T("光圈");
+	case 0x16:	return _T("曝光补偿");
+	case 0x17:	return _T("测光模式");
+	case 0x19:	return _T("白平衡");
+	case 0x1a:	return _T("白平衡");
+	case 0x1b:	return _T("蓝平衡");
+	case 0x1c:	return _T("红平衡");
+	case 0x1d:	return _T("焦距");
+	case 0x1e:	return _T("数码变焦");
+	case 0x1f:	return _T("饱和度");
+	case 0x20:	return _T("对比度");
+	case 0x21:	return _T("锐度");
+	case 0x22:	return _T("时区");
+	case 0x23:	return _T("家乡城市");
+	case 0x24:	return _T("目的地城市");
+	case 0x25:	return _T("家乡 DST");
+	case 0x26:	return _T("目的地 DST");
+	case 0x29:	return _T("帧数");
+	case 0x37:	return _T("色彩空间");
+	case 0x39:	return _T("Raw 图像大小");
+	case 0x3f:	return _T("镜头型号");
+	case 0x49:	return _T("降噪");
+	case 0x403:	return _T("色调曲线");
 	}
 
-	return String(_T("Unknown"));
+	return String(_T("未知"));
 }
 
 String PentaxNote::TagValue(uint16 tag, const Data& val)
@@ -2964,7 +2964,7 @@ void PentaxNote::RecordInfo(uint16 tag, const Data& val, OutputStr& output)
 				_itot(iso_, buf, 10);
 				str = buf;
 			}
-			RecordTag(tag, _T("ISO Speed"), val.AsString().c_str(), output);
+			RecordTag(tag, _T("感光度"), val.AsString().c_str(), output);
 			output.SetInterpretedInfo(str);
 		}
 		break;
@@ -3279,7 +3279,7 @@ void SonyNote::RecordInfo(uint16 tag, const Data& value, OutputStr& output)
 */
 	case 0:
 	default:
-		RecordTag(tag, _T("Unknown"), value.AsString().c_str(), output);
+		RecordTag(tag, _T("未知"), value.AsString().c_str(), output);
 		break;
 	}
 }
@@ -3317,29 +3317,29 @@ String SanyoNote::TagName(uint16 tag)
 {
 	switch (tag)
 	{
-	case 0x0200:	return _T("Special Mode");
-	case 0x0201:	return _T("JPEG Quality");
-	case 0x0202:	return _T("Macro");
+	case 0x0200:	return _T("特殊模式");
+	case 0x0201:	return _T("JPEG 品质");
+	case 0x0202:	return _T("微距");
 	//case 0x0203:	return _T("");
-	case 0x0204:	return _T("Digital Zoom");
-	case 0x020e:	return _T("Sequential Shot Method");
-	case 0x020f:	return _T("Wide Range");
-	case 0x0210:	return _T("Color Adjustment Mode");
-	case 0x0213:	return _T("Quick Shot");
-	case 0x0214:	return _T("Self Timer");
-	case 0x0216:	return _T("Voice Memo Used");
-	case 0x0217:	return _T("Record Shutter Release");
-	case 0x0218:	return _T("Flicker Reduce");
-	case 0x0219:	return _T("Optical Zoom Enabled");
-	case 0x021b:	return _T("Digital Zoom Enabled");
-	case 0x021d:	return _T("Light Source Special");
-	case 0x021e:	return _T("Resaved");
-	case 0x021f:	return _T("Scene Select");
-	case 0x0223:	return _T("Manual Focus Distance");
-	case 0x0224:	return _T("Sequential Shot Interval");
-	case 0x0225:	return _T("Flash Mode");
-	case 0x0f00:	return _T("Data Dump");
-	default:		return _T("Unknown");
+	case 0x0204:	return _T("数码变焦");
+	case 0x020e:	return _T("连拍方法");
+	case 0x020f:	return _T("超广角");
+	case 0x0210:	return _T("色彩调整模式");
+	case 0x0213:	return _T("抓拍");
+	case 0x0214:	return _T("自拍定时");
+	case 0x0216:	return _T("语音备忘");
+	case 0x0217:	return _T("快门释放记录");
+	case 0x0218:	return _T("防抖");
+	case 0x0219:	return _T("启用光学变焦");
+	case 0x021b:	return _T("启用数码变焦");
+	case 0x021d:	return _T("特殊光源");
+	case 0x021e:	return _T("重新保存");
+	case 0x021f:	return _T("场景选择");
+	case 0x0223:	return _T("手动对焦距离");
+	case 0x0224:	return _T("连拍间隔");
+	case 0x0225:	return _T("闪光模式");
+	case 0x0f00:	return _T("数据转储");
+	default:		return _T("未知");
 	}
 }
 
@@ -3552,24 +3552,24 @@ String PanasonicNote::TagName(uint16 tag)
 {
 	switch (tag)
 	{
-	case 0x0001:	return _T("Image Quality");
+	case 0x0001:	return _T("图像品质");
 	//case 0x0002:	return _T("Firmware ver?");
-	case 0x0003:	return _T("White Balance");
-	case 0x0007:	return _T("Focus Mode");
+	case 0x0003:	return _T("白平衡");
+	case 0x0007:	return _T("对焦模式");
 	case 0x000f:	return _T("Spot Mode");
-	case 0x001a:	return _T("Image Stabilizer");
-	case 0x001c:	return _T("Macro Mode");
-	case 0x001f:	return _T("Shooting Mode");
-	case 0x0020:	return _T("Voice Memo Used");
-	case 0x0023:	return _T("White Balance Adjustment");
-	case 0x0024:	return _T("Flash Bias");
-	case 0x0028:	return _T("Color Effect");
-	case 0x002b:	return _T("Bracketing Order");
-	case 0x002c:	return _T("Contrast");
-	case 0x002d:	return _T("Noise Reduction");
+	case 0x001a:	return _T("图像防抖");
+	case 0x001c:	return _T("微距");
+	case 0x001f:	return _T("拍摄模式");
+	case 0x0020:	return _T("声音备忘");
+	case 0x0023:	return _T("白平衡调整");
+	case 0x0024:	return _T("闪光补偿");
+	case 0x0028:	return _T("颜色效果");
+	case 0x002b:	return _T("包围曝光顺序");
+	case 0x002c:	return _T("对比度");
+	case 0x002d:	return _T("降噪");
 	case 0x0e00:	return _T("PrintIM");
-	case 0x8001:	return _T("Program");
-	default:		return _T("Unknown");
+	case 0x8001:	return _T("程序");
+	default:		return _T("未知");
 	}
 }
 
@@ -3590,28 +3590,28 @@ void PanasonicNote::RecordInfo(uint16 tag, const Data& val, OutputStr& output)
 	case 0x0001:
 		switch (val.AsULong())
 		{
-		case 2: str = _T("High");		break;
-		case 3: str = _T("Standard");	break;
+		case 2: str = _T("高");		break;
+		case 3: str = _T("标准");	break;
 		}
 		break;
 
 	case 0x0003:	// WB
 		switch (val.AsULong())
 		{
-		case 1: str = _T("Auto");		break;
-		case 2: str = _T("Daylight");	break;
-		case 3: str = _T("Cloudy");		break;
-		case 4: str = _T("Halogen");	break;
-		case 5: str = _T("Manual");		break;
-		case 8: str = _T("Flash");		break;
+		case 1: str = _T("自动");		break;
+		case 2: str = _T("日光");	break;
+		case 3: str = _T("多云");		break;
+		case 4: str = _T("卤素灯");	break;
+		case 5: str = _T("手动");		break;
+		case 8: str = _T("闪光");		break;
 		}
 		break;
 
 	case 0x0007:	// focus mode
 		switch (val.AsULong())
 		{
-		case 1: str = _T("Auto");	break;
-		case 2: str = _T("Manual");	break;
+		case 1: str = _T("自动");	break;
+		case 2: str = _T("手动");	break;
 		}
 		break;
 
@@ -3654,22 +3654,22 @@ void PanasonicNote::RecordInfo(uint16 tag, const Data& val, OutputStr& output)
 //6 = Program, 7 = Aperture Priority, 8 = Shutter Priority,
 //9 = Macro, 11 = Manual, 13 = Panning, 18 = Fireworks,
 //19 = Party, 20 = Snow, 21 = Night Scenery
-		case 2: str = _T("Portrait");		break;
-		case 3: str = _T("Scenery");		break;
+		case 2: str = _T("肖像");		break;
+		case 3: str = _T("风景");		break;
 		case 4: str = _T("Sports");			break;
-		case 5: str = _T("Night Portrait");	break;
-		case 6: str = _T("Program");		break;
-		case 7: str = _T("Aperture Priority");	break;
-		case 8: str = _T("Shutter Priority");	break;
-		case 9: str = _T("Macro");			break;
-		case 11: str = _T("Manual");		break;
-		case 13: str = _T("Panning");		break;
-		case 14: str = _T("Simple");		break;
-		case 18: str = _T("Fireworks");		break;
-		case 19: str = _T("Party");			break;
-		case 20: str = _T("Snow");			break;
-		case 21: str = _T("Night Scenery");	break;
-		case 22: str = _T("Food");	break;	// ?? verify
+		case 5: str = _T("夜间肖像");	break;
+		case 6: str = _T("程序");		break;
+		case 7: str = _T("光圈优先");	break;
+		case 8: str = _T("快门优先");	break;
+		case 9: str = _T("微距");			break;
+		case 11: str = _T("手动");		break;
+		case 13: str = _T("追拍");		break;
+		case 14: str = _T("简单");		break;
+		case 18: str = _T("烟火");		break;
+		case 19: str = _T("聚会");			break;
+		case 20: str = _T("下雪");			break;
+		case 21: str = _T("夜景");	break;
+		case 22: str = _T("食物");	break;	// ?? verify
 		}
 		break;
 
@@ -3677,8 +3677,8 @@ void PanasonicNote::RecordInfo(uint16 tag, const Data& val, OutputStr& output)
 		switch (val.AsULong())
 		{
 //0x0020 	Audio 	Unsigned Short 	1 	1 = Yes, 2 = No
-		case 1: str = _T("Yes");	break;
-		case 2: str = _T("No");		break;
+		case 1: str = _T("是");	break;
+		case 2: str = _T("否");		break;
 		}
 		break;
 
@@ -3722,11 +3722,11 @@ void PanasonicNote::RecordInfo(uint16 tag, const Data& val, OutputStr& output)
 		switch (val.AsULong())
 		{
 //0x0028 	Colour Effect 	Unsigned Short 	1 	1 = Off, 2 = Warm, 3 = Cool, 4 = Black and White, 5 = Sepia
-		case 1: str = _T("Off");	break;
-		case 2: str = _T("Warm");	break;
-		case 3: str = _T("Cool");	break;
-		case 4: str = _T("Black and White");	break;
-		case 5: str = _T("Sepia");	break;
+		case 1: str = _T("关闭");	break;
+		case 2: str = _T("暖");	break;
+		case 3: str = _T("冷");	break;
+		case 4: str = _T("黑白");	break;
+		case 5: str = _T("褐色");	break;
 		}
 		break;
 
@@ -3737,9 +3737,9 @@ void PanasonicNote::RecordInfo(uint16 tag, const Data& val, OutputStr& output)
 		switch (val.AsULong())
 		{
 //0x002C 	Contrast 	Unsigned Short 	1 	0 = Standard, 1 = Low, 2 = High
-		case 0: str = _T("Standard");	break;
-		case 1: str = _T("Low");	break;
-		case 2: str = _T("High");	break;
+		case 0: str = _T("标准");	break;
+		case 1: str = _T("低");	break;
+		case 2: str = _T("高");	break;
 		}
 		break;
 
@@ -3747,36 +3747,36 @@ void PanasonicNote::RecordInfo(uint16 tag, const Data& val, OutputStr& output)
 		switch (val.AsULong())
 		{
 //0x002D 	Noise Reduction 	Unsigned Short 	1 	0 = Standard, 1 = Low, 2 = High
-		case 0: str = _T("Standard");	break;
-		case 1: str = _T("Low");	break;
-		case 2: str = _T("High");	break;
+		case 0: str = _T("标准");	break;
+		case 1: str = _T("低");	break;
+		case 2: str = _T("高");	break;
 		}
 		break;
 
 	case 0x8001:
 		switch (val.AsULong())	// program
 		{
-		case 0: str = _T("Normal");			break;
+		case 0: str = _T("正常");			break;
 		//case 1: str = _T("?");			break;
-		case 2: str = _T("Portrait");		break;
-		case 3: str = _T("Scenery");		break;
-		case 4: str = _T("Sports");			break;
-		case 5: str = _T("Night Portrait");	break;
+		case 2: str = _T("肖像");		break;
+		case 3: str = _T("风景");		break;
+		case 4: str = _T("运动");			break;
+		case 5: str = _T("夜景肖像");	break;
 		//6-15  (not used on the FX01)
-		case 16: str = _T("Self Portrait");	break;
+		case 16: str = _T("自拍");	break;
 		//case 17: str = _T("");	break;
-		case 18: str = _T("Fireworks");		break;
-		case 19: str = _T("Party");			break;
-		case 20: str = _T("Snow");			break;
-		case 21: str = _T("Night Scenery");	break;
-		case 22: str = _T("Food");			break;
-		case 23: str = _T("Baby");			break;
-		case 24: str = _T("Soft Skin");		break;
-		case 25: str = _T("Candlelight");	break;
-		case 26: str = _T("Starry Sky");	break;
-		case 27: str = _T("High Sensitivity");	break;
+		case 18: str = _T("烟火");		break;
+		case 19: str = _T("聚会");			break;
+		case 20: str = _T("下雪");			break;
+		case 21: str = _T("夜景");	break;
+		case 22: str = _T("食物");			break;
+		case 23: str = _T("婴儿");			break;
+		case 24: str = _T("肤色柔和");		break;
+		case 25: str = _T("烛光");	break;
+		case 26: str = _T("星空");	break;
+		case 27: str = _T("高感光度");	break;
 		//case 28: str = _T("");	break;
-		case 29: str = _T("Underwater");	break;
+		case 29: str = _T("水下");	break;
 		default: str = _T("(?)");			break;
 		}
 		break;

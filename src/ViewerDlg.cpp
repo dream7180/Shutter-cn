@@ -2921,8 +2921,13 @@ void ViewerDlg::OnContextMenu(CWnd* wnd, CPoint pos)
 			GetClientRect(rect);
 			ClientToScreen(rect);
 			pos = rect.CenterPoint();
+		} else if (pImpl_->toolbar_visible_){
+			CRect rect;
+			pImpl_->toolbar_.GetClientRect(rect);
+			ClientToScreen(rect);
+			if(pos.y < rect.bottom + 1) return;
+			//if(pos.y - rect.top < 41) return;
 		}
-		if(pos.y < 41) return;
 		CursorVisible stay(pImpl_->displays_);
 		popup->TrackPopupMenu(TPM_LEFTALIGN | TPM_LEFTBUTTON | TPM_RIGHTBUTTON, pos.x, pos.y, this);
 	}

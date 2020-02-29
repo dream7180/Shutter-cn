@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -393,7 +393,7 @@ void PreviewPane::PaneHidden()
 
 void PreviewPane::CurrentChanged(PhotoInfoPtr photo)
 {
-TRACE(_T("current photo: %s\n"), photo ? photo->GetName().c_str() : _T("-none-"));
+TRACE(_T("当前照片: %s\n"), photo ? photo->GetName().c_str() : _T("-无-"));
 	if (photo)
 		LoadPhoto(*photo);
 	else

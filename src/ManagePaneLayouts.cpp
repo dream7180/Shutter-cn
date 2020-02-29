@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -83,7 +83,7 @@ BOOL ManagePaneLayouts::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	SetWindowText(adding_new_ ? _T("Add New Pane Layout") : _T("Manage Pane Layouts"));
+	SetWindowText(adding_new_ ? _T("添加新面板布局") : _T("管理面板布局"));
 
 	edit_name_.SetReadOnly(!adding_new_);
 
@@ -156,15 +156,15 @@ void ManagePaneLayouts::OnOK()
 
 	if (adding_new_ && name_.IsEmpty())
 	{
-		new BalloonMsg(&edit_name_, _T("Missing Layout Name"),
-			_T("Please name pane layout. This name will show up in a pane popup menu."), BalloonMsg::IERROR);
+		new BalloonMsg(&edit_name_, _T("缺少布局名称"),
+			_T("请命名面板布局. 该名字会显示预面板弹出菜单."), BalloonMsg::IERROR);
 		return;
 	}
 
 	if (adding_new_ && FindLayout(name_))
 	{
-		new BalloonMsg(&edit_name_, _T("Duplicated Name"),
-			_T("Please rename pane layout or delete conflicting one."), BalloonMsg::IERROR);
+		new BalloonMsg(&edit_name_, _T("名字重复"),
+			_T("请重命名布局或删除名称冲突的布局."), BalloonMsg::IERROR);
 		return;
 	}
 

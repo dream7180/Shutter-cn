@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -151,7 +151,7 @@ void ImgProcessingThread::Exec()
 		if (ex->GetErrorMessage(error_message, array_count(error_message)))
 			msg = error_message;
 		else
-			msg = _T("MFC Exception Encountered");
+			msg = _T("MFC 遇到异常情况");
 		ex->Delete();
 	}
 	catch (std::exception& ex)
@@ -179,14 +179,14 @@ void ImgProcessingThread::Exec()
 #ifndef _DEBUG
 	catch (...)
 	{
-		msg = _T("Fatal error encountered.");
+		msg = _T("遭遇致命错误.");
 	}
 #endif
 
 	if (!completed && status_wnd_)
 	{
 		if (cur_file_index_ < file_count_)
-			msg += L"\nFile: " + GetSourceFileName(cur_file_index_);
+			msg += L"\n文件: " + GetSourceFileName(cur_file_index_);
 		status_wnd_->PostMessage(IPM_EXCEPTION, cur_file_index_, reinterpret_cast<LPARAM>(new String(msg)));
 	}
 

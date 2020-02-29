@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -1013,7 +1013,7 @@ CImageDecoderPtr PhotoInfo::GetDecoder() const
 // save tags inside photo
 void PhotoInfo::SaveTags(const WriteAccessFn& get_write_access)
 {
-	throw String(_T("Saving tags is not possible for this type of image."));
+	throw String(_T("此类型图像不能保存标记."));
 }
 
 // load saved tags
@@ -1227,7 +1227,7 @@ void PhotoInfo::Rename(Path& path, String& name) throw()
 
 void PhotoInfo::SaveMetadata(const XmpData& xmp, const WriteAccessFn& get_write_access) const
 {
-	throw String(_T("Metadata saving is not supported."));
+	throw String(_T("不支持保存元数据."));
 }
 
 bool PhotoInfo::LoadMetadata(XmpData& xmp) const

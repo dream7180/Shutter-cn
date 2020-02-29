@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -187,7 +187,7 @@ void ImgCropPage::SetValues()
 	CRect rect= preview_wnd_.GetSelectionRect();
 
 	if (rect.IsRectEmpty())
-		size_wnd_.SetWindowText(_T("no crop"));
+		size_wnd_.SetWindowText(_T("无裁切"));
 	else
 	{
 		oStringstream ost;

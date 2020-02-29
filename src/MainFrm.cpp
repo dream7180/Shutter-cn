@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -245,7 +245,7 @@ void MainFrame::OnAddToFavorites()
 	try
 	{
 		if (favorite_folders_->GetCount() >= MAX_FAVORITE_FOLDERS)
-			AfxMessageBox(_T("No more space available."), MB_OK);
+			AfxMessageBox(_T("没有可用的空间."), MB_OK);
 		else
 			AddToFavorites(-1);
 	}
@@ -258,7 +258,7 @@ void MainFrame::AddToFavorites(int folder_index)
 	CFolderSelect dlg(this);
 	FavoriteFolder* folder= folder_index >= 0 ? favorite_folders_->GetFolder(folder_index) : 0;
 
-	const TCHAR* prompt= _T("Select favorite folder:");
+	const TCHAR* prompt= _T("选择收藏夹目录:");
 
 	if (folder)				// existing folder?
 	{
@@ -314,29 +314,29 @@ void MainFrame::GetMessageString(UINT id, CString& message) const
 		int index= id - ID_BROWSE_FOLDER_1;
 		if (FavoriteFolder* folder= favorite_folders_->GetFolder(index))
 		{
-			message = _T("Browse folder ");
+			message = _T("浏览文件夹 ");
 			message += folder->GetIDL().GetPath();
 		}
 	}
 	else if (id >= ID_RECENT_PATH_FIRST && id <= ID_RECENT_PATH_LAST)
 	{
-		message = _T("Scan recently used folder");
+		message = _T("扫描最近使用的文件夹");
 	}
 	else if (id >= ID_MASK_JPEG && id < ID_MASK_JPEG + MAX_FILE_MASKS)
 	{
-		message = _T("Type of images to look for while scanning folders");
+		message = _T("扫描文件夹时查找的图像类型");
 	}
 	else if (id >= ID_PANES_LAYOUT_00 && id <= ID_PANES_LAYOUT_99)
 	{
-		message = _T("Restore this pane window layout");
+		message = _T("恢复本面板窗口");
 	}
 	else if (id >= AFX_IDW_PANE_FIRST && id <= AFX_IDW_PANE_LAST)
 	{
-		message = _T("Toggle pane window");
+		message = _T("切换面板窗口");
 	}
 	else if (id >= ID_SORTING_ORDER && id <= ID_SORTING_ORDER + 999)
 	{
-		message = _T("Sort images by this column; select this item again to sort in the opposite direction");
+		message = _T("按此列排序; 再次选择此项将进行反向排序");
 	}
 	else if (id == AFX_IDS_IDLEMESSAGE)
 	{
@@ -529,7 +529,7 @@ void MainFrame::OnTaskTransfer()
 String MainFrame::Transfer(const TCHAR* path)
 {
 	CTransferDlg dlgTr(this, path);
-	HeaderDialog dlg(dlgTr, _T("Transfer"), HeaderDialog::IMG_COPY);
+	HeaderDialog dlg(dlgTr, _T("转移"), HeaderDialog::IMG_COPY);
 	dlg.DoModal();
 	return dlgTr.GetDestPath();
 }
@@ -582,9 +582,9 @@ extern void OpenHelp(const TCHAR* initial_page)
 	}
 	else
 	{
-		CString msg= _T("Help file ");
+		CString msg= _T("帮助文件 ");
 		msg += buff;
-		msg += _T(" cannot be found.\nPlease reinstall ExifPro.");
+		msg += _T(" 未能找到.");
 		AfxMessageBox(msg, MB_OK | MB_ICONERROR);
 	}
 }

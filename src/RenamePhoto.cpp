@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -19,10 +19,10 @@ ____________________________________________________________________________*/
 void RenamePhoto(PhotoInfoPtr photo, const String& file_name, bool replace_name_and_ext, ImageDatabase& db)
 {
 	if (file_name.empty())
-		throw std::exception("Empty file name not allowed");
+		throw std::exception("不允许空文件名");
 
 	if (photo == 0 || !photo->CanRename())
-		throw std::exception("Bad arguments passed to rename function");
+		throw std::exception("重命名参数错误");
 
 	// new path
 	Path file= photo->GetPhysicalPath();
@@ -36,7 +36,7 @@ void RenamePhoto(PhotoInfoPtr photo, const String& file_name, bool replace_name_
 		return;	// no change in name
 
 	if (renamed.FileExists())
-		throw std::exception("Please select different name.\nFile with a specified name already exists.");
+		throw std::exception("请选择另外的名称.\n指定的文件名称已存在File with a specified name already exists.");
 
 	// new name
 	String name= replace_name_and_ext ? renamed.GetFileName() : file_name;
@@ -49,7 +49,7 @@ void RenamePhoto(PhotoInfoPtr photo, const String& file_name, bool replace_name_
 
 	if (!::MoveFile(file.c_str(), renamed.c_str()))
 	{
-		String msg(_T("File renaming failed."));
+		String msg(_T("重命名文件失败."));
 
 		DWORD er= ::GetLastError();
 		if (er != 0)

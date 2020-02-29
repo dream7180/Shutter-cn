@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    EXIF Image Viewer
 
@@ -614,7 +614,7 @@ PRINT_TIMING("Decoded")
 				catch (JPEGException& ex)	// jpeg decoding error?
 				{
 					info->bmp_ = 0;
-					LogError(String(_T("Error generating thumbnail image. ")) + ex.GetMessage(), path);
+					LogError(String(_T("生成缩略图出错. ")) + ex.GetMessage(), path);
 					return SmartPhotoPtr();	// skip this image
 				}
 			}
@@ -702,7 +702,7 @@ PRINT_TIMING("Decoded")
 						}
 						catch (...)
 						{
-							LogError(_T("Error encoding thumbnail image"), path);
+							LogError(_T("解码缩略图出错"), path);
 						}
 					}
 				}
@@ -745,7 +745,7 @@ PRINT_TIMING("Decoded")
 			//CString msg= _T("Error parsing file: ");
 			//msg += path.c_str();
 			//::ShowMessageBox(msg);
-			LogError(_T("Error parsing file"), path);
+			LogError(_T("解析文件出错"), path);
 		}
 		catch (CFileException* ex)		// file reading/opening problem
 		{
@@ -755,7 +755,7 @@ PRINT_TIMING("Decoded")
 			if (ex->GetErrorMessage(msg, MAX))
 				LogError(msg, path);
 			else
-				LogError(_T("File error"), path);
+				LogError(_T("文件错误"), path);
 			ex->Delete();
 		}
 		catch (Exception& ex)
@@ -765,7 +765,7 @@ PRINT_TIMING("Decoded")
 #ifndef _DEBUG
 		catch (...)
 		{
-			LogError(_T("Fatal error encountered"), path);
+			LogError(_T("遭遇致命错误"), path);
 		}
 #endif
 	}
@@ -794,14 +794,14 @@ PRINT_TIMING("Parent notified")
 			}
 			catch (MemPointer::MemPtrException&)
 			{
-				LogError(_T("Error parsing file"), path);
+				LogError(_T("解析文件出错"), path);
 				//CString msg= _T("Error parsing file: ");
 				//msg += path.c_str();
 				//::ShowMessageBox(msg);
 			}
 			catch (CMemoryException*)
 			{
-				LogError(_T("Out of memory reading file"), path);
+				LogError(_T("读取文件时内存溢出"), path);
 				//CString msg= _T("Out of memory reading file: ");
 				//msg += path.c_str();
 				//::ShowMessageBox(msg);
@@ -822,7 +822,7 @@ PRINT_TIMING("Parent notified")
 #ifndef _DEBUG
 			catch (...)
 			{
-				LogError(_T("Fatal error encountered"), path);
+				LogError(_T("遭遇致命错误"), path);
 				ASSERT(false);
 			}
 #endif
@@ -848,11 +848,11 @@ void ImgScanner::ReadImage(SmartPhotoPtr& info, const Path& path, uint64 file_le
 	}
 	catch (String& str)
 	{
-		LogError(_T("Error loading photo. ") + str, path);
+		LogError(_T("加载照片出错. ") + str, path);
 	}
 	catch (std::exception& ex)
 	{
-		LogError(_T("Error loading photo. ") + CString(ex.what()), path);
+		LogError(_T("加载照片出错. ") + CString(ex.what()), path);
 	}
 	catch (ImageStat err)
 	{
@@ -860,7 +860,7 @@ void ImgScanner::ReadImage(SmartPhotoPtr& info, const Path& path, uint64 file_le
 	}
 	catch (...)
 	{
-		LogError(_T("Error loading photo."), path);
+		LogError(_T("加载照片出错."), path);
 	}
 
 	try
@@ -878,12 +878,12 @@ void ImgScanner::ReadImage(SmartPhotoPtr& info, const Path& path, uint64 file_le
 	}
 	catch (String& str)
 	{
-		LogError(_T("Error loading XMP metadata: ") + str, path);
+		LogError(_T("加载 XMP 元数据出错: ") + str, path);
 	}
 	catch (...)
 	{
 		//log? report?
-		LogError(_T("Error loading XMP metadata"), path);
+		LogError(_T("加载 XMP 元数据出错"), path);
 	}
 
 	if (!has_exif && ReadExifImagesOnly() && !selectedFile)

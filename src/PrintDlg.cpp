@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -612,7 +612,7 @@ BOOL PrintDlg::InitDialog()
 	SelectMarginButton(selected_margin_);
 	UpdateSliderPos(margin_lo_metric);
 
-	SetDlgItemText(IDC_LABEL_8, metric_ ? _T("cm") : _T("in"));
+	SetDlgItemText(IDC_LABEL_8, metric_ ? _T("厘米") : _T("英寸"));
 
 	if (!pager_wnd_.Create(this, PAGER_ID))
 	{
@@ -657,13 +657,13 @@ BOOL PrintDlg::InitDialog()
 
 	static const TCHAR* labels[]=
 	{
-		_T("Full Page"),
-		_T("Two Images"),
-		_T("Three Images"),
-		_T("Four Images"),
-		_T("Wallet Prints"),
-		_T("Wallet Prints"),
-		_T("Thumbnails"),
+		_T("整页"),
+		_T("双图像"),
+		_T("三图像"),
+		_T("四图像"),
+		_T("钱夹打印"),
+		_T("钱夹打印"),
+		_T("缩略图"),
 		0
 	};
 	int default_layout= profile_layout_type_;
@@ -1909,25 +1909,25 @@ void PrintDlg::SetTypeLayoutInfo()
 	switch (GetSelectedType())
 	{
 	case 0:
-		info = _T("full page image scaled to fit.");
+		info = _T("图像缩放至适合整页.");
 		break;
 	case 1:
-		info = _T("two images per page.");
+		info = _T("每页两张图像.");
 		break;
 	case 2:
-		info = _T("three images per page.");
+		info = _T("每页三张图像.");
 		break;
 	case 3:
-		info = _T("four images per page.");
+		info = _T("每页四张图像.");
 		break;
 	case 4:
-		info = _T("large wallet prints.");
+		info = _T("钱夹打印 (大).");
 		break;
 	case 5:
-		info = _T("wallet prints.");
+		info = _T("钱夹打印.");
 		break;
 	case 6:
-		info = _T("thumbnail images.");
+		info = _T("缩略图.");
 		break;
 	default:
 		ASSERT(false);

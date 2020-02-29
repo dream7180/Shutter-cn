@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -86,7 +86,7 @@ extern bool CreateFolderHelperFn(CWnd* edit, const CString& name, String* path)
 	folder.AppendDir(name, false);
 	if (folder.IsFolder())
 	{
-		new BalloonMsg(edit, _T("Folder Already Exists"), _T("This folder already exists. Please provide different name."), BalloonMsg::IWARNING);
+		new BalloonMsg(edit, _T("文件夹已存在"), _T("此文件夹已存在. 请提供另外的名字."), BalloonMsg::IWARNING);
 		return false;
 	}
 

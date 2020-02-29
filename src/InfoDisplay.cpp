@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -101,9 +101,9 @@ bool InfoDisplay::Create(CWnd* parent, const GetTextFn& get_text, COLORREF rgb_b
 	header_.SubclassWindow(hWnd);
 	header_.SetFont(&::GetDefaultGuiFont());
 
-	InsertColumn(0, _T("Tag"), LVCFMT_LEFT, Pixels(40));
-	InsertColumn(1, _T("Name"), LVCFMT_LEFT, Pixels(130));
-	InsertColumn(2, _T("Value"), LVCFMT_LEFT, Pixels(150));
+	InsertColumn(0, _T("标记"), LVCFMT_LEFT, Pixels(40));
+	InsertColumn(1, _T("名称"), LVCFMT_LEFT, Pixels(130));
+	InsertColumn(2, _T("值"), LVCFMT_LEFT, Pixels(150));
 
 	// restore column widths
 

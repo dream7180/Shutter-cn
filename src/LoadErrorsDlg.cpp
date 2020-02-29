@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -71,8 +71,8 @@ BOOL CLoadErrorsDlg::OnInitDialog()
 			CRect list;
 			list_ctrl_.GetClientRect(list);
 			int w= std::max<int>(50, (list.Width() - 25) / 2);
-			list_ctrl_.InsertColumn(0, _T("Error Message"), LVCFMT_LEFT, w);
-			list_ctrl_.InsertColumn(1, _T("Image Path"), LVCFMT_LEFT, w);
+			list_ctrl_.InsertColumn(0, _T("错误消息"), LVCFMT_LEFT, w);
+			list_ctrl_.InsertColumn(1, _T("图像路径"), LVCFMT_LEFT, w);
 		}
 
 		const size_t count= logger_.GetCount();

@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -35,15 +35,15 @@ SmartPtr CreateSamplePhotoInfo()
 	photo->SetFocalLength(Rational(50, 1));
 	//Rational	aperture_value_;
 	//SRational	shutter_speed_value_;
-	photo->SetMake(_T("DigiCam"));
-	photo->SetModel(_T("TestCamera"));
-	photo->SetExifDescription(L"Image description");
+	photo->SetMake(_T("数码相机"));
+	photo->SetModel(_T("测试相机"));
+	photo->SetExifDescription(L"图像描述");
 	//uint16		thumbnail_orientation_;
 	photo->SetSubjectDistance(Rational(100, 1));
 	XmpData xmp;
 	xmp.Author = _T("MK");
 	photo->SetMetadata(xmp);
-	photo->SetLensModel(_T("Lens"));
+	photo->SetLensModel(_T("镜头"));
 
 	PostProcessTime(photo.get());
 

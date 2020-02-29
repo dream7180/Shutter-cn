@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -460,10 +460,10 @@ void ResizeDlg::UpdateFmt()
 		}
 		CString ratio;
 		if (denominator > 0.0f)
-			ratio.Format(_T("(about 1:%0.*f)"),
+			ratio.Format(_T("(大约 1:%0.*f)"),
 				static_cast<int>(denominator * 10) % 10 > 0 ? 1 : 0, static_cast<double>(denominator));
 		else
-			ratio = _T("(about 1:?)");
+			ratio = _T("(大约 1:?)");
 		compr_ratio_wnd_.SetWindowText(ratio);
 
 		ReadOnlyCtrl(&edit_compr_level_, !custom);
@@ -512,24 +512,24 @@ bool ResizeDlg::Finish()
 	if (!suffix_.IsEmpty())
 		if (suffix_.FindOneOf(PathIllegalChars()) >= 0)
 		{
-			String msg= _T("Suffix text cannot contain any of the following characters: ");
+			String msg= _T("后缀文本不能包含以下字符: ");
 			msg += PathIllegalChars();
-			new BalloonMsg(&edit_suffix_, _T("Illegal Characters"), msg.c_str(), BalloonMsg::IERROR);
+			new BalloonMsg(&edit_suffix_, _T("非法字符"), msg.c_str(), BalloonMsg::IERROR);
 			return false;
 		}
 
 	if (same_dir_ == 0 && suffix_.IsEmpty())
 	{
-		new BalloonMsg(&edit_suffix_, _T("Empty Suffix"),
-			_T("Please enter suffix text, so the destination file names differ from the source file names."), BalloonMsg::IERROR);
+		new BalloonMsg(&edit_suffix_, _T("缺少后缀"),
+			_T("请输入后缀文本, 使目标文件名称与源文件不相同."), BalloonMsg::IERROR);
 		return false;
 	}
 	else
 	{
 		if (path.empty())
 		{
-			new BalloonMsg(&dest_path_combo_, _T("Missing Destination Folder"),
-				_T("Please specify folder where resized images will be stored."), BalloonMsg::IERROR);
+			new BalloonMsg(&dest_path_combo_, _T("缺少目标文件夹"),
+				_T("请指定被修改图像的储存文件夹."), BalloonMsg::IERROR);
 			return false;
 		}
 	}

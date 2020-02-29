@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -90,7 +90,7 @@ void OptionsGeneral::OnResolution()
 void OptionsGeneral::UpdateRes()
 {
 	oStringstream ost;
-	ost << std::fixed << std::setprecision(1) << horz_resolution_ << _T(" dpi by ") << vert_resolution_ << _T(" dpi");
+	ost << std::fixed << std::setprecision(1) << horz_resolution_ << _T(" dpi x ") << vert_resolution_ << _T(" dpi");
 	resolution_wnd_.SetWindowText(ost.str().c_str());
 }
 
@@ -111,8 +111,8 @@ BOOL OptionsGeneral::OnInitDialog()
 
 	foV_crop_wnd_.SetHost(this);
 
-	foV_crop_wnd_.InsertColumn(0, _T("Camera Model"), LVCFMT_LEFT, Pixels(172));
-	foV_crop_wnd_.InsertColumn(1, _T("FoV Crop"), LVCFMT_RIGHT, Pixels(80), 0);
+	foV_crop_wnd_.InsertColumn(0, _T("相机型号"), LVCFMT_LEFT, Pixels(172));
+	foV_crop_wnd_.InsertColumn(1, _T("FoV 裁切"), LVCFMT_RIGHT, Pixels(80), 0);
 
 	foV_crop_wnd_.SetItemCount(data_.size());
 
@@ -177,7 +177,7 @@ void OptionsGeneral::OnOpenApp()
 {
 	CFolderSelect fs(this);
 
-	CString file= fs.DoSelectFile(_T("Select Application for Opening JPEG Images"), CSIDL_PROGRAM_FILES, _T("exe"));
+	CString file= fs.DoSelectFile(_T("选择应用程序用于打开 JPEG 图像"), CSIDL_PROGRAM_FILES, _T("exe"));
 
 	if (!file.IsEmpty())
 		SetDlgItemText(IDC_OPEN_PHOTO_APP, file);
@@ -188,7 +188,7 @@ void OptionsGeneral::OnOpenRawApp()
 {
 	CFolderSelect fs(this);
 
-	CString file= fs.DoSelectFile(_T("Select Application for Opening Raw Photographs"), CSIDL_PROGRAM_FILES, _T("exe"));
+	CString file= fs.DoSelectFile(_T("选择应用程序用于打开 Raw 照片"), CSIDL_PROGRAM_FILES, _T("exe"));
 
 	if (!file.IsEmpty())
 		SetDlgItemText(IDC_OPEN_RAW_PHOTO_APP, file);

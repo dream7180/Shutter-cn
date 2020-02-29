@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -278,7 +278,7 @@ BOOL RenamePanelAdvanced::OnInitDialog()
 
 		CRect client(0,0,0,0);
 		list2_.GetClientRect(client);
-		list2_.InsertColumn(0, _T("Name"), LVCFMT_LEFT, client.Width() - 1);
+		list2_.InsertColumn(0, _T("名称"), LVCFMT_LEFT, client.Width() - 1);
 		for (size_t i= 0; i < rule_defs_.size(); ++i)
 			list2_.InsertItem(static_cast<int>(i), rule_defs_[i].name_.c_str());
 
@@ -425,8 +425,8 @@ bool RenamePanelAdvanced::ReadRule(size_t rule, bool silent)
 		{
 			if (!silent)
 			{
-				SetDlgItemText(IDC_STATUS, (_T("Error: ") + err_msg).c_str());
-				new BalloonMsg(expression_.GetWnd(), _T("Invalid Expression"), err_msg.c_str(), BalloonMsg::IERROR);
+				SetDlgItemText(IDC_STATUS, (_T("错误: ") + err_msg).c_str());
+				new BalloonMsg(expression_.GetWnd(), _T("无效表达式"), err_msg.c_str(), BalloonMsg::IERROR);
 			}
 			return false;
 		}
@@ -470,11 +470,11 @@ bool RenamePanelAdvanced::VerifyCurrentExpr()
 		String err_msg;
 		if (VerifyExpr(expr, &err_msg))
 		{
-			SetDlgItemText(IDC_STATUS, (_T("Result: ") + err_msg).c_str());
+			SetDlgItemText(IDC_STATUS, (_T("结果: ") + err_msg).c_str());
 			ok = true;
 		}
 		else
-			SetDlgItemText(IDC_STATUS, (_T("Error: ") + err_msg).c_str());
+			SetDlgItemText(IDC_STATUS, (_T("错误: ") + err_msg).c_str());
 	}
 	CATCH_ALL
 
@@ -487,7 +487,7 @@ bool RenamePanelAdvanced::VerifyExpr(const CString& expr, String* err_message)
 	if (expr.IsEmpty())
 	{
 		if (err_message)
-			*err_message = _T("Please enter valid expression, it cannot be empty.");
+			*err_message = _T("请输入有效的表达式, 不能为空.");
 
 		return false;
 	}

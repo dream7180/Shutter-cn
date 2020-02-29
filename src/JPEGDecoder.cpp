@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -327,7 +327,7 @@ CSize JPEGDecoder::GetOriginalSize() const
 	catch (...) \
 	{ \
 		/* broken or malicious JPEG data can cause access violation in JPEG lib; catch it */ \
-		throw JPEGException(_T("Fatal error encountered in JPEG decoder")); \
+		throw JPEGException(_T("JPEG 解码器遇到致命错误")); \
 	}
 
 
@@ -347,7 +347,7 @@ ImageStat JPEGDecoder::DecodeImgToYCbCr(Dib& bmp, CSize& img_size, bool resize, 
 	catch (...)
 	{
 		/* broken or malicious JPEG data can cause access violation in JPEG lib; catch it */
-		throw JPEGException(_T("Fatal error encountered in JPEG decoder"));
+		throw JPEGException(_T("JPEG 解码器遇到致命错误"));
 	}
 }
 

@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -258,7 +258,7 @@ void InfoPane::Filter(const CString& text, bool hide_unknown)
 				GetLineText(line, 1, buf, MAX);		// get tag name
 				buf[MAX] = 0;
 
-				if (hide_unknown && _tcsicmp(buf, _T("unknown")) == 0)
+				if (hide_unknown && _tcsicmp(buf, _T("未知")) == 0)
 					continue;
 
 				if (text.IsEmpty())
@@ -298,7 +298,7 @@ String InfoPane::GetText() const
 {
 	if (photo_)
 	{
-		String str= _T("File: ") + photo_->GetDisplayPath() + _T("\r\n");
+		String str= _T("文件: ") + photo_->GetDisplayPath() + _T("\r\n");
 		str += file_info_.GetInfo(raw_data_);
 		return str;
 	}
@@ -419,16 +419,16 @@ void InfoPane::GetNameText(int line, TCHAR* text, int max_len)
 	switch (line)
 	{
 	case LINE_NAME:
-		_tcsncpy(text, _T("File Name"), max_len);
+		_tcsncpy(text, _T("文件名称"), max_len);
 		break;
 	case LINE_PATH:
-		_tcsncpy(text, _T("File Path"), max_len);
+		_tcsncpy(text, _T("文件路径"), max_len);
 		break;
 	case LINE_DIM:
-		_tcsncpy(text, _T("Dimensions"), max_len);
+		_tcsncpy(text, _T("尺寸"), max_len);
 		break;
 	case LINE_FILESIZE:
-		_tcsncpy(text, _T("File Size"), max_len);
+		_tcsncpy(text, _T("文件大小"), max_len);
 		break;
 	default:
 		ASSERT(false);
@@ -531,7 +531,7 @@ void InfoPane::GetLineText(int line, int col, TCHAR* text, int max_len)
 			break;
 
 		case 1:	// name
-			_tcsncpy(text, _T("Embedded ICC Profile"), max_len);
+			_tcsncpy(text, _T("内嵌 ICC 配置"), max_len);
 			break;
 
 		case 2:	// value

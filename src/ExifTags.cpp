@@ -134,7 +134,7 @@ const TCHAR* TagName(uint16 tag)
 	case 0xA401: name =	_T("自定义图像处理");				break;
 	case 0xA402: name =	_T("曝光模式");				break;
 	case 0xA403: name =	_T("白平衡");				break;
-	case 0xA404: name =	_T("数字变焦");			break;
+	case 0xA404: name =	_T("数码变焦");			break;
 	case 0xA405: name =	_T("35毫米胶片焦距");	break;
 	case 0xA406: name =	_T("场景拍摄类型");			break;
 	case 0xA407: name =	_T("增益控制");					break;

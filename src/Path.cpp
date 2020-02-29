@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -311,8 +311,8 @@ bool Path::CreateIfDoesntExist(CWnd* msg_parent) const
 {
 	if (size() == 0)
 	{
-		new BalloonMsg(msg_parent, _T("Path Expected"),
-			_T("Please enter a directory path."), BalloonMsg::IERROR);
+		new BalloonMsg(msg_parent, _T("要求路径"),
+			_T("请输入目录路径."), BalloonMsg::IERROR);
 		return false;
 	}
 
@@ -324,8 +324,8 @@ bool Path::CreateIfDoesntExist(CWnd* msg_parent) const
 		if (CreateFolders())
 			return true;
 
-		new BalloonMsg(msg_parent, _T("Wrong Path"),
-			_T("Directories along the path cannot be created."), BalloonMsg::IERROR);
+		new BalloonMsg(msg_parent, _T("路径错误"),
+			_T("目录路径未能创建."), BalloonMsg::IERROR);
 
 		return false;
 	}
@@ -335,8 +335,8 @@ bool Path::CreateIfDoesntExist(CWnd* msg_parent) const
 
 	if (msg_parent)
 	{
-		new BalloonMsg(msg_parent, _T("Wrong Path"),
-			_T("Please select either a path to the existing folder or\na new path to be created."), BalloonMsg::IERROR);
+		new BalloonMsg(msg_parent, _T("路径错误"),
+			_T("请选择存在的文件夹路径或\na 创建新路径."), BalloonMsg::IERROR);
 		return false;
 	}
 

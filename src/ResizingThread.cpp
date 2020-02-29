@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -137,7 +137,7 @@ void ResizingThread::Process(size_t index)
 		AutoPtr<Dib> copy= dib.RotateCopy(img.orientation_ == 6);
 		if (copy.get() == 0)
 		{
-			String str= _T("Error rotating image file ");
+			String str= _T("旋转图像文件出错 ");
 			str += input_file;
 			throw str;
 		}
@@ -191,9 +191,9 @@ void ResizingThread::Process(size_t index)
 				// no rescaling--for now just copy (ideally rotation if necessary)
 				if (!::CopyFile(input_file, output_file, false))
 				{
-					String msg= _T("Error copying file.\n\nFrom: ");
+					String msg= _T("复制文件出错.\n\从: ");
 					msg += input_file;
-					msg += _T("\n\nTo:   ");
+					msg += _T("\n\n到:   ");
 					msg += output_file;
 					throw msg;
 				}
