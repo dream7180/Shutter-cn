@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -23,7 +23,7 @@ void SetPhotoAsWallpaper(const PhotoInfo& photo)
 	// for resizing wallpaper complete desktop size is needed, not a working area
 	CRect desk(0,0,0,0);
 	if (!::GetWindowRect(::GetDesktopWindow(), &desk))
-		throw String(_T("Cannot obtain desktop's size"));
+		throw String(_T("未能获取桌面尺寸"));
 
 	//if (!::SystemParametersInfo(SPI_GETWORKAREA, 0, &desk, 0))
 	//	return false;
@@ -34,7 +34,7 @@ void SetPhotoAsWallpaper(const PhotoInfo& photo)
 	ImageStat stat= decoder->DecodeImg(img);
 
 	if (stat != IS_OK)
-		throw String(_T("Error decoding image: ")) + ImageStatMsg(stat);
+		throw String(_T("解码图像出错: ")) + ImageStatMsg(stat);
 
 	int orientation= photo.rotation_flag_ & 3;
 	if (orientation != 0)
@@ -42,7 +42,7 @@ void SetPhotoAsWallpaper(const PhotoInfo& photo)
 		AutoPtr<Dib> copy= ::RotateBitmap(img, orientation);
 
 		if (copy.empty())
-			throw String(_T("Bitmap format is not supported"));
+			throw String(_T("不支持位图格式"));
 
 		img.Swap(*copy);
 	}
@@ -62,7 +62,7 @@ void SetPhotoAsWallpaper(const PhotoInfo& photo)
 		fill_img_rect = CRect(CPoint(0, 0), Dib::SizeToFit(desk.Size(), img_size));
 
 	if (fill_img_rect.IsRectEmpty())
-		throw String(_T("Image cannot be resized to the requested desktop area"));
+		throw String(_T("未能调整图像尺寸以适合桌面"));
 
 	CSize new_size= fill_img_rect.Size();
 	if (new_size.cx < img_size.cx || new_size.cy < img_size.cy)
@@ -102,7 +102,7 @@ void SetPhotoAsWallpaper(const PhotoInfo& photo)
 	// set wallpaper
 
 	if (!::SystemParametersInfo(SPI_SETDESKWALLPAPER, 0, const_cast<TCHAR*>(path.c_str()), SPIF_UPDATEINIFILE | SPIF_SENDCHANGE))
-		throw String(_T("Setting wallpaper image failed"));
+		throw String(_T("设置壁纸图像失败"));
 }
 
 

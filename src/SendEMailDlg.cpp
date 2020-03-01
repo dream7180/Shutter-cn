@@ -183,10 +183,10 @@ void CSendEMailDlg::UpdateFmt()
 		}
 		CString ratio;
 		if (denominator > 0.0f)
-			ratio.Format(_T("(about 1:%0.*f)"),
+			ratio.Format(_T("(大约 1:%0.*f)"),
 				static_cast<int>(denominator * 10) % 10 > 0 ? 1 : 0, static_cast<double>(denominator));
 		else
-			ratio = _T("(about 1:?)");
+			ratio = _T("(大约 1:?)");
 		compr_ratio_wnd_.SetWindowText(ratio);
 
 		ReadOnlyCtrl(&edit_compr_level_, !custom);

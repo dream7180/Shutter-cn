@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -926,7 +926,7 @@ void TagsBarCommon::OnUpdateTagsManage(CCmdUI* cmd_ui)
 
 static TCHAR* g_ext= _T(".txt");
 static TCHAR* g_name= _T("Photo Tags.txt");
-static TCHAR* g_filter= _T("Tag Text Files (*.txt)|*.txt|All Files (*.*)|*.*||");
+static TCHAR* g_filter= _T("标记文本文件 (*.txt)|*.txt|所有文件 (*.*)|*.*||");
 
 void TagsBarCommon::OnTagsLoad()
 {
@@ -954,7 +954,7 @@ bool TagsBarCommon::LoadTags(const TCHAR* filename)
 	ULONGLONG long_len= file.GetLength();
 	if (long_len > 0x100000)
 	{
-		new BalloonMsg(this, _T("Tags file too big"), _T("File you are trying to load is too big.\nFiles up to 1 MB are accepted."), BalloonMsg::IERROR);
+		new BalloonMsg(this, _T("标记文件太大"), _T("尝试载入的文件过大.\n文件应不大于 1 MB."), BalloonMsg::IERROR);
 		return false;
 	}
 
@@ -1061,9 +1061,9 @@ void TagsBarCommon::UpdateStatusBar(bool selection, bool still_loading)
 
 		oStringstream ost;
 		if (err)
-			ost << _T("Read-only ");
+			ost << _T("只读 ");
 		else
-			ost << _T("Selected ");
+			ost << _T("选定的 ");
 		// name in double quotation marks
 		ost << L'\x201c' << selected_photos_.front()->GetName() << L'\x201d';
 
@@ -1072,7 +1072,7 @@ void TagsBarCommon::UpdateStatusBar(bool selection, bool still_loading)
 	else
 	{
 		oStringstream ost;
-		ost << selected_photos_.size() << _T(" selected images");
+		ost << selected_photos_.size() << _T(" 选定的图像");
 		status_label_.SetWindowText(ost.str().c_str());//, pane_index, pane_type);
 		//status_label_.SetIcon(0, 0);
 	}
@@ -1272,7 +1272,7 @@ extern void ResetPopupMenuTags(CMenu& menu, int first_id, const PhotoTagsCollect
 	const int count= std::min<int>(int(tags.GetCount()), MAX_TAGS);
 
 	if (count == 0)	// this menu cannot
-		menu.AppendMenu(MF_STRING, first_id, _T("<No Tags Defined>"));
+		menu.AppendMenu(MF_STRING, first_id, _T("<无定义的标记>"));
 	else
 	{
 		for (int i= 0; i < count; ++i)

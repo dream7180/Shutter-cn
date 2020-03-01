@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -1143,7 +1143,7 @@ DBG_ONLY(if (file_info) file_info += _T("----->IFD1\r\n"))
 		uint32 entries = ifs.GetUInt16();		// no of entries in IFD1
 
 		if (entries > 0)
-			if (file_info) file_info->RecordInfo(0, _T("Thumbnail Section"), _T(""), _T(""));
+			if (file_info) file_info->RecordInfo(0, _T("缩略图信息"), _T(""), _T(""));
 
 		uint32 thumbnail_offset= 0;
 		uint32 thumbnail_size= 0;
@@ -1210,11 +1210,11 @@ DBG_ONLY(if (file_info) file_info += _T("----->IFD1\r\n"))
 
 						if (g_Settings.warn_about_broken_thumbnail_img_)
 						{
-							CString msg= _T("Error reading embedded thumbnail image.\n\nFile: ");
+							CString msg= _T("读取内嵌缩略图出错.\n\nFile: ");
 							msg += file;
-							msg += _T("\nDecoder message: ");
+							msg += _T("\n解码器消息: ");
 							msg += ex.GetMessage();
-							msg += _T(".\n\nEXIF block is corrupted.");
+							msg += _T(".\n\nEXIF 数据块损坏.");
 							AfxGetMainWnd()->MessageBox(msg, 0, MB_OK | MB_ICONWARNING);
 						}
 					}
@@ -1281,7 +1281,7 @@ bool ReadDescription(const Data& val, std::wstring& description)
 
 	if (type == 0)		// unhandled or unknown code
 	{
-		description = L"[unknown encoding]";
+		description = L"[未知编码]";
 		return false;
 	}
 

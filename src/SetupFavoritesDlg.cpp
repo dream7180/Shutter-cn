@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -112,8 +112,8 @@ BOOL SetupFavoritesDlg::OnInitDialog()
 	if (image_list)
 		list_wnd_.SendMessage(LVM_SETIMAGELIST, LVSIL_SMALL, LPARAM(image_list));
 
-	list_wnd_.InsertColumn(0, _T("Folder"), LVCFMT_LEFT, Pixels(190), 0);
-	list_wnd_.InsertColumn(1, _T("Path"), LVCFMT_LEFT, Pixels(240), 1);
+	list_wnd_.InsertColumn(0, _T("文件夹"), LVCFMT_LEFT, Pixels(190), 0);
+	list_wnd_.InsertColumn(1, _T("路径"), LVCFMT_LEFT, Pixels(240), 1);
 //	list_wnd_.InsertColumn(2, _T("Root"), LVCFMT_LEFT, 50, 2);
 
 //	list_wnd_.SetExtendedStyle(LVS_EX_FULLROWSELECT);
@@ -247,7 +247,7 @@ void SetupFavoritesDlg::SelectFolder(FavoriteFolder& folder)
 {
 	CFolderSelect fs(this);
 
-	if (fs.DoSelect(_T("Select Favorite Folder"), folder.GetIDL()))
+	if (fs.DoSelect(_T("选择收藏的文件夹"), folder.GetIDL()))
 	{
 		list_wnd_.Invalidate();		// redraw changed folder
 	}
@@ -264,8 +264,8 @@ void SetupFavoritesDlg::OnRename()
 	}
 	else
 	{
-		new BalloonMsg(&list_wnd_, _T("Please Select Folder"),
-			_T("Please select one folder to rename."), BalloonMsg::IERROR);
+		new BalloonMsg(&list_wnd_, _T("请选择文件夹"),
+			_T("请选择文件夹以重命名."), BalloonMsg::IERROR);
 	}
 }
 
@@ -283,8 +283,8 @@ void SetupFavoritesDlg::OnDelete()
 	}
 	else
 	{
-		new BalloonMsg(&list_wnd_, _T("Please Select Folder"),
-			_T("Please select one folder to remove from favorites."), BalloonMsg::IERROR);
+		new BalloonMsg(&list_wnd_, _T("请选择文件夹"),
+			_T("请选择要从收藏夹移除的文件夹."), BalloonMsg::IERROR);
 	}
 }
 

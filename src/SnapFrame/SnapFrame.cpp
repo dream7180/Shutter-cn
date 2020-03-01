@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -1615,7 +1615,7 @@ void SnapFrame::PanesMenu(CMenu& menu, int start_index)
 		}
 
 		menu.InsertMenu(start_index++, MF_BYPOSITION | MF_SEPARATOR);
-		String title= _T("Default Layout");
+		String title= _T("默认布局");
 		unique.SelectUniqueLetter(title);
 		menu.InsertMenu(start_index++, MF_BYPOSITION | MF_STRING, ID_PANES_RESET, title.c_str());
 		menu.InsertMenu(start_index++, MF_BYPOSITION | MF_SEPARATOR);
@@ -1664,7 +1664,7 @@ void SnapFrame::PanesMenu(CMenu& menu, UINT layout_cmd_id)
 		}
 
 		menu.AppendMenu(MF_SEPARATOR);
-		String title= _T("Restore Default Layout");
+		String title= _T("恢复默认布局");
 		unique.SelectUniqueLetter(title);
 		menu.AppendMenu(MF_STRING | MF_BYCOMMAND, ID_PANES_RESET, title.c_str());
 	}
@@ -1673,11 +1673,11 @@ void SnapFrame::PanesMenu(CMenu& menu, UINT layout_cmd_id)
 	{
 		menu.AppendMenu(MF_SEPARATOR);
 
-		String title= _T("Store Current Layout...");
+		String title= _T("保存当前布局...");
 		unique.SelectUniqueLetter(title);
 		menu.AppendMenu(MF_STRING | MF_BYCOMMAND, ID_PANES_STORE_LAYOUT, title.c_str());
 
-		title = _T("Manage Stored Layouts");
+		title = _T("管理保存的布局");
 		unique.SelectUniqueLetter(title);
 		menu.AppendMenu(MF_STRING | MF_BYCOMMAND, ID_PANES_MANAGE_LAYOUTS, title.c_str());
 
@@ -3168,7 +3168,7 @@ void SnapFrame::CLayoutList::RestoreLayouts(const TCHAR* reg_entry, const TCHAR*
 	}
 	catch (...)
 	{
-		AfxMessageBox(_T("Error restoring layout information."), MB_OK);
+		AfxMessageBox(_T("保存布局信息出错."), MB_OK);
 	}
 }
 

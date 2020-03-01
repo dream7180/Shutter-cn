@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -81,9 +81,9 @@ const TCHAR* CanonData::MacroMode() const
 {
 	switch (macro_mode_)
 	{
-	case 0:		return _T("Unknown");
-	case 1:		return _T("Macro");
-	case 2:		return _T("Normal");
+	case 0:		return _T("未知");
+	case 1:		return _T("微距");
+	case 2:		return _T("正常");
 	default:	return _T("(?)");
 	}
 }
@@ -91,7 +91,7 @@ const TCHAR* CanonData::MacroMode() const
 String CanonData::SelfTimer() const
 {
 	if (self_timer_ == 0)
-		return _T("Not Used");
+		return _T("未使用");
 
 	oStringstream ost;
 	ost << uint32(self_timer_) / 10 << _T(".") << uint32(self_timer_) % 10 << _T(" s");
@@ -102,14 +102,14 @@ const TCHAR* CanonData::FlashMode() const
 {
 	switch (flash_mode_)
 	{
-	case 0:		return _T("Off");
-	case 1:		return _T("Auto");
-	case 2:		return _T("On");
-	case 3:		return _T("Red-eye reduction");
-	case 4:		return _T("Slow-sync");
-	case 5:		return _T("Red-eye reduction (Auto)");
-	case 6:		return _T("Red-eye reduction (On)");
-	case 16:	return _T("External flash");
+	case 0:		return _T("关闭");
+	case 1:		return _T("自动");
+	case 2:		return _T("开启");
+	case 3:		return _T("消除红眼");
+	case 4:		return _T("低速同步");
+	case 5:		return _T("消除红眼 (自动)");
+	case 6:		return _T("消除红眼 (开启)");
+	case 16:	return _T("外部闪光灯");
 	default:	return _T("(?)");
 	}
 }
@@ -118,8 +118,8 @@ const TCHAR* CanonData::DriveMode() const
 {
 	switch (drive_mode_)
 	{
-	case 0:		return _T("Single");
-	case 1:		return _T("Continuous");
+	case 0:		return _T("单张");
+	case 1:		return _T("连拍");
 	default:	return _T("(?)");
 	}
 }
@@ -131,11 +131,11 @@ const TCHAR* CanonData::FocusMode() const
 	case 0:		return _T("One-Shot");
 	case 1:		return _T("AI Servo");
 	case 2:		return _T("AI Focus");
-	case 3:		return _T("Manual Focus");
+	case 3:		return _T("手动对焦");
 	case 4:		// G1 differs here
-				return _T("Single");
-	case 5:		return _T("Continuous");
-	case 6:		return _T("Manual Focus");
+				return _T("单张");
+	case 5:		return _T("连拍");
+	case 6:		return _T("手动对焦");
 	default:	return _T("(?)");
 	}
 }
@@ -144,12 +144,12 @@ const TCHAR* CanonData::FocusType() const
 {
 	switch (focus_type_)
 	{
-	case 0:		return _T("Manual");
-	case 1:		return _T("Auto (1)");
-	case 2:		return _T("Auto (2)");
-	case 3:		return _T("Close-up (Macro)");
-	case 7:		return _T("Infinity Mode");
-	case 8:		return _T("Locked (Pan Mode)");
+	case 0:		return _T("手动");
+	case 1:		return _T("自动 (1)");
+	case 2:		return _T("自动 (2)");
+	case 3:		return _T("微距");
+	case 7:		return _T("无穷远模式");
+	case 8:		return _T("锁定 (泛焦)");
 	default:	return _T("(?)");
 	}
 }
@@ -159,9 +159,9 @@ const TCHAR* CanonData::ImageSize() const
 {
 	switch (image_size_)
 	{
-	case 0:		return _T("Large");
-	case 1:		return _T("Medium");
-	case 2:		return _T("Small");
+	case 0:		return _T("大");
+	case 1:		return _T("中");
+	case 2:		return _T("小");
 	case uint16(~0):	return _T("-");
 	default:	return _T("(?)");
 	}
@@ -171,18 +171,18 @@ const TCHAR* CanonData::Program() const
 {
 	switch (program_)
 	{
-	case 0:		return _T("Full Auto");
-	case 1:		return _T("Manual");
-	case 2:		return _T("Landscape");
-	case 3:		return _T("Fast Shutter");
-	case 4:		return _T("Slow Shutter");
-	case 5:		return _T("Night");
+	case 0:		return _T("全自动");
+	case 1:		return _T("手动");
+	case 2:		return _T("风景");
+	case 3:		return _T("快速快门");
+	case 4:		return _T("慢快门");
+	case 5:		return _T("夜晚");
 	case 6:		return _T("B&W");
-	case 7:		return _T("Sepia");
-	case 8:		return _T("Portrait");
-	case 9:		return _T("Sports");
-	case 10:	return _T("Close-Up");
-	case 11:	return _T("Pan Focus");
+	case 7:		return _T("褐色");
+	case 8:		return _T("消息");
+	case 9:		return _T("运动");
+	case 10:	return _T("微距");
+	case 11:	return _T("泛焦");
 	default:	return _T("(?)");
 	}
 }
@@ -191,9 +191,9 @@ const TCHAR* CanonData::Contrast() const
 {
 	switch (contrast_)
 	{
-	case 0xffff:	return _T("Low");
-	case 0x0000:	return _T("Normal");
-	case 0x0001:	return _T("High");
+	case 0xffff:	return _T("低");
+	case 0x0000:	return _T("正常");
+	case 0x0001:	return _T("高");
 	default:		return _T("(?)");
 	}
 }
@@ -202,9 +202,9 @@ const TCHAR* CanonData::Saturation() const
 {
 	switch (saturation_)
 	{
-	case 0xffff:	return _T("Low");
-	case 0x0000:	return _T("Normal");
-	case 0x0001:	return _T("High");
+	case 0xffff:	return _T("低");
+	case 0x0000:	return _T("正常");
+	case 0x0001:	return _T("高");
 	default:		return _T("(?)");
 	}
 }
@@ -213,9 +213,9 @@ const TCHAR* CanonData::Sharpness() const
 {
 	switch (sharpness_)
 	{
-	case 0xffff:	return _T("Low");
-	case 0x0000:	return _T("Normal");
-	case 0x0001:	return _T("High");
+	case 0xffff:	return _T("低");
+	case 0x0000:	return _T("正常");
+	case 0x0001:	return _T("高");
 	default:		return _T("(?)");
 	}
 }
@@ -225,7 +225,7 @@ String CanonData::ISO() const
 	switch (iso_)
 	{
 	case 0:		return _T("-");
-	case 15:	return _T("Auto");
+	case 15:	return _T("自动");
 	case 16:	return _T("50");
 	case 17:	return _T("100");
 	case 18:	return _T("200");
@@ -249,9 +249,9 @@ const TCHAR* CanonData::MeteringMode() const
 {
 	switch (metering_mode_)
 	{
-	case 3:		return _T("Evaluative");
-	case 4:		return _T("Partial");
-	case 5:		return _T("Center-weighted");
+	case 3:		return _T("评价");
+	case 4:		return _T("局部");
+	case 5:		return _T("中心权重");
 	default:	return _T("(?)");
 	}
 }
@@ -260,14 +260,14 @@ const TCHAR* CanonData::AFPointSelected() const
 {
 	switch (AF_point_)
 	{
-	case 0x0:		return _T("None (MF)");
-	case 0x3000:	return _T("None (MF)");
-	case 0x3001:	return _T("Auto-selected");
-	case 0x3002:	return _T("Right");
-	case 0x3003:	return _T("Center");
-	case 0x3004:	return _T("Left");
-	case 0x4001:	return _T("Auto AF point selection");
-	case 0x2005:	return _T("Manual AF point selection");
+	case 0x0:		return _T("无 (MF)");
+	case 0x3000:	return _T("无 (MF)");
+	case 0x3001:	return _T("自动选择");
+	case 0x3002:	return _T("右");
+	case 0x3003:	return _T("中心");
+	case 0x3004:	return _T("左");
+	case 0x4001:	return _T("自动选择 AF 对焦点");
+	case 0x2005:	return _T("手动选择 AF 对焦点");
 	default:		return _T("(?)");
 	}
 }
@@ -276,11 +276,11 @@ const TCHAR* CanonData::ExposureMode() const
 {
 	switch (exposure_mode_)
 	{
-	case 0:		return _T("Easy shooting");
-	case 1:		return _T("Program");
-	case 2:		return _T("Tv-Priority");
-	case 3:		return _T("Av-Priority");
-	case 4:		return _T("Manual");
+	case 0:		return _T("简易拍摄");
+	case 1:		return _T("程序");
+	case 2:		return _T("快门优先");
+	case 3:		return _T("光圈优先");
+	case 4:		return _T("手动");
 	case 5:		return _T("A-DEP");
 	default:	return _T("(?)");
 	}
@@ -302,16 +302,16 @@ const TCHAR* CanonData::WhiteBalance() const
 {
 	switch (white_balance_)
 	{
-	case 0:		return _T("Auto");
-	case 1:		return _T("Sunny");
-	case 2:		return _T("Cloudy");
-	case 3:		return _T("Tungsten");
-	case 4:		return _T("Flourescent");
-	case 5:		return _T("Flash");
-	case 6:		return _T("Custom");
-	case 7:		return _T("Black & white");
-	case 8:		return _T("Shade");
-	case 9:		return _T("Manual temperature");
+	case 0:		return _T("自动");
+	case 1:		return _T("晴朗");
+	case 2:		return _T("多云");
+	case 3:		return _T("钨灯");
+	case 4:		return _T("荧光灯");
+	case 5:		return _T("闪光");
+	case 6:		return _T("自定义");
+	case 7:		return _T("黑白");
+	case 8:		return _T("阴影");
+	case 9:		return _T("手动色温");
 	default:	return _T("(?)");
 	}
 }
@@ -358,7 +358,7 @@ String CanonData::FlashBias() const
 String CanonData::SubjectDistance() const
 {
 	if (subject_distance_ == uint16(~0))
-		return _T("Infinite");
+		return _T("无穷远");
 
 	oStringstream ost;
 	ost << uint32(subject_distance_);
@@ -403,10 +403,10 @@ const TCHAR* CanonData::Quality() const
 {
 	switch (quality_)
 	{
-	case 2:		return _T("Normal");
-	case 3:		return _T("Fine");
+	case 2:		return _T("正常");
+	case 3:		return _T("精细");
 	case 4:		return _T("RAW");
-	case 5:		return _T("Superfine");
+	case 5:		return _T("超精细");
 	default:	return _T("(?)");
 	}
 }
@@ -466,12 +466,12 @@ String FujiData::Sharpness() const
 	{
 	case 1:
 	case 2:
-		return _T("Soft");
+		return _T("柔和");
 	case 3:
-		return _T("Normal");
+		return _T("正常");
 	case 4:
 	case 5:
-		return _T("Hard");
+		return _T("锐利");
 	default:
 		return _T("?");
 	}
@@ -485,21 +485,21 @@ String FujiData::WhiteBalance() const
 	switch (white_balance_)
 	{
 	case 0:
-		return _T("Auto");
+		return _T("自动");
 	case 0x100:
-		return _T("Daylight");
+		return _T("日光");
 	case 0x200:
-		return _T("Cloudy");
+		return _T("多云");
 	case 0x300:
-		return _T("DaylightColor-fluorescence");
+		return _T("日光荧光灯");
 	case 0x301:
-		return _T("DaywhiteColor-fluorescence");
+		return _T("日光白色荧光灯");
 	case 0x302:
-		return _T("White-fluorescence");
+		return _T("白色荧光灯");
 	case 0x400:
-		return _T("Incandenscense");
+		return _T("白炽灯");
 	case 0xf00:
-		return _T("Custom");
+		return _T("自定义");
 	default:
 		return _T("?");
 	}
@@ -511,11 +511,11 @@ String FujiData::Color() const
 	switch (color_)
 	{
 	case 0:
-		return _T("Normal (STD)");
+		return _T("正常 (STD)");
 	case 0x100:
-		return _T("High");
+		return _T("高");
 	case 0x200:
-		return _T("Low (ORG)");
+		return _T("低 (ORG)");
 	default:
 		return _T("?");
 	}
@@ -527,11 +527,11 @@ String FujiData::Tone() const
 	switch (tone_)
 	{
 	case 0:
-		return _T("Normal (STD)");
+		return _T("正常 (STD)");
 	case 0x100:
-		return _T("High (HARD)");
+		return _T("高 (HARD)");
 	case 0x200:
-		return _T("Low (ORG)");
+		return _T("低 (ORG)");
 	default:
 		return _T("?");
 	}
@@ -543,13 +543,13 @@ String FujiData::FlashMode() const
 	switch (flash_mode_)
 	{
 	case 0:
-		return _T("Auto");
+		return _T("自动");
 	case 1:
-		return _T("On");
+		return _T("开启");
 	case 2:
-		return _T("Off");
+		return _T("关闭");
 	case 3:
-		return _T("Red-eye reduction");
+		return _T("消除红眼");
 	default:
 		return _T("?");
 	}
@@ -569,9 +569,9 @@ String FujiData::Macro() const
 	switch (macro_)
 	{
 	case 0:
-		return _T("Off");
+		return _T("关闭");
 	case 1:
-		return _T("On");
+		return _T("开启");
 	default:
 		return _T("?");
 	}
@@ -583,9 +583,9 @@ String FujiData::FocusMode() const
 	switch (focus_mode_)
 	{
 	case 0:
-		return _T("Auto");
+		return _T("自动");
 	case 1:
-		return _T("Manual");
+		return _T("手动");
 	default:
 		return _T("?");
 	}
@@ -597,9 +597,9 @@ String FujiData::SlowSync() const
 	switch (slow_sync_)
 	{
 	case 0:
-		return _T("Off");
+		return _T("关闭");
 	case 1:
-		return _T("On");
+		return _T("开启");
 	default:
 		return _T("?");
 	}
@@ -612,23 +612,23 @@ String FujiData::PictureMode() const
 	switch (picture_mode_)
 	{
 	case 0:
-		return _T("Auto");
+		return _T("自动");
 	case 1:
-		return _T("Portrait Scene");
+		return _T("肖像");
 	case 2:
-		return _T("Landscape Scene");
+		return _T("风景");
 	case 4:
-		return _T("Sports Scene");
+		return _T("运动");
 	case 5:
-		return _T("Night Scene");
+		return _T("夜景");
 	case 6:
-		return _T("Program AE");
+		return _T("程序自动曝光");
 	case 0x100:
-		return _T("Aperture Prior AE");
+		return _T("光圈优先自动曝光");
 	case 0x200:
-		return _T("Shutter Prior AE");
+		return _T("快门优先自动曝光");
 	case 0x300:
-		return _T("Manual Exposure");
+		return _T("手动曝光");
 	default:
 		return _T("?");
 	}
@@ -640,9 +640,9 @@ String FujiData::ContTakeBracket() const
 	switch (cont_take_bracket_)
 	{
 	case 0:
-		return _T("Off");
+		return _T("关闭");
 	case 1:
-		return _T("On");
+		return _T("开启");
 	default:
 		return _T("?");
 	}
@@ -654,9 +654,9 @@ String FujiData::BlurWarning() const
 	switch (blur_warning_)
 	{
 	case 0:
-		return _T("No");
+		return _T("否");
 	case 1:
-		return _T("Yes");
+		return _T("是");
 	default:
 		return _T("?");
 	}
@@ -668,9 +668,9 @@ String FujiData::FocusWarning() const
 	switch (focus_warning_)
 	{
 	case 0:
-		return _T("Auto Focus OK");
+		return _T("自动对焦 OK");
 	case 1:
-		return _T("Out Of Focus");
+		return _T("脱焦");
 	default:
 		return _T("?");
 	}
@@ -684,7 +684,7 @@ String FujiData::AEWarning() const
 	case 0:
 		return _T("AE OK");
 	case 1:
-		return _T("Over Exposure");
+		return _T("过曝");
 	default:
 		return _T("?");
 	}
@@ -709,16 +709,16 @@ String OlympusData::SpecialMode() const
 	switch (special_mode_[0])	// First value means 0=normal, 1=unknown, 2=fast, 3=panorama.
 	{
 	case 0:
-		mode = _T("Normal");
+		mode = _T("正常");
 		break;
 	case 1:
-		mode = _T("Unknown");
+		mode = _T("未知");
 		break;
 	case 2:
-		mode = _T("Fast");
+		mode = _T("快速");
 		break;
 	case 3:
-		mode = _T("Panorama");
+		mode = _T("全景");
 		break;
 	}
 
@@ -745,13 +745,13 @@ const TCHAR* OlympusData::JPEGQuality() const
 	switch (jpeg_quality_)
 	{
 	case 1:
-		text = _T("Standard Quality");
+		text = _T("标准品质");
 		break;
 	case 2:
-		text = _T("High Quality");
+		text = _T("高品质");
 		break;
 	case 3:
-		text = _T("Super High Quality");
+		text = _T("超高品质");
 		break;
 	}
 
@@ -766,10 +766,10 @@ const TCHAR* OlympusData::Macro() const
 	switch (macro_)
 	{
 	case 0:
-		text = _T("Normal");
+		text = _T("正常");
 		break;
 	case 1:
-		text = _T("Macro");
+		text = _T("微距");
 		break;
 	}
 
@@ -782,7 +782,7 @@ String OlympusData::DigitalZoom() const
 	if (digital_zoom_.Double() == 0.0)
 		return _T("-");
 	else if (digital_zoom_.Double() == 1.0)
-		return _T("Not Used");
+		return _T("未使用");
 	else
 		return digital_zoom_.AsString();
 }

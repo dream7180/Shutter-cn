@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -242,7 +242,7 @@ bool CSlideShowGenerator::Finish()
 	}
 	catch (...)
 	{
-		AfxMessageBox(_T("Slide Show creation failed."), MB_OK | MB_ICONERROR);
+		AfxMessageBox(_T("创建幻灯片失败."), MB_OK | MB_ICONERROR);
 	}
 
 	return false;

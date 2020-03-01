@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -292,7 +292,7 @@ int CMDIFrame::AddPage(const PaneLayoutInfoArray* panes_info, recipe_type recipe
 	}
 
 	if (page_index < 0)
-		throw _T("Pane window creation failure");
+		throw _T("创建面板窗口失败");
 
 	return page_index;
 }

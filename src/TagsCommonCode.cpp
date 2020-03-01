@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -54,7 +54,7 @@ bool OpenTags(const TCHAR* filename, PhotoTagsCollection& collection)
 	if (!loaded)
 	{
 		// no tags loaded--add some so tag bar doesn't show up empty
-		collection.FromString(_T("Good\nCandidate\n\nPrint\nPrinted\nOrder Print"));
+		collection.FromString(_T("Good\n候选\n\打印\n已打印\n待打印"));
 	}
 
 	return loaded;
@@ -64,7 +64,7 @@ bool OpenTags(const TCHAR* filename, PhotoTagsCollection& collection)
 
 static TCHAR* g_ext= _T(".txt");
 static TCHAR* g_name= _T("Photo Tags.txt");
-static TCHAR* g_filter= _T("Tag Text Files (*.txt)|*.txt|All Files (*.*)|*.*||");
+static TCHAR* g_filter= _T("标记文本文件 (*.txt)|*.txt|所有文件 (*.*)|*.*||");
 
 
 bool LoadTags(const TCHAR* filename, PhotoTagsCollection& collection, CWnd* parent)
@@ -79,7 +79,7 @@ bool LoadTags(const TCHAR* filename, PhotoTagsCollection& collection, CWnd* pare
 	if (len > 0x100000)
 	{
 		if (parent)
-			new BalloonMsg(parent, _T("Tags file too big"), _T("File you are trying to load is too big.\nFiles up to 1 MB are accepted."), BalloonMsg::IERROR);
+			new BalloonMsg(parent, _T("标记文件太大"), _T("尝试载入的文件过大.\n文件应不大于 1 MB."), BalloonMsg::IERROR);
 
 		return false;
 	}
@@ -130,7 +130,7 @@ void SaveTags(const TCHAR* filename, const PhotoTagsCollection& collection)
 
 	size_t size= tags.length() * sizeof TCHAR;
 	if (size > 1 << 31)	// 2 GB
-		THROW_EXCEPTION(L"Saving Tags Error", L"Tag file exceeds 2 GB size limit.");
+		THROW_EXCEPTION(L"保存标记出错", L"标记文件 2 GB 大小限制.");
 
 	file.Write(&tags[0], static_cast<UINT>(size));
 }

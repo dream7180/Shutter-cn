@@ -2237,10 +2237,10 @@ FONT 8, "Tahoma", 400, 0, 0x0
 BEGIN
     DEFPUSHBUTTON   "确定",IDOK,123,59,50,14
     PUSHBUTTON      "取消",IDCANCEL,62,59,50,14
-    LTEXT           "名称(&N)",IDC_STATIC,7,13,30,9
+    LTEXT           "名称(&N)",IDC_STATIC,7,13,34,9
     LTEXT           "路径",IDC_STATIC,7,35,20,9
-    EDITTEXT        IDC_NAME,33,11,196,13,ES_AUTOHSCROLL
-    LTEXT           "路径",IDC_PATH,33,35,196,9
+    EDITTEXT        IDC_NAME,43,11,186,13,ES_AUTOHSCROLL
+    LTEXT           "路径:",IDC_PATH,43,35,186,9
 END
 
 #if defined(APSTUDIO_INVOKED) || defined(NEVER)

@@ -92,7 +92,7 @@ const TCHAR* TagName(uint16 tag)
 	case 0x9000: name =	_T("Exif 版本");					break;
 	case 0x9003: name =	_T("原始日期时间");			break;
 	case 0x9004: name =	_T("数字化日期时间");			break;
-	case 0x9101: name =	_T("组件配置");		break;
+	case 0x9101: name =	_T("构建方式");		break;
 	case 0x9102: name =	_T("压缩时每像素色彩位");	break;
 	case 0x9201: name =	_T("快门速度");			break;
 	case 0x9202: name =	_T("光圈");				break;
@@ -704,7 +704,7 @@ extern String MeteringMode(uint32 metering_mode)
 	case 5:
 	case 6:		return RString(IDS_PHOTO_MET_MODE_0 + metering_mode).CStr();
 
-	case 255:	return _T("Other");
+	case 255:	return _T("其他");
 	default:	return _T("-");
 	}
 }
@@ -715,7 +715,7 @@ extern String ISOSpeed(uint16 iso_speed)
 	if (iso_speed == uint16(ISO_SPEED_UNKNOWN))
 		return _T("-");
 	else if (iso_speed == uint16(ISO_SPEED_AUTO))
-		return _T("Auto");
+		return _T("自动");
 	else
 	{
 		oStringstream ost;

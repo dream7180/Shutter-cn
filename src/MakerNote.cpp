@@ -203,95 +203,95 @@ String NikonNote::TagName(uint16 tag)
 
 	switch (tag)
 	{
-	case 0x01: name = _T("Firmware Version");				break;
-	case 0x02: name = _T("ISO Speed Used");					break;
-	case 0x03: name = _T("Color Mode");						break;
-	case 0x04: name = _T("JPEG Quality");					break;
-	case 0x05: name = _T("White Balance");					break;
-	case 0x06: name = _T("Image Sharpening");				break;
-	case 0x07: name = _T("Focus Mode");						break;
-	case 0x08: name = _T("Flash Setting");					break;
-	case 0x09: name = _T("Flash Mode");						break;
-	case 0x0b: name = _T("White Balance Bias");				break;
-	case 0x0c: name = _T("White Balance Coefficients");		break;
-	case 0x0d: name = _T("Program Shift");					break;
-	case 0x0e: name = _T("Exposure Difference"); 			break;
-	case 0x0f: name = _T("ISO Selection");					break;
-	case 0x11: name = _T("Thumbnail IFD offset");			break;
-	case 0x12: name = _T("Flash Compensation");				break;
-	case 0x13: name = _T("ISO Speed Requested");			break;
-	case 0x16: name = _T("Photo Corner Coordinates");		break;
-	case 0x17: name = _T("Flash Exposure Compensation");	break;
-	case 0x18: name = _T("Flash Bracket Compensation Applied");	break;
-	case 0x19: name = _T("AE Bracket Compensation Applied");	break;
-	case 0x1a: name = _T("Image Processing");				break;
-	case 0x1b: name = _T("Crop High Speed");				break;
-	case 0x1c: name = _T("Exposure Fine-Tuning");			break;
-	case 0x1d: name = _T("Serial Number");					break;
-	case 0x1e: name = _T("Color Space");					break;
-	case 0x1f: name = _T("Vibration Reduction Info");		break;
-	case 0x20: name = _T("Image Authentication");			break;
-	case 0x22: name = _T("Active D-Lighting");				break;
-	case 0x23: name = _T("Picture Control");				break;
-	case 0x24: name = _T("World Time");						break;
-	case 0x25: name = _T("Expanded ISO");					break;
-	case 0x2a: name = _T("Vignette Control");				break;
+	case 0x01: name = _T("紧固件版本");				break;
+	case 0x02: name = _T("感光度");					break;
+	case 0x03: name = _T("色彩模式");						break;
+	case 0x04: name = _T("JPEG 品质");					break;
+	case 0x05: name = _T("白平衡");					break;
+	case 0x06: name = _T("图像锐化");				break;
+	case 0x07: name = _T("对焦模式");						break;
+	case 0x08: name = _T("闪光灯设置");					break;
+	case 0x09: name = _T("闪光模式");						break;
+	case 0x0b: name = _T("白平衡偏差");				break;
+	case 0x0c: name = _T("白平衡系数");		break;
+	case 0x0d: name = _T("程序转换");					break;
+	case 0x0e: name = _T("曝光差异"); 			break;
+	case 0x0f: name = _T("ISO 选择");					break;
+	case 0x11: name = _T("缩略图 IFD 偏移");			break;
+	case 0x12: name = _T("闪光补偿");				break;
+	case 0x13: name = _T("请求的感光度");			break;
+	case 0x16: name = _T("照片图角坐标");		break;
+	case 0x17: name = _T("闪光灯曝光补偿");	break;
+	case 0x18: name = _T("使用闪光灯包围补偿");	break;
+	case 0x19: name = _T("使用自动曝光包围补偿");	break;
+	case 0x1a: name = _T("图像处理");				break;
+	case 0x1b: name = _T("告诉裁切");				break;
+	case 0x1c: name = _T("曝光微调");			break;
+	case 0x1d: name = _T("序列号");					break;
+	case 0x1e: name = _T("色彩空间");					break;
+	case 0x1f: name = _T("防抖信息");		break;
+	case 0x20: name = _T("图像认证");			break;
+	case 0x22: name = _T("使用 D-Lighting");				break;
+	case 0x23: name = _T("图像控制");				break;
+	case 0x24: name = _T("时区");						break;
+	case 0x25: name = _T("扩展 ISO");					break;
+	case 0x2a: name = _T("虚光控制");				break;
 
-	case 0x80: name = _T("Image Adjustment");				break;
-	case 0x81: name = _T("Tone Compensation");				break;
-	case 0x82: name = _T("Adapter");						break;
-	case 0x83: name = _T("Lens Type");						break;
-	case 0x84: name = _T("Lens");							break;
-	case 0x85: name = _T("Manual Focus Distance");			break;
-	case 0x86: name = _T("Digital Zoom");					break;
-	case 0x87: name = _T("Type of Flash Used");				break;
-	case 0x88: name = _T("AF Focus Position");				break;
-	case 0x89: name = _T("Bracketing & Shooting Mode");		break;
-	case 0x8a: name = _T("Auto Bracket Release");			break;
-	case 0x8b: name = _T("Lens F/Stops");					break;
-	case 0x8c: name = _T("Contrast Curve");					break;
-	case 0x8d: name = _T("Color Mode");						break;
-	case 0x8f: name = _T("Scene Mode");						break;
-	case 0x90: name = _T("Lighting Type");					break;
-	case 0x91: name = _T("Shot Info");						break;
-	case 0x92: name = _T("Hue Adjustment");					break;
-	case 0x93: name = _T("NEF Compression");				break;
-	case 0x94: name = _T("Saturation Adjustment");			break;
-	case 0x95: name = _T("Noise Reduction");				break;
-	case 0x96: name = _T("Raw Data Transform");				break;
-	case 0x97: name = _T("Color Balance");					break;
-	case 0x98: name = _T("Lens Data");						break;
-	case 0x99: name = _T("Raw Image Converter");			break;
-	case 0x9a: name = _T("Sensor Pixel Size");				break;
+	case 0x80: name = _T("图像调整");				break;
+	case 0x81: name = _T("色调补偿");				break;
+	case 0x82: name = _T("光圈");						break;
+	case 0x83: name = _T("镜头型号");						break;
+	case 0x84: name = _T("镜头");							break;
+	case 0x85: name = _T("手动对焦距离");			break;
+	case 0x86: name = _T("数码变焦");					break;
+	case 0x87: name = _T("闪光灯型号");				break;
+	case 0x88: name = _T("自动对焦位置");				break;
+	case 0x89: name = _T("包围曝光拍摄模式");		break;
+	case 0x8a: name = _T("自动包围曝光释放");			break;
+	case 0x8b: name = _T("镜头光圈");					break;
+	case 0x8c: name = _T("对比度曲线");					break;
+	case 0x8d: name = _T("色彩模式");						break;
+	case 0x8f: name = _T("场景模式");						break;
+	case 0x90: name = _T("光照类型");					break;
+	case 0x91: name = _T("拍摄信息");						break;
+	case 0x92: name = _T("色度调整");					break;
+	case 0x93: name = _T("NEF 压缩");				break;
+	case 0x94: name = _T("饱和度调整");			break;
+	case 0x95: name = _T("降噪");				break;
+	case 0x96: name = _T("Raw 数据换算");				break;
+	case 0x97: name = _T("色彩平衡");					break;
+	case 0x98: name = _T("镜头数据");						break;
+	case 0x99: name = _T("Raw 图像转换器");			break;
+	case 0x9a: name = _T("感光器像素大小");				break;
 //	case 0x9b:
-	case 0x9c: name = _T("Scene Assist");					break;
-	case 0x9e: name = _T("Retouch History");				break;
+	case 0x9c: name = _T("场景辅助");					break;
+	case 0x9e: name = _T("润色历史");				break;
 //	case 0x9f:
-	case 0xa0: name = _T("Serial Number");					break;
-	case 0xa2: name = _T("Image Data Size");				break;
-	case 0xa5: name = _T("Image Count");					break;
-	case 0xa6: name = _T("Deleted Image Count");			break;
-	case 0xa7: name = _T("Total Shutter Releases");			break;
-	case 0xa8: name = _T("Flash Info");						break;
-	case 0xa9: name = _T("Image Optimization");				break;
-	case 0xaa: name = _T("Saturation");						break;
-	case 0xab: name = _T("Digital Vari-Program");			break;
-	case 0xac: name = _T("Vibration Reduction");			break;
-	case 0xad: name = _T("AF Response");					break;
-	case 0xb0: name = _T("Multiple Exposure");				break;
-	case 0xb1: name = _T("High ISO Noise Reduction");		break;
-	case 0xb3: name = _T("Toning Effect");					break;
-	case 0xb7: name = _T("AF Info");						break;
-	case 0xb8: name = _T("File Info");						break;
+	case 0xa0: name = _T("序列号");					break;
+	case 0xa2: name = _T("图像数据大小");				break;
+	case 0xa5: name = _T("图像数量");					break;
+	case 0xa6: name = _T("删除的图像数量");			break;
+	case 0xa7: name = _T("快门数");			break;
+	case 0xa8: name = _T("闪光灯信息");						break;
+	case 0xa9: name = _T("图像优化");				break;
+	case 0xaa: name = _T("饱和度");						break;
+	case 0xab: name = _T("数字处理程序");			break;
+	case 0xac: name = _T("防抖");			break;
+	case 0xad: name = _T("AF 响应");					break;
+	case 0xb0: name = _T("多重曝光");				break;
+	case 0xb1: name = _T("高感光度降噪");		break;
+	case 0xb3: name = _T("色调效果");					break;
+	case 0xb7: name = _T("AF 信息");						break;
+	case 0xb8: name = _T("文件信息");						break;
 	case 0xe00: name = _T("PrintIM");						break;
-	case 0xe01: name = _T("Capture Data");					break;
-	case 0xe09: name = _T("Capture Version");				break;
-	case 0xe0e: name = _T("Capture Offsets");				break;
-	case 0xe10: name = _T("Scan IFD");						break;
-	case 0xe1d: name = _T("ICC Profile");					break;
-	case 0xe1e: name = _T("Capture Output");				break;
+	case 0xe01: name = _T("捕获数据");					break;
+	case 0xe09: name = _T("捕获版本");				break;
+	case 0xe0e: name = _T("捕获偏移");				break;
+	case 0xe10: name = _T("扫描 IFD");						break;
+	case 0xe1d: name = _T("ICC 配置");					break;
+	case 0xe1e: name = _T("捕获输出");				break;
 
-	default: name = _T("Unknown");							break;
+	default: name = _T("未知");							break;
 	}
 
 	return name;
@@ -422,25 +422,25 @@ static String BracketingAndShootingMode(uint32 v)
 
 	switch ((v & 0xf0) >> 4)
 	{
-	case 0:		str = _T("No bracketing; ");	break;
-	case 1:		str = _T("Bracketing; ");		break;	// ???
-	case 2:		str = _T("Flash bracketing; ");	break;
-	case 3:		str = _T("AE bracketing; ");	break;	// could be AE & Flash
+	case 0:		str = _T("无包围曝光; ");	break;
+	case 1:		str = _T("包围曝光; ");		break;	// ???
+	case 2:		str = _T("Flash 包围曝光; ");	break;
+	case 3:		str = _T("AE 包围曝光; ");	break;	// could be AE & Flash
 
 	case 4: //?
 	case 6:
-				str = _T("WB bracketing; ");	break;
+				str = _T("WB 包围曝光; ");	break;
 
 	default:	str = _T("(?); ");				break;
 	}
 
 	switch (v & 0x0f)
 	{
-	case 0:		str += _T("Single frame");		break;
-	case 1:		str += _T("Continuous");		break;
-	case 2:		str += _T("Timer");				break;
-	case 3:		str += _T("Delayed remote");	break;
-	case 4:		str += _T("Remote");			break;
+	case 0:		str += _T("单帧");		break;
+	case 1:		str += _T("连续");		break;
+	case 2:		str += _T("定时器");				break;
+	case 3:		str += _T("遥控延时");	break;
+	case 4:		str += _T("遥控");			break;
 	default:	str += _T("(?)");				break;
 	}
 
@@ -478,12 +478,12 @@ static String FormatDigitalZoom(const String& digital_zoom)
 
 static TaggedValue ActiveDLightingTags[]=
 {
-	TaggedValue(0, L"Off"),
-	TaggedValue(1, L"Low"),
-	TaggedValue(3, L"Normal"),
-	TaggedValue(5, L"High"),
-	TaggedValue(7, L"Extra High"),
-	TaggedValue(0xffff, L"Auto"),
+	TaggedValue(0, L"关闭"),
+	TaggedValue(1, L"低"),
+	TaggedValue(3, L"正常"),
+	TaggedValue(5, L"高"),
+	TaggedValue(7, L"很高"),
+	TaggedValue(0xffff, L"自动"),
 };
 
 static TaggedValue ColorSpaceTags[]=
@@ -511,19 +511,19 @@ static TaggedValue ExposureFineTuning[]=
 
 static TaggedValue HighISONoiseReduction[]=
 {
-	TaggedValue(0, L"Off"),
-	TaggedValue(1, L"Minimal"),
-	TaggedValue(2, L"Low"),
-	TaggedValue(4, L"Normal"),
-	TaggedValue(6, L"High"),
+	TaggedValue(0, L"关闭"),
+	TaggedValue(1, L"最小"),
+	TaggedValue(2, L"低"),
+	TaggedValue(4, L"正常"),
+	TaggedValue(6, L"高"),
 };
 
 static TaggedValue NEFCompression[]=
 {
-	TaggedValue(1, L"Lossy Type 1"),
-	TaggedValue(2, L"Uncompressed"),
-	TaggedValue(3, L"Lossless"),
-	TaggedValue(4, L"Lossy Type 2"),
+	TaggedValue(1, L"有损 Type 1"),
+	TaggedValue(2, L"非压缩"),
+	TaggedValue(3, L"无损"),
+	TaggedValue(4, L"有损 Type 2"),
 };
 
 
@@ -577,7 +577,7 @@ int ISOSpeed(const Data& val)
 
 static TaggedValue ExpandedISO[]=
 {
-	TaggedValue(0x0000, L"Off"),
+	TaggedValue(0x0000, L"关闭"),
 	TaggedValue(0x0101, L"Hi 0.3"),
 	TaggedValue(0x0102, L"Hi 0.5"),
 	TaggedValue(0x0103, L"Hi 0.7"),
@@ -636,9 +636,9 @@ String MultiExposureInfo(const Data& val)
 	oStringstream ost;
 	switch (mode)
 	{
-	case 0:	ost << L"Off"; break;
-	case 1:	ost << L"On"; break;
-	case 2:	ost << L"Image Overlay"; break;
+	case 0:	ost << L"关闭"; break;
+	case 1:	ost << L"打开"; break;
+	case 2:	ost << L"图像叠加"; break;
 	default:	ost << L"(?)"; break;
 	}
 
@@ -646,8 +646,8 @@ String MultiExposureInfo(const Data& val)
 
 	switch (auto_gain)
 	{
-	case 0:	ost << L"Auto gain off"; break;
-	case 1:	ost << L"Auto gain on"; break;
+	case 0:	ost << L"关闭自动增益"; break;
+	case 1:	ost << L"打开自动增益"; break;
 	default:	ost << L"(?)"; break;
 	}
 
@@ -693,8 +693,8 @@ String LensType(uint32 type)
 
 static TaggedValue OnOffTags[]=
 {
-	TaggedValue(1, L"On"),
-	TaggedValue(2, L"Off"),
+	TaggedValue(1, L"打开"),
+	TaggedValue(2, L"关闭"),
 };
 
 
@@ -718,9 +718,9 @@ String VibrationReductionInfo(const Data& val)
 
 static TaggedValue FlashSource[]=
 {
-	TaggedValue(0, L"None"),
-	TaggedValue(1, L"External"),
-	TaggedValue(2, L"Built-in"),
+	TaggedValue(0, L"无"),
+	TaggedValue(1, L"外置"),
+	TaggedValue(2, L"内置"),
 };
 
 static TaggedValue FlashFirmware[]=
@@ -731,7 +731,7 @@ static TaggedValue FlashFirmware[]=
 	TaggedValue(0x0201, L"2.01 (SB-800)"),
 	TaggedValue(0x0204, L"2.04 (SB-600)"),
 	TaggedValue(0x0205, L"2.05 (SB-600)"),
-	TaggedValue(0x0301, L"3.01 (SB-800 Remote Commander)"),
+	TaggedValue(0x0301, L"3.01 (SB-800 遥控引闪)"),
 	TaggedValue(0x0401, L"4.01 (SB-400)"),
 	TaggedValue(0x0402, L"4.02 (SB-400)"),
 	TaggedValue(0x0404, L"4.04 (SB-400)"),
@@ -741,22 +741,22 @@ static TaggedValue FlashFirmware[]=
 
 static TaggedValue FlashFired[]=
 {
-	TaggedValue(0, L"No"),
-	TaggedValue(1, L"Yes"),
-	TaggedValue(2, L"Bounced Flash"),
-	TaggedValue(4, L"Wide Flash Adapter"),
+	TaggedValue(0, L"否"),
+	TaggedValue(1, L"是"),
+	TaggedValue(2, L"跳闪"),
+	TaggedValue(4, L"宽闪光灯适配器"),
 };
 
 static TaggedValue FlashMode[]=
 {
-	TaggedValue(0, L"Off"),
+	TaggedValue(0, L"关闭"),
 	TaggedValue(1, L"TTL BL"),
 	TaggedValue(2, L"TTL"),
-	TaggedValue(3, L"Auto Aperture"),
-	TaggedValue(4, L"Automatic"),
+	TaggedValue(3, L"自动光圈"),
+	TaggedValue(4, L"自动"),
 	TaggedValue(5, L"GN"),
-	TaggedValue(6, L"Manual"),
-	TaggedValue(7, L"Repeating Flash"),
+	TaggedValue(6, L"手动"),
+	TaggedValue(7, L"重复闪光"),
 };
 
 String FlashLevel(int val)
@@ -874,25 +874,25 @@ void DecodeFlashInfo(OutputStr& output, const Data& val)
 	//output.RecordInfo(1 | OutputStr::EXTRA_TAG, TagName(tag), val, TagValue(tag, val).c_str());
 
 	int fs= p.GetUInt8();
-	output.RecordInfo(1 | OutputStr::SUB_TAG, _T("Flash Source"), fs, GetTag(fs, FlashSource));
+	output.RecordInfo(1 | OutputStr::SUB_TAG, _T("闪光光源"), fs, GetTag(fs, FlashSource));
 	p += 1;	// unknown
 
 	int fmw= p.GetUInt16();
-	output.RecordInfo(2 | OutputStr::SUB_TAG, _T("External Flash Firmware"), fmw, GetTag(fmw, FlashFirmware));
+	output.RecordInfo(2 | OutputStr::SUB_TAG, _T("外部闪光固件"), fmw, GetTag(fmw, FlashFirmware));
 
 	int fired= p.GetUInt8();	// some flags
-	output.RecordInfo(3 | OutputStr::SUB_TAG, _T("External Flash Fired"), fired, GetTag(fired, FlashFired));
+	output.RecordInfo(3 | OutputStr::SUB_TAG, _T("外部闪光灯闪光"), fired, GetTag(fired, FlashFired));
 
 	int mode= p.GetUInt8();		// metering mode
 	int built_in_mode= mode & ~0x80;
 	String flmode;
 	if (mode & 0x80)	// commander mode?
-		flmode = L"Commander mode, Built-in flash ";
+		flmode = L"引闪模式, 内置闪光灯 ";
 	flmode += GetTag(built_in_mode, FlashMode);
-	output.RecordInfo(4 | OutputStr::SUB_TAG, _T("Flash Mode"), mode, flmode.c_str());
+	output.RecordInfo(4 | OutputStr::SUB_TAG, _T("闪光模式"), mode, flmode.c_str());
 
 	int power= p.GetUInt8();	// manual mode flash level
-	output.RecordInfo(5 | OutputStr::SUB_TAG, _T("Flash Compensation/Level"), power, FlashLevelCompensation(built_in_mode, power).c_str());
+	output.RecordInfo(5 | OutputStr::SUB_TAG, _T("闪光补偿/级别"), power, FlashLevelCompensation(built_in_mode, power).c_str());
 
 	if (version > '1')
 		p += 1;	// unknown
@@ -907,17 +907,17 @@ void DecodeFlashInfo(OutputStr& output, const Data& val)
 		focal_length << L"N/A";
 	else
 		focal_length << L"?";
-	output.RecordInfo(6 | OutputStr::SUB_TAG, _T("Flash Focal Length"), fl, focal_length.str().c_str());
+	output.RecordInfo(6 | OutputStr::SUB_TAG, _T("闪光焦距"), fl, focal_length.str().c_str());
 
 	int rate= p.GetUInt8();
 	oStringstream ost;
 	ost << rate << " Hz";
-	output.RecordInfo(7 | OutputStr::SUB_TAG, _T("Repeating Flash Rate"), rate, ost.str().c_str());
+	output.RecordInfo(7 | OutputStr::SUB_TAG, _T("重复闪光速率"), rate, ost.str().c_str());
 
 	{
 		TCHAR buf[64];
 		int repeats= p.GetUInt8();
-		output.RecordInfo(8 | OutputStr::SUB_TAG, _T("Repeating Flash Count"), repeats, _itot(repeats, buf, 10));
+		output.RecordInfo(8 | OutputStr::SUB_TAG, _T("重复闪光次数"), repeats, _itot(repeats, buf, 10));
 	}
 
 	int dist= p.GetUInt8();	// is it? todo: verify
@@ -926,7 +926,7 @@ void DecodeFlashInfo(OutputStr& output, const Data& val)
 		oStringstream ost;
 		ost << std::fixed << std::setprecision(1);
 		if (dist == 0)
-			ost << L"None";
+			ost << L"无";
 		else if (dist == 0xff)
 			ost << L"N/A";
 		else if (dist < 10)
@@ -934,10 +934,10 @@ void DecodeFlashInfo(OutputStr& output, const Data& val)
 		else
 			ost << pow(1.1224, dist - 10) << L" m";
 
-		output.RecordInfo(9 | OutputStr::SUB_TAG, _T("Flash Guide Number Distance"), dist, ost.str().c_str());
+		output.RecordInfo(9 | OutputStr::SUB_TAG, _T("闪光级数距离"), dist, ost.str().c_str());
 	}
 	else
-		output.RecordInfo(9 | OutputStr::SUB_TAG, _T("Flash Guide Number Distance"), dist, 0);
+		output.RecordInfo(9 | OutputStr::SUB_TAG, _T("闪光级数距离"), dist, 0);
 
 	if (version == '1')
 	{
@@ -947,14 +947,14 @@ void DecodeFlashInfo(OutputStr& output, const Data& val)
 		int temp_b= p.GetUInt8();
 		int group_b= temp_b >> 4;
 
-		output.RecordInfo(10 | OutputStr::SUB_TAG, _T("Flash Group A Mode"), group_a, GetTag(group_a, FlashMode));
-		output.RecordInfo(11 | OutputStr::SUB_TAG, _T("Flash Group B Mode"), temp_b, GetTag(group_b, FlashMode));
+		output.RecordInfo(10 | OutputStr::SUB_TAG, _T("闪光 A 组模式"), group_a, GetTag(group_a, FlashMode));
+		output.RecordInfo(11 | OutputStr::SUB_TAG, _T("闪光 B 组模式"), temp_b, GetTag(group_b, FlashMode));
 
 		int power_a= p.GetUInt8();
 		int power_b= p.GetUInt8();
 
-		output.RecordInfo(12 | OutputStr::SUB_TAG, _T("Flash Group A Compensation/Level"), power_a, FlashLevelCompensation(group_a, power_a).c_str());
-		output.RecordInfo(13 | OutputStr::SUB_TAG, _T("Flash Group B Compensation/Level"), power_b, FlashLevelCompensation(group_b, power_b).c_str());
+		output.RecordInfo(12 | OutputStr::SUB_TAG, _T("闪光 A 组 补偿/级别"), power_a, FlashLevelCompensation(group_a, power_a).c_str());
+		output.RecordInfo(13 | OutputStr::SUB_TAG, _T("闪光 B 组 补偿/级别"), power_b, FlashLevelCompensation(group_b, power_b).c_str());
 	}
 
 	output.Outdent();
@@ -963,11 +963,11 @@ void DecodeFlashInfo(OutputStr& output, const Data& val)
 
 static TaggedValue FlashType[]=
 {
-	TaggedValue(0, L"Didn't fire"),
-	TaggedValue(1, L"Fired, manual"),
-	TaggedValue(7, L"Fired, external"),
-	TaggedValue(8, L"Fired, commander mode"),
-	TaggedValue(9, L"Fired, TTL mode"),
+	TaggedValue(0, L"无闪光"),
+	TaggedValue(1, L"闪光, 手动"),
+	TaggedValue(7, L"闪光, 外部"),
+	TaggedValue(8, L"闪光, 引闪模式"),
+	TaggedValue(9, L"闪光, TTL 模式"),
 };
 
 
@@ -1398,12 +1398,12 @@ String CanonNote::TagName(uint16 tag)
 {
 	switch (tag)
 	{
-	case 0x06:	return _T("Image Type");
-	case 0x07:	return _T("Firmware Version");
-	case 0x09:	return _T("Owner Name");
-	case 0x0c:	return _T("Camera Body Number");
-	case 0xae:	return _T("Color Temperature");
-	default:	return _T("Unknown");
+	case 0x06:	return _T("图像类型");
+	case 0x07:	return _T("固件版本");
+	case 0x09:	return _T("主人名字");
+	case 0x0c:	return _T("机身编号");
+	case 0xae:	return _T("色温");
+	default:	return _T("未知");
 	}
 }
 
@@ -1446,56 +1446,56 @@ void CanonNote::ReportTag1Info(const Data& val, OutputStr& output, CanonData& in
 	val.ReadWords(data, COUNT);
 
 	inf.macro_mode_ = data[1];
-	RecordTag(1 | OutputStr::SUB_TAG, _T("Macro Mode"), inf.MacroMode(), output);
+	RecordTag(1 | OutputStr::SUB_TAG, _T("微距模式"), inf.MacroMode(), output);
 
 	inf.self_timer_ = data[2];
-	RecordTag(2 | OutputStr::SUB_TAG, _T("Self Timer"), inf.SelfTimer().c_str(), output);
+	RecordTag(2 | OutputStr::SUB_TAG, _T("自拍定时"), inf.SelfTimer().c_str(), output);
 
 	inf.quality_ = data[3];
-	RecordTag(3 | OutputStr::SUB_TAG, _T("Quality"), inf.Quality(), output);
+	RecordTag(3 | OutputStr::SUB_TAG, _T("品质"), inf.Quality(), output);
 
 	inf.flash_mode_ = data[4];
-	RecordTag(4 | OutputStr::SUB_TAG, _T("Flash Mode"), inf.FlashMode(), output);
+	RecordTag(4 | OutputStr::SUB_TAG, _T("闪光灯模式"), inf.FlashMode(), output);
 
 	inf.drive_mode_ = data[5];
-	RecordTag(5 | OutputStr::SUB_TAG, _T("Drive Mode"), inf.DriveMode(), output);
+	RecordTag(5 | OutputStr::SUB_TAG, _T("驱动模式"), inf.DriveMode(), output);
 
 	inf.focus_mode_ = data[7];
 //	if (data[32] == 1)
 //		val = _T("Continuous");
-	RecordTag(7 | OutputStr::SUB_TAG, _T("Focus Mode"), inf.FocusMode(), output);
+	RecordTag(7 | OutputStr::SUB_TAG, _T("对焦模式"), inf.FocusMode(), output);
 
 	inf.image_size_ = data[10];
-	RecordTag(10 | OutputStr::SUB_TAG, _T("Image Size"), inf.ImageSize(), output);
+	RecordTag(10 | OutputStr::SUB_TAG, _T("图像大小"), inf.ImageSize(), output);
 
 	inf.program_ = data[11];
-	RecordTag(11 | OutputStr::SUB_TAG, _T("Program"), inf.Program(), output);
+	RecordTag(11 | OutputStr::SUB_TAG, _T("程序"), inf.Program(), output);
 
 	// digital zoom
 
 	inf.contrast_ = data[13];
-	RecordTag(13 | OutputStr::SUB_TAG, _T("Contrast"), inf.Contrast(), output);
+	RecordTag(13 | OutputStr::SUB_TAG, _T("对比度"), inf.Contrast(), output);
 
 	inf.saturation_ = data[14];
-	RecordTag(14 | OutputStr::SUB_TAG, _T("Color Saturation"), inf.Saturation(), output);
+	RecordTag(14 | OutputStr::SUB_TAG, _T("色彩饱和度"), inf.Saturation(), output);
 
 	inf.sharpness_ = data[15];
-	RecordTag(15 | OutputStr::SUB_TAG, _T("Sharpness"), inf.Sharpness(), output);
+	RecordTag(15 | OutputStr::SUB_TAG, _T("锐度"), inf.Sharpness(), output);
 
 	inf.iso_ = data[16];
 	RecordTag(16 | OutputStr::SUB_TAG, _T("ISO"), inf.ISO().c_str(), output);
 
 	inf.metering_mode_ = data[17];
-	RecordTag(17 | OutputStr::SUB_TAG, _T("Metering Mode"), inf.MeteringMode(), output);
+	RecordTag(17 | OutputStr::SUB_TAG, _T("测光模式"), inf.MeteringMode(), output);
 
 	inf.focus_type_ = data[18];
-	RecordTag(18 | OutputStr::SUB_TAG, _T("Focus Type"), inf.FocusType(), output);
+	RecordTag(18 | OutputStr::SUB_TAG, _T("对焦类型"), inf.FocusType(), output);
 
 	inf.AF_point_ = data[19];
-	RecordTag(19 | OutputStr::SUB_TAG, _T("AF Point Selected"), inf.AFPointSelected(), output);
+	RecordTag(19 | OutputStr::SUB_TAG, _T("自动对焦点"), inf.AFPointSelected(), output);
 
 	inf.exposure_mode_ = data[20];
-	RecordTag(20 | OutputStr::SUB_TAG, _T("Exposure Mode"), inf.ExposureMode(), output);
+	RecordTag(20 | OutputStr::SUB_TAG, _T("曝光模式"), inf.ExposureMode(), output);
 
 	if (data[25])
 	{
@@ -1503,7 +1503,7 @@ void CanonNote::ReportTag1Info(const Data& val, OutputStr& output, CanonData& in
 		uint32 lens_short= data[24] / data[25];
 		inf.lens_short_ = lens_short;
 		inf.lens_long_ = lens_long;
-		RecordTag(23 | OutputStr::SUB_TAG, _T("Lens Attached"), inf.LensAttached().c_str(), output);
+		RecordTag(23 | OutputStr::SUB_TAG, _T("镜头"), inf.LensAttached().c_str(), output);
 	}
 
 /*	val = 0;
@@ -1536,24 +1536,24 @@ void CanonNote::ReportTag4Info(const Data& val, OutputStr& output, CanonData& in
 	val.ReadWords(data, count);
 
 	inf.white_balance_ = data[7];
-	RecordTag(7 | OutputStr::SUB_TAG, _T("White Balance"), inf.WhiteBalance(), output);
+	RecordTag(7 | OutputStr::SUB_TAG, _T("白平衡"), inf.WhiteBalance(), output);
 
 	inf.sequence_number_ = data[9];
-	RecordTag(9 | OutputStr::SUB_TAG, _T("Sequence Number"), inf.SequenceNumber().c_str(), output);
+	RecordTag(9 | OutputStr::SUB_TAG, _T("序列号"), inf.SequenceNumber().c_str(), output);
 
 	inf.flash_bias_ = data[15];
-	RecordTag(15 | OutputStr::SUB_TAG, _T("Flash Bias"), inf.FlashBias().c_str(), output);
+	RecordTag(15 | OutputStr::SUB_TAG, _T("闪光补偿"), inf.FlashBias().c_str(), output);
 
-	RecordTag(16 | OutputStr::SUB_TAG, _T("Auto Exposure Bracketing"), data[16] ? _T("On") : _T("Off"), output);
+	RecordTag(16 | OutputStr::SUB_TAG, _T("自动包围曝光"), data[16] ? _T("开") : _T("关"), output);
 
 	oStringstream ost;
 	double value= static_cast<int16>(data[17]);
 	value /= 32.0;
 	ost << value;
-	RecordTag(17 | OutputStr::SUB_TAG, _T("AEB Bracket Value"), ost.str().c_str(), output);
+	RecordTag(17 | OutputStr::SUB_TAG, _T("AEB 包围值"), ost.str().c_str(), output);
 
 	inf.subject_distance_ = data[19];
-	RecordTag(19 | OutputStr::SUB_TAG, _T("Subject Distance"), inf.SubjectDistance().c_str(), output);
+	RecordTag(19 | OutputStr::SUB_TAG, _T("主体距离"), inf.SubjectDistance().c_str(), output);
 
 	if (count > 22)
 	{
@@ -1561,13 +1561,13 @@ void CanonNote::ReportTag4Info(const Data& val, OutputStr& output, CanonData& in
 		double val= static_cast<int16>(data[21]);
 		val /= 32.0;
 		ost << val;
-		RecordTag(21 | OutputStr::SUB_TAG, _T("Aperture Value"), ost.str().c_str(), output);
+		RecordTag(21 | OutputStr::SUB_TAG, _T("光圈值"), ost.str().c_str(), output);
 
 		ost.str(_T(""));
 		val = static_cast<int16>(data[22]);
 		val /= 32.0;
 		ost << val;
-		RecordTag(22 | OutputStr::SUB_TAG, _T("Time Value"), ost.str().c_str(), output);
+		RecordTag(22 | OutputStr::SUB_TAG, _T("时间值"), ost.str().c_str(), output);
 	}
 
 	if (count > 24)
@@ -1581,7 +1581,7 @@ void CanonNote::ReportTag4Info(const Data& val, OutputStr& output, CanonData& in
 	{
 		ost.str(_T(""));
 		ost << static_cast<double>(data[29]) / 10.0;
-		RecordTag(29 | OutputStr::SUB_TAG, _T("Self Timer"), ost.str().c_str(), output);
+		RecordTag(29 | OutputStr::SUB_TAG, _T("自拍定时"), ost.str().c_str(), output);
 	}
 }
 
@@ -2209,7 +2209,7 @@ void CanonNote::CompletePhotoInfo(PhotoInfo& photo) const
 	{
 		String iso= data_.ISO();
 
-		if (iso == _T("自动"))
+		if (iso == _T("Auto"))
 			photo.SetAutoISOSpeed();
 		else
 		{
@@ -2794,7 +2794,7 @@ String Casio2Note::TagName(uint16 tag)
 	case 0x0021: name = _T("锐度");					break;
 	case 0x0e00: name = _T("打印图像匹配信息");	break;
 	case 0x2000: name = _T("卡西欧预览缩略图");		break;
-	case 0x2011: name = _T("白平衡补偿");			break;
+	case 0x2011: name = _T("白平衡偏差");			break;
 	case 0x2012: name = _T("白平衡");				break;
 	case 0x2022: name = _T("主体距离");				break;
 	case 0x2034: name = _T("闪光距离");				break;
