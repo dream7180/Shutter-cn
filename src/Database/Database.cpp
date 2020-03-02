@@ -253,7 +253,7 @@ bool Database::Index::Read(const String& file, bool read_only)
 	{
 #ifdef _DEBUG
 		TCHAR text[200];
-		wsprintf(text, L"cannot open index: %d %x", ::GetLastError(), ::GetLastError());
+		wsprintf(text, L"未能打开索引: %d %x", ::GetLastError(), ::GetLastError());
 		::MessageBox(0, text, L"EP", MB_OK);
 #endif
 		return false;

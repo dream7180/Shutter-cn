@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -143,7 +143,7 @@ void ErrorDlg::OnDetails()
 	}
 	SetWindowPos(nullptr, 0, 0, width_, height, SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE);
 	is_small_ = !is_small_;
-	SetDlgItemText(IDC_CALL_STACK, is_small_ ? L"&Details >>" : L"&Details <<");
+	SetDlgItemText(IDC_CALL_STACK, is_small_ ? L"详细(&D) >>" : L"详细(&D) <<");
 }
 
 
@@ -237,9 +237,9 @@ void ErrorDlg::OnReport()
 		std::vector<Path> files(1, Path(CString(fname)));
 		std::vector<String> names(1, L"report.txt");
 
-		String msg= L"ExifPro error report. Please describe what you have been doing in ExifPro when this error occurred:\n\n\n";
+		String msg= L"ExifPro 错误报告. 请描述你的操作和遇到的错误:\n\n\n";
 
-		mail.SendFiles(files, names, &msg, "Error Report", "errors@exifpro.com");
+		mail.SendFiles(files, names, &msg, "错误报告", "dream7180@gmail.com");
 	}
 	CATCH_ALL_W(this)
 

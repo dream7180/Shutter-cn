@@ -170,7 +170,7 @@ void ExtractingThread::Process(size_t index)
 
 		MemMappedFile photo;
 		if (!photo.CreateWriteView(temp_dest.c_str(), 0)) //exif.size()))
-			throw L"Cannot open temp file for writing";
+			throw L"未能打开临时文件以写入";
 
 		MemPointer data(photo.GetBaseAddrChr(), photo.GetFileSize());
 

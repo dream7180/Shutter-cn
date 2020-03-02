@@ -347,7 +347,7 @@
     <ClCompile>
       <AdditionalOptions>/Zm1000 /MP %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MinSpace</Optimization>
-      <AdditionalIncludeDirectories>$(Libraries);D:\Develop\boost;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(Libraries);D:\Softwares\DevTools\boost;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;_SECURE_SCL=0;WIN64;USE_GDI_PLUS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <ExceptionHandling>Async</ExceptionHandling>
@@ -369,7 +369,7 @@
       <AdditionalDependencies>UAFXCW.LIB;LIBCMT.LIB;vfw32.lib;UxTheme.lib;gdiplus.lib;d2d1.lib;Imm32.lib;DbgHelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(Bin)$(ProjectName).exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(LibsRel);%(AdditionalLibraryDirectories);D:\Develop\boost\stage\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(LibsRel);%(AdditionalLibraryDirectories);D:\Softwares\DevTools\boost\stage\lib</AdditionalLibraryDirectories>
       <EnableUAC>false</EnableUAC>
       <IgnoreSpecificDefaultLibraries>UAFXCW.LIB LIBCMT.LIB %(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <DelayLoadDLLs>d2d1.dll;%(DelayLoadDLLs)</DelayLoadDLLs>

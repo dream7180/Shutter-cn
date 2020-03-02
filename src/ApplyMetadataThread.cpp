@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -118,7 +118,7 @@ HANDLE GetFileWriteAccess(ImgProcessingThread* thread, const TCHAR* path)
 			if (err != ERROR_SHARING_VIOLATION)
 			{
 				_com_error e(err);
-				THROW_EXCEPTION(L"Cannot open file for writing.", SF(L"File: " << path << L"\nError: " << e.ErrorMessage()))
+				THROW_EXCEPTION(L"未能打开文件以写入.", SF(L"文件: " << path << L"\n错误: " << e.ErrorMessage()))
 			}
 		}
 		else
@@ -127,14 +127,14 @@ HANDLE GetFileWriteAccess(ImgProcessingThread* thread, const TCHAR* path)
 		::Sleep(delay);
 
 		wait += delay;
-		TRACE(L"Waiting %d ms for %s\n", wait, path);
+		TRACE(L"等待 %d 毫秒给 %s\n", wait, path);
 
 		if (thread->StopProcessing())
 			return nullptr;
 	}
 
 	_com_error e(::GetLastError());
-	THROW_EXCEPTION(L"Cannot open file for writing.", SF(L"File: " << path << L"\nError: " << e.ErrorMessage()))
+	THROW_EXCEPTION(L"未能打开文件以写入.", SF(L"文件: " << path << L"\n错误: " << e.ErrorMessage()))
 }
 
 
@@ -161,13 +161,13 @@ void ApplyMetadataThread::Process(size_t index)
 			{
 				TCHAR err[MAX_PATH];
 				ex->GetErrorMessage(err, MAX_PATH);
-				String msg= L"Error writing file info metadata for '" + photo->GetOriginalPath() + L"' image.\n\nError: " + err;
+				String msg= L"错误写入文件信息元数据到 '" + photo->GetOriginalPath() + L"' 图像.\n\n错误: " + err;
 
 				throw msg;
 			}
 			catch (String& err)
 			{
-				throw String(L"Error writing file info metadata for '" + photo->GetOriginalPath() + L"' image.\n\nError: " + err);
+				throw String(L"错误写入文件信息元数据到 '" + photo->GetOriginalPath() + L"' 图像.\n\n错误: " + err);
 			}
 		}
 	}

@@ -1241,7 +1241,7 @@ FONT 8, "Tahoma", 400, 0, 0x0
 BEGIN
     GROUPBOX        "图像尺寸",IDC_STATIC,6,4,184,82
     CONTROL         "Slider1",IDC_SIZE_SLD,"msctls_trackbar32",TBS_AUTOTICKS | TBS_VERT | WS_TABSTOP,12,17,20,64
-    LTEXT           "自定义",IDC_STATIC,36,21,24,9
+    LTEXT           "自定义",IDC_STATIC,36,21,30,9
     LTEXT           "大",IDC_STATIC,36,32,19,9
     LTEXT           "中",IDC_STATIC,36,44,26,9
     LTEXT           "小",IDC_STATIC,36,56,18,9
@@ -1259,7 +1259,7 @@ BEGIN
     LTEXT           "%",IDC_SIZE_LABEL_2,140,49,9,9
     GROUPBOX        "品质",IDC_STATIC,196,4,180,82
     CONTROL         "Slider1",IDC_QUALITY,"msctls_trackbar32",TBS_AUTOTICKS | TBS_VERT | WS_TABSTOP,204,17,20,64
-    LTEXT           "自定义",IDC_STATIC,228,21,24,9
+    LTEXT           "自定义",IDC_STATIC,228,21,30,9
     LTEXT           "超精细",IDC_STATIC,228,32,35,9
     LTEXT           "精细",IDC_STATIC,228,44,24,9
     LTEXT           "标准",IDC_STATIC,228,56,24,9
@@ -1457,13 +1457,13 @@ BEGIN
     LTEXT           "操作:",IDC_LABEL,8,12,34,9
     CONTROL         347,IDC_OPER_1,"Static",SS_BITMAP | SS_NOTIFY,50,3,27,25
     CONTROL         347,IDC_OPER_2,"Static",SS_BITMAP | SS_NOTIFY,156,3,27,25
-    CONTROL         347,IDC_OPER_3,"Static",SS_BITMAP | SS_NOTIFY,252,3,27,25
+    CONTROL         347,IDC_OPER_3,"Static",SS_BITMAP | SS_NOTIFY,262,3,27,25
     CONTROL         "复制文件(&C)",IDC_COPY,"Button",BS_AUTORADIOBUTTON | WS_GROUP,78,12,63,10
     CONTROL         "移动文件(&M)",IDC_MOVE,"Button",BS_AUTORADIOBUTTON,183,12,64,10
     CONTROL         "重命名文件(&R)",IDC_BATCH,"Button",BS_AUTORADIOBUTTON,289,12,64,10
     LTEXT           "文件名称:",IDC_LABEL2,8,37,38,9
     LTEXT           "重命名以下文件夹的文件到(&E)",IDC_LABEL3,51,37,98,9,NOT WS_VISIBLE
-    CONTROL         "重命名文件到(&E)",IDC_RENAME,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,67,36,68,10
+    CONTROL         "重命名文件到(&E)",IDC_RENAME,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,67,36,76,10
     EDITTEXT        IDC_PATTERN,150,35,101,12,ES_AUTOHSCROLL
     CONTROL         "",IDC_SYMBOLS,"ToolbarWindow32",0x1944,252,34,12,14
     LTEXT           "例如:",IDC_EXAMPLE_LABEL,271,37,30,9
@@ -1489,7 +1489,7 @@ FONT 8, "Tahoma", 400, 0, 0x0
 BEGIN
     GROUPBOX        "图像尺寸",IDC_STATIC,6,4,162,82
     CONTROL         "Slider1",IDC_SIZE_SLD,"msctls_trackbar32",TBS_AUTOTICKS | TBS_VERT | WS_TABSTOP,12,17,20,64
-    LTEXT           "自定义",IDC_STATIC,36,21,24,9
+    LTEXT           "自定义",IDC_STATIC,36,21,30,9
     LTEXT           "大",IDC_STATIC,36,32,19,9
     LTEXT           "正常",IDC_STATIC,36,44,24,9
     LTEXT           "中等",IDC_STATIC,36,56,26,9
@@ -1503,7 +1503,7 @@ BEGIN
     LTEXT           "像素",IDC_HEIGHT_2_LABEL,142,55,20,9
     GROUPBOX        "JPEG 品质",IDC_STATIC,175,4,144,82
     CONTROL         "Slider1",IDC_QUALITY,"msctls_trackbar32",TBS_AUTOTICKS | TBS_VERT | WS_TABSTOP,183,17,20,64
-    LTEXT           "自定义",IDC_STATIC,207,21,24,9
+    LTEXT           "自定义",IDC_STATIC,207,21,30,9
     LTEXT           "超精细",IDC_STATIC,207,32,35,9
     LTEXT           "精细",IDC_STATIC,207,44,24,9
     LTEXT           "标准",IDC_STATIC,207,56,24,9
@@ -1579,7 +1579,7 @@ BEGIN
     PUSHBUTTON      "&...",IDC_BROWSE_2,391,94,18,13,NOT WS_TABSTOP
     LTEXT           "照片",IDC_STATIC,123,112,23,9
     EDITTEXT        IDC_PHOTOS_DIR,147,110,104,12,ES_AUTOHSCROLL | WS_GROUP
-    LTEXT           "缩略图(&U)",IDC_STATIC,260,112,37,9
+    LTEXT           "缩略图(&U)",IDC_STATIC,260,112,40,9
     EDITTEXT        IDC_THUMBS_DIR,301,110,104,12,ES_AUTOHSCROLL | WS_GROUP
     GROUPBOX        "页面名称",IDC_STATIC,6,133,407,30
     LTEXT           "页面标题",IDC_STATIC,13,146,36,9
@@ -1589,7 +1589,7 @@ BEGIN
     GROUPBOX        "图像尺寸",IDC_STATIC,6,167,155,82
     CONTROL         "Slider1",IDC_SIZE_SLD,"msctls_trackbar32",TBS_AUTOTICKS | TBS_VERT | WS_TABSTOP,11,180,20,64
     LTEXT           "原件",IDC_STATIC,35,184,28,9
-    LTEXT           "自定义",IDC_STATIC,35,195,24,9
+    LTEXT           "自定义",IDC_STATIC,35,195,30,9
     LTEXT           "大",IDC_STATIC,35,207,19,9
     LTEXT           "中",IDC_STATIC,35,219,26,9
     LTEXT           "小",IDC_STATIC,35,231,18,9
@@ -1606,7 +1606,7 @@ BEGIN
     LTEXT           "%",IDC_SIZE_LABEL_2,121,213,8,9
     GROUPBOX        "品质",IDC_STATIC,170,167,142,82
     CONTROL         "Slider1",IDC_QUALITY,"msctls_trackbar32",TBS_AUTOTICKS | TBS_VERT | WS_TABSTOP,177,180,20,64
-    LTEXT           "自定义",IDC_STATIC,201,184,24,9
+    LTEXT           "自定义",IDC_STATIC,201,184,30,9
     LTEXT           "超精细",IDC_STATIC,201,195,35,9
     LTEXT           "精细",IDC_STATIC,201,207,24,9
     LTEXT           "标准",IDC_STATIC,201,219,24,9
@@ -1620,7 +1620,7 @@ BEGIN
     GROUPBOX        "图像文本",IDC_STATIC,321,167,92,82
     CONTROL         "编号",IDC_TEXT_1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,327,181,84,10
     CONTROL         "文件名称",IDC_TEXT_2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,327,195,46,10
-    CONTROL         "文件日期和时间",IDC_TEXT_3,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,327,209,68,10
+    CONTROL         "文件日期和时间",IDC_TEXT_3,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,327,209,73,10
     CONTROL         "照片描述",IDC_TEXT_4,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,327,224,72,10
     PUSHBUTTON      "",IDC_HELP_BTN,10,256,18,14,WS_GROUP | NOT WS_TABSTOP
     PUSHBUTTON      "显示选项(&O) >>",IDC_OPTIONS,36,256,65,14,WS_GROUP
@@ -1736,8 +1736,8 @@ BEGIN
     CONTROL         "",IDC_PAGES,"ToolbarWindow32",0x184e,24,256,100,16
     LTEXT           "显示:",IDC_LABEL_4,129,259,21,9
     CONTROL         "",IDC_SWITCH,"ToolbarWindow32",0x194e,151,256,50,16
-    LTEXT           "打印机:",IDC_LABEL_1,203,8,28,9
-    EDITTEXT        IDC_PRINTERS,232,7,136,12,ES_AUTOHSCROLL | ES_READONLY | NOT WS_TABSTOP
+    LTEXT           "打印机:",IDC_LABEL_1,203,8,33,9
+    EDITTEXT        IDC_PRINTERS,238,7,130,12,ES_AUTOHSCROLL | ES_READONLY | NOT WS_TABSTOP
     PUSHBUTTON      "设置(&S)...",IDC_PRN_SETTINGS,372,6,47,14
     LTEXT           "照片布局(&L):",IDC_LABEL_2,204,24,74,9
     LTEXT           "Static",IDC_LAYOUT_INFO,280,24,137,9
@@ -2023,9 +2023,9 @@ EXSTYLE WS_EX_CONTROLPARENT
 FONT 8, "Tahoma", 400, 0, 0x0
 BEGIN
     LTEXT           "修改范围:",IDC_STATIC,4,7,55,9
-    CONTROL         "阴影(&S)",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | WS_GROUP,68,6,45,10
-    CONTROL         "中间色调(&M)",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,121,6,55,10
-    CONTROL         "高光(&H)",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,183,6,47,10
+    CONTROL         "阴影",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | WS_GROUP,68,6,45,10
+    CONTROL         "中间色调",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,121,6,55,10
+    CONTROL         "高光",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,183,6,47,10
     CONTROL         "",IDC_SEPARATOR,"Static",SS_ETCHEDHORZ,33,23,172,1
     RTEXT           "青",IDC_STATIC,13,36,17,9
     CONTROL         "",IDC_SLIDER_1,"msctls_trackbar32",TBS_AUTOTICKS | WS_TABSTOP,36,32,152,18
@@ -2320,7 +2320,9 @@ FONT 8, "Tahoma", 400, 0, 0x0
 BEGIN
     LTEXT           "过滤",IDC_STATIC,3,6,18,9
     CONTROL         "",IDC_FILTER,"EditComboCtrlMiK",0x0,23,3,91,15
-    CONTROL         "隐藏未知的标签",IDC_HIDE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,120,5,80,11
+    //CONTROL         "隐藏未知的标签",IDC_HIDE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,120,5,80,11
+	CONTROL         "",IDC_HIDE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,120,5,11,11
+	LTEXT           "隐藏未知标签",IDC_STATIC,132,6,68,9
 END
 
 IDD_FILE_PANE DIALOGEX 0, 0, 184, 154
@@ -3947,7 +3949,7 @@ IDB_INFO_TOOLBAR        PNG                     "res\\InfoToolbar.png"
 IDB_TASK_BAR            PNG                     "res\\task_bar.png"
 //IDB_HEADER_IMAGES       PNG                     "res\\HeaderImages.png"
 IDB_PHOTOS_TB           PNG                     "res\\photos_tb.png"
-IDB_HELP_BTN            PNG                     "res\\HelpBtn.png"
+//IDB_HELP_BTN            PNG                     "res\\HelpBtn.png"
 IDB_TAGS_TOOLBAR        PNG                     "res\\TagsToolbar.png"
 //IDB_TAGS_TOOLBAR_BIG    PNG                     "res\\TagsToolbarBig.png"
 IDB_FOLDER_LIST_VIEW_TB PNG                     "res\\FolderViewCtrlTb.png"

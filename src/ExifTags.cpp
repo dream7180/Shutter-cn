@@ -89,7 +89,7 @@ const TCHAR* TagName(uint16 tag)
 	case 0x8825: name =	_T("GPS 信息");						break;
 	case 0x8827: name =	_T("感光度");			break;
 	case 0x8828: name =	_T("光电系数");		break;
-	case 0x9000: name =	_T("Exif 版本");					break;
+	case 0x9000: name =	_T("EXIF 版本");					break;
 	case 0x9003: name =	_T("原始日期时间");			break;
 	case 0x9004: name =	_T("数字化日期时间");			break;
 	case 0x9101: name =	_T("构建方式");		break;

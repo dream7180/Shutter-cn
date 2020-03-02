@@ -859,7 +859,7 @@ void CTransferDlg::Impl::SetFilter(FilePaneWnd& pane, FilterTypes& filter)
 	String label;
 
 	if (filter.jpeg_ && filter.raw_ && filter.video_ && filter.rest_)
-		label = filter.showNewOnly_ ?_T("All New Files") : _T("All File Types");
+		label = filter.showNewOnly_ ?_T("所有新文件") : _T("所有文件类型");
 	else
 	{
 		bool comma= false;

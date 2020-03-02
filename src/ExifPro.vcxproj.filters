@@ -2739,9 +2739,9 @@
     <Image Include="res\HelpBtn.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\HelpBtn.png">
+    <!--Image Include="res\HelpBtn.png">
       <Filter>Resource Files</Filter>
-    </Image>
+    </Image-->
     <Image Include="res\horz_scrollbar.bmp">
       <Filter>Resource Files</Filter>
     </Image>

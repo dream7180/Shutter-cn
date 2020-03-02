@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -152,7 +152,7 @@ bool StorageFile::Open(const String& db_path, bool read_only)
 	{
 #ifdef _DEBUG
 		TCHAR text[200];
-		wsprintf(text, L"cannot open db: %d %x", ::GetLastError(), ::GetLastError());
+		wsprintf(text, L"未能打开 db: %d %x", ::GetLastError(), ::GetLastError());
 		::MessageBox(0, text, L"EP", MB_OK);
 #endif
 		return false;
