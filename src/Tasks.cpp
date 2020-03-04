@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -519,10 +519,10 @@ std::string CTaskGenHTMLAlbum::GenerateTable(const std::string& a_template, cons
 		ost << PAGE << index + 1 << _T(".html");
 
 		oStringstream previous;
-		previous << _T("<a href=\"") << PAGE << index + 0 << _T(".html") << _T("\">Previous</a>&nbsp;");
+		previous << _T("<a href=\"") << PAGE << index + 0 << _T(".html") << _T("\">上一个</a>&nbsp;");
 
 		oStringstream next;
-		next << _T("&nbsp;<a href=\"") << PAGE << index + 2 << _T(".html") << _T("\">Next</a>");
+		next << _T("&nbsp;<a href=\"") << PAGE << index + 2 << _T(".html") << _T("\">下一个</a>");
 
 		oStringstream back;
 		{
@@ -535,7 +535,7 @@ std::string CTaskGenHTMLAlbum::GenerateTable(const std::string& a_template, cons
 				start = pathPhotos.find(L"/", start + 1);
 			}
 
-			back << main_page << _T("\">Go Up</a>");
+			back << main_page << _T("\">向上</a>");
 		}
 
 		std::string img_page= img_template;
@@ -698,7 +698,7 @@ bool CTaskExportEXIF::Go(CWnd* parent)
 bool CTaskRotatePhotos::Go()
 {
 	CRotateDlg dlg(selected_, all_);
-	HeaderDialog dlgHdr(dlg, all_ ? _T("Rotate All") : _T("Rotate"), HeaderDialog::IMG_ROTATE);
+	HeaderDialog dlgHdr(dlg, all_ ? _T("旋转全部") : _T("旋转"), HeaderDialog::IMG_ROTATE);
 	if (dlgHdr.DoModal() != IDOK)
 		return false;
 
@@ -719,7 +719,7 @@ void CTaskRotatePhotos::RotatePhotos(RotationTransformation transform, bool mirr
 {
 	int count= static_cast<int>(selected_.size());
 
-	CToolDlg dlg(_T("Rotating..."), 0);
+	CToolDlg dlg(_T("旋转中..."), 0);
 	dlg.SetProgress(count);
 	dlg.ShowWindow(SW_SHOW);
 	dlg.UpdateWindow();
@@ -1085,7 +1085,7 @@ bool CTaskSendEMail::Send()
 
 	ImgProcessingPool proc(std::auto_ptr<ImgProcessingThread>(new ResizingThread(photos, fmt)));
 
-	ProcessingProgressDlg progress(parent_, proc, _T("Preparing Images to Send by E-Mail"), 0,
+	ProcessingProgressDlg progress(parent_, proc, _T("正在准备图像以发送邮件"), 0,
 		ProcessingProgressDlg::INPUT_OUTPUT | ProcessingProgressDlg::AUTO_CLOSE);
 
 	if (progress.DoModal() != IDOK)
@@ -1100,7 +1100,7 @@ bool CTaskSendEMail::Send()
 		{
 			CFileStatus stat;
 			if (!CFile::GetStatus(it->dest_file_.c_str(), stat))
-				throw String(_T("Cannot find resized image file ")) + it->dest_file_;
+				throw String(_T("未能找到已调整尺寸的图像文件 ")) + it->dest_file_;
 
 			fileSize += stat.m_size;
 		}
@@ -1108,7 +1108,7 @@ bool CTaskSendEMail::Send()
 		extern String FormatFileSize(uint64 fileSize);
 
 		oStringstream msg;
-		msg << _T("\r\n\r\nSize of attached files: ");
+		msg << _T("\r\n\r\n附件大小: ");
 		msg << FormatFileSize(fileSize);
 		//if (fileSize > 1024*1024)
 		//	msg << static_cast<uint32>(fileSize / (1024*1024)) << _T(" MB");
@@ -1175,7 +1175,7 @@ bool CTaskExtractJpegs::Extract()
 
 	if (valid == 0)
 	{
-		AfxMessageBox(_T("None of the selected images contain embedded JPEG preview to extract."), MB_OK);
+		AfxMessageBox(_T("选定的图像都找不到内嵌的 JPEG 预览图像."), MB_OK);
 		return false;
 	}
 
@@ -1186,7 +1186,7 @@ bool CTaskExtractJpegs::Extract()
 	//OrientationOfImages orientation= FindCommonOrientation(photos_);
 
 	ExtractJpegDlg dlg(parent_);
-	HeaderDialog dlgHdr(dlg, _T("Extract JPEGs"), HeaderDialog::IMG_EXTRACT);
+	HeaderDialog dlgHdr(dlg, _T("抽取 JPEG"), HeaderDialog::IMG_EXTRACT);
 	if (dlgHdr.DoModal() != IDOK)
 		return false;
 
@@ -1224,7 +1224,7 @@ bool CTaskExtractJpegs::Extract()
 
 	ImgProcessingPool proc(std::auto_ptr<ImgProcessingThread>(new ExtractingThread(photos, dlg.GetParams())));
 
-	ProcessingProgressDlg progress(parent_, proc, _T("Extracting JPEG Images from Raw Photos in Progress"), 0,
+	ProcessingProgressDlg progress(parent_, proc, _T("正在抽取 JPEG 图像"), 0,
 		ProcessingProgressDlg::AUTO_CLOSE | ProcessingProgressDlg::OUTPUT_ONLY);
 
 	if (progress.DoModal() != IDOK)
@@ -1277,7 +1277,7 @@ bool CTaskImageProcessor::Process()
 	//OrientationOfImages orientation= FindCommonOrientation(photos_);
 */
 	ImageProcessorDlg dlg(parent_, photos_);
-	HeaderDialog dlgHdr(dlg, _T("Process Images"), HeaderDialog::IMG_EXTRACT);
+	HeaderDialog dlgHdr(dlg, _T("图像处理"), HeaderDialog::IMG_EXTRACT);
 	if (dlgHdr.DoModal() != IDOK)
 		return false;
 /*
@@ -1345,11 +1345,11 @@ extern bool ApplyTagToPhotos(VectPhotoInfo photos, String tag, bool apply, CWnd*
 		else
 		{
 			oStringstream operation;
-			operation << (apply ? _T("Applying tag '") : _T("Removing tag '")) << tag << _T("'");
+			operation << (apply ? _T("应用标记 '") : _T("移除标记 '")) << tag << _T("'");
 
 			ImgProcessingPool proc(std::auto_ptr<ImgProcessingThread>(new ApplyMetadataThread(photos, tag, apply, 0)));
 
-			ProcessingProgressDlg progress(parent, proc, _T("Changing Tags in Progress"),
+			ProcessingProgressDlg progress(parent, proc, _T("正在更改标记"),
 				operation.str().c_str(), ProcessingProgressDlg::AUTO_CLOSE | ProcessingProgressDlg::OUTPUT_ONLY);
 
 			progress.DoModal();
@@ -1377,8 +1377,8 @@ extern bool ApplyRatingToPhotos(VectPhotoInfo photos, int rating, CWnd* parent)
 		{
 			ImgProcessingPool proc(std::auto_ptr<ImgProcessingThread>(new ApplyMetadataThread(photos, rating, 0)));
 
-			ProcessingProgressDlg progress(parent, proc, _T("Changing Rating in Progress"),
-				_T("Changing rating"), ProcessingProgressDlg::AUTO_CLOSE | ProcessingProgressDlg::OUTPUT_ONLY);
+			ProcessingProgressDlg progress(parent, proc, _T("正在更改评级"),
+				_T("更改评级"), ProcessingProgressDlg::AUTO_CLOSE | ProcessingProgressDlg::OUTPUT_ONLY);
 
 			progress.DoModal();
 		}
@@ -1409,7 +1409,7 @@ bool CTaskImageRename::Go()
 bool CTaskImageRename::Rename()
 {
 	RenameToolDlg dlg(parent_, photos_);
-	HeaderDialog dlg_with_header(dlg, _T("Rename Images"), HeaderDialog::IMG_EXTRACT);
+	HeaderDialog dlg_with_header(dlg, _T("重命名图像"), HeaderDialog::IMG_EXTRACT);
 	if (dlg_with_header.DoModal() != IDOK)
 		return false;
 

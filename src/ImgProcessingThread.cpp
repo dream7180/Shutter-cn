@@ -35,7 +35,7 @@ ImgProcessingThread::ImgProcessingThread(size_t file_count)
 	thread_ = ::AfxBeginThread(WorkerProc, this, THREAD_PRIORITY_BELOW_NORMAL, 0, CREATE_SUSPENDED);
 
 	if (thread_ == 0)
-		THROW_EXCEPTION(L"Cannot Start Image Processing", L"Image processing thread creation failed")
+		THROW_EXCEPTION(L"未能启动图像处理", L"图像处理线程创建失败")
 
 	thread_handle_ = *thread_;
 }

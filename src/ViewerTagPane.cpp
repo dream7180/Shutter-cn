@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -255,7 +255,7 @@ BOOL ViewerTagPane::OnEraseBkgnd(CDC* dc)
 		CFont* old= dc->SelectObject(&font);
 		dc->SetTextColor(TITLE_TEXT_COLOR);
 		dc->SetBkMode(TRANSPARENT);
-		CString str= L"Apply Tags";
+		CString str= L"应用标记";
 //		str.LoadString(IDS_LIGHT_TABLE);
 		dc->TextOut(rect.left + 5, rect.top + 4, str);
 		dc->SelectObject(old);

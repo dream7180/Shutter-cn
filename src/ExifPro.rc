@@ -80,7 +80,7 @@ IDI_WARNING_2           ICON                    "res\\warning_2.ico"
 //
 // Bitmap
 //
-
+IDR_ABOUT               BITMAP                  "res\\about-alpha.bmp"
 IDB_CHARACTERS          BITMAP                  "res\\character.bmp"
 IDB_ASCENDING           BITMAP                  "res\\ascending.bmp"
 IDB_DESCENDING          BITMAP                  "res\\descending.bmp"
@@ -1181,11 +1181,20 @@ END
 // Dialog
 //
 
-IDD_ABOUTBOX DIALOG 0, 0, 288, 215
+IDD_ABOUTBOX DIALOG 0, 0, 280, 220
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "关于 ExifPro"
-FONT 8, "Tahoma"
+FONT 9, "Tahoma"
 BEGIN
+	CONTROL			IDR_ABOUT,IDC_STATIC,"Static",SS_BITMAP,30,5,30,30
+	LTEXT           "ExifPro Photo Browser",IDC_LABEL,75,5,120,15
+	LTEXT           "Mod Version",IDC_LABEL_2,75,20,100,15
+	LTEXT           "Version 3.0.0 build 20200415 Unicode",IDC_STATIC,20,45,200,11
+	LTEXT           "x64 Release",IDC_STATIC,20,56,200,11
+	LTEXT           "Free software released under the terms of the GNU Public License.",IDC_STATIC,20,67,230,11
+	CONTROL         "syslink_1",IDC_LINK,"SysLink",WS_TABSTOP,20,88,230,30
+	LTEXT           "***Image decoder libraries***\nLibjpeg-turbo: 2.0.4\nLibTIFF: 4.1.0\nLibPNG: 1.6.37\nGIFlib: 4.2.3\nLittle CMS: 1.19",IDC_STATIC,20,130,230,60
+	
 END
 /*
 IDD_EVALUATION DIALOGEX 0, 0, 210, 159
@@ -1443,7 +1452,7 @@ BEGIN
     PUSHBUTTON      "&...",IDC_SELECT_FILE,238,33,18,13
     LTEXT           "字段分隔符(&I):",IDC_STATIC,12,54,52,9
     EDITTEXT        IDC_SEPARATOR,66,52,12,12,ES_AUTOHSCROLL
-    CONTROL         "导出标签(&E)",IDC_EXP_TAGS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,71,51,10
+    CONTROL         "导出标签(&E)",IDC_EXP_TAGS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,71,61,10
     PUSHBUTTON      "",IDC_HELP_BTN,10,93,18,14,WS_GROUP | NOT WS_TABSTOP
     PUSHBUTTON      "取消",IDCANCEL,148,93,50,14,WS_GROUP
     DEFPUSHBUTTON   "导出",IDOK,208,93,50,14,WS_GROUP
@@ -1768,8 +1777,8 @@ BEGIN
     LTEXT           "目标文件夹:",IDC_STATIC,8,16,66,9
     EDITTEXT        IDC_PATH,76,14,200,13,ES_AUTOHSCROLL | WS_GROUP
     PUSHBUTTON      "&...",IDC_BROWSE,278,14,18,12
-    CONTROL         "全部复制到相同的文件夹(&C)",IDC_ONE_FOLDER,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,72,50,113,10
-    CONTROL         "复制到各自的文件夹(&S)",IDC_SEPARATE_FOLDERS,"Button",BS_AUTORADIOBUTTON,72,90,113,10
+    CONTROL         "全部复制到相同的文件夹(&C)",IDC_ONE_FOLDER,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,72,50,133,10
+    CONTROL         "复制到各自的文件夹(&S)",IDC_SEPARATE_FOLDERS,"Button",BS_AUTORADIOBUTTON,72,90,133,10
     CONTROL         IDB_TAGGED_SINGLE_DIR,IDC_STATIC,"Static",SS_BITMAP | WS_GROUP,12,37,49,33
     CONTROL         IDB_TAGGED_SEPARATE_DIRS,IDC_STATIC,"Static",SS_BITMAP | WS_GROUP,12,78,49,33
     LTEXT           "以分配的标记复制图像到指定的文件夹.",IDC_STATIC,8,124,190,9
@@ -2109,7 +2118,7 @@ EXSTYLE WS_EX_CONTROLPARENT
 FONT 8, "Tahoma", 400, 0, 0x0
 BEGIN
     CONTROL         IDB_EYE_DROP,IDC_EYE_DROP,"Static",SS_BITMAP,0,1,11,10
-    LTEXT           "颜色:",IDC_STATIC,14,1,19,9
+    LTEXT           "颜色:",IDC_STATIC,14,1,25,9
     LTEXT           "R",IDC_STATIC,3,15,9,9
     LTEXT           "G",IDC_STATIC,3,27,9,9
     LTEXT           "B",IDC_STATIC,3,39,9,9
@@ -3938,7 +3947,7 @@ IDB_TRASHCAN            JPEG                    "res\\trashcan.jpg"
 // PNG
 //
 
-IDR_ABOUT               PNG                     "res\\about-alpha.png"
+//IDR_ABOUT               PNG                     "res\\about-alpha.png"
 IDB_VIEWER_TOOLBAR      PNG                     "res\\ViewerToolbar.png"
 //IDB_VIEWER_TOOLBAR_BIG  PNG                     "res\\ViewerToolbarBig.png"
 IDB_ZOOMBAR             PNG                     "res\\ZoomBar.png"

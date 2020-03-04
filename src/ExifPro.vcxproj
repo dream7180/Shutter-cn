@@ -675,7 +675,7 @@
     <ClCompile Include="StringFormat.cpp" />
     <ClCompile Include="Subclass.cpp" />
     <ClCompile Include="TaskToolbar.cpp" />
-    <ClCompile Include="UpdateCheck.cpp" />
+    <!--ClCompile Include="UpdateCheck.cpp" /-->
     <ClCompile Include="ViewerExampleWnd.cpp" />
     <ClCompile Include="YellowText.cpp" />
     <ClCompile Include="BMPDecoder.cpp" />
@@ -1374,7 +1374,7 @@
     <ClInclude Include="TwoFilePanesWnd.h" />
     <ClInclude Include="UIElements.h" />
     <ClInclude Include="UniqueLetter.h" />
-    <ClInclude Include="UpdateCheck.h" />
+    <!--ClInclude Include="UpdateCheck.h" /-->
     <ClInclude Include="viewer\ViewCaption.h" />
     <ClInclude Include="ViewerDlg.h" />
     <ClInclude Include="ViewerDlgNotifications.h" />

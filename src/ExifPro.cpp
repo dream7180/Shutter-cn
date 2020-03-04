@@ -24,7 +24,7 @@ ____________________________________________________________________________*/
 #include "ImgDb.h"
 #include "FolderPathHelpers.h"
 #include "scintilla\Include\Scintilla.h"
-#include "UpdateCheck.h"
+//#include "UpdateCheck.h"
 
 
 #ifdef _DEBUG
@@ -54,8 +54,8 @@ void SetPhotoCache(int n, size_t memory_limit);
 BEGIN_MESSAGE_MAP(App, CWinApp)
 	//{{AFX_MSG_MAP(App)
 	ON_COMMAND(ID_APP_ABOUT, OnAppAbout)
-	ON_COMMAND(ID_UPDATE_CHECK, OnUpdateCheck)
-	ON_UPDATE_COMMAND_UI(ID_UPDATE_CHECK, DisableItem)
+	//ON_COMMAND(ID_UPDATE_CHECK, OnUpdateCheck)
+	//ON_UPDATE_COMMAND_UI(ID_UPDATE_CHECK, DisableItem)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -541,14 +541,14 @@ CString App::RelativeToCurrentDir(const TCHAR* path)
 	return dir;
 }
 
-
+/*
 void App::OnUpdateCheck()
 {
 	UpdateCheck dlg(0);
 
 	dlg.DoModal();
 }
-
+*/
 
 namespace Tags { extern void FreeTagCollection(); }
 

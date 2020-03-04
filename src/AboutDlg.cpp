@@ -12,8 +12,13 @@ ____________________________________________________________________________*/
 #include "resource.h"
 #include "AboutDlg.h"
 #include "CatchAll.h"
-#include "PNGImage.h"
+//#include "PNGImage.h"
 #include "UIElements.h"
+
+#define	WEB_SITE	L"https://github.com/dream7180/ExifPro-mod"
+#define	BLOG_SITE	L"https://www.cnblogs.com/foobox"
+#define	CODE_SITE	L"https://github.com/mikekov/ExifPro"
+#define	OFF_SITE	L"http://www.exifpro.com/"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -25,18 +30,18 @@ static char THIS_FILE[]=__FILE__;
 AboutDlg::AboutDlg() : CDialog(AboutDlg::IDD)
 {
 	//{{AFX_DATA_INIT(AboutDlg)
-	version_ = _T("");
+	//version_ = _T("");
 	//}}AFX_DATA_INIT
-	scroll_pos_ = 0;
-	stop_delay_ = 0;
-	text_lines_ = 0;
+	//scroll_pos_ = 0;
+	//stop_delay_ = 0;
+	//text_lines_ = 0;
 }
 
 
 AboutDlg::~AboutDlg()
 {
-	scroll_dc_.DeleteDC();	// delete dc before the bmp selected into it
-	backgnd_dc_.DeleteDC();
+	//scroll_dc_.DeleteDC();	// delete dc before the bmp selected into it
+	//backgnd_dc_.DeleteDC();
 }
 
 
@@ -53,11 +58,12 @@ BEGIN_MESSAGE_MAP(AboutDlg, CDialog)
 	ON_WM_ERASEBKGND()
 	ON_WM_LBUTTONUP()
 	ON_WM_TIMER()
+	ON_NOTIFY(NM_CLICK, IDC_LINK, &AboutDlg::OnNMClickSyslink1)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 
-// an area in a bitmap to print extra text info
+/*/ an area in a bitmap to print extra text info
 namespace {
 	const CPoint LEFTTOP(60, 120);
 	const CSize AREA_SIZE(650, 80);
@@ -70,7 +76,7 @@ namespace {
 
 extern AutoPtr<Dib> LoadJpeg(UINT img_id);
 
-
+*/
 extern CString ReadAppVersion(bool including_build)
 {
 	CString version;
@@ -99,12 +105,11 @@ extern CString ReadAppVersion(bool including_build)
 	return version;
 }
 
-
 BOOL AboutDlg::OnInitDialog()
 {
 	try
 	{
-		version_ = ReadAppVersion(true);
+/*		version_ = ReadAppVersion(true);
 		about_ = version_ + _T("\n")
 #ifdef _WIN64
 			_T("x64")
@@ -114,11 +119,21 @@ BOOL AboutDlg::OnInitDialog()
 			_T(" Release\n");
 
 		about_ += _T("Free software released under the terms of the GNU Public License.");
-
+*/
 		CDialog::OnInitDialog();
-
+		
 		LOGFONT lf;
-		lf.lfHeight = -Pixels(14);
+		HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
+		::GetObject(hfont, sizeof(lf), &lf);
+		lf.lfHeight -= 2;
+		lf.lfWeight = FW_BOLD;
+		_tcscpy(lf.lfFaceName, _T("Tahoma"));
+		small_fnt_.CreateFontIndirect(&lf);
+		
+		GetDlgItem(IDC_LABEL)->SetFont(&small_fnt_);
+		GetDlgItem(IDC_LABEL_2)->SetFont(&small_fnt_);
+/*		LOGFONT lf;
+		lf.lfHeight -= 2;//= -Pixels(14);
 		lf.lfWidth = 0;
 		lf.lfEscapement = 0;
 		lf.lfOrientation = 0;
@@ -133,18 +148,22 @@ BOOL AboutDlg::OnInitDialog()
 		lf.lfPitchAndFamily = FF_SWISS;
 		_tcscpy(lf.lfFaceName, _T("Arial"));
 
-		small_fnt_.CreateFontIndirect(&lf);
+		small_fnt_.CreateFontIndirect(&lf);*/
 
-		if (!PNGImage().Load(IDR_ABOUT, dib_about_) || !dib_about_.IsValid())
-			EndDialog(IDCANCEL);
+		//if (!PNGImage().Load(IDR_ABOUT, dib_about_) || !dib_about_.IsValid())
+		//	EndDialog(IDCANCEL);
 
-		CRect rect(CPoint(0, 0), dib_about_.GetSize());
-		::AdjustWindowRectEx(rect, GetStyle(), false, GetExStyle());
+		//CRect rect(CPoint(0, 0), dib_about_.GetSize());
+		//::AdjustWindowRectEx(rect, GetStyle(), false, GetExStyle());
+		CRect rect(0,0,0,0);
+		GetClientRect(rect);
 		SetWindowPos(0, 0, 0, rect.Width(), rect.Height(), SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE);
+		
+		GetDlgItem(IDC_LINK)->SetWindowText(L"Mod by dreamawake: <a href=\"" WEB_SITE L"\">https://github.com/dream7180/ExifPro-mod</a>\n\nOther Links: <a href=\"" BLOG_SITE L"\">my blog</a>, <a href=\"" CODE_SITE L"\">mod from v2.3</a>, <a href=\"" OFF_SITE L"\">www.exifpro.com</a>");
 
 		//CPoint pos= CPoint(Pixels(LEFTTOP.x), );
 		//pos.y += Pixels(AREA_SIZE.cy);
-		link_wnd_.Create(this, CPoint(Pixels(LINK_TOP.x), Pixels(LINK_TOP.y)), _T("https://github.com/dream7180/ExifPro-mod"), _T("https://github.com/dream7180/ExifPro-mod"), &small_fnt_);
+	/*	link_wnd_.Create(this, CPoint(Pixels(LINK_TOP.x), Pixels(LINK_TOP.y)), _T("https://github.com/dream7180/ExifPro-mod"), _T("https://github.com/dream7180/ExifPro-mod"), &small_fnt_);
 		link_wnd_.rgb_text_color_ = LINK_COLOR;
 		link2_wnd_.Create(this, CPoint(Pixels(LINK_TOP.x), Pixels(LINK_TOP.y) + 25), _T("https://www.cnblogs.com/foobox/"), _T("https://www.cnblogs.com/foobox/"), &small_fnt_);
 		link2_wnd_.rgb_text_color_ = LINK_COLOR;
@@ -188,7 +207,7 @@ BOOL AboutDlg::OnInitDialog()
 		text_lines_ = static_cast<int>(std::count(b, e, L'\n'));	// lines of text to scroll
 
 		SetTimer(1, 25, 0);
-
+*/
 		return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
 	}
@@ -202,11 +221,11 @@ BOOL AboutDlg::OnInitDialog()
 
 BOOL AboutDlg::OnEraseBkgnd(CDC* dc)
 {
-	if (!dib_about_.IsValid())
-		return CDialog::OnEraseBkgnd(dc);
+	//if (!dib_about_.IsValid())
+	//	return CDialog::OnEraseBkgnd(dc);
 
-	dib_about_.DibDraw(dc, CPoint(0, 0));
-
+	//dib_about_.DibDraw(dc, CPoint(0, 0));
+/*
 	CFont* old= dc->SelectObject(&small_fnt_);
 
 	dc->SetTextColor(TEXT_COLOR);
@@ -218,7 +237,7 @@ BOOL AboutDlg::OnEraseBkgnd(CDC* dc)
 	dc->DrawText(link_txt_3, CRect(CPoint(Pixels(LEFTTOP.x), Pixels(LINK_TOP.y) + 50), CSize(180, 20)), DT_LEFT | DT_TOP | DT_NOPREFIX | DT_WORDBREAK | DT_END_ELLIPSIS);
 	dc->DrawText(link_txt_4, CRect(CPoint(Pixels(LEFTTOP.x), Pixels(LINK_TOP.y) + 75), CSize(180, 20)), DT_LEFT | DT_TOP | DT_NOPREFIX | DT_WORDBREAK | DT_END_ELLIPSIS);
 	dc->SelectObject(old);
-
+*/
 	return true;
 }
 
@@ -227,7 +246,7 @@ void AboutDlg::OnLButtonUp(UINT flags, CPoint point)
 {
 	EndDialog(IDCANCEL);
 }
-
+/*
 
 void AboutDlg::OnTimer(UINT_PTR event_id)
 {
@@ -258,7 +277,7 @@ void AboutDlg::OnTimer(UINT_PTR event_id)
 		scroll_dc_.CreateCompatibleDC(&dc);
 		scroll_dc_.SelectObject(&scroll_bmp_);
 		backgnd_dc_.CreateCompatibleDC(&dc);
-		backgnd_dc_.SelectObject(dib_about_.GetBmp());
+		//backgnd_dc_.SelectObject(dib_about_.GetBmp());
 	}
 
 	CFont* old= scroll_dc_.SelectObject(&small_fnt_);
@@ -286,4 +305,21 @@ void AboutDlg::OnTimer(UINT_PTR event_id)
 	}
 
 	++scroll_pos_;
+}
+*/
+void AboutDlg::OnNMClickSyslink1(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	// TODO: 在此添加控件通知处理程序代码
+	 PNMLINK pNMLink = (PNMLINK) pNMHDR; 
+	 if (wcscmp(pNMLink->item.szUrl, WEB_SITE) == 0)
+     {
+		ShellExecuteW(NULL, L"open", pNMLink->item.szUrl, NULL, NULL, SW_SHOWNORMAL);  //主要执行语句
+     } else if (wcscmp(pNMLink->item.szUrl, BLOG_SITE) == 0){
+		ShellExecuteW(NULL, L"open", pNMLink->item.szUrl, NULL, NULL, SW_SHOWNORMAL);
+	 } else if (wcscmp(pNMLink->item.szUrl, CODE_SITE) == 0){
+		ShellExecuteW(NULL, L"open", pNMLink->item.szUrl, NULL, NULL, SW_SHOWNORMAL);
+	 } else{
+		ShellExecuteW(NULL, L"open", pNMLink->item.szUrl, NULL, NULL, SW_SHOWNORMAL);
+	 }
+	*pResult = 0;
 }

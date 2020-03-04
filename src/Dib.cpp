@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -184,7 +184,7 @@ void Dib::CreateEx(int width, int height, int bits_per_pixel, bool alignment)
 	alloc_ = ::malloc(size);
 
 	if (alloc_ == 0)
-		THROW_EXCEPTION(L"Bitmap creation failed", L"Call to allocate bitmap memory failed.");
+		THROW_EXCEPTION(L"位图创建失败", L"分配位图内存失败.");
 
 	// wipe out
 //	memset(alloc_, 0xff, size);
@@ -421,7 +421,7 @@ AutoPtr<CBitmap> Dib::DeviceBitmap()
 void Dib::Save(const TCHAR* output_file)
 {
 	if (GetColorComponents() != 3 && GetColorComponents() != 1)
-		THROW_EXCEPTION(L"Cannot save bitmap file", SF(L"Unsupported source image format.\nDestination: " << output_file));
+		THROW_EXCEPTION(L"未能保存位图文件", SF(L"不支持的源图像格式.\n目标: " << output_file));
 
 	CFile out(output_file, CFile::modeWrite | CFile::modeCreate);
 
@@ -1160,7 +1160,7 @@ void Dib::CreateCBitmap()
 		VOID* data = 0;
 		HBITMAP dib = ::CreateDIBSection(0, &bmp_info_.AsBitmapInfo(), DIB_RGB_COLORS, &data, 0, 0);
 		if (dib == 0 || data == 0)
-			THROW_EXCEPTION(L"Bitmap creation failed", L"Call to CreateDIBSection failed.");
+			THROW_EXCEPTION(L"位图创建失败", L"Call to CreateDIBSection failed.");
 
 		dib_bmp_.Attach(dib);
 

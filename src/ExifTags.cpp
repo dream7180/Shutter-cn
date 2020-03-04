@@ -82,7 +82,7 @@ const TCHAR* TagName(uint16 tag)
 	case 0x829A: name =	_T("曝光时长");				break;
 	case 0x829D: name =	_T("光圈");						break;
 	case 0x83BB: name =	_T("IPTC/NAA");						break;
-	case 0x8769: name =	_T("Exif 偏移");					break;
+	case 0x8769: name =	_T("EXIF 偏移");					break;
 	case 0x8773: name =	_T("内部颜色配置");			break;
 	case 0x8822: name =	_T("曝光程序");				break;
 	case 0x8824: name =	_T("光谱灵敏度");			break;

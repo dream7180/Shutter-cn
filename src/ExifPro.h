@@ -26,7 +26,7 @@ public:
 // Implementation
 	//{{AFX_MSG(App)
 	afx_msg void OnAppAbout();
-	void OnUpdateCheck();
+	//void OnUpdateCheck();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
