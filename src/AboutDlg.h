@@ -8,8 +8,8 @@ ____________________________________________________________________________*/
 /////////////////////////////////////////////////////////////////////////////
 // AboutDlg dialog used for App About
 
-#include "Dib.h"
-#include "LinkWnd.h"
+//#include "Dib.h"
+//#include "LinkWnd.h"
 
 
 class AboutDlg : public CDialog
@@ -21,7 +21,7 @@ public:
 // Dialog Data
 	//{{AFX_DATA(AboutDlg)
 	enum { IDD = IDD_ABOUTBOX };
-	//CString	version_;
+	CString	version_;
 	//}}AFX_DATA
 
 	// ClassWizard generated virtual function overrides
@@ -56,4 +56,6 @@ protected:
 	//CBitmap scroll_bmp_;
 	//CDC scroll_dc_;
 	//CDC backgnd_dc_;
+private:
+	HBRUSH OnCtlColor(CDC* dc, CWnd* wnd, UINT ctl_color);
 };

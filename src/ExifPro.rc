@@ -1189,12 +1189,11 @@ BEGIN
 	CONTROL			IDR_ABOUT,IDC_STATIC,"Static",SS_BITMAP,30,5,30,30
 	LTEXT           "ExifPro Photo Browser",IDC_LABEL,75,5,120,15
 	LTEXT           "Mod Version",IDC_LABEL_2,75,20,100,15
-	LTEXT           "Version 3.0.0 build 20200415 Unicode",IDC_STATIC,20,45,200,11
+	LTEXT           "Version",IDC_VERSION,20,45,200,11
 	LTEXT           "x64 Release",IDC_STATIC,20,56,200,11
 	LTEXT           "Free software released under the terms of the GNU Public License.",IDC_STATIC,20,67,230,11
-	CONTROL         "syslink_1",IDC_LINK,"SysLink",WS_TABSTOP,20,88,230,30
-	LTEXT           "***Image decoder libraries***\nLibjpeg-turbo: 2.0.4\nLibTIFF: 4.1.0\nLibPNG: 1.6.37\nGIFlib: 4.2.3\nLittle CMS: 1.19",IDC_STATIC,20,130,230,60
-	
+	CONTROL         "syslink_1",IDC_LINK,"SysLink",WS_VISIBLE,20,88,230,30
+	LTEXT           "***Image decoder libraries***\nLibjpeg-turbo: 2.0.4\nLibTIFF: 4.1.0\nLibPNG: 1.6.37\nGIFlib: 4.2.3\nLittle CMS: 1.19",IDC_STATIC,20,130,230,60	
 END
 /*
 IDD_EVALUATION DIALOGEX 0, 0, 210, 159

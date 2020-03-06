@@ -59,6 +59,7 @@ BEGIN_MESSAGE_MAP(AboutDlg, CDialog)
 	ON_WM_LBUTTONUP()
 	ON_WM_TIMER()
 	ON_NOTIFY(NM_CLICK, IDC_LINK, &AboutDlg::OnNMClickSyslink1)
+	ON_WM_CTLCOLOR()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -109,8 +110,8 @@ BOOL AboutDlg::OnInitDialog()
 {
 	try
 	{
-/*		version_ = ReadAppVersion(true);
-		about_ = version_ + _T("\n")
+		version_ = ReadAppVersion(true);
+/*		about_ = version_ + _T("\n")
 #ifdef _WIN64
 			_T("x64")
 #else
@@ -160,7 +161,7 @@ BOOL AboutDlg::OnInitDialog()
 		SetWindowPos(0, 0, 0, rect.Width(), rect.Height(), SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE);
 		
 		GetDlgItem(IDC_LINK)->SetWindowText(L"Mod by dreamawake: <a href=\"" WEB_SITE L"\">https://github.com/dream7180/ExifPro-mod</a>\n\nOther Links: <a href=\"" BLOG_SITE L"\">my blog</a>, <a href=\"" CODE_SITE L"\">mod from v2.3</a>, <a href=\"" OFF_SITE L"\">www.exifpro.com</a>");
-
+		GetDlgItem(IDC_VERSION)->SetWindowText(version_);
 		//CPoint pos= CPoint(Pixels(LEFTTOP.x), );
 		//pos.y += Pixels(AREA_SIZE.cy);
 	/*	link_wnd_.Create(this, CPoint(Pixels(LINK_TOP.x), Pixels(LINK_TOP.y)), _T("https://github.com/dream7180/ExifPro-mod"), _T("https://github.com/dream7180/ExifPro-mod"), &small_fnt_);
@@ -238,6 +239,12 @@ BOOL AboutDlg::OnEraseBkgnd(CDC* dc)
 	dc->DrawText(link_txt_4, CRect(CPoint(Pixels(LEFTTOP.x), Pixels(LINK_TOP.y) + 75), CSize(180, 20)), DT_LEFT | DT_TOP | DT_NOPREFIX | DT_WORDBREAK | DT_END_ELLIPSIS);
 	dc->SelectObject(old);
 */
+	//COLORREF background = RGB(60,60,60);
+//	MemoryDC mem_dc(*dc, this, rgb_background);
+//	mem_dc.BitBlt();
+	CRect rect;
+	GetClientRect(rect);
+	dc->FillSolidRect(rect, ::GetSysColor(COLOR_3DFACE));
 	return true;
 }
 
@@ -322,4 +329,17 @@ void AboutDlg::OnNMClickSyslink1(NMHDR *pNMHDR, LRESULT *pResult)
 		ShellExecuteW(NULL, L"open", pNMLink->item.szUrl, NULL, NULL, SW_SHOWNORMAL);
 	 }
 	*pResult = 0;
+}
+
+HBRUSH AboutDlg::OnCtlColor(CDC* dc, CWnd* wnd, UINT ctl_color)
+{
+	HBRUSH hbr = CDialog::OnCtlColor(dc, wnd, ctl_color);
+	//m_brush.CreateSolidBrush(RGB(255,255,255));
+	//if (wnd->GetDlgCtrlID() == IDC_STATIC){
+		//dc->SetTextColor(::GetSysColor(COLOR_WINDOWTEXT));  //字体颜色
+		//dc->SetBkColor(RGB(60, 60, 60));
+		dc->SetBkMode(TRANSPARENT);
+	//	return m_brush;
+	//} 
+	return hbr;
 }
