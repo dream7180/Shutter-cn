@@ -3207,6 +3207,7 @@
     <Image Include="res\about-alpha.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\HelpBtn.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\copy-anim.avi">

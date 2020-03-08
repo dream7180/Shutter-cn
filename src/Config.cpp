@@ -45,7 +45,7 @@ Config::Config()
 	rgb_cur_selection_ = RGB(192,192,192);	// preview pane current photo selection color
 	keep_sel_photo_centered_ = false;
 	preload_photos_ = true;
-	language_ = 0;
+	language_ = 1;
 	viewer_ui_gamma_correction_ = 1.0;
 	horz_resolution_ = 90.0f;				// monitor resolution
 	vert_resolution_ = 90.0f;
@@ -337,7 +337,7 @@ void Config::Restore()
 		case LANG_ENGLISH:
 			language_ = 0;
 			break;
-		case LANG_POLISH:
+		case LANG_CHINESE:
 			language_ = 1;
 			break;
 		case LANG_DUTCH:
@@ -618,7 +618,7 @@ WORD Config::GetLanguageId() const
 	case 0:
 		return MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US);
 	case 1:
-		return MAKELANGID(LANG_POLISH, SUBLANG_DEFAULT);
+		return MAKELANGID(LANG_POLISH, SUBLANG_CHINESE_SIMPLIFIED);
 	case 2:
 		return MAKELANGID(LANG_DUTCH, SUBLANG_DUTCH);
 	case 3:
