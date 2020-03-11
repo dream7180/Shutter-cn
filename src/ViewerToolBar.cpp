@@ -127,7 +127,7 @@ void ViewerToolBar::OnDestroy()
 {
 	//SaveState(REGISTRY_SECTION_TOOLBAR, REG_STATE);
 
-	//AfxGetApp()->WriteProfileInt(REGISTRY_SECTION_TOOLBAR, REG_ICONS, small_icons_ ? 0 : 1);
+	AfxGetApp()->WriteProfileInt(REGISTRY_SECTION_TOOLBAR, REG_ICONS, small_icons_ ? 0 : 1);
 
 	Derived::OnDestroy();
 }
