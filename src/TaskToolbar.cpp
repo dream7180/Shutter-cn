@@ -12,7 +12,7 @@ ____________________________________________________________________________*/
 
 TaskToolbar::TaskToolbar()
 {
-	small_icons_ = true;
+	//small_icons_ = true;
 	rebar_band_id_ = 0;
 	horizontal_ = false;
 	SetOwnerDraw(true);
@@ -29,9 +29,9 @@ BEGIN_MESSAGE_MAP(TaskToolbar, ToolBarWnd)
 //	ON_COMMAND(ID_TOOLBAR_HORIZONTAL, OnToolbarHorizontal)
 //	ON_UPDATE_COMMAND_UI(ID_TOOLBAR_HORIZONTAL, OnUpdateHorizontalLayout)
 
-	ON_COMMAND(ID_SMALL_ICONS, OnSmallIcons)
+	//ON_COMMAND(ID_SMALL_ICONS, OnSmallIcons)
 //	ON_UPDATE_COMMAND_UI(ID_SMALL_ICONS, OnUpdateSmallIcons)
-	ON_COMMAND(ID_LARGE_ICONS, OnLargeIcons)
+	//ON_COMMAND(ID_LARGE_ICONS, OnLargeIcons)
 //	ON_UPDATE_COMMAND_UI(ID_LARGE_ICONS, OnUpdateLargeIcons)
 	ON_WM_DESTROY()
 //	ON_NOTIFY_REFLECT(NM_RCLICK, OnRightClick)
@@ -52,8 +52,8 @@ namespace {
 	const float saturation= -0.5f;
 	const float lightness= 0.0f;
 	const float alpha= 0.55f;
-	const int TOOLBAR_BITMAP_SMALL= IDB_BROWSER_TOOLS;
-	const int TOOLBAR_BITMAP_BIG= IDB_BROWSER_TOOLS;
+	//const int TOOLBAR_BITMAP_SMALL= IDB_BROWSER_TOOLS;
+	//const int TOOLBAR_BITMAP_BIG= IDB_BROWSER_TOOLS;
 }
 
 
@@ -118,9 +118,9 @@ bool TaskToolbar::Create(CWnd* parent, UINT id, bool vertical)
 	else
 		SetPadding(0, 4);
 
-	small_icons_ = AfxGetApp()->GetProfileInt(REGISTRY_SECTION_TOOLBAR, REG_ICONS, 0) == 0;
+	//small_icons_ = AfxGetApp()->GetProfileInt(REGISTRY_SECTION_TOOLBAR, REG_ICONS, 0) == 0;
 
-	int bmp_id= small_icons_ ? TOOLBAR_BITMAP_SMALL : TOOLBAR_BITMAP_BIG;
+	int bmp_id= IDB_BROWSER_TOOLS;//small_icons_ ? TOOLBAR_BITMAP_SMALL : TOOLBAR_BITMAP_BIG;
 
 	DWORD tb_style= WS_CHILD | WS_VISIBLE | TBSTYLE_TOOLTIPS | TBSTYLE_FLAT | TBSTYLE_TRANSPARENT |
 		/*CCS_TOP |*/ CCS_NORESIZE | CCS_NOPARENTALIGN | CCS_NODIVIDER | TBSTYLE_ALTDRAG | CCS_ADJUSTABLE;
@@ -233,12 +233,12 @@ void TaskToolbar::OnDestroy()
 {
 	SaveState(REGISTRY_SECTION_TOOLBAR, horizontal_ ? REG_STATE : REG_STATE_VERT);
 
-	AfxGetApp()->WriteProfileInt(REGISTRY_SECTION_TOOLBAR, REG_ICONS, small_icons_ ? 0 : 1);
+	//AfxGetApp()->WriteProfileInt(REGISTRY_SECTION_TOOLBAR, REG_ICONS, small_icons_ ? 0 : 1);
 
 	ToolBarWnd::OnDestroy();
 }
 
-
+/*
 void TaskToolbar::OnSmallIcons()
 {
 	if (!small_icons_)
@@ -261,7 +261,7 @@ void TaskToolbar::OnLargeIcons()
 			small_icons_ = false;
 		}
 }
-
+*/
 
 void TaskToolbar::OnInitMenuPopup(CMenu* popup_menu, UINT index, BOOL sys_menu)
 {

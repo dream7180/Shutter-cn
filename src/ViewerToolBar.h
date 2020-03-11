@@ -26,10 +26,10 @@ public:
 
 // Attributes
 //public:
-	//bool SmallIcons();
-	//bool LargeIcons();
+	bool SmallIcons();
+	bool LargeIcons();
 
-	//bool IsSmallSet() const		{ return small_icons_; }
+	bool IsSmallSet() const		{ return small_icons_; }
 
 // Operations
 public:
@@ -53,13 +53,13 @@ protected:
 
 	DECLARE_MESSAGE_MAP()
 
-	//bool small_icons_;
-//	int rebar_band_id_;
+	bool small_icons_;
+	int rebar_band_id_;
 
-//	void OnRightClick(NMHDR* notify_struct, LRESULT* result);
-	//void OnContextMenu(CWnd* wnd, CPoint point);
+	//void OnRightClick(NMHDR* notify_struct, LRESULT* result);
+	void OnContextMenu(CWnd* wnd, CPoint point);
 	void OnResetToolbar(NMHDR* notify_struct, LRESULT* result);
-	//void OnInitMenuPopup(CMenu* popup_menu, UINT index, BOOL sys_menu);
+	void OnInitMenuPopup(CMenu* popup_menu, UINT index, BOOL sys_menu);
 	void AdjustReBar();
 	//void OnRButtonDown(UINT flags, CPoint pos);
 };

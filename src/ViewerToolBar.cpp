@@ -24,8 +24,8 @@ static char THIS_FILE[] = __FILE__;
 
 ViewerToolBar::ViewerToolBar()
 {
-	//small_icons_ = false;
-//	rebar_band_id_ = 0;
+	small_icons_ = false;
+	rebar_band_id_ = 0;
 }
 
 ViewerToolBar::~ViewerToolBar()
@@ -36,13 +36,13 @@ ViewerToolBar::~ViewerToolBar()
 BEGIN_MESSAGE_MAP(ViewerToolBar, Derived)
 	ON_WM_DESTROY()
 	//ON_COMMAND(ID_TOOLBAR_CUSTOMIZE, OnToolbarCustomize)
-//	ON_COMMAND(ID_SMALL_ICONS, OnSmallIcons)
-//	ON_COMMAND(ID_LARGE_ICONS, OnLargeIcons)
-//	ON_NOTIFY_REFLECT(NM_RCLICK, OnRightClick)
+	//ON_COMMAND(ID_SMALL_ICONS, OnSmallIcons)
+	//ON_COMMAND(ID_LARGE_ICONS, OnLargeIcons)
+	//ON_NOTIFY_REFLECT(NM_RCLICK, OnRightClick)
 	ON_NOTIFY_REFLECT(TBN_RESET, OnResetToolbar)
-	//ON_WM_INITMENUPOPUP()
-	//ON_WM_CONTEXTMENU()
-	//ON_WM_RBUTTONDOWN()
+	ON_WM_INITMENUPOPUP()
+	ON_WM_CONTEXTMENU()
+	ON_WM_RBUTTONDOWN()
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -52,9 +52,9 @@ void CreateDisabledImageList(...)	{}
 
 
 namespace {
-	//const TCHAR* REGISTRY_SECTION_TOOLBAR	= _T("ViewerToolBar");
+	const TCHAR* REGISTRY_SECTION_TOOLBAR	= _T("ViewerToolBar");
 	//const TCHAR* REG_STATE					= _T("TbState");
-	//const TCHAR* REG_ICONS					= _T("Icons");
+	const TCHAR* REG_ICONS					= _T("Icons");
 
 	const int commands[]=
 	{
@@ -78,9 +78,9 @@ bool ViewerToolBar::Create(CWnd* parent, UINT id)
 {
 //	rebar_band_id_ = rebar_band_id;
 
-	//small_icons_ = AfxGetApp()->GetProfileInt(REGISTRY_SECTION_TOOLBAR, REG_ICONS, 1) == 0;
+	small_icons_ = AfxGetApp()->GetProfileInt(REGISTRY_SECTION_TOOLBAR, REG_ICONS, 1) == 0;
 
-	int bmp_id= IDB_VIEWER_TOOLBAR; //small_icons_ ? IDB_VIEWER_TOOLBAR : IDB_VIEWER_TOOLBAR_BIG;
+	int bmp_id= small_icons_ ? IDB_VIEWER_TOOLBAR : IDB_VIEWER_TOOLBAR_BIG;
 
 	Derived::Params p;
 
@@ -137,9 +137,9 @@ void ViewerToolBar::OnRButtonDown(UINT flags, CPoint pos)
 {
 	CPoint pt(0, 0);
 	GetCursorPos(&pt);
-	//OnContextMenu(this, pt);
+	OnContextMenu(this, pt);
 }
-
+*/
 
 void ViewerToolBar::OnContextMenu(CWnd* wnd, CPoint pos)
 {
@@ -160,7 +160,7 @@ void ViewerToolBar::OnContextMenu(CWnd* wnd, CPoint pos)
 	}
 }
 
-
+/*
 void ViewerToolBar::OnToolbarCustomize()
 {
 	Customize();
@@ -174,7 +174,7 @@ void ViewerToolBar::OnResetToolbar(NMHDR* notify_struct, LRESULT* result)
 	HideButton(ID_STOP_SLIDE_SHOW);
 }
 
-/*
+
 bool ViewerToolBar::SmallIcons()
 {
 	if (small_icons_)
@@ -205,7 +205,7 @@ bool ViewerToolBar::LargeIcons()
 
 	return true;
 }
-*/
+
 
 //void ViewerToolBar::OnSmallIcons()
 //{
@@ -230,12 +230,12 @@ bool ViewerToolBar::LargeIcons()
 //		}
 //}
 
-/*
+
 void ViewerToolBar::OnInitMenuPopup(CMenu* popup_menu, UINT index, BOOL sys_menu)
 {
 	popup_menu->CheckMenuRadioItem(ID_SMALL_ICONS, ID_LARGE_ICONS, small_icons_ ? ID_SMALL_ICONS : ID_LARGE_ICONS, MF_BYCOMMAND);
 }
-*/
+
 
 //void ViewerToolBar::AdjustReBar()
 //{

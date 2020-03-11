@@ -518,18 +518,18 @@ BEGIN
         MENUITEM "构建图像分类(&B)...",     ID_BUILD_IMG_CATALOG
     END
 END
-/*
+
 IDR_TOOLBAR_CONTEXT MENU
 BEGIN
     POPUP "- popup -"
     BEGIN
-        MENUITEM "&Customize...",               ID_TOOLBAR_CUSTOMIZE
-        MENUITEM SEPARATOR
-        MENUITEM "&Small Icons",                ID_SMALL_ICONS
-        MENUITEM "&Large Icons",                ID_LARGE_ICONS
+        //MENUITEM "&Customize...",               ID_TOOLBAR_CUSTOMIZE
+        //MENUITEM SEPARATOR
+        MENUITEM "标准图标(&S)",                ID_SMALL_ICONS
+        MENUITEM "大图标(&L)",                ID_LARGE_ICONS
     END
 END
-*/
+
 IDR_VIEWER_POPUP MENU
 BEGIN
     POPUP "-popup-"
@@ -3948,7 +3948,7 @@ IDB_TRASHCAN            JPEG                    "res\\trashcan.jpg"
 
 //IDR_ABOUT               PNG                     "res\\about-alpha.png"
 IDB_VIEWER_TOOLBAR      PNG                     "res\\ViewerToolbar.png"
-//IDB_VIEWER_TOOLBAR_BIG  PNG                     "res\\ViewerToolbarBig.png"
+IDB_VIEWER_TOOLBAR_BIG  PNG                     "res\\ViewerToolbarBig.png"
 IDB_ZOOMBAR             PNG                     "res\\ZoomBar.png"
 IDB_BROWSER_TBAR        PNG                     "res\\BrowserToolBar.png"
 IDB_GROUP_HEADER_ICONS  PNG                     "res\\GroupHeaderIcons.png"

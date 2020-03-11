@@ -1011,10 +1011,10 @@ BEGIN_MESSAGE_MAP(ViewerDlg, CFrameWnd)
 	ON_COMMAND_RANGE(ID_VIEWER_BAR_DATE_TIME, ID_VIEWER_BAR_NO_LABELS, OnChangePreviewLabels)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_VIEWER_BAR_DATE_TIME, ID_VIEWER_BAR_NO_LABELS, OnUpdateEnableLabels)
 
-	//ON_COMMAND(ID_SMALL_ICONS, OnSmallIcons)
-	//ON_COMMAND(ID_LARGE_ICONS, OnLargeIcons)
-	//ON_UPDATE_COMMAND_UI(ID_SMALL_ICONS, OnUpdateSmallIcons)
-	//ON_UPDATE_COMMAND_UI(ID_LARGE_ICONS, OnUpdateLargeIcons)
+	ON_COMMAND(ID_SMALL_ICONS, OnSmallIcons)
+	ON_COMMAND(ID_LARGE_ICONS, OnLargeIcons)
+	ON_UPDATE_COMMAND_UI(ID_SMALL_ICONS, OnUpdateSmallIcons)
+	ON_UPDATE_COMMAND_UI(ID_LARGE_ICONS, OnUpdateLargeIcons)
 	ON_COMMAND(ID_HIDE_LIGHT_TABLE, OnHideLightTable)
 	ON_COMMAND(ID_HIDE_TAG_PANE, OnHideTagPane)
 	ON_COMMAND(ID_VIEWER_BAR_OVERLAY_TAGS, OnToggleTagsInPreviewBar)
@@ -3523,7 +3523,7 @@ void ViewerDlg::OnUpdateVertPreviewBar(CCmdUI* cmd_ui)
 	cmd_ui->SetRadio(!pImpl_->preview_.IsHorizontalOrientation());
 }
 
-/*
+
 void ViewerDlg::OnSmallIcons()
 {
 	if (pImpl_->toolbar_.SmallIcons())
@@ -3553,7 +3553,7 @@ void ViewerDlg::OnUpdateLargeIcons(CCmdUI* cmd_ui)
 	cmd_ui->Enable();
 	cmd_ui->SetRadio(!pImpl_->toolbar_.IsSmallSet());
 }
-*/
+
 
 void ViewerDlg::OnToggleTagsInPreviewBar()
 {

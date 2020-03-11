@@ -70,7 +70,7 @@ ____________________________________________________________________________*/
 #define IDB_ZOOMBAR                     177
 #define IDD_OPTIONS_DESCRIPTION         178
 #define IDB_VIEWER_TOOLBAR              179
-//#define IDB_VIEWER_TOOLBAR_BIG          180
+#define IDB_VIEWER_TOOLBAR_BIG          180
 #define IDR_VIEWER_OPTIONS              181
 #define IDI_MOVE                        182
 #define IDI_COPY                        183
@@ -580,7 +580,7 @@ ____________________________________________________________________________*/
 #define IDC_LABEL_2                     1111
 #define IDR_TRANSFER_SYMBOLS            1112
 #define IDC_PAGES                       1112
-//#define IDR_TOOLBAR_CONTEXT             1113
+#define IDR_TOOLBAR_CONTEXT             1113
 #define IDC_LABEL_0                     1113
 #define IDC_LABEL_PAGE                  1113
 #define IDR_VIEWER_POPUP                1114

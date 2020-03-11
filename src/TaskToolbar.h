@@ -32,7 +32,7 @@ private:
 	DECLARE_MESSAGE_MAP()
 
 private:
-	bool small_icons_;
+	//bool small_icons_;
 	UINT rebar_band_id_;
 	bool horizontal_;
 
@@ -42,12 +42,12 @@ private:
 	afx_msg void OnToolbarCustomize();
 	afx_msg void OnDestroy();
 	void OnGetInfoTip(NMHDR*, LRESULT*);
-	void OnRightClick(NMHDR* notify_struct, LRESULT* result);
+	//void OnRightClick(NMHDR* notify_struct, LRESULT* result);
 	void OnContextMenu(CWnd* wnd, CPoint point);
-	void OnUpdateSmallIcons(CCmdUI* cmd_ui);
-	void OnSmallIcons();
-	void OnUpdateLargeIcons(CCmdUI* cmd_ui);
-	void OnLargeIcons();
+	//void OnUpdateSmallIcons(CCmdUI* cmd_ui);
+	//void OnSmallIcons();
+	//void OnUpdateLargeIcons(CCmdUI* cmd_ui);
+	//void OnLargeIcons();
 	void OnInitMenuPopup(CMenu* popup_menu, UINT index, BOOL sys_menu);
 	void AdjustReBar();
 	void DeleteButtons();

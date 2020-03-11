@@ -211,10 +211,10 @@ private:
 	void OnHideTagPane();
 
 private:
-	//void OnSmallIcons();
-	//void OnLargeIcons();
-	//void OnUpdateSmallIcons(CCmdUI* cmd_ui);
-	//void OnUpdateLargeIcons(CCmdUI* cmd_ui);
+	void OnSmallIcons();
+	void OnLargeIcons();
+	void OnUpdateSmallIcons(CCmdUI* cmd_ui);
+	void OnUpdateLargeIcons(CCmdUI* cmd_ui);
 
 	struct Impl;
 	std::auto_ptr<Impl> pImpl_;
