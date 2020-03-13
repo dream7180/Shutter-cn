@@ -1259,7 +1259,7 @@ ____________________________________________________________________________*/
 #define ID_SHOW_PRINT_AREA              34005
 #define ID_TOGGLE_LIGHT_TABLE           34006
 #define ID_ADD_TO_LIGHT_TABLE           34007
-#define IDS_LIGHT_TABLE_TOOLBAR         34008
+//#define IDS_LIGHT_TABLE_TOOLBAR         34008
 #define ID_REMOVE_FROM_LIGHT_TABLE      34009
 #define ID_LIGHT_TABLE_OPTIONS          34010
 #define ID_LIGHT_TABLE_COPY             34011

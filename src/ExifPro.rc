@@ -4427,7 +4427,7 @@ BEGIN
     ID_SHOW_PRINT_AREA      "切换可打印区域可见性"
     ID_TOGGLE_LIGHT_TABLE   "切换看版台 (E)"
     ID_ADD_TO_LIGHT_TABLE   "添加照片到看版台 (A)"
-    IDS_LIGHT_TABLE_TOOLBAR "添加\n移除\n标记\n"
+    //IDS_LIGHT_TABLE_TOOLBAR "添加\n移除\n标记\n"
     ID_REMOVE_FROM_LIGHT_TABLE "从看版台移除照片 (R)"
     ID_LIGHT_TABLE_OPTIONS  "看版台选项"
     ID_TAGS_SAVE_IN_PHOTO   "切换是否保存标记到照片文件"

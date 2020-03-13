@@ -312,7 +312,7 @@ bool LightTable::Create(CWnd* parent, UINT id, int width, const boost::function<
 		const int cmd[]=
 		{ ID_ADD_TO_LIGHT_TABLE, ID_REMOVE_FROM_LIGHT_TABLE, ID_LIGHT_TABLE_TAGS, ID_LIGHT_TABLE_OPTIONS };
 		FancyToolBar::Params p;
-		p.string_rsrc_id = IDS_LIGHT_TABLE_TOOLBAR;
+		//p.string_rsrc_id = IDS_LIGHT_TABLE_TOOLBAR;
 		p.text_color = TEXT_COLOR;
 		p.hot_text_color = RGB(255,255,255);
 		p.dis_text_color = RGB(111,111,130);

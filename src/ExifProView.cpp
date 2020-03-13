@@ -4229,10 +4229,10 @@ void ExifView::DeletePhotos(bool warn)
 			{
 				msg = _T("有一张选定的照片,\n\n");
 				msg += selected.front()->GetOriginalPath().GetFileNameAndExt().c_str();
-				msg += _T("\n\n删除它?");
+				msg += _T("\n\n确认删除?");
 			}
 			else
-				msg.Format(_T("有 %d 张选定的照片.\n\n删除它们?"), static_cast<int>(selected.size()));
+				msg.Format(_T("有 %d 张选定的照片.\n\n确认删除?"), static_cast<int>(selected.size()));
 
 			DeleteConfirmationDlg dlg(this, msg);
 			if (dlg.DoModal() != IDOK)

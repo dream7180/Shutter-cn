@@ -79,7 +79,7 @@ void ExifStatusBar::DrawItem(DRAWITEMSTRUCT* draw)
 
 			if (draw->itemID == 1 && *text == '!')
 			{
-				dc->DrawIcon(rect.left, rect.top, ::AfxGetApp()->LoadIcon(IDI_WARNING_2));
+				dc->DrawIcon(rect.left, rect.top + rect.Height()/4, ::AfxGetApp()->LoadIcon(IDI_WARNING_2));
 				rect.left += Pixels(20);
 				++text;
 			}
