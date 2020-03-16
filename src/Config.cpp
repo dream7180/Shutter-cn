@@ -456,32 +456,32 @@ void Config::Restore()
 	if (g_first_time_up)
 	{
 		field_of_view_crop_.push_back(make_pair(_T("CYBERSHOT"), _T("35 / 7.1")));
-		field_of_view_crop_.push_back(make_pair(_T("尼康 D80"), _T("1.5")));
-		field_of_view_crop_.push_back(make_pair(_T("尼康 D70"), _T("1.5")));
-		field_of_view_crop_.push_back(make_pair(_T("尼康 D50"), _T("1.5")));
-		field_of_view_crop_.push_back(make_pair(_T("尼康 D200"), _T("1.5")));
-		field_of_view_crop_.push_back(make_pair(_T("佳能 10D"), _T("1.6")));
-		field_of_view_crop_.push_back(make_pair(_T("佳能 300D"), _T("1.6")));
-		field_of_view_crop_.push_back(make_pair(_T("佳能 EOS 300D DIGITAL"), _T("1.6")));
-		field_of_view_crop_.push_back(make_pair(_T("佳能 EOS 10D"), _T("1.6")));
-		field_of_view_crop_.push_back(make_pair(_T("佳能 EOS 20D"), _T("1.6")));
-		field_of_view_crop_.push_back(make_pair(_T("佳能 EOS 30D"), _T("1.6")));
-		field_of_view_crop_.push_back(make_pair(_T("佳能 EOS D60"), _T("1.6")));
-		field_of_view_crop_.push_back(make_pair(_T("佳能 EOS D30"), _T("1.6")));
-		field_of_view_crop_.push_back(make_pair(_T("佳能 EOS 1D"), _T("1.3")));
+		field_of_view_crop_.push_back(make_pair(_T("NIKON D80"), _T("1.5")));
+		field_of_view_crop_.push_back(make_pair(_T("NIKON D70"), _T("1.5")));
+		field_of_view_crop_.push_back(make_pair(_T("NIKON D50"), _T("1.5")));
+		field_of_view_crop_.push_back(make_pair(_T("NIKON D200"), _T("1.5")));
+		field_of_view_crop_.push_back(make_pair(_T("Canon 10D"), _T("1.6")));
+		field_of_view_crop_.push_back(make_pair(_T("Canon 300D"), _T("1.6")));
+		field_of_view_crop_.push_back(make_pair(_T("Canon EOS 300D DIGITAL"), _T("1.6")));
+		field_of_view_crop_.push_back(make_pair(_T("Canon EOS 10D"), _T("1.6")));
+		field_of_view_crop_.push_back(make_pair(_T("Canon EOS 20D"), _T("1.6")));
+		field_of_view_crop_.push_back(make_pair(_T("Canon EOS 30D"), _T("1.6")));
+		field_of_view_crop_.push_back(make_pair(_T("Canon EOS D60"), _T("1.6")));
+		field_of_view_crop_.push_back(make_pair(_T("Canon EOS D30"), _T("1.6")));
+		field_of_view_crop_.push_back(make_pair(_T("Canon EOS 1D"), _T("1.3")));
 		field_of_view_crop_.push_back(make_pair(_T("DSC-F828"), _T("28 / 5.6")));
 		field_of_view_crop_.push_back(make_pair(_T("C8080WZ"), _T("28 / 7.1")));
 		field_of_view_crop_.push_back(make_pair(_T("E5400"), _T("28 / 5.8")));
 		field_of_view_crop_.push_back(make_pair(_T("E5700"), _T("35 / 8.9")));
 		field_of_view_crop_.push_back(make_pair(_T("E8700"), _T("35 / 8.9")));	// Nikon Coolpix
 		field_of_view_crop_.push_back(make_pair(_T("E-1"), _T("2")));
-		field_of_view_crop_.push_back(make_pair(_T("佳能 PowerShot A70"), _T("35 / 5.4")));
-		field_of_view_crop_.push_back(make_pair(_T("佳能 PowerShot A75"), _T("35 / 5.4")));
-		field_of_view_crop_.push_back(make_pair(_T("佳能 PowerShot G2"), _T("34 / 7")));
-		field_of_view_crop_.push_back(make_pair(_T("佳能 PowerShot G1"), _T("34 / 7")));
-		field_of_view_crop_.push_back(make_pair(_T("佳能 PowerShot S1 IS"), _T("38 / 5.8")));
-		field_of_view_crop_.push_back(make_pair(_T("佳能 PowerShot G5"), _T("35 / 7.2")));
-		field_of_view_crop_.push_back(make_pair(_T("佳能 PowerShot Pro1"), _T("35 / 7.2")));
+		field_of_view_crop_.push_back(make_pair(_T("Canon PowerShot A70"), _T("35 / 5.4")));
+		field_of_view_crop_.push_back(make_pair(_T("Canon PowerShot A75"), _T("35 / 5.4")));
+		field_of_view_crop_.push_back(make_pair(_T("Canon PowerShot G2"), _T("34 / 7")));
+		field_of_view_crop_.push_back(make_pair(_T("Canon PowerShot G1"), _T("34 / 7")));
+		field_of_view_crop_.push_back(make_pair(_T("Canon PowerShot S1 IS"), _T("38 / 5.8")));
+		field_of_view_crop_.push_back(make_pair(_T("Canon PowerShot G5"), _T("35 / 7.2")));
+		field_of_view_crop_.push_back(make_pair(_T("Canon PowerShot Pro1"), _T("35 / 7.2")));
 
 		sort(field_of_view_crop_.begin(), field_of_view_crop_.end(), cmp_fov());
 

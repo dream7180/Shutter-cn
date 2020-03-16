@@ -61,13 +61,15 @@ namespace {
 		ID_PHOTO_FIRST, ID_PHOTO_PREV, ID_PHOTO_LIST, ID_PHOTO_NEXT, ID_PHOTO_LAST,
 		ID_START_SLIDE_SHOW, //ID_STOP_SLIDE_SHOW,
 		ID_ZOOM_OUT, ID_ZOOM_IN, ID_ZOOM_100, ID_ZOOM_FIT, ID_MAGNIFIER_LENS,
-		ID_VIEWER_BAR, ID_TOGGLE_LIGHT_TABLE, ID_COMPARE_MULTIPLE,
+		//ID_VIEWER_BAR, 
+		ID_TOGGLE_LIGHT_TABLE, ID_COMPARE_MULTIPLE,
 		ID_JPEG_ROTATE_90_CCW, ID_JPEG_ROTATE_90_CW,
-		ID_VIEWER_OPTIONS, ID_TAGS_BAR,
+		ID_VIEWER_OPTIONS,// ID_TAGS_BAR,
 		ID_ROTATE_90_CCW, ID_ROTATE_90_CW
 	};
 
-	const char* tb_buttons= "ppppp|m|ppxx|p|xxv|pp|vx|pp";
+	//const char* tb_buttons= "ppppp|m|ppxx|p|xxv|pp|vx|pp";
+	const char* tb_buttons= "ppppp|m|ppxxp|xv|ppvpp";
 
 	float saturation= -0.5f;
 	float lightness= +0.25f;
@@ -171,7 +173,7 @@ void ViewerToolBar::OnResetToolbar(NMHDR* notify_struct, LRESULT* result)
 {
 	*result = 0;
 	ResetToolBar(false);
-	HideButton(ID_STOP_SLIDE_SHOW);
+	//HideButton(ID_STOP_SLIDE_SHOW);
 }
 
 
