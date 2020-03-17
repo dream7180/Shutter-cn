@@ -160,7 +160,7 @@ BOOL AboutDlg::OnInitDialog()
 		GetClientRect(rect);
 		SetWindowPos(0, 0, 0, rect.Width(), rect.Height(), SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE);
 		
-		GetDlgItem(IDC_LINK)->SetWindowText(L"Mod by dreamawake: <a href=\"" WEB_SITE L"\">https://github.com/dream7180/ExifPro-mod</a>\n\nOther Links: <a href=\"" BLOG_SITE L"\">my blog</a>, <a href=\"" CODE_SITE L"\">mod from v2.3</a>, <a href=\"" OFF_SITE L"\">www.exifpro.com</a>");
+		GetDlgItem(IDC_LINK)->SetWindowText(L"Mod by dreamawake: <a href=\"" WEB_SITE L"\">https://github.com/dream7180/ExifPro-mod</a>\n\n其他链接: <a href=\"" BLOG_SITE L"\">我的博客</a>, <a href=\"" CODE_SITE L"\">mod from v2.3</a>, <a href=\"" OFF_SITE L"\">www.exifpro.com</a>");
 		GetDlgItem(IDC_VERSION)->SetWindowText(version_);
 		//CPoint pos= CPoint(Pixels(LEFTTOP.x), );
 		//pos.y += Pixels(AREA_SIZE.cy);

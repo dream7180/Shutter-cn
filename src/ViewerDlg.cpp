@@ -601,7 +601,7 @@ struct ViewerDlg::Impl : InfoBandNotification, ResizeWnd, ViewPaneNotifications
 	void SwitchViews();
 	size_t FindPhotoIndex(PhotoInfoPtr photo);
 	ViewPane& FirstPane()		{ return *displays_.GetPane(0); }
-	void MultiView(CWnd* wnd, bool pressBtn);
+	//void MultiView(CWnd* wnd, bool pressBtn);
 	void ShowViewerToolbar(bool showTb, bool showInfo);
 	void ZoomToFit();
 	void Zoom100(CPoint offset= CPoint(-1, -1));
@@ -1789,9 +1789,9 @@ void ViewerDlg::OnTbDropDown(NMHDR* nmhdr, LRESULT* result)
 		pImpl_->light_table_.TagsPopup();
 		break;
 
-	case ID_COMPARE_MULTIPLE:
-		pImpl_->MultiView(this, true);
-		break;
+	//case ID_COMPARE_MULTIPLE:
+		//pImpl_->MultiView(this, true);
+	//	break;
 	}
 	*result = TBDDRET_DEFAULT;
 }
@@ -3620,7 +3620,7 @@ void ViewerDlg::OnUpdateToggleSmoothScroll(CCmdUI* cmd_ui)
 	cmd_ui->SetCheck(pImpl_->smooth_scroll_);
 }
 
-
+/*
 void ViewerDlg::Impl::MultiView(CWnd* wnd, bool pressBtn)
 {
 	if (!toolbar_visible_)
@@ -3648,7 +3648,7 @@ void ViewerDlg::Impl::MultiView(CWnd* wnd, bool pressBtn)
 	if (pressBtn)
 		toolbar_.PressButton(cmd, false);
 }
-
+*/
 /*
 void ViewerDlg::OnUpdatePhotoList(CCmdUI* cmd_ui)
 {
@@ -3686,13 +3686,11 @@ void ViewerDlg::OnToggleMultiView()	// multi panes on/off
 	pImpl_->Resize(this);
 }
 
-
 void ViewerDlg::OnUpdateMultiView(CCmdUI* cmd_ui)	// update for a toolbar btn
 {
 	cmd_ui->Enable(pImpl_->toolbar_visible_);
 	cmd_ui->SetCheck(pImpl_->displays_.GetVisibleCount() > 1 ? 1 : 0);
 }
-
 
 void ViewerDlg::OnToggleMultiViewLayout()	// toggle layout -> horz, vert, grid, ...
 {

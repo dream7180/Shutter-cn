@@ -52,9 +52,17 @@ DlgListCtrl::DlgListCtrl()
 
 	RegisterWndClass();
 
-	if (img_list_triangles_.m_hImageList == 0)
-		LoadImageList(img_list_triangles_, IDB_TRIANGLES, 14, ::GetSysColor(COLOR_3DFACE));
-
+	if (img_list_triangles_.m_hImageList == 0){
+		CDC dc;
+		CDC* pdc = nullptr;
+		//if (pdc == nullptr)
+			//{
+			dc.CreateIC(_T("DISPLAY"), 0, 0, 0);
+			pdc = &dc;
+		//}
+		int log_inch_x = pdc->GetDeviceCaps(LOGPIXELSX);
+		LoadImageList(img_list_triangles_, IDB_TRIANGLES, 14/static_cast<Gdiplus::REAL>(log_inch_x)*96, ::GetSysColor(COLOR_3DFACE));
+	}
 	image_list_ = 0;
 	//LOGFONT lf;
 	//::GetObject(::GetStockObject(DEFAULT_GUI_FONT), sizeof lf, &lf);

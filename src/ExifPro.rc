@@ -345,9 +345,6 @@ IDR_VIEWER_OPTIONS MENU
 BEGIN
     POPUP "-popup-"
     BEGIN
-        MENUITEM "显示信息(&I)\tI",   ID_VIEWER_BALLOONS
-        MENUITEM "显示照片描述(&D)\tD",     ID_TOGGLE_DESCRIPTION
-        MENUITEM "显示工具栏(&T)\tT",          ID_VIEWER_TOOLBAR
         POPUP "预览栏"
         BEGIN
             MENUITEM "显示预览栏(&P)\tB",      ID_VIEWER_BAR
@@ -357,8 +354,26 @@ BEGIN
             MENUITEM "水平布局(&H)",          ID_VIEWER_BAR_HORZ
             MENUITEM "垂直布局(&V)",            ID_VIEWER_BAR_VERT
         END
+		POPUP "多视图面板"
+		BEGIN
+			MENUITEM "单面板(&S)",                ID_SINGLE_PANE
+			MENUITEM "双面板(&T)",                  ID_TWO_PANES
+			MENUITEM "三面板(&R)",                ID_THREE_PANES
+			MENUITEM "四面板(&F)",                 ID_FOUR_PANES
+			MENUITEM SEPARATOR
+			MENUITEM "水平布局(&H)",          ID_HORIZONTAL_LAYOUT
+			MENUITEM "垂直布局(&V)",            ID_VERTICAL_LAYOUT
+			MENUITEM "网格布局(&G)",                ID_GRID_LAYOUT
+			MENUITEM "切换布局(&W)\t\\",          ID_SWITCH_LAYOUT
+			MENUITEM SEPARATOR
+			MENUITEM "切换多面板(&M)\tC",   ID_TOGGLE_MULTIPLE_PANES
+		END
+		MENUITEM "标记面板(&A)\tK",         ID_TAGS_BAR
+		MENUITEM SEPARATOR
+		MENUITEM "显示信息(&I)\tI",   ID_VIEWER_BALLOONS
+        MENUITEM "显示照片描述(&D)\tD",     ID_TOGGLE_DESCRIPTION
+        MENUITEM "显示工具栏(&T)\tT",          ID_VIEWER_TOOLBAR
         MENUITEM "全屏显示(&F)\tEnter",  ID_VIEWER_FULLSCR
-        MENUITEM "标记面板(&A)\tK",         ID_TAGS_BAR
         MENUITEM "使用滚动条",             ID_USE_SCROLLBARS
         MENUITEM SEPARATOR
         MENUITEM "删除照片(&E)\tDel",     ID_DELETE
@@ -446,6 +461,7 @@ BEGIN
         MENUITEM "下一张照片(&N)\tPage Down",      ID_PHOTO_NEXT
         MENUITEM "最后一张照片(&L)\tEnd",            ID_PHOTO_LAST
         MENUITEM SEPARATOR
+		MENUITEM "全屏显示\tEnter",   ID_VIEWER_FULLSCR
         POPUP "预览栏(&B)"
         BEGIN
             MENUITEM "切换预览栏(&P)\tB",      ID_VIEWER_BAR
@@ -462,12 +478,14 @@ BEGIN
             MENUITEM "水平布局(&H)",          ID_VIEWER_BAR_HORZ
             MENUITEM "垂直布局(&V)",            ID_VIEWER_BAR_VERT
         END
-        MENUITEM "图像浏览\tL",           ID_PHOTO_LIST
-        MENUITEM "显示工具栏(T)\tT",          ID_VIEWER_TOOLBAR
-        MENUITEM "显示照片描述\tD", ID_TOGGLE_DESCRIPTION
-        MENUITEM "多视图窗口\tC", ID_COMPARE_MULTIPLE
-        MENUITEM "全屏显示\tEnter",   ID_VIEWER_FULLSCR
-        MENUITEM "使用滚动条(&U)",            ID_USE_SCROLLBARS
+        //MENUITEM "图像浏览\tL",           ID_PHOTO_LIST
+		POPUP "界面选项"
+		BEGIN
+			MENUITEM "显示工具栏(T)\tT",          ID_VIEWER_TOOLBAR
+			MENUITEM "显示照片描述\tD", ID_TOGGLE_DESCRIPTION
+			MENUITEM "多视图面板\tC", ID_COMPARE_MULTIPLE
+			MENUITEM "使用滚动条(&U)",            ID_USE_SCROLLBARS
+		END
         MENUITEM SEPARATOR
         MENUITEM "缩小(&Z)\tNum '-'",          ID_ZOOM_OUT
         MENUITEM "放大\tNum '+'",            ID_ZOOM_IN
@@ -494,12 +512,15 @@ BEGIN
             MENUITEM "1星(&1)\tCtrl+1",             ID_RATE_1_STAR
             MENUITEM "未评级(&N)\tCtrl+0",          ID_RATE_NONE
         END
-        MENUITEM SEPARATOR
-        MENUITEM "设置图片为墙纸(&W)",     ID_SET_WALLPAPER
-        MENUITEM "放映幻灯片(&S)\tS",        ID_START_SLIDE_SHOW
-        MENUITEM "编辑照片描述(&H)\tF2", ID_PHOTO_DESC
-        MENUITEM "重命名文件(&E)\tShift+Ctrl+N",  ID_RENAME_FILE
-        MENUITEM "打印照片\tCtrl+P",    ID_TASK_PRINT
+        //MENUITEM SEPARATOR
+		POPUP "其他工具"
+        BEGIN
+			MENUITEM "设置图片为墙纸(&W)",     ID_SET_WALLPAPER
+			MENUITEM "放映幻灯片(&S)\tS",        ID_START_SLIDE_SHOW
+			MENUITEM "编辑照片描述(&H)\tF2", ID_PHOTO_DESC
+			MENUITEM "重命名文件(&E)\tShift+Ctrl+N",  ID_RENAME_FILE
+			MENUITEM "打印照片\tCtrl+P",    ID_TASK_PRINT
+		END
         MENUITEM "外部应用程序打开(&O)\tAlt+Enter",            ID_OPEN_PHOTO
     END
 END
@@ -736,7 +757,7 @@ BEGIN
         MENUITEM "载入模板...",            ID_LOAD
     END
 END
-
+/*
 IDR_COMPARE_MULTIPLE MENU
 BEGIN
     POPUP "-popup-"
@@ -754,7 +775,7 @@ BEGIN
         MENUITEM "切换多面板(&M)\tC",   ID_TOGGLE_MULTIPLE_PANES
     END
 END
-
+*/
 IDR_USE_DEFAULTS MENU
 BEGIN
     POPUP "-popup-"
@@ -1181,7 +1202,7 @@ END
 // Dialog
 //
 
-IDD_ABOUTBOX DIALOG 0, 0, 280, 220
+IDD_ABOUTBOX DIALOG 0, 0, 280, 210
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "关于 ExifPro"
 FONT 9, "Tahoma"
@@ -1193,7 +1214,8 @@ BEGIN
 	LTEXT           "x64 Release",IDC_STATIC,20,56,200,11
 	LTEXT           "Free software released under the terms of the GNU Public License.",IDC_STATIC,20,67,230,11
 	CONTROL         "syslink_1",IDC_LINK,"SysLink",WS_VISIBLE,20,88,230,30
-	LTEXT           "***Image decoder libraries***\nLibjpeg-turbo: 2.0.4\nLibTIFF: 4.1.0\nLibPNG: 1.6.37\nGIFlib: 4.2.3\nLittle CMS: 1.19",IDC_STATIC,20,130,230,60	
+	LTEXT           "***图像解码库***\nLibjpeg-turbo: 2.0.4\nLibTIFF: 4.1.0\nLibPNG: 1.6.37\nGIFlib: 4.2.3",IDC_STATIC,20,130,110,60
+	LTEXT           "***其他库***\nLittle CMS: 1.19\nLua: 5.2\nScintilla: 3.1.0\nXMPCore: 5.4.0\nzlib: 1.2.11",IDC_STATIC,150,130,110,60
 END
 /*
 IDD_EVALUATION DIALOGEX 0, 0, 210, 159
@@ -2982,7 +3004,7 @@ END
 
 VS_VERSION_INFO VERSIONINFO
  FILEVERSION 1,0,0,0
- PRODUCTVERSION 3,0,0,1000
+ PRODUCTVERSION 3,0,0,2003
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -3004,7 +3026,7 @@ BEGIN
             VALUE "LegalCopyright", "Copyright(c)2000-2015 Michael Kowalski"
             VALUE "OriginalFilename", "ExifPro.exe"
             VALUE "ProductName", "ExifPro Mod by dreamawake"
-            VALUE "ProductVersion", "3.0.0.1000"
+            VALUE "ProductVersion", "3.0.0.2003"
         END
     END
     BLOCK "VarFileInfo"
@@ -4503,7 +4525,7 @@ END
 STRINGTABLE
 BEGIN
     ID_RECENT_FOLDERS       "最近访问的文件夹列表"
-    ID_COMPARE_MULTIPLE     "多视图面板 (C)"
+    //ID_COMPARE_MULTIPLE     "多视图面板 (C)"
     ID_CLOSE_VIEW           "返回单视图 (C)"
     ID_TOGGLE_VIEW_LAYOUT   "在可用面板布局之间切换 (\\)"
 END
