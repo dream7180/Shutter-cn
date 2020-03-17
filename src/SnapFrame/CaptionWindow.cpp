@@ -33,7 +33,7 @@ static char THIS_FILE[] = __FILE__;
 
 namespace {
 	//const int TBAR_WIDTH= 46;		// toolbar width (including right margin)
-	const int TBAR_WIDTH= 52;	// toolbar width (including right margin)
+	//const int TBAR_WIDTH= 52;	// toolbar width (including right margin)
 	const int CHEVRON= 20;			// chevron toolbar width
 	//const int CHEVRONBIG= 20;		// chevron toolbar width
 	const int CHEVRONSPACE= CHEVRON + 12;
@@ -502,15 +502,22 @@ void CaptionWindow::DrawCaptionGradient(CDC* dc, const CRect& rect)
 
 int CaptionWindow::GetTollBarWidth()
 {
-	int width= /*big_ ? TBARBIG_WIDTH : */TBAR_WIDTH;
+	//int width= /*big_ ? TBARBIG_WIDTH : */TBAR_WIDTH;
+	CDC dc;
+	CDC* pdc = nullptr;
+	dc.CreateIC(_T("DISPLAY"), 0, 0, 0);
+	pdc = &dc;
+	int log_inch_x = pdc->GetDeviceCaps(LOGPIXELSX);
+	int width= 25/static_cast<Gdiplus::REAL>(log_inch_x)*96;
 
 	if (maximized_wnd_toolbar_)
-		return Pixels(width / 2 + 4);
+		//return Pixels(width / 2 + 4);
+		return Pixels(width + 1);
 
 	if (no_close_btn_ && no_maximize_btn_)
 		return 0;
-
-	return Pixels(no_close_btn_ ? width / 2 + 4 : width);
+	
+	return Pixels(no_close_btn_ ? width + 1: width*2 + 1);
 }
 
 

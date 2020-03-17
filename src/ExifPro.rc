@@ -309,7 +309,7 @@ BEGIN
         MENUITEM "移动图像(&M)...\tCtrl+M",     ID_TASK_MOVE
         MENUITEM "复制已标记的图像(&O)...\tShift+Ctrl+C", ID_TASK_COPY_TAGGED
         MENUITEM "重命名图像(&I)...\tCtrl+K",   ID_TASK_RENAME
-        MENUITEM "重命名文件...\tShift+Ctrl+N", ID_RENAME_FILE
+        MENUITEM "重命名文件...\tF2", ID_RENAME_FILE
         MENUITEM SEPARATOR
         MENUITEM "删除图像(&D)\tDel",         ID_TASK_DELETE
         MENUITEM SEPARATOR
@@ -378,7 +378,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "删除照片(&E)\tDel",     ID_DELETE
         MENUITEM SEPARATOR
-        MENUITEM "编辑照片描述(&H)\tF2", ID_PHOTO_DESC
+        MENUITEM "编辑照片描述(&H)\tF3", ID_PHOTO_DESC
         MENUITEM "设置图片为墙纸(&W)",     ID_SET_WALLPAPER
         MENUITEM SEPARATOR
         POPUP "照片旋转"
@@ -448,7 +448,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "设置为壁纸(&L)",           ID_SET_WALLPAPER
         MENUITEM "根据标签复制(&C)...\tShift+Ctrl+C", ID_TASK_COPY_TAGGED
-        MENUITEM "重命名文件(&E)...\tShift+Ctrl+N", ID_RENAME_FILE
+        MENUITEM "重命名文件(&E)...\tF2", ID_RENAME_FILE
     END
 END
 
@@ -517,8 +517,8 @@ BEGIN
         BEGIN
 			MENUITEM "设置图片为墙纸(&W)",     ID_SET_WALLPAPER
 			MENUITEM "放映幻灯片(&S)\tS",        ID_START_SLIDE_SHOW
-			MENUITEM "编辑照片描述(&H)\tF2", ID_PHOTO_DESC
-			MENUITEM "重命名文件(&E)\tShift+Ctrl+N",  ID_RENAME_FILE
+			MENUITEM "编辑照片描述(&H)\tF3", ID_PHOTO_DESC
+			MENUITEM "重命名文件(&E)\tF2",  ID_RENAME_FILE
 			MENUITEM "打印照片\tCtrl+P",    ID_TASK_PRINT
 		END
         MENUITEM "外部应用程序打开(&O)\tAlt+Enter",            ID_OPEN_PHOTO
@@ -949,17 +949,18 @@ BEGIN
     "X",            ID_READ_ONLY_EXIF,      VIRTKEY, SHIFT, CONTROL, NOINVERT
     "L",            ID_RECURSIVE,           VIRTKEY, SHIFT, CONTROL, NOINVERT
     VK_F5,          ID_REFRESH,             VIRTKEY, NOINVERT
-    "N",            ID_RENAME_FILE,         VIRTKEY, SHIFT, CONTROL, NOINVERT
+    //"N",            ID_RENAME_FILE,         VIRTKEY, SHIFT, CONTROL, NOINVERT
     "N",            ID_SEND_EMAIL,          VIRTKEY, CONTROL, NOINVERT
     VK_F9,          ID_SEND_EMAIL,          VIRTKEY, NOINVERT
     "S",            ID_SORT_BY_SIMILARITY,  VIRTKEY, SHIFT, CONTROL, NOINVERT
     VK_SPACE,       ID_STICKY_SELECTION,    VIRTKEY, ALT, NOINVERT
-    VK_F3,          ID_TAG_FILTER,          VIRTKEY, NOINVERT
+    //VK_F3,          ID_TAG_FILTER,          VIRTKEY, NOINVERT
     VK_F4,          ID_TAGS_BAR,            VIRTKEY, NOINVERT
     "Y",            ID_TASK_COPY,           VIRTKEY, CONTROL, NOINVERT
     "C",            ID_TASK_COPY_TAGGED,    VIRTKEY, SHIFT, CONTROL, NOINVERT
     "D",            ID_TASK_EDIT_DESC,      VIRTKEY, CONTROL, NOINVERT
-    VK_F2,          ID_TASK_EDIT_DESC,      VIRTKEY, NOINVERT
+    VK_F3,          ID_TASK_EDIT_DESC,      VIRTKEY, NOINVERT
+	VK_F2, 			ID_RENAME_FILE,      	VIRTKEY, NOINVERT
     "E",            ID_TASK_EDIT_IPTC,      VIRTKEY, SHIFT, CONTROL, NOINVERT
     "X",            ID_TASK_EXPORT,         VIRTKEY, CONTROL, NOINVERT
     "J",            ID_TASK_EXTRACT_JPEG,   VIRTKEY, CONTROL, NOINVERT
@@ -1031,7 +1032,7 @@ BEGIN
     "K",            ID_TAGS_BAR,            VIRTKEY, NOINVERT
     "L",            ID_PHOTO_LIST,          VIRTKEY, NOINVERT
     "M",            ID_MAGNIFIER_LENS,      VIRTKEY, NOINVERT
-    "N",            ID_RENAME_FILE,         VIRTKEY, SHIFT, CONTROL, NOINVERT
+    //"N",            ID_RENAME_FILE,         VIRTKEY, SHIFT, CONTROL, NOINVERT
     "O",            ID_VIEWER_OPTIONS,      VIRTKEY, NOINVERT
     "P",            ID_TASK_PRINT,          VIRTKEY, CONTROL, NOINVERT
     "R",            ID_REMOVE_FROM_LIGHT_TABLE, VIRTKEY, NOINVERT
@@ -1046,7 +1047,8 @@ BEGIN
     VK_DOWN,        ID_MOVE_DOWN,           VIRTKEY, NOINVERT
     VK_END,         ID_PHOTO_LAST,          VIRTKEY, NOINVERT
     VK_F11,         ID_VIEWER_FULLSCR,      VIRTKEY, NOINVERT
-    VK_F2,          ID_PHOTO_DESC,          VIRTKEY, NOINVERT
+    VK_F3,          ID_PHOTO_DESC,          VIRTKEY, NOINVERT
+	VK_F2,          ID_RENAME_FILE,         VIRTKEY, NOINVERT
     VK_F5,          ID_NOTHING,             VIRTKEY, NOINVERT
     VK_HOME,        ID_PHOTO_FIRST,         VIRTKEY, NOINVERT
     VK_LEFT,        ID_MOVE_LEFT,           VIRTKEY, NOINVERT
@@ -2522,10 +2524,10 @@ STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "重命名文件"
 FONT 8, "Tahoma", 400, 0, 0x0
 BEGIN
-    LTEXT           "文件名称",IDC_STATIC,82,22,32,9
-    EDITTEXT        IDC_NAME,118,20,186,13,ES_AUTOHSCROLL
+    LTEXT           "文件名",IDC_STATIC,82,22,38,9
+    EDITTEXT        IDC_NAME,122,20,182,13,ES_AUTOHSCROLL
     LTEXT           "路径",IDC_STATIC,81,41,18,9
-    LTEXT           "路径",IDC_PATH,119,41,188,9
+    LTEXT           "路径",IDC_PATH,123,41,184,9
     PUSHBUTTON      "取消",IDCANCEL,195,61,50,14
     DEFPUSHBUTTON   "确定",IDOK,253,61,50,14
     CONTROL         "",IDC_IMAGE,"Static",SS_BLACKFRAME,5,5,70,71
@@ -4560,7 +4562,7 @@ END
 
 STRINGTABLE
 BEGIN
-    ID_RENAME_FILE          "重命名当前文件\n重命名文件 (Shift+Ctrl+N)"
+    ID_RENAME_FILE          "重命名当前文件\n重命名文件 (F2)"
 END
 
 STRINGTABLE
