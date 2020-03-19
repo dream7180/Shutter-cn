@@ -24,6 +24,7 @@ extern void DrawParentBkgnd(CWnd& wnd, CDC& dc);
 
 
 static const int SBAR_SIZE= 20;	// height of horz scrollbar (derived from the height of a bitmap)
+COLORREF background = RGB(25,25,25);
 
 
 struct Item
@@ -109,11 +110,11 @@ struct PreviewBandWnd::Impl
 	//void ScrollToCenter(PreviewBandWnd& self, size_t photo);
 
 	CoolScrollBar scrollbar_;	// our own cool scrollbar (customized)
-	Dib backgnd_;
-	Dib backgnd_top_;
-	Dib backgnd_bottom_;
-	Dib backgnd_vert_;
-	Dib backgnd_vert_right_;
+	//Dib backgnd_;
+	//Dib backgnd_top_;
+	//Dib backgnd_bottom_;
+	//Dib backgnd_vert_;
+	//Dib backgnd_vert_right_;
 	double ui_gamma_;
 	size_t first_item_idx;
 	CToolTipCtrl tool_tips_;
@@ -231,7 +232,7 @@ void PreviewBandWnd::Impl::SetOrientation(bool horizontal)
 	ShowScrollBar(false);
 
 	// the only bmp used by both vert and horz layout, so rotate it
-	backgnd_bottom_.RotateInPlace(horizontal);
+	//backgnd_bottom_.RotateInPlace(horizontal);
 
 	horz_layout_ = horizontal;
 
@@ -589,24 +590,24 @@ END_MESSAGE_MAP()
 
 void PreviewBandWnd::SetUIBrightness(double gamma)
 {
-	pImpl_->backgnd_.Load(IDB_PREVIEW_BACKGND);
-	pImpl_->backgnd_top_.Load(IDB_PREVIEW_BACKGND_TOP);
-	pImpl_->backgnd_bottom_.Load(IDB_PREVIEW_BACKGND_BTM);
-	pImpl_->backgnd_vert_.Load(IDB_PREVIEW_BACKGND_VERT);
-	pImpl_->backgnd_vert_right_.Load(IDB_PREVIEW_BACKGND_VERT_R);
+	//pImpl_->backgnd_.Load(IDB_PREVIEW_BACKGND);
+	//pImpl_->backgnd_top_.Load(IDB_PREVIEW_BACKGND_TOP);
+	//pImpl_->backgnd_bottom_.Load(IDB_PREVIEW_BACKGND_BTM);
+	//pImpl_->backgnd_vert_.Load(IDB_PREVIEW_BACKGND_VERT);
+	//pImpl_->backgnd_vert_right_.Load(IDB_PREVIEW_BACKGND_VERT_R);
 
 	// the only bmp used by both vert and horz layout, so rotate it
-	if (!pImpl_->IsHorzLayout())
-		pImpl_->backgnd_bottom_.RotateInPlace(false);
+	//if (!pImpl_->IsHorzLayout())
+		//pImpl_->backgnd_bottom_.RotateInPlace(false);
 
 	if (gamma != 1.0)
 	{
 		pImpl_->scrollbar_.SetImages(IDB_PREVIEW_SCRL_BAR, IDB_PREVIEW_SCRL_BAR_V, 0, gamma);
-		::ApplyGammaInPlace(&pImpl_->backgnd_, gamma, -1, -1);
-		::ApplyGammaInPlace(&pImpl_->backgnd_top_, gamma, -1, -1);
-		::ApplyGammaInPlace(&pImpl_->backgnd_bottom_, gamma, -1, -1);
-		::ApplyGammaInPlace(&pImpl_->backgnd_vert_, gamma, -1, -1);
-		::ApplyGammaInPlace(&pImpl_->backgnd_vert_right_, gamma, -1, -1);
+		//::ApplyGammaInPlace(&pImpl_->backgnd_, gamma, -1, -1);
+		//::ApplyGammaInPlace(&pImpl_->backgnd_top_, gamma, -1, -1);
+		//::ApplyGammaInPlace(&pImpl_->backgnd_bottom_, gamma, -1, -1);
+		//::ApplyGammaInPlace(&pImpl_->backgnd_vert_, gamma, -1, -1);
+		//::ApplyGammaInPlace(&pImpl_->backgnd_vert_right_, gamma, -1, -1);
 	}
 
 	Invalidate(false);
@@ -735,7 +736,6 @@ BOOL PreviewBandWnd::OnEraseBkgnd(CDC* dc)
 
 			CRect rect(0,0,0,0);
 			GetClientRect(rect);
-
 			CPoint scrl= pImpl_->GetScrollOffset();
 
 			DWORD style= GetStyle();
@@ -811,29 +811,31 @@ void PreviewBandWnd::Impl::PaintToBmp(Dib& bmp, CRect rect, CPoint scrl, bool sc
 	if (IsHorzLayout())
 	{
 		CRect t= rect;
-		t.bottom = t.top + backgnd_top_.GetHeight();
-		backgnd_top_.Draw(&dc, t);
+		//t.bottom = t.top + backgnd_top_.GetHeight();
+		//backgnd_top_.Draw(&dc, t);
 
-		CRect r= rect;
-		r.top = t.bottom;
-		if (!scrollbar)
-			r.bottom -= SBAR_SIZE;
-		if (r.Height() > 0)
-			backgnd_.Draw(&dc, r);
+		//CRect r= rect;
+		//r.top = t.bottom;
+		//if (!scrollbar)
+		//	r.bottom -= SBAR_SIZE;
+		//if (t.Height() > 0)
+			//backgnd_.Draw(&dc, r);
+			dc.FillSolidRect(t, background);
 
-		if (!scrollbar)
+		/*if (!scrollbar)
 		{
 			CRect b= rect;
 			b.top = b.bottom - SBAR_SIZE;
-			backgnd_bottom_.Draw(&dc, b);
-		}
+			//backgnd_bottom_.Draw(&dc, b);
+		}*/
 	}
 	else	// vertical layout
 	{
 		CRect t= rect;
 		if (!scrollbar)
 			t.right -= SBAR_SIZE;
-		backgnd_vert_.Draw(&dc, t);
+		//backgnd_vert_.Draw(&dc, t);
+		dc.FillSolidRect(t, background);
 		t.bottom = t.top + SHADOW_H;
 		shadow_rect = t;
 
@@ -843,9 +845,10 @@ void PreviewBandWnd::Impl::PaintToBmp(Dib& bmp, CRect rect, CPoint scrl, bool sc
 			r.left = rect.right - SBAR_SIZE;
 			if (r.Width() > 0)
 			{
-				backgnd_bottom_.Draw(&dc, r);
-				r.bottom = r.top + backgnd_vert_right_.GetHeight();
-				backgnd_vert_right_.Draw(&dc, r);
+				//backgnd_bottom_.Draw(&dc, r);
+				dc.FillSolidRect(r, background);
+				//r.bottom = r.top + backgnd_vert_right_.GetHeight();
+				//backgnd_vert_right_.Draw(&dc, r);
 			}
 		}
 	}

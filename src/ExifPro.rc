@@ -81,6 +81,7 @@ IDI_WARNING_2           ICON                    "res\\warning_2.ico"
 // Bitmap
 //
 IDR_ABOUT               BITMAP                  "res\\about-alpha.bmp"
+IDB_TRASHCAN            BITMAP                    "res\\trashcan.bmp"
 IDB_CHARACTERS          BITMAP                  "res\\character.bmp"
 IDB_ASCENDING           BITMAP                  "res\\ascending.bmp"
 IDB_DESCENDING          BITMAP                  "res\\descending.bmp"
@@ -127,15 +128,15 @@ IDB_HELP_BTN            BITMAP                  "res\\HelpBtn.bmp"
 IDB_HORZ_SCROLLBARS     BITMAP                  "res\\horz_scrollbar.bmp"
 IDB_VERT_SCROLLBARS     BITMAP                  "res\\vert_scrollbar.bmp"
 IDB_GRIP                BITMAP                  "res\\grip.bmp"
-IDB_PREVIEW_BACKGND     BITMAP                  "res\\preview_backgnd.bmp"
-IDB_PREVIEW_BACKGND_TOP BITMAP                  "res\\preview_backgnd_top.bmp"
-IDB_PREVIEW_BACKGND_BTM BITMAP                  "res\\preview_backgnd_btm.bmp"
-IDB_PREVIEW_BACKGND_VERT BITMAP                  "res\\preview_backgnd_vert.bmp"
+//IDB_PREVIEW_BACKGND     BITMAP                  "res\\preview_backgnd.bmp"
+//IDB_PREVIEW_BACKGND_TOP BITMAP                  "res\\preview_backgnd_top.bmp"
+//IDB_PREVIEW_BACKGND_BTM BITMAP                  "res\\preview_backgnd_btm.bmp"
+//IDB_PREVIEW_BACKGND_VERT BITMAP                  "res\\preview_backgnd_vert.bmp"
 //IDB_PREVIEW_BACKGND_VERT_TOP BITMAP                  "res\\preview_backgnd_vert_top.bmp"
-IDB_PREVIEW_BACKGND_VERT_R BITMAP                  "res\\preview_backgnd_vert_right.bmp"
+//IDB_PREVIEW_BACKGND_VERT_R BITMAP                  "res\\preview_backgnd_vert_right.bmp"
 IDB_PREVIEW_SCRL_BAR    BITMAP                  "res\\preview_scrollbar.bmp"
 IDB_PREVIEW_SCRL_BAR_V  BITMAP                  "res\\preview_scrollbar_v.bmp"
-IDB_VIEWER_REBAR_BACK   BITMAP                  "res\\viewer_rebar_backgnd.bmp"
+//IDB_VIEWER_REBAR_BACK   BITMAP                  "res\\viewer_rebar_backgnd.bmp"
 //IDB_INFOBAR             BITMAP                  "res\\infobar.bmp"
 IDR_CLOSE_BAR           BITMAP                  "res\\close_bar.bmp"
 //IDB_LIGHT_TABLE         BITMAP                  "res\\light_table_bgnd.bmp"
@@ -144,7 +145,7 @@ IDB_FOLDER_POPUP        BITMAP                  "res\\folder_popup.bmp"
 IDB_TEMPLATES           BITMAP                  "res\\templates.bmp"
 IDB_MENU_BTN_RIGHT      BITMAP                  "res\\menu-btn-right.bmp"
 IDB_EDIT                BITMAP                  "res\\tb_edit.bmp"
-IDB_ERROR_ICON          BITMAP                  "res\\error_icon.bmp"
+//IDB_ERROR_ICON          BITMAP                  "res\\error_icon.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -2847,14 +2848,15 @@ BEGIN
     DEFPUSHBUTTON   "确定",IDOK,246,241,50,14,NOT WS_TABSTOP
 END
 
-IDD_DELETE_CONFIRMATION DIALOGEX 0, 0, 268, 146
+IDD_DELETE_CONFIRMATION DIALOGEX 0, 0, 240, 120
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "删除确认"
 FONT 8, "Tahoma", 400, 0, 0x0
 BEGIN
-    CTEXT           "删除选定的照片\ndsc_0000?",IDC_LABEL,122,46,131,58,SS_NOPREFIX,WS_EX_TRANSPARENT
-    PUSHBUTTON      "取消",IDCANCEL,125,111,52,22
-    DEFPUSHBUTTON   "删除",IDOK,200,112,52,22
+	CONTROL			IDB_TRASHCAN,IDC_STATIC,"Static",SS_BITMAP,30,27,40,40
+    CTEXT           "删除选定的照片\ndsc_0000?",IDC_LABEL,94,20,131,58,SS_NOPREFIX,WS_EX_TRANSPARENT
+    PUSHBUTTON      "取消",IDCANCEL,97,85,52,22
+    DEFPUSHBUTTON   "删除",IDOK,172,85,52,22
 END
 
 IDD_RENAME DIALOGEX 0, 0, 573, 300
@@ -3963,7 +3965,7 @@ IDR_COPY_ANIM           AVI                     "res\\copy-anim.avi"
 // JPEG
 //
 
-IDB_TRASHCAN            JPEG                    "res\\trashcan.jpg"
+//IDB_TRASHCAN            JPEG                    "res\\trashcan.jpg"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -4272,7 +4274,7 @@ BEGIN
     IDS_PHOTO_FLASH_1       "无"
     IDS_FILTER_BAR          "过滤\n"
     IDS_MARGINS             "全部\n左\n右\n上\n下"
-    IDS_ZOOMBAR             "实际尺寸\n适合\n放大镜\n壁纸\n"
+    IDS_ZOOMBAR             ""//"实际尺寸\n适合\n放大镜\n壁纸\n"
     IDS_CLOSE_WND           "关闭窗口"
     IDS_RESTOR_WND          "还原窗口"
 END

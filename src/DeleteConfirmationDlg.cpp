@@ -12,17 +12,17 @@ ____________________________________________________________________________*/
 #include "resource.h"
 #include "DeleteConfirmationDlg.h"
 //#include "LoadJpeg.h"
-extern AutoPtr<Dib> LoadJpeg(UINT id_img);
+//extern AutoPtr<Dib> LoadJpeg(UINT id_img);
 
 // DeleteConfirmationDlg dialog
 
-const COLORREF BACKGND_COLOR= RGB(225,225,225);	// color taken from background image
+const COLORREF BACKGND_COLOR= ::GetSysColor(COLOR_3DFACE);	// color taken from background image
 
 
 DeleteConfirmationDlg::DeleteConfirmationDlg(CWnd* parent, CString msg)
 	: CDialog(DeleteConfirmationDlg::IDD, parent), msg_(msg)
 {
-	background_ = LoadJpeg(IDB_TRASHCAN);
+	//background_ = LoadJpeg(IDB_TRASHCAN);
 	back_.CreateSolidBrush(BACKGND_COLOR);
 }
 
@@ -46,7 +46,7 @@ END_MESSAGE_MAP()
 
 BOOL DeleteConfirmationDlg::OnEraseBkgnd(CDC* dc)
 {
-	if (background_ && background_->IsValid())
+	/*if (background_ && background_->IsValid())
 	{
 		CRect rect(0,0,0,0);
 		GetClientRect(rect);
@@ -57,7 +57,7 @@ BOOL DeleteConfirmationDlg::OnEraseBkgnd(CDC* dc)
 			return true;
 		}
 	}
-
+*/
 	return CDialog::OnEraseBkgnd(dc);
 }
 

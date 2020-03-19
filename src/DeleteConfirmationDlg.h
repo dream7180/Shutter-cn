@@ -27,7 +27,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 private:
-	AutoPtr<Dib> background_;
+	//AutoPtr<Dib> background_;
 	CString msg_;
 	CBrush back_;
 

@@ -199,12 +199,12 @@ ____________________________________________________________________________*/
 #define IDD_INFO_BAR                    310
 #define IDB_VERT_SCROLLBARS             311
 #define IDB_GRIP                        312
-#define IDB_PREVIEW_BACKGND             313
-#define IDB_PREVIEW_BACKGND_TOP         314
-#define IDB_PREVIEW_BACKGND_BTM         315
-#define IDB_PREVIEW_BACKGND_VERT        316
+//#define IDB_PREVIEW_BACKGND             313
+//#define IDB_PREVIEW_BACKGND_TOP         314
+//#define IDB_PREVIEW_BACKGND_BTM         315
+//#define IDB_PREVIEW_BACKGND_VERT        316
 //#define IDB_PREVIEW_BACKGND_VERT_TOP    317
-#define IDB_PREVIEW_BACKGND_VERT_R      318
+//#define IDB_PREVIEW_BACKGND_VERT_R      318
 #define IDB_PREVIEW_SCRL_BAR            319
 #define IDB_PREVIEW_SCRL_BAR_V          320
 #define IDR_ARROW_DOWN_IMG              321
@@ -215,7 +215,7 @@ ____________________________________________________________________________*/
 #define IDB_ACTIVE_VIEW                 328
 #define IDB_INFO_BAND_OPT               329
 #define IDB_INFO_BAND_OPT_HOT           330
-#define IDB_VIEWER_REBAR_BACK           331
+//#define IDB_VIEWER_REBAR_BACK           331
 //#define IDB_INFOBAR                     332
 #define IDB_BITMAP4                     333
 #define IDR_CLOSE_BAR                   333
@@ -307,7 +307,7 @@ ____________________________________________________________________________*/
 #define IDD_COPY_MOVE_FORM              400
 #define IDD_ERROR                       400
 #define IDB_ROTATE_LEFT                 401
-#define IDB_ERROR_ICON                  401
+//#define IDB_ERROR_ICON                  401
 #define IDD_RESIZING1                   401
 #define IDD_PROGRESS                    401
 #define IDB_ROTATE_RIGHT                402

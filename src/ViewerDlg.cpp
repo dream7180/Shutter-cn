@@ -623,7 +623,7 @@ struct ViewerDlg::Impl : InfoBandNotification, ResizeWnd, ViewPaneNotifications
 
 	enum { INFOBAR= 111 };
 	Dib infbar_;
-	Dib rebar_bgnd_;
+	//Dib rebar_bgnd_;
 	int previewPaneHeight_;
 	COLORREF tag_text_color_;
 	COLORREF tag_backgnd_color_;
@@ -1361,12 +1361,12 @@ void ViewerDlg::Impl::Create(CWnd* wnd, Logger& log)
 
 void ViewerDlg::Impl::LoadBitmaps(double gamma)
 {
-	VERIFY(rebar_bgnd_.Load(IDB_VIEWER_REBAR_BACK));
+	//VERIFY(rebar_bgnd_.Load(IDB_VIEWER_REBAR_BACK));
 	//VERIFY(infbar_.Load(IDB_INFOBAR));
 
 	if (gamma != 1.0)
 	{
-		ApplyGammaInPlace(&rebar_bgnd_, gamma, -1, -1);
+		//ApplyGammaInPlace(&rebar_bgnd_, gamma, -1, -1);
 		ApplyGammaInPlace(&infbar_, gamma, -1, -1);
 	}
 }
@@ -1495,7 +1495,8 @@ void ViewerDlg::Impl::EraseBandBk(CDC& dc, int id, CRect band, bool in_line)
 	if (!in_line && id == Impl::INFOBAR)
 		infbar_.Draw(&dc, band, 0);
 	else
-		rebar_bgnd_.Draw(&dc, band, 0);
+		//rebar_bgnd_.Draw(&dc, band, 0);
+		dc.FillSolidRect(band,RGB(45,45,45));
 }
 
 

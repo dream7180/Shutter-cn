@@ -29,7 +29,7 @@ static char THIS_FILE[] = __FILE__;
 PreviewBar::PreviewBar()
 {
 	parent_ = 0;
-	vertical_ = true;
+	vertical_ = false;
 }
 
 PreviewBar::~PreviewBar()
@@ -63,7 +63,7 @@ bool PreviewBar::Create(PreviewPane* parent, bool big)
 
 	parent_ = parent;
 
-	static const int cmd[]= { ID_ZOOM_100, ID_ZOOM_FIT, ID_ZOOM_OUT, ID_ZOOM_IN, ID_PREVIEW_OPTIONS, ID_MAGNIFIER_LENS, ID_SET_WALLPAPER, ID_IMG_ROTATE_90_CCW, ID_IMG_ROTATE_90_CW };
+	static const int cmd[]= { ID_ZOOM_100, ID_ZOOM_FIT, ID_ZOOM_OUT, ID_ZOOM_IN, ID_PREVIEW_OPTIONS, ID_MAGNIFIER_LENS, /*ID_SET_WALLPAPER, */ID_IMG_ROTATE_90_CCW, ID_IMG_ROTATE_90_CW };
 
 	int bmp= IDB_ZOOMBAR;
 	toolbar_top_wnd_.SetPadding(8, 8);
@@ -77,7 +77,8 @@ bool PreviewBar::Create(PreviewPane* parent, bool big)
 
 	toolbar_btm_wnd_.SetPadding(10, 8);
 	toolbar_btm_wnd_.SetOwnerDraw(true);
-	VERIFY(toolbar_btm_wnd_.Create("::.p|pPP|pp", cmd, bmp, vertical_ ? 0 : IDS_ZOOMBAR, this, -1, vertical_));
+	//VERIFY(toolbar_btm_wnd_.Create("::.p|pPP|pp", cmd, bmp, vertical_ ? 0 : IDS_ZOOMBAR, this, -1, vertical_));
+	VERIFY(toolbar_btm_wnd_.Create("::.ppPpp", cmd, bmp, vertical_ ? 0 : IDS_ZOOMBAR, this, -1, vertical_));
 	toolbar_btm_wnd_.CreateDisabledImageList(bmp);
 	toolbar_btm_wnd_.DeleteButton(ID_PREVIEW_OPTIONS);
 

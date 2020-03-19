@@ -2649,10 +2649,10 @@
     <Image Include="res\Envelope.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\error_icon.bmp">
+    <!--Image Include="res\error_icon.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <!--Image Include="res\ExifPro.ico">
+    <Image Include="res\ExifPro.ico">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\ExifProDoc.ico">
@@ -2817,9 +2817,9 @@
     <Image Include="res\layouts.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\layouts_thumbs.bmp">
+    <!--Image Include="res\layouts_thumbs.bmp">
       <Filter>Resource Files</Filter>
-    </Image>
+    </Image-->
     <Image Include="res\light-bulb.png">
       <Filter>Resource Files</Filter>
     </Image>
@@ -2850,9 +2850,9 @@
     <Image Include="res\marked.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\mask.bmp">
+    <!--Image Include="res\mask.bmp">
       <Filter>Resource Files</Filter>
-    </Image>
+    </Image-->
     <Image Include="res\menu-btn-right.bmp">
       <Filter>Resource Files</Filter>
     </Image>
@@ -2970,7 +2970,7 @@
     <Image Include="res\png6.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\preview_backgnd.bmp">
+    <!--Image Include="res\preview_backgnd.bmp">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\preview_backgnd_btm.bmp">
@@ -2985,7 +2985,7 @@
     <Image Include="res\preview_backgnd_vert_right.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <!--Image Include="res\preview_backgnd_vert_top.bmp">
+    <Image Include="res\preview_backgnd_vert_top.bmp">
       <Filter>Resource Files</Filter>
     </Image-->
     <Image Include="res\preview_scrollbar.bmp">
@@ -3150,10 +3150,7 @@
     <Image Include="res\transparent_bar.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\trashcan.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\trashcan.png">
+    <Image Include="res\trashcan.bmp">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\Triangles.png">
@@ -3168,9 +3165,9 @@
     <Image Include="res\viewer.ico">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\viewer_rebar_backgnd.bmp">
+    <!--Image Include="res\viewer_rebar_backgnd.bmp">
       <Filter>Resource Files</Filter>
-    </Image>
+    </Image-->
     <Image Include="res\viewer_toolbar.bmp">
       <Filter>Resource Files</Filter>
     </Image>
