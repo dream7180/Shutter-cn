@@ -529,7 +529,7 @@ void Config::Restore()
 
 	//HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
 	::GetObject(hfont, sizeof(img_default_tag_font_), &img_default_tag_font_);
-	//img_default_tag_font_.lfHeight = -14;
+	img_default_tag_font_.lfHeight -= 2;
 	_tcscpy(img_default_tag_font_.lfFaceName, _T("Tahoma"));
 	//img_default_tag_font_.lfQuality = ANTIALIASED_QUALITY;
 	img_default_tag_font_.lfWeight = FW_BOLD;

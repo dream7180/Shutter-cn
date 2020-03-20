@@ -1217,8 +1217,8 @@ BEGIN
 	LTEXT           "x64 Release",IDC_STATIC,20,56,200,11
 	LTEXT           "Free software released under the terms of the GNU Public License.",IDC_STATIC,20,67,230,11
 	CONTROL         "syslink_1",IDC_LINK,"SysLink",WS_VISIBLE,20,88,230,30
-	LTEXT           "***图像解码库***\nLibjpeg-turbo: 2.0.4\nLibTIFF: 4.1.0\nLibPNG: 1.6.37\nGIFlib: 4.2.3",IDC_STATIC,20,130,110,60
-	LTEXT           "***其他库***\nLittle CMS: 1.19\nLua: 5.2\nScintilla: 3.1.0\nXMPCore: 5.4.0\nzlib: 1.2.11",IDC_STATIC,150,130,110,60
+	LTEXT           "***图像解码库***\nLibjpeg-turbo: 2.0.4\nLibTIFF: 4.1.0\nLibPNG: 1.6.37\nGIFlib: 4.2.3\nLittle CMS: 1.19",IDC_STATIC,20,130,110,60
+	LTEXT           "***其他库***\nLua: 5.2\nScintilla: 3.1.0\nXMPCore: 5.4.0\nzlib: 1.2.11\nCoolSB",IDC_STATIC,150,130,110,60
 END
 /*
 IDD_EVALUATION DIALOGEX 0, 0, 210, 159

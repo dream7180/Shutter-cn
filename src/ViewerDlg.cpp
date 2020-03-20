@@ -1906,7 +1906,7 @@ void ViewerDlg::Impl::LoadPhoto(const PhotoInfo& photo, ConstPhotoInfoPtr next_p
 	display_->LoadPhoto(photo, g_Settings.preload_photos_ ? next_photo : 0, flags);
 
 	oStringstream ost;
-	ost << Path(photo.GetDisplayPath()).GetFileName() << _T("  (") << cur_image_index_ + 1 << _T("/") << photos_.size() << _T(")");
+	ost << Path(photo.GetDisplayPath()).GetFileNameAndExt() << _T("  (") << cur_image_index_ + 1 << _T("/") << photos_.size() << _T(")");
 
 	photo_name_ = ost.str();
 

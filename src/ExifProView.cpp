@@ -437,7 +437,8 @@ ExifView::ExifView(Columns& columns)
 	tagged_photos_in_groups_ = true;
 	rated_photos_in_groups_ = true;
 	date_grouping_ = BY_DAY;	// crrently this is fixed and doesn't change
-	show_labels_ = SHOW_DATE_TIME;
+	//show_labels_ = SHOW_DATE_TIME;
+	show_labels_ = SHOW_FILE_NAME_EXT;
 	notifications_enabled_counter_ = 0;
 
 	sorted_photos_.reserve(100);

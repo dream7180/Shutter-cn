@@ -54,7 +54,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 	bool small_icons_;
-	int rebar_band_id_;
+	//int rebar_band_id_;
 
 	//void OnRightClick(NMHDR* notify_struct, LRESULT* result);
 	void OnContextMenu(CWnd* wnd, CPoint point);

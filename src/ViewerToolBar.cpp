@@ -24,8 +24,8 @@ static char THIS_FILE[] = __FILE__;
 
 ViewerToolBar::ViewerToolBar()
 {
-	small_icons_ = false;
-	rebar_band_id_ = 0;
+	small_icons_ = true;
+	//rebar_band_id_ = 0;
 }
 
 ViewerToolBar::~ViewerToolBar()
@@ -81,7 +81,7 @@ bool ViewerToolBar::Create(CWnd* parent, UINT id)
 {
 //	rebar_band_id_ = rebar_band_id;
 
-	small_icons_ = AfxGetApp()->GetProfileInt(REGISTRY_SECTION_TOOLBAR, REG_ICONS, 1) == 0;
+	small_icons_ = AfxGetApp()->GetProfileInt(REGISTRY_SECTION_TOOLBAR, REG_ICONS, 1) != 0;
 
 	int bmp_id= small_icons_ ? IDB_VIEWER_TOOLBAR : IDB_VIEWER_TOOLBAR_BIG;
 
@@ -130,7 +130,7 @@ void ViewerToolBar::OnDestroy()
 {
 	//SaveState(REGISTRY_SECTION_TOOLBAR, REG_STATE);
 
-	AfxGetApp()->WriteProfileInt(REGISTRY_SECTION_TOOLBAR, REG_ICONS, small_icons_ ? 0 : 1);
+	AfxGetApp()->WriteProfileInt(REGISTRY_SECTION_TOOLBAR, REG_ICONS, small_icons_ ? 1 : 0);
 
 	Derived::OnDestroy();
 }
