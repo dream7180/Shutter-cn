@@ -836,7 +836,7 @@ BEGIN
         MENUITEM "电话\timg.meta.creators_phone", 11
         MENUITEM "邮件地址\timg.meta.creators_email", 12
         MENUITEM "网站\timg.meta.creators_website", 13
-        MENUITEM "文件标题\timg.meta.title", 14
+        MENUITEM "文档标题\timg.meta.title", 14
         MENUITEM "作业标识符\timg.meta.job_identifier", 15
         MENUITEM "用法说明\timg.meta.instructions", 16
         MENUITEM "提供者\timg.meta.provider", 17

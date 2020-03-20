@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -12,47 +12,47 @@ const TCHAR* GetXmpDataFieldName(size_t index)
 {
 	switch (index)
 	{
-	case 0: return _T("Document Title");
-	case 1: return _T("Author");
-	case 2: return _T("Description");
-	case 3: return _T("Image Rating");
-	case 4: return _T("Copyright Notice");
-	case 5: return _T("Keywords");
+	case 0: return _T("文档标题");
+	case 1: return _T("作者");
+	case 2: return _T("描述");
+	case 3: return _T("图像评级");
+	case 4: return _T("版权标志");
+	case 5: return _T("关键字");
 
-	case 6: return _T("Description Writer");
-	case 7: return _T("Headline");
+	case 6: return _T("描述编写者");
+	case 7: return _T("标题");
 //	case 0: return _T("Title");	// object name
 //	case 0: return _T("Creator");	= author
-	case 8: return _T("Creator's Job");	//
-	case 9: return _T("Creator's Address");
-	case 10: return _T("Creator's City");
-	case 11: return _T("Creator's State");
-	case 12: return _T("Creator's Postal Code");
-	case 13: return _T("Creator's Country");
+	case 8: return _T("创建者的职业");	//
+	case 9: return _T("创建者的地址");
+	case 10: return _T("创建者的城市");
+	case 11: return _T("创建者的州");
+	case 12: return _T("创建者的邮编");
+	case 13: return _T("创建者的国家");
 
-	case 14: return _T("Creator's Phones");
-	case 15: return _T("Creator's E-Mails");
-	case 16: return _T("Creator's Web Sites");
+	case 14: return _T("电话");
+	case 15: return _T("邮件地址");
+	case 16: return _T("网站");
 
-	case 17: return _T("Job Identifier");
-	case 18: return _T("Instructions");
-	case 19: return _T("Provider");
-	case 20: return _T("Source");
-	case 21: return _T("Rights Usage Terms");
-	case 22: return _T("Copyright Info URL");
+	case 17: return _T("作业标识符");
+	case 18: return _T("用法说明");
+	case 19: return _T("提供者");
+	case 20: return _T("来源");
+	case 21: return _T("使用条款权利");
+	case 22: return _T("版权信息 URL");
 
-	case 23: return _T("Creation Date");
-	case 24: return _T("Intellectual Genre");
-	case 25: return _T("Location");
-	case 26: return _T("City");
-	case 27: return _T("State/Province");
-	case 28: return _T("Country");
-	case 29: return _T("ISO Country Code");
+	case 23: return _T("创建日期");
+	case 24: return _T("艺术流派");
+	case 25: return _T("拍摄地");
+	case 26: return _T("城市");
+	case 27: return _T("州/省");
+	case 28: return _T("国家");
+	case 29: return _T("ISO 国家代码");
 
-	case 30: return _T("IPTC Scene");
-	case 31: return _T("IPTC Subject Code");
+	case 30: return _T("IPTC 场景");
+	case 31: return _T("IPTC 附属代码");
 
-	case 32: return _T("Creator Tool");
+	case 32: return _T("创建者工具");
 
 	default:
 		ASSERT(false);
