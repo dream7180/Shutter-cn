@@ -1,17 +1,16 @@
 #ExifPro Mod
 
-ExifPro Mod is mod from ExifPro 2.3 at https://github.com/mikekov/ExifPro.
-
-Since there is no release for ExifPro project and it seems freezed from Feb 2019, this mod version is to make this software usable.
-
-Fix bugs and change UI to make it looks much better.
-Optimize the settings and other enhancement.
-
---------------------------------------------------------------------------
-ExifPro is an image browser application that can help you display, describe, tag, and manipulate your collection of photographs.
-
-ExifPro offers several view modes like thumbnails, previews, or image details. Selected images may be copied, resized, cropped, rotated, renamed, and adjusted. ExifPro can present information embedded in photographs (EXIF metadata) describing different parameters used by digital cameras while taking shots. One can create HTML albums or slide shows using built-in generators, print images, append descriptions, and tags, automatically rename and transfer photographs.
-
-Viewer window provides zooming and panning, image color and aspect correction, light table, and a slide show.
+EXIFPro 是一个优秀的图像查看, 处理及管理工具, 使用 VC++ 开发, 小巧快速, 支持查看丰富的 EXIF 信息, 非常适用于查看您的 RAW 数字照片和其他常规图像.
+EXIFPro V1.x 到 V2.1 是收费软件, 后来就没再出新版了. 后来它变成了免费的开源软件, 源码发布在 GitHub 上:
+https://github.com/mikekov/ExifPro.
+但是在2018年2月就停止了代码更新, 留下了没有完善的 2.3 版就似乎停止了该项目.
+EXIFPro 主要吸引我的是它的图像查看功能, 习惯了它的操作后几乎没办法适应其他看图软件, 例如双击切换 100% 和适应屏幕视图, 至于中键呼出放大镜方框的功能 (极其方便查看原图), 更是找不到其他代替品.
+原有的 EXIFPro 2 已经老旧, 界面落后时代, 解码库老旧. 所以我在 GitHub 的代码上进行了二次开发, 并相同以开源方式共享此 Mod 3.x 版本.
+主要改进方面:
+界面上扁平化和美化, 更符合现代 UI 的风格.
+升级了所有图像解码库.
+设置优化, 功能优化, 比如删除拖慢速度的 Photolist, 变成返回浏览主界面按钮, 优化放大镜窗口, 更大更舒适. 许多细节的优化不一一列举.
+尽可能全面中文化, 包括 EXIF 信息 (许多中文版的看图工具都做不到).
+通过这个版本希望能延续这个工具的生命, 毕竟相信很多喜欢它的朋友都因为它太久不更新而切需要破解放弃了.
 
 ![alt text](info/screenshot.png "ExifPro: work in progress")
