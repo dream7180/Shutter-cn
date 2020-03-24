@@ -437,7 +437,7 @@ BOOL CatalogDlg::OnInitDialog()
 		pImpl_->InitDlg(this);
 
 		SetFooterDlg(&pImpl_->options_);
-		SetDlgItemText(IDC_OPTIONS, RString(IDS_SAVING_OPTIONS));
+		SetDlgItemText(IDC_OPTIONS, _T("显示选项(&O) >>"));
 
 		SubclassHelpBtn(_T("ToolCatalog.htm"));
 
@@ -857,7 +857,7 @@ void CatalogDlg::OnOptions()
 
 	ShowFooterDlg(show);
 
-	SetDlgItemText(IDC_OPTIONS, RString(show ? IDS_CLOSE_SAVING_OPTIONS : IDS_SAVING_OPTIONS));
+	SetDlgItemText(IDC_OPTIONS, show ? _T("隐藏选项(&O) <<") : _T("显示选项(&O) >>"));
 }
 
 

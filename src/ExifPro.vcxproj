@@ -160,7 +160,7 @@
     <OutDir>$(Bin)</OutDir>
     <IntDir>$(Int)</IntDir>
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(Boost);$(IncludePath)</IncludePath>
+    <IncludePath>D:\Develop\boost\stage\lib;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugANSI|Win32'">
     <OutDir>$(Bin)</OutDir>
@@ -362,7 +362,7 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Culture>0x0409</Culture>
+      <Culture>0x0804</Culture>
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/FORCE:MULTIPLE %(AdditionalOptions)</AdditionalOptions>
@@ -1001,7 +1001,9 @@
     <ClCompile Include="TransformationThread.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="ExifPro.rc" />
+    <ResourceCompile Include="ExifPro.rc">
+      <Culture Condition="'$(Configuration)|$(Platform)'=='Release|x64'">0x0804</Culture>
+    </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AboutDlg.h" />

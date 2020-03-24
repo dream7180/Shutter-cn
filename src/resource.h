@@ -992,8 +992,8 @@ ____________________________________________________________________________*/
 #define IDS_VIEWER_ZOOM_FIT             33401
 #define IDS_VIEWER_PHOTO                33402
 #define IDS_JPEG_FILTER                 33403
-#define IDS_SAVING_OPTIONS              33404
-#define IDS_CLOSE_SAVING_OPTIONS        33405
+//#define IDS_SAVING_OPTIONS              33404
+//#define IDS_CLOSE_SAVING_OPTIONS        33405
 #define IDS_CHEVRON                     33406
 #define IDS_PROCESS_PHOTOS              33407
 #define IDS_IMG_TRANSFORM_LOADING       33408

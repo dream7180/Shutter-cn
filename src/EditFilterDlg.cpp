@@ -24,7 +24,7 @@ ____________________________________________________________________________*/
 EditFilterDlg::EditFilterDlg(CWnd* parent, const PhotoInfo& example, const PhotoTagsCollection& collection)
 	: DialogChild(EditFilterDlg::IDD, parent), example_(example), collection_(collection)
 {
-	filter_rule_ = _T("-- Show only images that satisfy below criteria\r\n\r\nreturn true");
+	filter_rule_ = _T("--Show only images that satisfy below criteria\r\nx = 1 if x > 0\r\n--and img.fl == 50\r\n--and img.iso > 100\r\nthen return true\r\nend");
 }
 
 EditFilterDlg::~EditFilterDlg()

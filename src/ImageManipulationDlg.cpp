@@ -256,7 +256,7 @@ bool ImageManipulationDlg::InitDialog()
 	dlg_options_.histogram_wnd_.Build(dib_original_);
 
 	SetFooterDlg(&dlg_options_);
-	SetDlgItemText(IDC_OPTIONS, RString(IDS_SAVING_OPTIONS));
+	SetDlgItemText(IDC_OPTIONS, _T("显示选项(&O) >>"));
 
 	if (CWnd* frame= GetDlgItem(IDC_INFO))
 	{
@@ -723,7 +723,7 @@ void ImageManipulationDlg::OnOptions()
 		GetGripWnd().ShowWindow(show ? SW_HIDE : SW_SHOWNA);
 	ShowFooterDlg(show);
 
-	SetDlgItemText(IDC_OPTIONS, RString(show ? IDS_CLOSE_SAVING_OPTIONS : IDS_SAVING_OPTIONS));
+	SetDlgItemText(IDC_OPTIONS, show ? _T("隐藏选项(&O) <<") : _T("显示选项(&O) >>"));
 }
 
 
