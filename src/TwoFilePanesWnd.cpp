@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -112,8 +112,8 @@ BOOL TwoFilePanesWnd::OnInitDialog()
 
 void TwoFilePanesWnd::Impl::Init(CWnd* parent)
 {
-	left_.Create(parent, _T("From:"), false, true, true);
-	right_.Create(parent, _T("To:"), true, false, true);
+	left_.Create(parent, _T("从:"), false, true, true);
+	right_.Create(parent, _T("到:"), true, false, true);
 
 	Resize(parent);
 }

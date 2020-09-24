@@ -24,11 +24,7 @@ ____________________________________________________________________________*/
 EditFilterDlg::EditFilterDlg(CWnd* parent, const PhotoInfo& example, const PhotoTagsCollection& collection)
 	: DialogChild(EditFilterDlg::IDD, parent), example_(example), collection_(collection)
 {
-<<<<<<< HEAD
 	filter_rule_ = _T("x = 1 if x > 0 --不要编辑此行\r\n--去注释或编辑以下规则，逻辑为and或or\r\n-------------------------------\r\n--and img.fl == 50\r\n--and img.iso > 100\r\n--and img.fn < 8.0\r\nthen return true\r\nend");
-=======
-	filter_rule_ = _T("--Show only images that satisfy below criteria\r\nx = 1 if x > 0\r\n--and img.fl == 50\r\n--and img.iso > 100\r\nthen return true\r\nend");
->>>>>>> cdc17f65d71a7d291fdc19e897161374723c6594
 }
 
 EditFilterDlg::~EditFilterDlg()
