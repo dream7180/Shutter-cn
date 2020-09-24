@@ -14,7 +14,7 @@ ____________________________________________________________________________*/
 // OptionsGeneral.h : header file
 //
 #include "RPropertyPage.h"
-#include "PathEdit.h"
+//#include "PathEdit.h"
 #include "ICMProfile.h"
 #include "GridCtrl.h"
 #include "LinkWnd.h"
@@ -58,8 +58,8 @@ public:
 	ICMProfilePtr default_printer_;
 	ICMProfilePtr default_image_;
 	bool	profiles_changed_;
-	CPathEdit edit_path_photo_app_;
-	CPathEdit edit_path_raw_photo_app_;
+	//CPathEdit edit_path_photo_app_;
+	//CPathEdit edit_path_raw_photo_app_;
 	GridCtrl foV_crop_wnd_;
 	//CLinkWnd advanced_wnd_;
 //	bool	read_thumbs_from_db_;
@@ -87,9 +87,9 @@ protected:
 	virtual BOOL OnInitDialog();
 	afx_msg void OnDeltaPosGammaSpin(NMHDR* nmhdr, LRESULT* result);
 	afx_msg void OnChangeGamma();
-	afx_msg void OnOpenApp();
-	afx_msg void OnOpenRawApp();
-	afx_msg void OnAdvanced();
+	//afx_msg void OnOpenApp();
+	//afx_msg void OnOpenRawApp();
+	//afx_msg void OnAdvanced();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 	void OnICMSetup();

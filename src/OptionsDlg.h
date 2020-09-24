@@ -18,8 +18,9 @@ ____________________________________________________________________________*/
 #include "OptionsAppearance.h"
 #include "OptionsFileTypes.h"
 #include "OptionsBalloons.h"
-#include "OptionsShortcuts.h"
-#include "AdvancedOptions.h"
+//#include "OptionsShortcuts.h"
+#include "OptionsAdvanced.h"
+#include "OptionsCache.h"
 #include "DlgAutoResize.h"
 #include "MultiMonitor.h"
 #include "DataExchange.h"
@@ -66,8 +67,9 @@ private:
 	OptionsAppearance	page_appearance_;
 	OptionsFileTypes	page_file_types_;
 	OptionsBalloons		page_balloons_;
-	OptionsShortcuts	page_shortcuts_;
-	AdvancedOptions		page_advanced_;
+	//OptionsShortcuts	page_shortcuts_;
+	OptionsAdvanced		page_advanced_;
+	OptionsCache		page_cache_;
 	static const int PAGES= 7;
 	RPropertyPage*		pages_[PAGES];
 

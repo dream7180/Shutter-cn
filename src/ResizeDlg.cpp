@@ -228,7 +228,7 @@ BOOL ResizeDlg::OnInitDialog()
 	}
 
 	SetFooterDlg(&dlg_options_);
-	SetDlgItemText(IDC_OPTIONS, RString(IDS_SAVING_OPTIONS));
+	SetDlgItemText(IDC_OPTIONS, _T("显示选项(&O) >>"));
 
 	if (ratio_ <= 0.0)
 		btn_fixed_size_.EnableWindow(false);
@@ -710,5 +710,5 @@ void ResizeDlg::OnOptions()
 
 	ShowFooterDlg(show);
 
-	SetDlgItemText(IDC_OPTIONS, RString(show ? IDS_CLOSE_SAVING_OPTIONS : IDS_SAVING_OPTIONS));
+	SetDlgItemText(IDC_OPTIONS, show ? _T("隐藏选项(&O) <<") : _T("显示选项(&O) >>"));
 }

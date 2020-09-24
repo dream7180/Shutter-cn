@@ -56,7 +56,7 @@ namespace {
 
 static const int g_cmd[]=
 {
-	ID_VIEW, ID_STICKY_SELECTION, ID_MARK_ALL, ID_MARK_NONE,
+	ID_FILTER_SWITCH, ID_VIEW, ID_STICKY_SELECTION, //ID_MARK_ALL, ID_MARK_NONE,
 	ID_VIEW_THUMBNAILS, ID_VIEW_DETAILS, ID_VIEW_TILES, ID_VIEW_PICTURES, ID_SHOW_OPTIONS,
 	ID_VIEW_THUMB_SMALLER, IDOK, ID_VIEW_THUMB_BIGGER,
 	ID_VIEW_SORT, ID_SORT_BY_SIMILARITY, ID_CANCEL_SORT_BY_SIMILARITY,
@@ -94,23 +94,24 @@ tool_bar_sort_wnd_.SetOnIdleUpdateState(false);*/
 
 	if (WhistlerLook::IsAvailable())
 		toolbar_first_.SetPadding(-1, -1);	// btn with down arrow section inflates total buttons height
-	toolbar_first_.Create("m|xpp...............", g_cmd, bmp_id, 0, this, AFX_IDW_CONTROLBAR_LAST);
+	//toolbar_first_.Create("xm|xpp...............", g_cmd, bmp_id, 0, this, AFX_IDW_CONTROLBAR_LAST);
+	toolbar_first_.Create("xm|x...............", g_cmd, bmp_id, 0, this, AFX_IDW_CONTROLBAR_LAST);
 	toolbar_first_.CreateDisabledImageList(bmp_id);
-	toolbar_first_.DeleteButton(ID_MARK_ALL);
-	toolbar_first_.DeleteButton(ID_MARK_NONE);
+	//toolbar_first_.DeleteButton(ID_MARK_ALL);
+	//toolbar_first_.DeleteButton(ID_MARK_NONE);
 	toolbar_first_.AutoResize();
 	toolbar_first_.SetOwner(parent);
 	toolbar_first_.CWnd::SetOwner(parent);
 	tool_bar_pos_.push_back(PositionBar(toolbar_first_, 0));
 
-	tool_bar_view_wnd_.Create("....gggg|v..........", g_cmd, bmp_id, 0, this, AFX_IDW_CONTROLBAR_LAST - 1);
+	tool_bar_view_wnd_.Create("...gggg|v..........", g_cmd, bmp_id, 0, this, AFX_IDW_CONTROLBAR_LAST - 1);
 	tool_bar_view_wnd_.CreateDisabledImageList(bmp_id);
 	tool_bar_view_wnd_.SetOwner(parent);
 	tool_bar_view_wnd_.CWnd::SetOwner(parent);
 	tool_bar_pos_.push_back(PositionBar(tool_bar_view_wnd_, _T("查看")));
 
 	tool_bar_thumb_wnd_.SetPadding(0, 7);
-	tool_bar_thumb_wnd_.Create(".........ppp.......", g_cmd, bmp_id, 0, this, AFX_IDW_CONTROLBAR_LAST - 2);
+	tool_bar_thumb_wnd_.Create("........ppp.......", g_cmd, bmp_id, 0, this, AFX_IDW_CONTROLBAR_LAST - 2);
 	tool_bar_thumb_wnd_.CreateDisabledImageList(bmp_id);
 	tool_bar_thumb_wnd_.SetScrollInfoReceiver(parent);
 	tool_bar_thumb_wnd_.SetOwner(parent);
@@ -137,7 +138,7 @@ tool_bar_sort_wnd_.SetOnIdleUpdateState(false);*/
 
 	tool_bar_pos_.push_back(PositionBar(tool_bar_thumb_wnd_, _T("缩略图")));
 
-	tool_bar_group_wnd_.Create("...............xxxx", g_cmd, bmp_id, 0, this, AFX_IDW_CONTROLBAR_LAST - 4);
+	tool_bar_group_wnd_.Create("..............xxxx", g_cmd, bmp_id, 0, this, AFX_IDW_CONTROLBAR_LAST - 4);
 	tool_bar_group_wnd_.CreateDisabledImageList(bmp_id);
 	tool_bar_group_wnd_.SetOwner(parent);
 	tool_bar_group_wnd_.CWnd::SetOwner(parent);
@@ -145,7 +146,7 @@ tool_bar_sort_wnd_.SetOnIdleUpdateState(false);*/
 
 	if (WhistlerLook::IsAvailable())
 		tool_bar_sort_wnd_.SetPadding(-1, -1);	// btn with down arrow section inflates total buttons height
-	tool_bar_sort_wnd_.Create("............vmp....", g_cmd, bmp_id, 0, this, AFX_IDW_CONTROLBAR_LAST - 3);
+	tool_bar_sort_wnd_.Create("...........vmp....", g_cmd, bmp_id, 0, this, AFX_IDW_CONTROLBAR_LAST - 3);
 	tool_bar_sort_wnd_.HideButton(ID_CANCEL_SORT_BY_SIMILARITY);
 	tool_bar_sort_wnd_.CreateDisabledImageList(bmp_id);
 	tool_bar_sort_wnd_.SetOwner(parent);

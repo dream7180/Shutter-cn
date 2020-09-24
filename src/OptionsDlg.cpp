@@ -18,11 +18,11 @@ ____________________________________________________________________________*/
 #include "ImgDb.h"
 #include "clamp.h"
 
-#ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
-#endif
+//#ifdef _DEBUG
+//#define new DEBUG_NEW
+//#undef THIS_FILE
+//static char THIS_FILE[] = __FILE__;
+//#endif
 
 #include "DibCache.h"
 extern AutoPtr<DibCache> global_dib_cache;
@@ -76,9 +76,10 @@ OptionsDlg::OptionsDlg(CWnd* parent_wnd, std::vector<uint16>& columns_idx, std::
 	AddPage(&page_appearance_);
 	AddPage(&page_file_types_);
 	AddPage(&page_balloons_);
-#ifdef _DEBUG
+//#ifdef _DEBUG
 //	AddPage(&page_shortcuts_);
-#endif
+//#endif
+	AddPage(&page_cache_);
 	AddPage(&page_advanced_);
 
 	pages_[0] = &page_general_;
@@ -86,14 +87,15 @@ OptionsDlg::OptionsDlg(CWnd* parent_wnd, std::vector<uint16>& columns_idx, std::
 	pages_[2] = &page_appearance_;
 	pages_[3] = &page_file_types_;
 	pages_[4] = &page_balloons_;
-	pages_[5] = &page_shortcuts_;
+	//pages_[5] = &page_shortcuts_;
+	pages_[5] = &page_cache_;
 	pages_[6] = &page_advanced_;
 
 	dx_.Add(page_general_.correct_aspect_ratio_		, g_Settings.correct_CRT_aspect_ratio_);
 	dx_.Add(page_general_.horz_resolution_			, g_Settings.horz_resolution_);
 	dx_.Add(page_general_.vert_resolution_			, g_Settings.vert_resolution_);
-	dx_.Add(page_general_.open_photo_app_			, g_Settings.open_photo_app_);
-	dx_.Add(page_general_.open_raw_photo_app_		, g_Settings.open_raw_photo_app_);
+	dx_.Add(page_cache_.open_photo_app_			, g_Settings.open_photo_app_);
+	dx_.Add(page_cache_.open_raw_photo_app_		, g_Settings.open_raw_photo_app_);
 	dx_.Add(page_general_.monitor_viewer_			, g_Settings.viewer_);
 	dx_.Add(page_general_.monitor_main_wnd_			, g_Settings.main_wnd_);
 	dx_.Add(page_general_.default_printer_			, g_Settings.default_printer_);
@@ -102,17 +104,17 @@ OptionsDlg::OptionsDlg(CWnd* parent_wnd, std::vector<uint16>& columns_idx, std::
 
 	dx_.Add(page_advanced_.preload_					, g_Settings.preload_photos_);
 	dx_.Add(page_advanced_.display_method_			, g_Settings.display_method_);
-	dx_.Add(page_advanced_.cache_size_				, g_Settings.image_cache_size_);
+	dx_.Add(page_cache_.cache_size_				, g_Settings.image_cache_size_);
 	dx_.Add(page_advanced_.save_tags_				, g_Settings.save_tags_to_photo_);
 	dx_.Add(page_advanced_.show_warning_			, g_Settings.warn_about_broken_thumbnail_img_);
-	dx_.Add(page_advanced_.db_file_length_limit_mb_	, g_Settings.db_file_length_limit_mb_);
+	dx_.Add(page_cache_.db_file_length_limit_mb_	, g_Settings.db_file_length_limit_mb_);
 	dx_.Add(page_advanced_.image_blending_			, g_Settings.image_blending_);
 	dx_.Add(page_advanced_.generate_thumbs_			, g_Settings.regenerate_thumbnails_);
 	dx_.Add(page_advanced_.thumb_access_			, g_Settings.read_thumbs_from_db_);
 	dx_.Add(page_advanced_.allow_magnifying_above100_ , g_Settings.allow_magnifying_above100_);
 	dx_.Add(page_advanced_.close_app_				, g_Settings.close_app_when_viewer_exits_);
 	dx_.Add(page_advanced_.smooth_scroll_			, g_Settings.smooth_scrolling_speed_);
-	dx_.Add(page_advanced_.db_path_					, g_Settings.img_cache_db_path_);
+	dx_.Add(page_cache_.db_path_					, g_Settings.img_cache_db_path_);
 	dx_.Add(page_advanced_.sharpening_				, g_Settings.thumbnail_sharpening_);
 	dx_.Add(page_advanced_.allow_zoom_to_fill_		, g_Settings.allow_zoom_to_fill_);
 	dx_.Add(page_advanced_.percent_of_image_to_hide_, g_Settings.percent_of_image_to_hide_);
@@ -209,7 +211,7 @@ INT_PTR OptionsDlg::DoModal()
 //		changed = true;
 	}
 
-	if (page_advanced_.delete_cache_file_)
+	if (page_cache_.delete_cache_file_)
 		::SetDeleteFlagForImageDataBase(true);
 
 	if (dx_.Read())

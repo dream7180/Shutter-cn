@@ -160,7 +160,7 @@
     <OutDir>$(Bin)</OutDir>
     <IntDir>$(Int)</IntDir>
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(Boost);$(IncludePath)</IncludePath>
+    <IncludePath>D:\Develop\boost\stage\lib;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugANSI|Win32'">
     <OutDir>$(Bin)</OutDir>
@@ -247,9 +247,9 @@
       <HeaderFileName />
     </Midl>
     <ClCompile>
-      <AdditionalOptions>/Zm210 /MP %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Zm1000 /MP %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(Libraries);$(Boost);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(Libraries);D:\Develop\boost;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;WIN64;USE_GDI_PLUS;USE_DIRECT2D;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <ExceptionHandling>Async</ExceptionHandling>
@@ -272,9 +272,9 @@
       <ShowProgress>NotSet</ShowProgress>
       <OutputFile>$(Bin)$(ProjectName).exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(LibsDbg);%(AdditionalLibraryDirectories);$(Boost)\stage\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(LibsDbg);%(AdditionalLibraryDirectories);D:\Develop\boost\stage\lib</AdditionalLibraryDirectories>
       <DelayLoadDLLs>d2d1.dll;%(DelayLoadDLLs)</DelayLoadDLLs>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
       <EntryPointSymbol>
       </EntryPointSymbol>
     </Link>
@@ -362,7 +362,7 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Culture>0x0409</Culture>
+      <Culture>0x0804</Culture>
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/FORCE:MULTIPLE %(AdditionalOptions)</AdditionalOptions>
@@ -883,7 +883,8 @@
     <ClCompile Include="UIElements.cpp" />
     <ClCompile Include="UniqueLetter.cpp" />
     <ClCompile Include="WhistlerLook.cpp" />
-    <ClCompile Include="AdvancedOptions.cpp" />
+    <ClCompile Include="OptionsAdvanced.cpp" />
+	<ClCompile Include="OptionsCache.cpp" />
     <ClCompile Include="OptionsAppearance.cpp" />
     <ClCompile Include="OptionsBalloons.cpp" />
     <ClCompile Include="OptionsColumns.cpp" />
@@ -891,7 +892,7 @@
     <ClCompile Include="OptionsDlg.cpp" />
     <ClCompile Include="OptionsFileTypes.cpp" />
     <ClCompile Include="OptionsGeneral.cpp" />
-    <ClCompile Include="OptionsShortcuts.cpp" />
+    <!--ClCompile Include="OptionsShortcuts.cpp" /-->
     <ClCompile Include="Attributes.cpp" />
     <ClCompile Include="IPTCReadWrite.cpp" />
     <ClCompile Include="IPTCRecord.cpp" />
@@ -1001,7 +1002,9 @@
     <ClCompile Include="TransformationThread.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="ExifPro.rc" />
+    <ResourceCompile Include="ExifPro.rc">
+      <Culture Condition="'$(Configuration)|$(Platform)'=='Release|x64'">0x0804</Culture>
+    </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AboutDlg.h" />
@@ -1010,7 +1013,6 @@
     <ClInclude Include="adapters.h" />
     <ClInclude Include="AddFavoriteDlg.h" />
     <ClInclude Include="AddressBox.h" />
-    <ClInclude Include="AdvancedOptions.h" />
     <ClInclude Include="AnyPointer.h" />
     <ClInclude Include="AppColors.h" />
     <ClInclude Include="ApplyMetadataThread.h" />
@@ -1229,6 +1231,8 @@
     <ClInclude Include="NEFDecoder.h" />
     <ClInclude Include="NEFReader.h" />
     <ClInclude Include="NewFolderDlg.h" />
+	<ClInclude Include="OptionsAdvanced.h" />
+	<ClInclude Include="OptionsCache.h" />
     <ClInclude Include="OptionsAppearance.h" />
     <ClInclude Include="OptionsBalloons.h" />
     <ClInclude Include="OptionsColumns.h" />
@@ -1236,7 +1240,7 @@
     <ClInclude Include="OptionsDlg.h" />
     <ClInclude Include="OptionsFileTypes.h" />
     <ClInclude Include="OptionsGeneral.h" />
-    <ClInclude Include="OptionsShortcuts.h" />
+    <!--ClInclude Include="OptionsShortcuts.h" /-->
     <ClInclude Include="OutputStr.h" />
     <ClInclude Include="PagerCtrl.h" />
     <ClInclude Include="Pane.h" />

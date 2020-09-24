@@ -15,7 +15,8 @@ ____________________________________________________________________________*/
 //#include "PNGImage.h"
 #include "UIElements.h"
 
-#define	WEB_SITE	L"https://github.com/dream7180/ExifPro-mod"
+//#define	WEB_SITE	L"https://github.com/dream7180/ExifPro-mod"
+#define	WEB_SITE	L"https://gitee.com/dream7180/ExifPro-mod-cn"
 #define	BLOG_SITE	L"https://www.cnblogs.com/foobox"
 #define	CODE_SITE	L"https://github.com/mikekov/ExifPro"
 #define	OFF_SITE	L"http://www.exifpro.com/"
@@ -89,16 +90,17 @@ extern CString ReadAppVersion(bool including_build)
 		VS_FIXEDFILEINFO* ver= (VS_FIXEDFILEINFO*)((BYTE*)::LockResource(global) + 0x28);
 		if (ver->dwSignature == 0xfeef04bd)
 		{
-			if (including_build)
-				version.Format(_T("Version %d.%u.%u Build %u %s"),
+			//if (including_build)
+				//version.Format(_T("Version %d.%u.%u Build %u %s"),
+				version.Format(_T("Version %d.%u %s Build"),
 					(int)HIWORD(ver->dwProductVersionMS), (int)LOWORD(ver->dwProductVersionMS),
-					(int)HIWORD(ver->dwProductVersionLS), (int)LOWORD(ver->dwProductVersionLS),
+					//(int)HIWORD(ver->dwProductVersionLS), (int)LOWORD(ver->dwProductVersionLS),
 					sizeof(TCHAR) == 1 ? _T("ASCII") : _T("Unicode"));
-			else
-				version.Format(_T("Version %d.%u.%u\n%s Build"),
-					(int)HIWORD(ver->dwProductVersionMS), (int)LOWORD(ver->dwProductVersionMS),
-					(int)HIWORD(ver->dwProductVersionLS),
-					sizeof(TCHAR) == 1 ? _T("ASCII") : _T("Unicode"));
+			//else
+				//version.Format(_T("Version %d.%u.%u\n%s Build"),
+					//(int)HIWORD(ver->dwProductVersionMS), (int)LOWORD(ver->dwProductVersionMS),
+					//(int)HIWORD(ver->dwProductVersionLS),
+					//sizeof(TCHAR) == 1 ? _T("ASCII") : _T("Unicode"));
 		}
 		::FreeResource(global);
 	}
@@ -160,7 +162,7 @@ BOOL AboutDlg::OnInitDialog()
 		GetClientRect(rect);
 		SetWindowPos(0, 0, 0, rect.Width(), rect.Height(), SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE);
 		
-		GetDlgItem(IDC_LINK)->SetWindowText(L"Mod by dreamawake: <a href=\"" WEB_SITE L"\">https://github.com/dream7180/ExifPro-mod</a>\n\n其他链接: <a href=\"" BLOG_SITE L"\">我的博客</a>, <a href=\"" CODE_SITE L"\">mod from v2.3</a>, <a href=\"" OFF_SITE L"\">www.exifpro.com</a>");
+		GetDlgItem(IDC_LINK)->SetWindowText(L"Mod by dreamawake: <a href=\"" WEB_SITE L"\">https://gitee.com/dream7180/ExifPro-mod-cn</a>\n\n其他链接: <a href=\"" BLOG_SITE L"\">我的博客</a>, <a href=\"" CODE_SITE L"\">mod from v2.3</a>, <a href=\"" OFF_SITE L"\">www.exifpro.com</a>");
 		GetDlgItem(IDC_VERSION)->SetWindowText(version_);
 		//CPoint pos= CPoint(Pixels(LEFTTOP.x), );
 		//pos.y += Pixels(AREA_SIZE.cy);

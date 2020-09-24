@@ -12,8 +12,8 @@ ____________________________________________________________________________*/
 #include "resource.h"
 #include "OptionsGeneral.h"
 #include "CalibrationDlg.h"
-#include "FolderSelect.h"
-#include "AdvancedOptions.h"
+//#include "FolderSelect.h"
+//#include "OptionsAdvanced.h"
 #include "ColorMngDlg.h"
 #include "CatchAll.h"
 #include "UIElements.h"
@@ -53,19 +53,19 @@ void OptionsGeneral::DoDataExchange(CDataExchange* DX)
 {
 	CPropertyPage::DoDataExchange(DX);
 	DDX_Control(DX, IDC_RES_STRING, resolution_wnd_);
-	DDX_Control(DX, IDC_OPEN_PHOTO_APP, edit_path_photo_app_);
-	DDX_Control(DX, IDC_OPEN_RAW_PHOTO_APP, edit_path_raw_photo_app_);
+	//DDX_Control(DX, IDC_OPEN_PHOTO_APP, edit_path_photo_app_);
+	//DDX_Control(DX, IDC_OPEN_RAW_PHOTO_APP, edit_path_raw_photo_app_);
 	DDX_Check(DX, IDC_CORRECT_ASPECT_RATIO, correct_aspect_ratio_);
-	DDX_Text(DX, IDC_OPEN_PHOTO_APP, open_photo_app_);
-	DDX_Text(DX, IDC_OPEN_RAW_PHOTO_APP, open_raw_photo_app_);
+	//DDX_Text(DX, IDC_OPEN_PHOTO_APP, open_photo_app_);
+	//DDX_Text(DX, IDC_OPEN_RAW_PHOTO_APP, open_raw_photo_app_);
 	DDX_Control(DX, IDC_FoV_CROP, foV_crop_wnd_);
 }
 
 
 BEGIN_MESSAGE_MAP(OptionsGeneral, RPropertyPage)
 	ON_BN_CLICKED(IDC_RESOLUTION, OnResolution)
-	ON_BN_CLICKED(IDC_OPEN_APP, OnOpenApp)
-	ON_BN_CLICKED(IDC_OPEN_APP2, OnOpenRawApp)
+	//ON_BN_CLICKED(IDC_OPEN_APP, OnOpenApp)
+	//ON_BN_CLICKED(IDC_OPEN_APP2, OnOpenRawApp)
 	ON_BN_CLICKED(IDC_ICM, OnICMSetup)
 END_MESSAGE_MAP()
 
@@ -134,13 +134,13 @@ BOOL OptionsGeneral::OnInitDialog()
 	ResizeMgr().SetWndResizing(IDC_FRAME_2, DlgAutoResize::RESIZE_H);
 	ResizeMgr().SetWndResizing(IDC_LABEL_1, DlgAutoResize::MOVE_V, DlgAutoResize::HALF_MOVE_V);
 	ResizeMgr().SetWndResizing(IDC_FoV_CROP, DlgAutoResize::RESIZE);
-	ResizeMgr().SetWndResizing(IDC_FRAME_3, DlgAutoResize::MOVE_V_RESIZE_H);
-	ResizeMgr().SetWndResizing(IDC_LABEL_2, DlgAutoResize::MOVE_V);
-	ResizeMgr().SetWndResizing(IDC_OPEN_PHOTO_APP, DlgAutoResize::MOVE_V_RESIZE_H);
-	ResizeMgr().SetWndResizing(IDC_OPEN_APP, DlgAutoResize::MOVE);
-	ResizeMgr().SetWndResizing(IDC_LABEL_3, DlgAutoResize::MOVE_V);
-	ResizeMgr().SetWndResizing(IDC_OPEN_RAW_PHOTO_APP, DlgAutoResize::MOVE_V_RESIZE_H);
-	ResizeMgr().SetWndResizing(IDC_OPEN_APP2, DlgAutoResize::MOVE);
+	//ResizeMgr().SetWndResizing(IDC_FRAME_3, DlgAutoResize::MOVE_V_RESIZE_H);
+	//ResizeMgr().SetWndResizing(IDC_LABEL_2, DlgAutoResize::MOVE_V);
+	//ResizeMgr().SetWndResizing(IDC_OPEN_PHOTO_APP, DlgAutoResize::MOVE_V_RESIZE_H);
+	//ResizeMgr().SetWndResizing(IDC_OPEN_APP, DlgAutoResize::MOVE);
+	//ResizeMgr().SetWndResizing(IDC_LABEL_3, DlgAutoResize::MOVE_V);
+	//ResizeMgr().SetWndResizing(IDC_OPEN_RAW_PHOTO_APP, DlgAutoResize::MOVE_V_RESIZE_H);
+	//ResizeMgr().SetWndResizing(IDC_OPEN_APP2, DlgAutoResize::MOVE);
 
 	return true;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
@@ -171,7 +171,7 @@ void OptionsGeneral::OnDeltaPosGammaSpin(NMHDR* nmhdr, LRESULT* result)
 	*result = 0;
 }
 */
-
+/*
 
 void OptionsGeneral::OnOpenApp()
 {
@@ -193,11 +193,11 @@ void OptionsGeneral::OnOpenRawApp()
 	if (!file.IsEmpty())
 		SetDlgItemText(IDC_OPEN_RAW_PHOTO_APP, file);
 }
-
+*/
 /*
 void OptionsGeneral::OnAdvanced()
 {
-	AdvancedOptions dlg;
+	OptionsAdvanced dlg;
 //	dlg.dct_method_ = dct_method_ == JDEC_INTEGER_HIQ ? 0 : 1;
 	if (display_method_ == DIB_SMOOTH_DRAW)
 		dlg.display_method_ = 0;

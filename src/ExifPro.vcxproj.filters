@@ -924,7 +924,10 @@
     <ClCompile Include="WhistlerLook.cpp">
       <Filter>CommonUI</Filter>
     </ClCompile>
-    <ClCompile Include="AdvancedOptions.cpp">
+    <ClCompile Include="OptionsAdvanced.cpp">
+      <Filter>Options</Filter>
+    </ClCompile>
+	<ClCompile Include="OptionsCache.cpp">
       <Filter>Options</Filter>
     </ClCompile>
     <ClCompile Include="OptionsAppearance.cpp">
@@ -948,9 +951,9 @@
     <ClCompile Include="OptionsGeneral.cpp">
       <Filter>Options</Filter>
     </ClCompile>
-    <ClCompile Include="OptionsShortcuts.cpp">
+    <!--ClCompile Include="OptionsShortcuts.cpp">
       <Filter>Options</Filter>
-    </ClCompile>
+    </ClCompile-->
     <ClCompile Include="Attributes.cpp">
       <Filter>Photo</Filter>
     </ClCompile>
@@ -1313,9 +1316,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AddressBox.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AdvancedOptions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AnyPointer.h">
@@ -1963,6 +1963,12 @@
     <ClInclude Include="NewFolderDlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+	<ClInclude Include="OptionsAdvanced.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+	<ClInclude Include="OptionsCache.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="OptionsAppearance.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1984,9 +1990,9 @@
     <ClInclude Include="OptionsGeneral.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="OptionsShortcuts.h">
+    <!--ClInclude Include="OptionsShortcuts.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
+    </ClInclude-->
     <ClInclude Include="OutputStr.h">
       <Filter>Header Files</Filter>
     </ClInclude>

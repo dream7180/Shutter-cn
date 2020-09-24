@@ -255,7 +255,7 @@ bool App::InitializeInstance()
 	SetRegistryKey(_T("ExifPro"));	// Registry key under which settings are stored.
 	BOOL enable= AfxEnableMemoryTracking(FALSE);
 	free(const_cast<TCHAR*>(m_pszProfileName));
-	m_pszProfileName = _tcsdup(_T("3.x"));
+	m_pszProfileName = _tcsdup(_T("MOD3"));
 	AfxEnableMemoryTracking(enable);
 
 #ifdef USE_GDI_PLUS

@@ -6781,6 +6781,8 @@ void ExifView::OnFilterPaneSwitch()
 void ExifView::OnUpdateFilterPaneSwitch(CCmdUI* cmd_ui)
 {
 	cmd_ui->Enable();
+	int tab= GetCurFilterTab();
+	cmd_ui->SetCheck(tab);
 }
 
 

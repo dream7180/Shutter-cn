@@ -124,6 +124,7 @@ ____________________________________________________________________________*/
 #define IDD_SLIDE_SHOW_OPTIONS          237
 #define IDB_GRID_PATTERN                238
 #define IDD_OPTIONS_ADVANCED            238
+#define IDD_OPTIONS_CACHE	            281
 #define IDD_OPTIONS_FILE_TYPES          239
 #define IDD_HEADER_DLG_RESIZABLE        240
 #define IDB_EMPTY                       241
@@ -150,7 +151,7 @@ ____________________________________________________________________________*/
 #define IDB_CHEVRON_HOT                 277
 #define IDB_SHADOW                      279
 #define IDD_MANAGE_PANE_LAYOUTS         280
-#define IDB_SHORTCUTS                   281
+//#define IDB_SHORTCUTS                   281
 #define IDD_OPTIONS_SHORTCUTS           282
 #define IDB_BITMAP1                     283
 //#define IDB_CLOSE_BAR_HOT               283
@@ -319,7 +320,7 @@ ____________________________________________________________________________*/
 #define IDB_LIGHT_BULB                  408
 #define IDB_FUNNEL_SMALL                409
 #define IDB_ENTER_TOOLBAR               410
-#define IDD_UPDATE                      412
+//#define IDD_UPDATE                      412
 #define IDC_LIST                        1002
 #define IDC_TOOLBAR                     1003
 #define ID_DELETE                       1003
@@ -992,8 +993,8 @@ ____________________________________________________________________________*/
 #define IDS_VIEWER_ZOOM_FIT             33401
 #define IDS_VIEWER_PHOTO                33402
 #define IDS_JPEG_FILTER                 33403
-#define IDS_SAVING_OPTIONS              33404
-#define IDS_CLOSE_SAVING_OPTIONS        33405
+//#define IDS_SAVING_OPTIONS              33404
+//#define IDS_CLOSE_SAVING_OPTIONS        33405
 #define IDS_CHEVRON                     33406
 #define IDS_PROCESS_PHOTOS              33407
 #define IDS_IMG_TRANSFORM_LOADING       33408
