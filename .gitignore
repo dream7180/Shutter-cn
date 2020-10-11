@@ -25,6 +25,10 @@ Out/
 # Visual Studo 2015 cache/options directory
 .vs/
 
+# gitee github git files
+.gitee/
+.github/
+
 # MSTest test Results
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
