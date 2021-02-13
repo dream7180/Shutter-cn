@@ -179,38 +179,23 @@ void DrawNoExifIndicator(CDC& dc, const CRect& rect)
 	noExif.Draw(&dc, 0, pos, ILD_TRANSPARENT);
 }
 
-
 void DrawPaneIndicator(CDC& dc, const CRect& rect, COLORREF text_color, COLORREF back_color, size_t id)
 {
-	CFont font;
-	::CreateBoldFont(0, font);
-
 	dc.SetTextColor(text_color);
-	dc.SetBkColor(back_color);
-
-	CBrush br(back_color);
-	dc.SelectStockObject(NULL_PEN);
-
-	//CFont* old_font= dc.SelectObject(&font);
-	int size= dc.GetTextExtent(_T("X"), 1).cy + 1;
-
+	LOGFONT lf;
+	HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
+	::GetObject(hfont, sizeof(lf), &lf);
+	_tcscpy(lf.lfFaceName, _T("Tahoma"));
+	CFont _font;
+	_font.CreateFontIndirect(&lf);
+	int size= sizeof(&_font)*2 + 4;
 	CRect r(CPoint(rect.right - size, rect.bottom - size), CSize(size, size));
-
-	CPoint radius(4, 4);
-	dc.SetBkMode(OPAQUE);
-
-	r.OffsetRect(4, 4);
-	CBrush* old_brush= dc.SelectObject(&br);
-	dc.RoundRect(r, radius);
-
+	dc.FillSolidRect(r,back_color);
+	dc.SetBkMode(TRANSPARENT);
 	TCHAR buf[128];
 	_itot(static_cast<int>(id), buf, 10);
-	dc.SetBkMode(TRANSPARENT);
-	r.left--;
 	dc.DrawText(buf, static_cast<int>(_tcslen(buf)), r, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
-
-	dc.SelectObject(old_brush);
-	dc.SelectObject(&font);
+	dc.SelectObject(&_font);
 }
 
 

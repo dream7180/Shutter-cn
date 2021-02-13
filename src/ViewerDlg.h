@@ -176,8 +176,8 @@ private:
 	void OnVertPreviewBar();
 	void OnUpdateHorzPreviewBar(CCmdUI* cmd_ui);
 	void OnUpdateVertPreviewBar(CCmdUI* cmd_ui);
-	void OnToggleTagsInPreviewBar();
-	void OnUpdateToggleTagsInPreviewBar(CCmdUI* cmd_ui);
+	//void OnToggleTagsInPreviewBar();
+	//void OnUpdateToggleTagsInPreviewBar(CCmdUI* cmd_ui);
 	LRESULT OnAppCommand(WPARAM w, LPARAM l);
 	void OnOpenPhoto();
 	void OnToggleSmoothScroll();

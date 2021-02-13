@@ -1,0 +1,4 @@
+Libtiff:
+1）libtiff\tiffop.h里注释掉
+#define snprintf _TIFF_snprintf_f
+2）libtiff\tif_fax3sm.c沿用4.1.0旧版的即可

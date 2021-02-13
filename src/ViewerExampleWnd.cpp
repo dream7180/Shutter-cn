@@ -106,10 +106,10 @@ void ViewerExampleWnd::DrawItem(CDC& dc, CRect rect, size_t item, AnyPointer key
 
 	::DrawPhoto(dc, rect, photo);
 
-	if (!photo->exif_data_present_)		  // missing EXIF indicator
-		::DrawNoExifIndicator(dc, rect);
+	//if (!photo->exif_data_present_)		  // missing EXIF indicator
+	//	::DrawNoExifIndicator(dc, rect);
 
-	::DrawPhotoTags(dc, rect, photo->GetTags(), photo->GetRating(), rgb_tag_text_, rgb_tag_bkgnd_);
+	//::DrawPhotoTags(dc, rect, photo->GetTags(), photo->GetRating(), rgb_tag_text_, rgb_tag_bkgnd_);
 }
 
 

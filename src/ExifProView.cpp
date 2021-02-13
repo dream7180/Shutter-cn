@@ -187,6 +187,8 @@ BEGIN_MESSAGE_MAP(ExifView, PaneWnd)
 	ON_UPDATE_COMMAND_UI(ID_SHOW_OPTIONS, OnUpdateShowOptions)
 	ON_COMMAND(ID_VIEW_SHOW_TAGS, OnShowTags)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_SHOW_TAGS, OnUpdateShowTags)
+	ON_COMMAND(ID_VIEW_SHOW_NOEXIF, OnShowNoExif)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_SHOW_NOEXIF, OnUpdateShowNoExif)
 	ON_COMMAND(ID_VIEW_SHOW_TIMELINE, OnViewShowTimeLine)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_SHOW_TIMELINE, OnUpdateViewShowTimeLine)
 
@@ -475,6 +477,7 @@ ExifView::ExifView(Columns& columns)
 	profile_show_labels_.Register(REGISTRY_ENTRY_EXIF, _T("ShowLabels"), show_labels_);
 	profile_show_balloons_.Register(REGISTRY_ENTRY_EXIF, _T("ShowBalloons"), true);
 	profile_show_tags_.Register(REGISTRY_ENTRY_EXIF, _T("ShowTagText"), true);
+	profile_show_noexif_.Register(REGISTRY_ENTRY_EXIF, _T("ShowNoExif"), false);
 	profile_show_time_line_.Register(REGISTRY_ENTRY_EXIF, _T("ShowTimeLine"), true);
 	profile_images_across_.Register(REGISTRY_ENTRY_EXIF, _T("ImagesAcross"), images_across_index_);
 	fieldSelectionProfile1_.Register(REGISTRY_ENTRY_EXIF, _T("FieldSelThumbs"), customInfoFields_[0]);
@@ -3487,6 +3490,7 @@ void ExifView::SaveSettings()
 	profile_show_labels_ = show_labels_;
 	profile_show_balloons_ = GetListCtrl().IsBalloonInfoEnabled();
 	profile_show_tags_ = GetListCtrl().ShowingTagText();
+	profile_show_noexif_ = GetListCtrl().ShowingNoExif();
 	fieldSelectionProfile1_ = customInfoFields_[0];
 	fieldSelectionProfile2_ = customInfoFields_[1];
 
@@ -3744,6 +3748,7 @@ int ExifView::OnCreate(LPCREATESTRUCT create_struct)
 	GetListCtrl().ShowItemLabel(show_labels_ != NO_LABELS);
 	GetListCtrl().EnableBalloonInfo(profile_show_balloons_);
 	GetListCtrl().ShowTagText(profile_show_tags_);
+	GetListCtrl().ShowNoExif(profile_show_noexif_);
 	GetListCtrl().SetImageSize(Pixels(thumb_size_levels[img_size_index_]));
 	GetListCtrl().SetItemsAcross(images_across_levels[images_across_index_]);
 
@@ -5915,6 +5920,18 @@ void ExifView::OnUpdateShowTags(CCmdUI* cmd_ui)
 	bool enabled= true; //view_mode_ != VIEW_MODE_DETAILS;
 	cmd_ui->Enable(enabled);
 	cmd_ui->SetCheck(enabled && GetListCtrl().ShowingTagText() ? 1 : 0);
+}
+
+void ExifView::OnShowNoExif()
+{
+	GetListCtrl().ShowNoExif(!GetListCtrl().ShowingNoExif());
+}
+
+void ExifView::OnUpdateShowNoExif(CCmdUI* cmd_ui)
+{
+	bool enabled= true; //view_mode_ != VIEW_MODE_DETAILS;
+	cmd_ui->Enable(enabled);
+	cmd_ui->SetCheck(enabled && GetListCtrl().ShowingNoExif() ? 1 : 0);
 }
 
 

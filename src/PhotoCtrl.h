@@ -90,6 +90,9 @@ public:
 
 	bool ShowingTagText() const			{ return show_tags_; }
 	void ShowTagText(bool show);
+	
+	bool ShowingNoExif() const			{ return show_noexif_; }
+	void ShowNoExif(bool show);
 
 	void SetItemsAcross(int items);
 
@@ -625,6 +628,8 @@ private:
 	bool show_label_;
 	// if true tag text (keywords) will be draw over the photo
 	bool show_tags_;
+	// if noexif will draw over the photo
+	bool show_noexif_;
 
 	// header ctrl for detailed view mode -----------------
 	CHeaderCtrl header_wnd_;

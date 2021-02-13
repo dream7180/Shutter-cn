@@ -298,6 +298,8 @@ protected:
 	afx_msg void OnUpdateShowOptions(CCmdUI* cmd_ui);
 	afx_msg void OnShowTags();
 	afx_msg void OnUpdateShowTags(CCmdUI* cmd_ui);
+	afx_msg void OnShowNoExif();
+	afx_msg void OnUpdateShowNoExif(CCmdUI* cmd_ui);
 	afx_msg void OnViewShowDateTimeLabels();
 	afx_msg void OnUpdateViewShowDateTimeLabels(CCmdUI* cmd_ui);
 	afx_msg void OnViewShowNoTextLabels();
@@ -552,6 +554,7 @@ private:
 	Profile<bool> profile_group_by_stars_;
 	Profile<bool> profile_show_balloons_;
 	Profile<bool> profile_show_tags_;
+	Profile<bool> profile_show_noexif_;
 	Profile<bool> profile_show_time_line_;
 	Profile<int> profile_show_labels_;
 	// type of text labels for photos

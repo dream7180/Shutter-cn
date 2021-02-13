@@ -63,6 +63,7 @@ PhotoCtrl::PhotoCtrl()
 
 	show_label_ = true;
 	show_tags_ = true;
+	show_noexif_ = false;
 
 	ResetColors();
 
@@ -3877,7 +3878,7 @@ void PhotoCtrl::Item::DrawItem(CDC& dc, CRect rect, PhotoCtrl& ctrl, bool is_cur
 		img_rect.top = photo_rect.top;
 		img_rect.bottom = photo_rect.bottom + 1;
 
-		if (no_exif_marker && !photo_->IsExifDataPresent())
+		if (ctrl.show_noexif_ && no_exif_marker && !photo_->IsExifDataPresent())
 			DrawNoExifIndicator(dc, img_rect);
 		if (show_marker)
 			DrawTypeIndicator(dc, img_rect, photo_->GetFileTypeIndex());
@@ -5441,6 +5442,16 @@ void PhotoCtrl::ShowTagText(bool show)
 		Invalidate();
 }
 
+void PhotoCtrl::ShowNoExif(bool show)
+{
+	if (show_noexif_ == show)
+		return;
+
+	show_noexif_ = show;
+
+	if (mode_ != DETAILS)		// in details mode there are no noexif info displayed
+		Invalidate();
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 //

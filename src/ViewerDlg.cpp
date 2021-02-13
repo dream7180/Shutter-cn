@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -627,7 +627,7 @@ struct ViewerDlg::Impl : InfoBandNotification, ResizeWnd, ViewPaneNotifications
 	int previewPaneHeight_;
 	COLORREF tag_text_color_;
 	COLORREF tag_backgnd_color_;
-	bool show_tags_in_previewbar_;
+	//bool show_tags_in_previewbar_;
 	UINT_PTR timer_id_;					// delay timer
 	String photo_name_;					// photo file name
 	enum { BAND_TOOLBAR= 10, BAND_INFO }; //, BAND_CLOSE };
@@ -688,7 +688,7 @@ struct ViewerDlg::Impl : InfoBandNotification, ResizeWnd, ViewPaneNotifications
 	Profile<bool> profileShowPhotoDescription_;
 	Profile<bool> profileUseScrollBars_;
 	Profile<bool> profileHorzPreviewBar_;
-	Profile<bool> profileTagsInPreviewBar_;
+	//Profile<bool> profileTagsInPreviewBar_;
 	Profile<bool> profileSmoothScroll_;
 	Profile<bool> profileMultiViewEnabled_;
 	Profile<int> profileMultiViewCount_;
@@ -817,7 +817,7 @@ ViewerDlg::Impl::Impl(PhotoInfoStorage& storage, PhotoCache* cache, VectPhotoInf
 	profileShowPhotoDescription_.Register(REGISTRY_ENTRY_VIEWER, _T("ShowPhotoDescription"), true);
 	profileUseScrollBars_.Register(REGISTRY_ENTRY_VIEWER, _T("UseScrollBars"), true);
 	profileHorzPreviewBar_.Register(REGISTRY_ENTRY_VIEWER, _T("HorzPreviewBar"), false);
-	profileTagsInPreviewBar_.Register(REGISTRY_ENTRY_VIEWER, _T("TagsInPreviewBar"), true);
+	//profileTagsInPreviewBar_.Register(REGISTRY_ENTRY_VIEWER, _T("TagsInPreviewBar"), true);
 	profileSmoothScroll_.Register(REGISTRY_ENTRY_VIEWER, _T("SmoothScroll"), false);
 	profileMultiViewEnabled_.Register(REGISTRY_ENTRY_VIEWER, _T("MultiView"), false);
 	//profileHorzView_.Register(REGISTRY_ENTRY_VIEWER, _T("MultiViewHorz"), horz_views_);
@@ -831,7 +831,7 @@ ViewerDlg::Impl::Impl(PhotoInfoStorage& storage, PhotoCache* cache, VectPhotoInf
 	toolbar_visible_ = profileRebarVisible_;
 	previewPaneHeight_ = profilePreviewPaneHeight_;
 	balloons_enabled_ = profileShowBalloonInfo_;
-	show_tags_in_previewbar_ = profileTagsInPreviewBar_;
+	//show_tags_in_previewbar_ = profileTagsInPreviewBar_;
 	smooth_scroll_ = profileSmoothScroll_;
 	keep_current_img_centered_ = profile_keep_current_centered_;
 	view_layout_ = static_cast<ViewPanes::Layout>(profileViewLayout_.Value());
@@ -1017,8 +1017,8 @@ BEGIN_MESSAGE_MAP(ViewerDlg, CFrameWnd)
 	ON_UPDATE_COMMAND_UI(ID_LARGE_ICONS, OnUpdateLargeIcons)
 	ON_COMMAND(ID_HIDE_LIGHT_TABLE, OnHideLightTable)
 	ON_COMMAND(ID_HIDE_TAG_PANE, OnHideTagPane)
-	ON_COMMAND(ID_VIEWER_BAR_OVERLAY_TAGS, OnToggleTagsInPreviewBar)
-	ON_UPDATE_COMMAND_UI(ID_VIEWER_BAR_OVERLAY_TAGS, OnUpdateToggleTagsInPreviewBar)
+	//ON_COMMAND(ID_VIEWER_BAR_OVERLAY_TAGS, OnToggleTagsInPreviewBar)
+	//ON_UPDATE_COMMAND_UI(ID_VIEWER_BAR_OVERLAY_TAGS, OnUpdateToggleTagsInPreviewBar)
 	ON_COMMAND(ID_VIEWER_BAR_SMOOTH_SCROLL, OnToggleSmoothScroll)
 	ON_UPDATE_COMMAND_UI(ID_VIEWER_BAR_SMOOTH_SCROLL, OnUpdateToggleSmoothScroll)
 	ON_COMMAND(ID_VIEWER_BAR_CENTER, OnToggleCenterImage)
@@ -1410,30 +1410,30 @@ void ViewerDlg::Impl::DrawItem(CDC& dc, CRect rect, size_t item, AnyPointer key)
 
 	::DrawPhoto(dc, rect, photo);
 
-	if (!photo->exif_data_present_		  // missing EXIF indicator
-		&& g_Settings.NoExifIndicator(photo->GetFileTypeIndex()))
-		::DrawNoExifIndicator(dc, rect);
+	//if (!photo->exif_data_present_		  // missing EXIF indicator
+	//	&& g_Settings.NoExifIndicator(photo->GetFileTypeIndex()))
+	//	::DrawNoExifIndicator(dc, rect);
 
-	if (show_tags_in_previewbar_)
-		::DrawPhotoTags(dc, rect, photo->GetTags(), photo->GetRating(), tag_text_color_, tag_backgnd_color_);
+	//if (show_tags_in_previewbar_)
+	//	::DrawPhotoTags(dc, rect, photo->GetTags(), photo->GetRating(), tag_text_color_, tag_backgnd_color_);
 
 	// if this item's photo is currently in one of the multiple view panes, indicate that
 	if (displays_.GetVisibleCount() > 1)
 	{
-		static const COLORREF back_color[]=
+		/*static const COLORREF back_color[]=
 		{
 			RGB(66,155,44),		// green
 			RGB(46,135,187),	// blue
 			RGB(154,158,23),	// yellowish
 			RGB(163,79,197)		// purple
-		};
+		};*/
 
 		for (size_t i= 0; i < displays_.GetVisibleCount(); ++i)
 			if (ViewPane* view= displays_.GetPane(i))
 			{
 				if (view->GetCurrentPhoto() == photo)
 				{
-					::DrawPaneIndicator(dc, rect, RGB(255,255,255), back_color[i], i + 1);
+					::DrawPaneIndicator(dc, rect, RGB(255,255,255), tag_backgnd_color_, i + 1);
 					break;
 				}
 			}
@@ -1544,7 +1544,7 @@ bool ViewerDlg::Create(const TCHAR* folder)
 	if (pImpl_->wndClass_.IsEmpty())
 		pImpl_->wndClass_ = AfxRegisterWndClass(CS_VREDRAW | CS_HREDRAW, ::LoadCursor(NULL, IDC_ARROW));
 
-	if (!CFrameWnd::Create(pImpl_->wndClass_, _T("Image Viewer")))
+	if (!CFrameWnd::Create(pImpl_->wndClass_, _T("图像查看器")))
 		return false;
 
 	ShowWindow(/*full_screen_ ? SW_SHOWMAXIMIZED :*/ SW_SHOW);
@@ -2371,7 +2371,7 @@ void ViewerDlg::Impl::Destroy(CWnd* wnd)
 	profileShowPhotoDescription_ = FirstPane().IsPhotoDescDisplayed();
 	profileUseScrollBars_ = FirstPane().IsUsingScrollBars();
 	profileHorzPreviewBar_ = preview_.IsHorizontalOrientation();
-	profileTagsInPreviewBar_ = show_tags_in_previewbar_;
+	//profileTagsInPreviewBar_ = show_tags_in_previewbar_;
 	//profileMultiViewCount_ = displays_.GetVisibleCount();
 	profileMultiViewEnabled_ = displays_.GetVisibleCount() > 1;
 	profileShowFieldNames_ = status_wnd_.show_field_names_;
@@ -3555,7 +3555,7 @@ void ViewerDlg::OnUpdateLargeIcons(CCmdUI* cmd_ui)
 	cmd_ui->SetRadio(!pImpl_->toolbar_.IsSmallSet());
 }
 
-
+/*
 void ViewerDlg::OnToggleTagsInPreviewBar()
 {
 	pImpl_->show_tags_in_previewbar_ = !pImpl_->show_tags_in_previewbar_;
@@ -3567,7 +3567,7 @@ void ViewerDlg::OnUpdateToggleTagsInPreviewBar(CCmdUI* cmd_ui)
 	cmd_ui->Enable();
 	cmd_ui->SetCheck(pImpl_->show_tags_in_previewbar_);
 }
-
+*/
 
 int ViewerDlg::CurrentPhoto() const
 {

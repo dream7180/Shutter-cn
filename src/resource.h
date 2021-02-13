@@ -1341,7 +1341,8 @@ ____________________________________________________________________________*/
 #define ID_NOTHING                      34153
 #define ID_VIEWER_BAR_SMOOTH_SCROLL     34155
 #define ID_PREVIEWBAR_ID                34157
-#define ID_VIEWER_BAR_OVERLAY_TAGS      34159
+//#define ID_VIEWER_BAR_OVERLAY_TAGS      34159
+#define ID_VIEW_SHOW_NOEXIF				34159
 #define ID_RECENT_FOLDERS               34161
 #define ID_COMPARE_MULTIPLE             34168
 #define ID_HORZ_VIEWS                   34170
