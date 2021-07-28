@@ -10,6 +10,7 @@ ____________________________________________________________________________*/
 #include "ViewCaption.h"
 #include "../DrawFields.h"
 #include "../MemoryDC.h"
+#include "../GetDefaultGuiFont.h"
 
 extern bool LoadPingFromRsrc(LPCTSTR resource_id, Dib& bmp);
 
@@ -29,7 +30,7 @@ END_MESSAGE_MAP()
 
 
 Dib ViewCaption::active_marker_;
-Dib ViewCaption::caption_;
+//Dib ViewCaption::caption_;
 
 
 ViewCaption::ViewCaption()
@@ -48,12 +49,13 @@ bool ViewCaption::Create(CWnd* parent, int toolbarBmp, const int commands[], int
 	CDC dc;
 	dc.CreateCompatibleDC(0);
 	LOGFONT lf;
-	HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
+	/*HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
 	::GetObject(hfont, sizeof(lf), &lf);
 	//lf.lfQuality = ANTIALIASED_QUALITY;
-	lf.lfHeight += 1;
+	//lf.lfHeight += 1;
 	lf.lfWeight =  FW_BOLD;
-	_tcscpy(lf.lfFaceName, _T("Tahoma"));
+	_tcscpy(lf.lfFaceName, _T("Tahoma"));*/
+	::GetDefaultGuiBoldFont(lf);
 	_font.CreateFontIndirect(&lf);
 	dc.SelectObject(&_font);
 	//dc.SelectStockObject(DEFAULT_GUI_FONT);
@@ -65,8 +67,8 @@ bool ViewCaption::Create(CWnd* parent, int toolbarBmp, const int commands[], int
 		0, WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN, CRect(0,0,0,h), parent, -1))
 		return false;
 
-	if (!caption_.IsValid())
-		VERIFY(LoadPingFromRsrc(MAKEINTRESOURCE(IDB_VIEW_CAPTION), caption_));
+	//if (!caption_.IsValid())
+	//	VERIFY(LoadPingFromRsrc(MAKEINTRESOURCE(IDB_VIEW_CAPTION), caption_));
 	if (!active_marker_.IsValid())
 		VERIFY(LoadPingFromRsrc(MAKEINTRESOURCE(IDB_ACTIVE_VIEW), active_marker_));
 
@@ -88,15 +90,15 @@ bool ViewCaption::Create(CWnd* parent, int toolbarBmp, const int commands[], int
 
 BOOL ViewCaption::OnEraseBkgnd(CDC* dc)
 {
-	if (caption_.IsValid())
-	{
+	//if (caption_.IsValid())
+	//{
 		CRect rect(0,0,0,0);
 		GetClientRect(rect);
 
-		MemoryDC dc(*dc, rect);
+		MemoryDC mdc(*dc, rect);
 
-		caption_.Draw(&dc, rect);
-		dc.FillSolidRect(rect, RGB(35,35,35));
+		//caption_.Draw(&dc, rect);
+		mdc.FillSolidRect(rect, RGB(35,35,35));
 		CPoint pos(4, 0);
 		pos.y = (rect.Height() - active_marker_.GetHeight()) / 2;
 		rect.left = pos.x + active_marker_.GetWidth();
@@ -104,12 +106,12 @@ BOOL ViewCaption::OnEraseBkgnd(CDC* dc)
 		{
 			//CPoint pos(3, 0);
 			//pos.y = (rect.Height() - active_marker_.GetHeight()) / 2;
-			active_marker_.Draw(&dc, pos);
+			active_marker_.Draw(&mdc, pos);
 			//rect.left = pos.x + active_marker_.GetWidth();
 		}
 		//dc.SetBkMode(TRANSPARENT);
-		dc.SetTextColor(::GetSysColor(COLOR_BTNTEXT));
-		dc.SelectObject(&_font);
+		mdc.SetTextColor(::GetSysColor(COLOR_BTNTEXT));
+		mdc.SelectObject(&_font);
 		//dc.SelectStockObject(DEFAULT_GUI_FONT);
 
 		CString text;
@@ -121,10 +123,10 @@ BOOL ViewCaption::OnEraseBkgnd(CDC* dc)
 		CRect text_rect= rect;
 		text_rect.right -= toolbar_.Size().cx;
 		if (text_rect.Width() > 0)
-			DrawFields::Draw(dc, text, text_rect, text_color_, label_color_, text_color_);
+			DrawFields::Draw(mdc, text, text_rect, text_color_, label_color_, text_color_);
 
-		dc.BitBlt();
-	}
+		mdc.BitBlt();
+	//}
 	return true;
 }
 

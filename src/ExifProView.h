@@ -298,8 +298,8 @@ protected:
 	afx_msg void OnUpdateShowOptions(CCmdUI* cmd_ui);
 	afx_msg void OnShowTags();
 	afx_msg void OnUpdateShowTags(CCmdUI* cmd_ui);
-	afx_msg void OnShowNoExif();
-	afx_msg void OnUpdateShowNoExif(CCmdUI* cmd_ui);
+	afx_msg void OnShowMarker();
+	afx_msg void OnUpdateShowMarker(CCmdUI* cmd_ui);
 	afx_msg void OnViewShowDateTimeLabels();
 	afx_msg void OnUpdateViewShowDateTimeLabels(CCmdUI* cmd_ui);
 	afx_msg void OnViewShowNoTextLabels();
@@ -554,7 +554,7 @@ private:
 	Profile<bool> profile_group_by_stars_;
 	Profile<bool> profile_show_balloons_;
 	Profile<bool> profile_show_tags_;
-	Profile<bool> profile_show_noexif_;
+	Profile<bool> profile_show_marker_;
 	Profile<bool> profile_show_time_line_;
 	Profile<int> profile_show_labels_;
 	// type of text labels for photos
@@ -739,10 +739,10 @@ private:
 
 	// filter related notifications
 	virtual void FilterParamsChanged();	// notification: filter params have been modified
-	virtual void StoreFilter();			// store current filter
-	virtual void DeleteFilter();		// delete current filter
-	virtual void UpdateFilter();		// update current filter
-	virtual void NameChanged();			// filter name changed
+	//virtual void StoreFilter();			// store current filter
+	//virtual void DeleteFilter();		// delete current filter
+	//virtual void UpdateFilter();		// update current filter
+	//virtual void NameChanged();			// filter name changed
 
 	// controls sending current image and selection change notifications
 	int notifications_enabled_counter_;

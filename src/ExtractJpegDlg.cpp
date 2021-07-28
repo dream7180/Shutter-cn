@@ -90,7 +90,7 @@ BOOL ExtractJpegDlg::OnInitDialog()
 
 		suffix_edit_.LimitText(100);
 
-		SubclassHelpBtn(_T("ToolExtractJPEG.htm"));
+		//SubclassHelpBtn(_T("ToolExtractJPEG.htm"));
 
 		// read recent paths
 		::RecentPaths(recent_paths_, false, registry_key_ + REG_RECENT_DEST_PATH, MAX_RECENT_PATHS);

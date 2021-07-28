@@ -57,6 +57,7 @@ ____________________________________________________________________________*/
 #include "GetDefaultLineHeight.h"
 #include "DateTimeUtils.h"
 #include "ViewerTagPane.h"
+#include "GetDefaultGuiFont.h"
 
 extern AutoPtr<PhotoCache> global_photo_cache;		// one central photo cache
 extern void OpenPhotograph(const TCHAR* photo_path, CWnd* wnd, bool raw);
@@ -588,6 +589,7 @@ struct ViewerDlg::Impl : InfoBandNotification, ResizeWnd, ViewPaneNotifications
 	void ShowCloseBar(bool show);
 	void WndMode(CWnd* wnd);			// window mode
 	void FullScreen(CWnd* wnd);			// enter full screen mode
+	void MaxWindow(CWnd* wnd);
 	void PhotoSelected(PhotoInfo& photo);	// new photo edited in description dlg
 	void ItemClicked(size_t item, AnyPointer key, PreviewBandWnd::ClickAction action);
 	void SendRotateNotification();
@@ -633,6 +635,7 @@ struct ViewerDlg::Impl : InfoBandNotification, ResizeWnd, ViewPaneNotifications
 	enum { BAND_TOOLBAR= 10, BAND_INFO }; //, BAND_CLOSE };
 	bool balloons_enabled_;				// display balloon photo info
 	bool toolbar_visible_;
+	bool show_taskbar_;
 	bool infobar_visible_;
 	bool preview_bar_visible_;
 	UINT_PTR slide_show_timer_;			// timer for delay between slide show photos
@@ -647,6 +650,7 @@ struct ViewerDlg::Impl : InfoBandNotification, ResizeWnd, ViewPaneNotifications
 	enum { TIMER_SET_INFO= 10, TIMER_SLIDE_SHOW };
 
 	bool full_screen_;
+	bool maximized_;
 	DWORD wnd_style_;
 	CRect wnd_rectangle_;				// store window pos while in full screen mode
 	VectPhotoInfo& photos_;				// photo info
@@ -678,6 +682,8 @@ struct ViewerDlg::Impl : InfoBandNotification, ResizeWnd, ViewPaneNotifications
 	Profile<bool> profileSlideShowHideTb_;
 	//Profile<bool> profileGammaCorrection_;
 	Profile<bool> profileFullScreen_;
+	Profile<bool> profileMaximized_;
+	Profile<bool> profileShowTaskbar_;
 	Profile<int>  profileLightTableWidth_;
 	Profile<bool> profileLightTableVisible_;
 	Profile<int>  profile_tag_pane_width_;
@@ -780,6 +786,7 @@ ViewerDlg::Impl::Impl(PhotoInfoStorage& storage, PhotoCache* cache, VectPhotoInf
 	wnd_ = 0;
 	ui_gamma_correction_ = 1.0;
 	full_screen_ = false;
+	maximized_ = false;
 	wnd_style_ = 0;
 	wnd_rectangle_.SetRectEmpty();
 	cur_image_index_ = 0;
@@ -808,6 +815,8 @@ ViewerDlg::Impl::Impl(PhotoInfoStorage& storage, PhotoCache* cache, VectPhotoInf
 	profileSlideShowHideTb_.Register(REGISTRY_ENTRY_VIEWER, _T("SlideShowHideTb"), true);
 //	profileGammaCorrection_.Register(REGISTRY_ENTRY_VIEWER, _T("GammaCorrection"), true);
 	profileFullScreen_.Register(REGISTRY_ENTRY_VIEWER, _T("FullScreen"), false);
+	profileShowTaskbar_.Register(REGISTRY_ENTRY_VIEWER, _T("ShowTaskbar"), true);
+	profileMaximized_.Register(REGISTRY_ENTRY_VIEWER, _T("Maximized"), false);
 	profileLightTableWidth_.Register(REGISTRY_ENTRY_VIEWER, _T("LightTableWidth"), 232); // initial width to fit whole toolbar
 	profileLightTableVisible_.Register(REGISTRY_ENTRY_VIEWER, _T("LightTableVisible"), false);
 	profile_tag_pane_width_.Register(REGISTRY_ENTRY_VIEWER, _T("TagsPaneWidth"), 140);
@@ -831,6 +840,7 @@ ViewerDlg::Impl::Impl(PhotoInfoStorage& storage, PhotoCache* cache, VectPhotoInf
 	toolbar_visible_ = profileRebarVisible_;
 	previewPaneHeight_ = profilePreviewPaneHeight_;
 	balloons_enabled_ = profileShowBalloonInfo_;
+	show_taskbar_ = profileShowTaskbar_;
 	//show_tags_in_previewbar_ = profileTagsInPreviewBar_;
 	smooth_scroll_ = profileSmoothScroll_;
 	keep_current_img_centered_ = profile_keep_current_centered_;
@@ -859,6 +869,7 @@ ViewerDlg::Impl::~Impl()
 	{
 		profilePreviewPaneHeight_ = previewPaneHeight_;
 		profileShowBalloonInfo_ = balloons_enabled_;
+		profileShowTaskbar_ = show_taskbar_;
 		profilePreviewBarVisible_ = preview_bar_visible_;
 		profileRebarVisible_ = toolbar_visible_;
 		profile_preview_bar_labels_ = preview_bar_labels_;
@@ -907,6 +918,8 @@ BEGIN_MESSAGE_MAP(ViewerDlg, CFrameWnd)
 	ON_COMMAND(ID_VIEWER_FULLSCR, OnFullScreen)
 	ON_WM_ERASEBKGND()
 	ON_UPDATE_COMMAND_UI(ID_VIEWER_FULLSCR, OnUpdateFullScreen)
+	ON_COMMAND(ID_VIEWER_TASKBAR, OnShowTaskbar)
+	ON_UPDATE_COMMAND_UI(ID_VIEWER_TASKBAR, OnUpdateShowTaskbar)
 	ON_UPDATE_COMMAND_UI(ID_VIEWER_BAR, OnUpdateViewerBar)
 	ON_COMMAND(ID_PHOTO_FIRST, OnPhotoFirst)
 	ON_COMMAND(ID_PHOTO_LAST, OnPhotoLast)
@@ -926,6 +939,7 @@ BEGIN_MESSAGE_MAP(ViewerDlg, CFrameWnd)
 	ON_WM_DESTROY()
 	ON_WM_NCDESTROY()
 	ON_WM_SYSCOMMAND()
+	ON_COMMAND(SC_MINIMIZE, OnCmdMinimize)
 	ON_COMMAND(SC_CLOSE, OnCmdClose)
 	ON_COMMAND(SC_RESTORE, OnRestore)
 	//ON_COMMAND(ID_GAMMA, OnGamma)
@@ -1232,7 +1246,7 @@ int ViewerDlg::OnCreate(LPCREATESTRUCT create_struct)
 	SetWindowText(title); */
 //	ShowWindow(SW_SHOW);
 
-		SetIcon(AfxGetApp()->LoadIcon(IDI_VIEWER), false);
+		//SetIcon(AfxGetApp()->LoadIcon(IDI_VIEWER), false);
 		SetIcon(AfxGetApp()->LoadIcon(IDI_VIEWER), true);
 		LOG_FILENAME(log); log << "icons set\n";
 
@@ -1354,6 +1368,8 @@ void ViewerDlg::Impl::Create(CWnd* wnd, Logger& log)
 
 	if (profileFullScreen_)
 		FullScreen(wnd);
+	else if(profileMaximized_)
+		MaxWindow(wnd);
 	else
 		Resize(wnd);
 }
@@ -1458,15 +1474,15 @@ void ViewerDlg::Impl::DrawItem(CDC& dc, CRect rect, size_t item, AnyPointer key)
 			label = ::GetFormattedDateTime(photo->GetDateTime(), dc, rect.Width());
 			break;
 		}
-		LOGFONT lf;
+		/*LOGFONT lf;
 		HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
 		::GetObject(hfont, sizeof(lf), &lf);
 		//lf.lfQuality = ANTIALIASED_QUALITY;
-		lf.lfHeight += 1;
+		//lf.lfHeight += 1;
 		_tcscpy(lf.lfFaceName, _T("Tahoma"));
 		CFont _font;
-		_font.CreateFontIndirect(&lf);
-		dc.SelectObject(&_font);
+		_font.CreateFontIndirect(&lf);*/
+		dc.SelectObject(&GetDefaultGuiFont());//&_font);
 		//dc.SelectStockObject(DEFAULT_GUI_FONT);
 		int fh= GetLineHeight(dc);
 		int space= 3;
@@ -1544,7 +1560,7 @@ bool ViewerDlg::Create(const TCHAR* folder)
 	if (pImpl_->wndClass_.IsEmpty())
 		pImpl_->wndClass_ = AfxRegisterWndClass(CS_VREDRAW | CS_HREDRAW, ::LoadCursor(NULL, IDC_ARROW));
 
-	if (!CFrameWnd::Create(pImpl_->wndClass_, _T("图像查看器")))
+	if (!CFrameWnd::Create(pImpl_->wndClass_, _T("Shutter图像查看器")))
 		return false;
 
 	ShowWindow(/*full_screen_ ? SW_SHOWMAXIMIZED :*/ SW_SHOW);
@@ -1552,6 +1568,11 @@ bool ViewerDlg::Create(const TCHAR* folder)
 	LOG_FILENAME(log); log << "ViewerDlg::Create finished\n";
 
 	return true;
+}
+
+void ViewerDlg::OnCmdMinimize()
+{
+	ShowWindow(SW_MINIMIZE);
 }
 
 
@@ -1600,6 +1621,7 @@ void ViewerDlg::Impl::WndMode(CWnd* wnd)
 	const CRect& r= wnd_rectangle_;
 	wnd->SetWindowPos(0, r.left, r.top, r.Width(), r.Height(), SWP_NOZORDER);
 	full_screen_ = false;
+	maximized_ = false;
 
 	InformTaskBar(wnd, full_screen_);
 }
@@ -1613,8 +1635,10 @@ void ViewerDlg::Impl::FullScreen(CWnd* wnd)
 	// full screen rect (of the monitor this window is displayed in)
 	CRect screen_rect= ::GetFullScreenRect(window_rect);
 
-	wnd_style_ = wnd->GetStyle();
-	wnd->GetWindowRect(wnd_rectangle_);
+	if(!maximized_) {
+		wnd_style_ = wnd->GetStyle();
+		wnd->GetWindowRect(wnd_rectangle_);
+	}
 
 	// remove caption & frame //and maximize?
 	wnd->ModifyStyle(CAPTION_STYLES, 0); //WS_MAXIMIZE);
@@ -1627,11 +1651,12 @@ void ViewerDlg::Impl::FullScreen(CWnd* wnd)
 
 	wnd->SetWindowPos(0, rect.left, rect.top, rect.Width(), rect.Height(), SWP_NOZORDER | SWP_FRAMECHANGED);
 	full_screen_ = true;
-	if (toolbar_visible_)
-	{
+	maximized_ = true;
+	///if (toolbar_visible_)
+	//{
 //		tool_rebar_wnd_.ShowBand(BAND_CLOSE);
 //		tool_rebar_wnd_.Resize();
-	}
+	//}
 
 	InformTaskBar(wnd, full_screen_);
 
@@ -1641,6 +1666,37 @@ void ViewerDlg::Impl::FullScreen(CWnd* wnd)
 //wchar_t buf[400]; wsprintf(buf, L"%d, %d, %d, %d\n%d, %d, %d, %d\n%d, %d, %d, %d\n%d, %d, %d, %d", window_rect.left, window_rect.top, window_rect.right, window_rect.bottom, screen_rect.left, screen_rect.top, screen_rect.right, screen_rect.bottom, rect.left, rect.top, rect.right, rect.bottom, r.left, r.top, r.right, r.bottom); ::MessageBox(wnd->m_hWnd, buf, L"info", MB_OK);
 }
 
+void ViewerDlg::Impl::MaxWindow(CWnd* wnd)
+{
+	CRect window_rect(0,0,0,0);
+	wnd->GetWindowRect(window_rect);
+	::SystemParametersInfo(SPI_GETWORKAREA, 0, window_rect, 0);
+	
+	if(!full_screen_) {
+		wnd_style_ = wnd->GetStyle();
+		wnd->GetWindowRect(wnd_rectangle_);
+	}
+
+	// remove caption & frame //and maximize?
+	wnd->ModifyStyle(CAPTION_STYLES, 0); //WS_MAXIMIZE);
+
+	CRect rect= window_rect;
+	::AdjustWindowRectEx(rect, wnd->GetStyle(), false, wnd->GetExStyle());
+
+	if (toolbar_visible_)
+		ShowCloseBar(true);
+
+	wnd->SetWindowPos(0, rect.left, rect.top, rect.Width(), rect.Height(), SWP_NOZORDER | SWP_FRAMECHANGED);
+	//wnd->ShowWindow(SW_MAXIMIZE);
+	maximized_ = true;
+	full_screen_ = false;
+	//if (toolbar_visible_)
+	//{
+	//	ShowViewerToolbar(toolbar_visible_, infobar_visible_);
+	//}
+
+	InformTaskBar(wnd, full_screen_);
+}
 
 void ViewerDlg::OnUpdateFullScreen(CCmdUI* cmd_ui)
 {
@@ -2327,13 +2383,14 @@ void ViewerDlg::Impl::Destroy(CWnd* wnd)
 	CWinApp* app= AfxGetApp();
 
 	// in full screen mode store wnd_rectangle_ rather than current size
-	if (full_screen_)
+	if (full_screen_ || maximized_)
 		windowPosition_.StoreState(*wnd, wnd_rectangle_);
 	else
 		windowPosition_.StoreState(*wnd);	// store current wnd position
 
 	// store view mode
 	profileFullScreen_ = full_screen_;
+	profileMaximized_ = maximized_;
 
 	if (light_table_.m_hWnd)
 	{
@@ -2388,9 +2445,11 @@ void ViewerDlg::OnSysCommand(UINT id, LPARAM lParam)
 	switch (id & 0xfff0)
 	{
 	case SC_MAXIMIZE:
-		pImpl_->FullScreen(this);
+		if(pImpl_->show_taskbar_)
+			pImpl_->MaxWindow(this);
+		else
+			pImpl_->FullScreen(this);
 		break;
-
 	default:
 		CFrameWnd::OnSysCommand(id, lParam);
 	}
@@ -2399,7 +2458,7 @@ void ViewerDlg::OnSysCommand(UINT id, LPARAM lParam)
 
 void ViewerDlg::OnRestore()
 {
-	if (pImpl_->full_screen_)
+	if (pImpl_->full_screen_ || pImpl_->maximized_)
 		pImpl_->WndMode(this);
 }
 
@@ -2555,6 +2614,17 @@ void ViewerDlg::OnUpdateViewerBalloons(CCmdUI* cmd_ui)
 	cmd_ui->SetCheck(pImpl_->balloons_enabled_ ? 1 : 0);
 }
 
+void ViewerDlg::OnShowTaskbar()
+{
+	pImpl_->show_taskbar_ = !pImpl_->show_taskbar_;
+}
+
+void ViewerDlg::OnUpdateShowTaskbar(CCmdUI* cmd_ui)
+{
+	cmd_ui->Enable();
+	cmd_ui->SetCheck(pImpl_->show_taskbar_ ? 0 : 1);
+}
+
 
 void ViewerDlg::OnViewerToolbar()
 {
@@ -2581,7 +2651,7 @@ void ViewerDlg::Impl::ShowViewerToolbar(bool showTb, bool showInfo)
 //TODO:	rebar_.ShowBand(1, infobar_visible_);
 	rebar_.ShowBand(1, toolbar_visible_);
 
-	ShowCloseBar(full_screen_ && toolbar_visible_);
+	ShowCloseBar((full_screen_ || maximized_) && toolbar_visible_);
 	Resize(wnd_);
 }
 
@@ -3001,7 +3071,7 @@ void ViewerDlg::Impl::ResetColors()
 	displays_.InvalidatePanes();
 
 	tag_text_color_ = RGB(255,255,255);
-	tag_backgnd_color_ = RGB(247, 123, 0);
+	tag_backgnd_color_ = g_Settings.AppColors()[AppColors::Selection];
 
 	preview_.SetSelectionColor(RGB(0x31,0x6a,0xc5));
 //	preview_.Invalidate();

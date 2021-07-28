@@ -356,7 +356,7 @@ BOOL RenameToolDlg::OnInitDialog()
 		impl_->resize_.DrawBar(false);
 		impl_->resize_.GrowWhenMovingLeft(false);
 
-		SubclassHelpBtn(_T("ToolRenamePhotos.htm"));
+		//SubclassHelpBtn(_T("ToolRenamePhotos.htm"));
 
 		bool ret= impl_->InitDialog(this);
 
@@ -367,7 +367,7 @@ BOOL RenameToolDlg::OnInitDialog()
 		SetWndResizing(IDC_LABEL_1, DlgAutoResize::MOVE_H, DlgAutoResize::SHIFT);
 		SetWndResizing(IDOK, DlgAutoResize::MOVE);
 		SetWndResizing(IDCANCEL, DlgAutoResize::MOVE);
-		SetWndResizing(IDC_HELP_BTN, DlgAutoResize::MOVE_V);
+		//SetWndResizing(IDC_HELP_BTN, DlgAutoResize::MOVE_V);
 		SetWndResizing(IDC_RESIZE, DlgAutoResize::MOVE_H_RESIZE_V, DlgAutoResize::SHIFT);
 		SetWndResizing(IDC_ABORT, DlgAutoResize::MOVE, DlgAutoResize::HALF_MOVE_H);
 		SetWndResizing(IDC_PROGRESS, DlgAutoResize::MOVE, DlgAutoResize::HALF_MOVE_H);

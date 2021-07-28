@@ -177,7 +177,7 @@ BOOL GenHTMLAlbumDlg::OnInitDialog()
 
 	ResizeDlg::OnInitDialog();
 
-	SubclassHelpBtn(_T("ToolHTML.htm"));
+	//SubclassHelpBtn(_T("ToolHTML.htm"));
 
 	thumb_spin1_wnd_.SetRange(1, 999);
 	thumb_spin2_wnd_.SetRange(1, 999);

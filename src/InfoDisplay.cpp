@@ -76,14 +76,15 @@ bool InfoDisplay::Create(CWnd* parent, const GetTextFn& get_text, COLORREF rgb_b
 		return false;
 
 	// create bold font
-	HFONT font= static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
+/*	HFONT font= static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
 	LOGFONT lf;
 	::GetObject(font, sizeof(lf), &lf);
 	//lf.lfWeight = 700;
-	//lf.lfQuality = ANTIALIASED_QUALITY;
-	lf.lfHeight += 1;
-	_tcscpy(lf.lfFaceName, _T("Tahoma"));
+	//lf.lfHeight += 1;
+	lf.lfQuality = CLEARTYPE_QUALITY;
+	_tcscpy(lf.lfFaceName, _T("Microsoft Yahei"));
 	bold_fnt_.CreateFontIndirect(&lf);
+	*/
 #endif
 	if (!CListCtrl::Create(WS_CHILD | WS_VISIBLE | LVS_REPORT | LVS_SINGLESEL | LVS_NOSORTHEADER | LVS_OWNERDATA,
 		CRect(0,0,0,0), parent, IDC_LIST))
@@ -101,7 +102,7 @@ bool InfoDisplay::Create(CWnd* parent, const GetTextFn& get_text, COLORREF rgb_b
 	header_.SubclassWindow(hWnd);
 	header_.SetFont(&::GetDefaultGuiFont());
 
-	InsertColumn(0, _T("标记"), LVCFMT_LEFT, Pixels(40));
+	InsertColumn(0, _T("标签"), LVCFMT_LEFT, Pixels(40));
 	InsertColumn(1, _T("名称"), LVCFMT_LEFT, Pixels(130));
 	InsertColumn(2, _T("值"), LVCFMT_LEFT, Pixels(150));
 
@@ -429,7 +430,7 @@ void InfoDisplay::SetColors(COLORREF backgnd, COLORREF dark_backgnd, COLORREF te
 	SetTextBkColor(backgnd);
 	SetTextColor(text);
 
-	header_.SetColors(backgnd, dim_text);
+	header_.SetColors(::GetSysColor(COLOR_3DFACE), dim_text);//backgnd, dim_text);
 
 	Invalidate();
 }

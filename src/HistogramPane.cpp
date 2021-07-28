@@ -16,6 +16,7 @@ ____________________________________________________________________________*/
 #include "PhotoCtrl.h"
 #include "MemoryDC.h"
 #include "Config.h"
+#include "GetDefaultGuiFont.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -28,7 +29,7 @@ static char THIS_FILE[] = __FILE__;
 
 HistogramPane::HistogramPane()
 {
-	channels_ = 0;
+	channels_ = 1;
 	profile_channel_.Register(_T("HistogramPane"), _T("Channel"), channels_);
 	rgb_backgnd_ = ::GetSysColor(COLOR_WINDOW);
 }
@@ -55,7 +56,7 @@ bool HistogramPane::Create(CWnd* parent)
 	if (!PaneWnd::Create(AfxRegisterWndClass(0, ::LoadCursor(NULL, IDC_ARROW)), 0, WS_CHILD | WS_VISIBLE, CRect(0,0,0,0), parent, -1))
 		return false;
 
-	int w= 90;
+	int w= 100;
 	int h= 200;
 	if (!channels_wnd_.Create(WS_CHILD | WS_VISIBLE | CBS_DROPDOWNLIST | CBS_HASSTRINGS, CRect(0, 0, w, h), this, IDC_CHANNEL))
 		return false;
@@ -63,12 +64,13 @@ bool HistogramPane::Create(CWnd* parent)
 	channels_ = profile_channel_;
 	
 	LOGFONT lf;
-	HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
+	/*HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
 	::GetObject(hfont, sizeof(lf), &lf);
 	//lf.lfQuality = ANTIALIASED_QUALITY;
-	lf.lfHeight += 1;
-	_tcscpy(lf.lfFaceName, _T("Tahoma"));
-	hfont = CreateFontIndirectW(&lf);
+	//lf.lfHeight += 1;
+	_tcscpy(lf.lfFaceName, _T("Tahoma"));*/
+	::GetDefaultGuiFont(lf);
+	HFONT hfont = CreateFontIndirectW(&lf);
 	channels_wnd_.SendMessage(WM_SETFONT, WPARAM(hfont));
 	//channels_wnd_.SendMessage(WM_SETFONT, WPARAM(::GetStockObject(DEFAULT_GUI_FONT)));
 	channels_wnd_.InitStorage(5, 15);
@@ -89,7 +91,6 @@ bool HistogramPane::Create(CWnd* parent)
 
 	int combo_min_width= 30;
 	AddBand(&channels_wnd_, this, std::make_pair(combo_min_width, 0), true);
-
 	return true;
 }
 
@@ -149,6 +150,7 @@ void HistogramPane::OnPaint()
 
 		histogram_.Draw(&dc, rect, sel, flags);
 	}
+	dc.FillSolidRect(rect.left, rect.top, rect.Width(), 1, g_Settings.AppColors()[AppColors::SecondarySeparator]);
 
 	dc.BitBlt();
 }
@@ -216,7 +218,7 @@ void HistogramPane::SetColors()
 {
 	std::vector<COLORREF> colors= g_Settings.main_wnd_colors_.Colors();
 
-	rgb_backgnd_ = colors[PhotoCtrl::C_BACKGND];
+	rgb_backgnd_ = colors[PhotoCtrl::C_EDIT_BACKGND];//colors[PhotoCtrl::C_BACKGND];
 	if (m_hWnd)
 		Invalidate();
 }

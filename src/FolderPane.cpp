@@ -44,6 +44,7 @@ BEGIN_MESSAGE_MAP(FolderPane, PaneWnd)
 	ON_COMMAND(ID_NEW_FOLDER, OnNewFolder)
 	ON_COMMAND(ID_OPEN_FOLDER_IN_EXPLORER, OnExploreFolder)
 	ON_WM_DESTROY()
+	ON_WM_ERASEBKGND()
 	ON_NOTIFY(TVN_SELCHANGED, TREE_WINDOW_ID, OnSelChanged)
 	ON_UPDATE_COMMAND_UI(ID_RECENT_FOLDERS, OnUpdateRecentFolders)
 	ON_COMMAND(ID_FOLDER_UP, OnFolderUp)
@@ -330,6 +331,8 @@ bool FolderPane::Create2(CWnd* parent, UINT id, FolderPathPtr path, bool root, i
 	SetColors();
 
 	AddBand(&tool_bar_wnd_, this);
+	//separator_.Create(&tool_bar_wnd_);
+	//VERIFY(separator_.SubclassDlgItem(IDC_SEPARATOR, &tree_wnd_));
 
 	return true;
 }
@@ -378,13 +381,22 @@ void FolderPane::OnUpdateFolderUp(CCmdUI* cmd_ui)
 	cmd_ui->Enable(on_update_folder_up_());
 }
 
+BOOL FolderPane::OnEraseBkgnd(CDC* dc)
+{
+	CRect rect;
+	GetClientRect(rect);
+	dc->FillSolidRect(rect, g_Settings.AppColors()[AppColors::SecondarySeparator]);
+	return true;
+}
 
 void FolderPane::OnSize(UINT type, int cx, int cy)
 {
 	PaneWnd::OnSize(type, cx, cy);
-
 	if (tree_wnd_.m_hWnd)
-		tree_wnd_.SetWindowPos(0, 0, 0, cx, cy, SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE);
+		tree_wnd_.SetWindowPos(0, 0, 1, cx, cy - 1, SWP_NOZORDER | SWP_NOACTIVATE);
+		//if (separator_.m_hWnd)
+		//	separator_.SetWindowPos(0, 0, 0, cx, 1, SWP_NOZORDER | SWP_NOACTIVATE);
+	//}
 }
 
 
@@ -616,7 +628,7 @@ void FolderPane::SetColors()
 {
 	std::vector<COLORREF> colors= g_Settings.main_wnd_colors_.Colors();
 
-	tree_wnd_.SetBkColor(colors[PhotoCtrl::C_BACKGND]);
+	tree_wnd_.SetBkColor(colors[PhotoCtrl::C_EDIT_BACKGND]);//colors[PhotoCtrl::C_BACKGND]);
 	tree_wnd_.SetTextColor(colors[PhotoCtrl::C_TEXT]);
 
 	tool_bar_wnd_.Invalidate();

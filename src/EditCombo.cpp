@@ -51,6 +51,7 @@ EditCombo::EditCombo()
 	create_flags_ = 0;
 	auto& colors = ::GetAppColors();
 	SetColors(colors[AppColors::Background], colors[AppColors::EditBox], colors[AppColors::Text]);
+	border_color_ = colors[AppColors::Separator];
 }
 
 EditCombo::~EditCombo()
@@ -176,7 +177,7 @@ bi.cx = Pixels(16);
 	toolbar_.GetWindowRect(rect);
 	margin_ = (rect.Height() - height) / 2;
 
-	height = rect.Height();
+	height = rect.Height()+2;
 
 	GetWindowRect(rect);
 	SetWindowPos(nullptr, 0, 0, rect.Width(), height + margins_.top + margins_.bottom, SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE);
@@ -209,6 +210,9 @@ void EditCombo::Resize()
 	{
 		CRect tb(0,0,0,0);
 		toolbar_.GetWindowRect(tb);
+		rect.DeflateRect(1,1,1,1);//这3行被迫缩小图标，以免hover时的3d边框遮住了box的边框
+		rect.left +=1;//
+		rect.right +=1;//
 		toolbar_.SetWindowPos(nullptr, rect.right - tb.Width() - 1, rect.top, 0, 0, SWP_NOSIZE | SWP_NOZORDER | SWP_NOACTIVATE);
 
 		rect.DeflateRect(margin_ / 2, margin_, tb.Width() + 1, margin_);
@@ -240,13 +244,13 @@ BOOL EditCombo::OnEraseBkgnd(CDC* dc)
 	CRect rect(0,0,0,0);
 	GetClientRect(rect);
 
-	MemoryDC mem_dc(*dc, this, outside_color_);
+	MemoryDC mem_dc(*dc, this, ::GetSysColor(COLOR_3DFACE));//outside_color_);
 
 	rect.DeflateRect(margins_);
-
+	mem_dc.FillSolidRect(rect, border_color_);
+	rect.DeflateRect(1,1,1,1);
 	mem_dc.FillSolidRect(rect, backgnd_color_);
-
-//	CtrlDraw::DrawComboBorder(mem_dc, rect, focus_);
+	//CtrlDraw::DrawComboBorder(mem_dc, rect, false);//CalcNewColor(::GetSysColor(COLOR_3DSHADOW), 10.0));//此处颜色定义无用啊？？？
 
 	if (image_list_ && image_to_draw_ >= 0)
 	{

@@ -20,7 +20,7 @@ public:
 
 	bool Create(CWnd* parent);
 
-	static const int CLOSE_BAR_WIDTH= 64;
+	static const int CLOSE_BAR_WIDTH= 106;
 
 protected:
 	DECLARE_MESSAGE_MAP()

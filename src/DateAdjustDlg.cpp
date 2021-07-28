@@ -123,7 +123,7 @@ BOOL DateAdjustDlg::InitDlg()
 
 	BuildResizingMap();
 	SetWndResizing(IDC_LIST, DlgAutoResize::RESIZE);
-	SetWndResizing(IDC_HELP_BTN, DlgAutoResize::MOVE_V);
+	//SetWndResizing(IDC_HELP_BTN, DlgAutoResize::MOVE_V);
 	SetWndResizing(IDCANCEL, DlgAutoResize::MOVE);
 	SetWndResizing(IDOK, DlgAutoResize::MOVE);
 
@@ -135,7 +135,7 @@ BOOL DateAdjustDlg::InitDlg()
 
 	time_edit_.ModifyStyle(0, DTS_TIMEFORMAT);
 
-	SubclassHelpBtn(_T("ToolDateTime.htm"));
+	//SubclassHelpBtn(_T("ToolDateTime.htm"));
 
 	spin_days_.SetRange32(-100000, 100000);
 	spin_hours_.SetRange32(-1000000, 1000000);

@@ -62,8 +62,8 @@ ResizeDlg::ResizeDlg(CWnd* parent, double ratio, OrientationOfImages orientation
 	output_format_ = 0;
 	suffix_ = _T("");
 	dest_path_ = _T("");
-	size_ = 3;
-	quality_ = 2;
+	size_ = 0;
+	quality_ = 0;
 	compr_level_ = -1;
 	//}}AFX_DATA_INIT
 	image_size_ = CSize(0, 0);
@@ -219,7 +219,7 @@ BOOL ResizeDlg::OnInitDialog()
 		}
 	}
 
-	SubclassHelpBtn(_T("ToolResize.htm"));
+	//SubclassHelpBtn(_T("ToolResize.htm"));
 
 	if (!dlg_options_.Create(GetParent(), options_dlg_id_))
 	{
@@ -350,6 +350,8 @@ void ResizeDlg::UpdateDims()
 
 		if (custom)	// custom settings?
 		{
+			//rel_size = !!IsDlgButtonChecked(IDC_PERCENTAGE_SIZE);
+			//abs_size = !rel_size
 			abs_size = !!IsDlgButtonChecked(IDC_FIXED_SIZE);
 			rel_size = !abs_size;
 		}

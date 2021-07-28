@@ -22,7 +22,7 @@ ____________________________________________________________________________*/
 #include "UIElements.h"
 #include "CtrlDraw.h"
 #include "Exception.h"
-#include "Color.h"
+//#include "Color.h"
 #include "GetDefaultGuiFont.h"
 
 #ifdef _DEBUG
@@ -63,7 +63,7 @@ PhotoCtrl::PhotoCtrl()
 
 	show_label_ = true;
 	show_tags_ = true;
-	show_noexif_ = false;
+	show_marker_ = true;
 
 	ResetColors();
 
@@ -433,11 +433,12 @@ margin_size.cy = 4;
 		label_rect_ = image_rect_;
 		label_rect_.OffsetRect(0, image_rect_.Height());
 		label_rect_.bottom = label_rect_.top + (lines ? lines * M_size_.cy + 2 * LABEL_SPACE : 0);
+		//item_size = CSize(image_rect_.Width(), image_rect_.Height()+label_rect_.Height());
 		break;
 
 	case DETAILS:
 		margins_rect_.SetRect(MARGIN_LEFT, 0, 0, 0);
-		item_size = CSize(ColumnsTotalWidth(), M_size_.cy) + CSize(0, 4);
+		item_size = CSize(ColumnsTotalWidth(), M_size_.cy) + CSize(0, 12);//4);
 		label_rect_.SetRectEmpty();
 		image_rect_.SetRectEmpty();
 		top_margin_ += header_height_;
@@ -448,7 +449,7 @@ margin_size.cy = 4;
 		image_rect_.SetRect(0, 0, 88, std::max(70L, M_size_.cy * 5) + LABEL_OFFSET);
 		label_rect_ = image_rect_;
 		label_rect_.OffsetRect(image_rect_.Width() + LABEL_SPACE * 3, LABEL_OFFSET);
-		label_rect_.right = label_rect_.top + 24 * M_size_.cx + LABEL_SPACE;
+		label_rect_.right = label_rect_.top + 17 * M_size_.cx + LABEL_SPACE;
 		label_rect_.bottom -= LABEL_OFFSET;
 		margin_size.cx *= 2;
 		margin_size.cy *= 3;
@@ -466,7 +467,7 @@ margin_size.cy = 4;
 		label_rect_.bottom = label_rect_.top + (lines ? lines * M_size_.cy + 2 * LABEL_SPACE : 0);
 		break;
 
-	case LIST:
+	/*case LIST:
 		if (bigItems)
 			return CSize(0, 0);
 		{
@@ -500,7 +501,7 @@ margin_size.cy = 4;
 		item_size = image_rect_.Size();
 		adjustSize = false;
 		break;
-
+*/
 	default:
 		ASSERT(false);
 		return CSize(0, 0);
@@ -673,11 +674,11 @@ void PhotoCtrl::SetFont(LOGFONT normal, LOGFONT bold)
 }
 
 
-void PhotoCtrl::SetTagFont(const LOGFONT& font)
+void PhotoCtrl::SetTagFont(/*const */LOGFONT& font)
 {
 	if (tags_fnt_.m_hObject)
 		tags_fnt_.DeleteObject();
-
+	font.lfHeight += 1;
 	tags_fnt_.CreateFontIndirect(&font);
 
 	if (m_hWnd)
@@ -1512,7 +1513,7 @@ void PhotoCtrl::OnScroll(UINT scroll_code, UINT pos)
 	GetClientRect(rect);
 
 	CSize line_size(30, item_size_.cy / 2);
-	if (mode_ == DETAILS || mode_ == LIST)
+	if (mode_ == DETAILS/* || mode_ == LIST*/)
 		line_size.cy = item_size_.cy;
 	else if (mode_ == PREVIEWS)
 		line_size.cy = item_size_.cy / 5;	//TODO: improve to line up photos at the top
@@ -1683,7 +1684,7 @@ BOOL PhotoCtrl::OnMouseWheel(UINT flags, short delta, CPoint pt)
 	if (delta)
 	{
 		int dy= item_size_.cy;
-		if (mode_ == DETAILS || mode_ == LIST)
+		if (mode_ == DETAILS/* || mode_ == LIST*/)
 			dy *= 3;
 		else if (mode_ == PREVIEWS)
 			dy /= 2;
@@ -3323,7 +3324,7 @@ void PhotoCtrl::Group::Draw(PhotoCtrl& ctrl, CDC& paint_dc, MemoryDC& item_dc, M
 		if (flags_ & SEPARATOR)
 		{
 			// draw separator
-			header_dc.FillSolidRect(rect.left + 4, rect.top + 2, std::max(rect.Width() - 8, 0), 4, ctrl.rgb_separator_);
+			//header_dc.FillSolidRect(rect.left, rect.top, std::max(rect.Width(), 0), 1, ctrl.rgb_separator_);
 			int sep = Pixels(SEPARATOR_HEIGHT);
 			rect.top += sep;
 			height += sep;
@@ -3643,14 +3644,14 @@ PhotoCtrl::Item* PhotoCtrl::Group::FindItem(PhotoCtrl& ctrl, CPoint pos)
 	if (!rect.PtInRect(pos))
 		return 0;
 
-	rect = GetItemRect(index);
+	/*rect = GetItemRect(index);
 
 	// now examine bmp area (important for preview and thumbnails modes)
 	CRect img_rect= ctrl.GetImageRect(rect, items_[index]->photo_, true);
 
 	if (!img_rect.PtInRect(pos))
 		return 0;
-
+*/
 	return items_[index];
 }
 
@@ -3757,6 +3758,7 @@ void PhotoCtrl::Item::DrawItem(CDC& dc, CRect rect, PhotoCtrl& ctrl, bool is_cur
 	COLORREF rgb_text= selected ? ctrl.rgb_sel_text_color_ : ctrl.rgb_text_color_;
 	COLORREF rgb_back= selected ? ctrl.rgb_sel_color_ : ctrl.rgb_bk_color_;
 	COLORREF rgb_image_back= rgb_back;
+	COLORREF rgb_destbg = RGB(225, 225, 225);
 	float sel_to_back_color_ratio= 0.4f; // 40% of selection color and 60% of background
 	float outline_sel_to_back_color_ratio= 0.4f; // 40% of selection color and 60% of background
 	int label_height= ctrl.GetLabelHeight();
@@ -3798,12 +3800,12 @@ void PhotoCtrl::Item::DrawItem(CDC& dc, CRect rect, PhotoCtrl& ctrl, bool is_cur
 		else
 			flags |= PhotoInfo::DRAW_FAST;
 
-		if (ctrl.mode_ == MOSAIC)
-			flags &= ~PhotoInfo::DRAW_SHADOW;
+		//if (ctrl.mode_ == MOSAIC)
+		//	flags &= ~PhotoInfo::DRAW_SHADOW;
 
 		if (selected)
 			flags |= PhotoInfo::DRAW_SELECTION;
-		if (is_current)
+		if (is_current && !selected)
 			flags |= PhotoInfo::DRAW_OUTLINE;
 
 		dc.SelectObject(&ctrl.default_fnt_);
@@ -3878,10 +3880,10 @@ void PhotoCtrl::Item::DrawItem(CDC& dc, CRect rect, PhotoCtrl& ctrl, bool is_cur
 		img_rect.top = photo_rect.top;
 		img_rect.bottom = photo_rect.bottom + 1;
 
-		if (ctrl.show_noexif_ && no_exif_marker && !photo_->IsExifDataPresent())
+		if (no_exif_marker && !photo_->IsExifDataPresent())
 			DrawNoExifIndicator(dc, img_rect);
-		if (show_marker)
-			DrawTypeIndicator(dc, img_rect, photo_->GetFileTypeIndex());
+		if (ctrl.show_marker_  && show_marker)
+			DrawTypeIndicator(dc, rect, photo_->GetFileTypeIndex());
 	}
 	else
 	{
@@ -3922,6 +3924,9 @@ void PhotoCtrl::Item::DrawItem(CDC& dc, CRect rect, PhotoCtrl& ctrl, bool is_cur
 	if (!ctrl.label_rect_.IsRectEmpty())
 	{
 		CRect text_rect= ctrl.label_rect_ + rect.TopLeft();
+		CRect rect_frame= text_rect;
+		//rect_frame.left-= 6;
+		//rect_frame.top = rect.top;
 //text_rect = rect;
 //text_rect.top = text_rect.bottom - label_height + 2;
 
@@ -3933,26 +3938,32 @@ void PhotoCtrl::Item::DrawItem(CDC& dc, CRect rect, PhotoCtrl& ctrl, bool is_cur
 		dc.SetBkMode(OPAQUE);
 
 		if (ctrl.mode_ == TILES)
-		{
+		{	
+			text_rect.top-= MARGIN_BOTTOM;
+			rect_frame.top-= MARGIN_TOP;
+			rect_frame.left-= ITEM_X_MARGIN + 1;
 			if (selected)
 			{
-				Gdiplus::Graphics g(dc);
-				g.SetSmoothingMode(Gdiplus::SmoothingModeAntiAlias);
-				g.TranslateTransform(-0.5f, -0.5f);
-				int radius= Pixels(dc, 4);
+				dc.FillSolidRect(rect_frame, rgb_image_back);
+				dc.SetBkColor(rgb_image_back);
+				//Gdiplus::Graphics g(dc);
+				//g.SetSmoothingMode(Gdiplus::SmoothingModeAntiAlias);
+				//g.TranslateTransform(-0.5f, -0.5f);
+				//int radius= Pixels(dc, 4);
 
-				Gdiplus::RectF area= CRectToRectF(text_rect.left - 3, text_rect.top - 2, text_rect.Width() + 2, text_rect.Height() + 2);
-				{
-					Gdiplus::GraphicsPath frame;
-					RoundRect(frame, area, static_cast<float>(radius));
-					Gdiplus::SolidBrush brush(c2c(rgb_image_back));
-					g.FillPath(&brush, &frame);
-				}
+				//Gdiplus::RectF area= CRectToRectF(text_rect.left - 3, text_rect.top - 2, text_rect.Width() + 2, text_rect.Height() + 2);
+				//{
+				//	Gdiplus::GraphicsPath frame;
+				//	RoundRect(frame, area, static_cast<float>(radius));
+				//	Gdiplus::SolidBrush brush(c2c(rgb_image_back));
+				//	g.FillPath(&brush, &frame);
+				//}
 			}
-			else
-				dc.FillSolidRect(text_rect, rgb_image_back);
+			else{
+				dc.FillSolidRect(rect_frame, rgb_destbg);//rgb_image_back);
+				dc.SetBkColor(rgb_destbg);
+			}
 
-			dc.SetBkColor(rgb_image_back);
 			dc.SetTextColor(rgb_text);
 
 			text_rect.bottom = text_rect.top + ctrl.M_size_.cy;
@@ -3977,16 +3988,18 @@ void PhotoCtrl::Item::DrawItem(CDC& dc, CRect rect, PhotoCtrl& ctrl, bool is_cur
 			dc.DrawText(str.c_str(), static_cast<int>(str.length()), text_rect, format);
 
 			text_rect.OffsetRect(0, ctrl.M_size_.cy);
-			str = _T("A ");
+			str = _T("F");
 			str += photo_->FNumber();
-			str += _T("  S ");
+			str += _T(", ");
 			str += photo_->ExposureTime();
-			str += _T("  FL ");
-			str += photo_->FocalLength();
+			str += _T(", ");
+			str += photo_->FocalLengthInt();
+			str += _T("mm");
+			if(str == _T("F-, -, -mm")) str=_T(" ");
 			dc.DrawText(str.c_str(), static_cast<int>(str.length()), text_rect, format);
 
 		}
-		else if (ctrl.mode_ == LIST)
+		/*else if (ctrl.mode_ == LIST)
 		{
 			dc.FillSolidRect(text_rect, rgb_image_back);
 
@@ -4005,7 +4018,7 @@ void PhotoCtrl::Item::DrawItem(CDC& dc, CRect rect, PhotoCtrl& ctrl, bool is_cur
 			CRect img(0, 0, ctrl.image_rect_.Width(), ctrl.label_rect_.Height());
 			img.OffsetRect(rect.TopLeft());
 			photo_->Draw(&dc, img, rgb_image_back, 0, 0, 0, 0, 0, 0);
-		}
+		}*/
 		else
 		{
 /*
@@ -4035,14 +4048,21 @@ void PhotoCtrl::Item::DrawItem(CDC& dc, CRect rect, PhotoCtrl& ctrl, bool is_cur
 		dc.SelectObject(&ctrl.default_fnt_);
 
 		dc.SetTextColor(rgb_text);
-		dc.SetBkColor(rgb_back);
-
-		dc.SetBkMode(OPAQUE);
+		dc.SetBkColor(rgb_destbg);
+		
+		//dc.SetBkMode(OPAQUE);
+		dc.SetBkMode(TRANSPARENT);
 
 		String buffer;
 		CRect text_rect= rect;
 		int sort_column= abs(ctrl.sort_by_column_) - 1;
-
+		///////////////////
+		if(!is_current){
+			CRect row_rect = rect;
+			row_rect.DeflateRect(0, 1, 0, 1);
+			dc.FillSolidRect(row_rect, rgb_destbg);
+		}
+////////////////////////////////////
 		for (size_t i= 0; i < count; ++i)
 		{
 			int col_index= ctrl.header_columns_[i].order;
@@ -4068,7 +4088,7 @@ void PhotoCtrl::Item::DrawItem(CDC& dc, CRect rect, PhotoCtrl& ctrl, bool is_cur
 						rect.left += (rect.Width() - size.cx) / 2;
 						rect.right = rect.left + size.cx;
 					}
-					dc.FillSolidRect(rect, RGB(200,200,200));
+					//dc.FillSolidRect(rect, RGB(200,200,200));
 				}
 
 //				text_rect.left = rect.right;	<- this line here is image width dependent; not good for details, causes text shift
@@ -4082,21 +4102,23 @@ void PhotoCtrl::Item::DrawItem(CDC& dc, CRect rect, PhotoCtrl& ctrl, bool is_cur
 			if (col_index == sort_column && !selected)
 			{
 				if (!is_current)
-				{
-					dc.FillSolidRect(text_rect, ctrl.rgb_sort_color_);
-					dc.SetBkColor(ctrl.rgb_sort_color_);
+				{	
+					CRect rect= text_rect;
+					rect.DeflateRect(0, 1, 0, 1);
+					dc.FillSolidRect(rect, ctrl.rgb_sort_color_);
+					//dc.SetBkColor(ctrl.rgb_sort_color_);
 				}
 				else	// is current
 				{
 					if (!focus)
 					{
 						CRect rect= text_rect;
-						COLORREF rgb_outline= CalcColor(ctrl.rgb_sel_color_, ctrl.rgb_sort_color_, outline_sel_to_back_color_ratio);
-						dc.FillSolidRect(rect.left, rect.top, rect.Width(), 1, rgb_outline);
-						dc.FillSolidRect(rect.left, rect.bottom - 1, rect.Width(), 1, rgb_outline);
+						//COLORREF rgb_outline= CalcColor(ctrl.rgb_sel_color_, ctrl.rgb_sort_color_, outline_sel_to_back_color_ratio);
+						//dc.FillSolidRect(rect.left, rect.top, rect.Width(), 1, rgb_outline);
+						//dc.FillSolidRect(rect.left, rect.bottom - 1, rect.Width(), 1, rgb_outline);
 						rect.DeflateRect(0, 1, 0, 1);
 						dc.FillSolidRect(rect, ctrl.rgb_sort_color_);
-						dc.SetBkColor(ctrl.rgb_sort_color_);
+						//dc.SetBkColor(ctrl.rgb_sort_color_);
 					}
 					else	// has focus
 					{
@@ -4104,12 +4126,16 @@ void PhotoCtrl::Item::DrawItem(CDC& dc, CRect rect, PhotoCtrl& ctrl, bool is_cur
 						rect.DeflateRect(0, 1, 0, 1);
 						COLORREF rgb_current= CalcColor(ctrl.rgb_sel_color_, ctrl.rgb_sort_color_, sel_to_back_color_ratio);
 						dc.FillSolidRect(rect, rgb_current);
-						dc.SetBkColor(rgb_current);
+						//dc.SetBkColor(rgb_current);
 					}
 				}
 			}
-			else
-				dc.SetBkColor(rgb_back);
+			//else if (!selected){
+				//CRect rect= text_rect;
+				//rect.DeflateRect(0, 1, 0, 1);
+				//dc.FillSolidRect(rect, rgb_destbg);
+				//dc.SetBkColor(rgb_back);
+			//}
 
 			buffer.clear();
 			ctrl.host_->GetItemText(photo_, ctrl.header_columns_[col_index].sub_item, buffer);
@@ -4128,7 +4154,7 @@ void PhotoCtrl::Item::DrawItem(CDC& dc, CRect rect, PhotoCtrl& ctrl, bool is_cur
 			text_rect.OffsetRect(text_rect.Width(), 0);
 		}
 	}
-	else if (ctrl.show_tags_ && (!photo_->GetTags().empty() || photo_->GetRating()))
+	else if (ctrl.show_tags_ && (!photo_->GetTags().empty() || photo_->GetRating()) && ctrl.mode_ != TILES)
 	{
 		//TODO: replace by a call to DrawPhotoTags, update DrawPhotoTags with below changes  ------------------
 
@@ -4271,12 +4297,14 @@ void PhotoCtrl::Item::DrawNoExifIndicator(CDC& dc, CRect rect)
 
 void PhotoCtrl::Item::DrawTypeIndicator(CDC& dc, CRect rect, int index)
 {
-	const int OVERHANG= 6;
-	rect.top = rect.bottom - Pixels(INDICATOR_IMG_HEIGHT + OVERHANG);
-	rect.left = rect.right - Pixels(INDICATOR_IMG_WIDTH + OVERHANG);
+	const int OVERHANG= 2;
+	rect.top = rect.top + Pixels(OVERHANG + 2);//rect.bottom - Pixels(INDICATOR_IMG_HEIGHT + OVERHANG);
+	rect.left = rect.left + Pixels(OVERHANG);// + Pixels(OVERHANG);
 	index++;
-	if (index == 0)
-		rect.top -= Pixels(INDICATOR_IMG_HEIGHT);
+	if (index == 0){
+		rect.left = rect.left;
+		rect.top = rect.bottom - Pixels(INDICATOR_IMG_HEIGHT);
+	}
 	img_list_indicators_.Draw(&dc, index, rect.TopLeft(), ILD_TRANSPARENT);
 }
 
@@ -4701,15 +4729,15 @@ void PhotoCtrl::OnKeyUp(UINT chr, UINT rep_cnt, UINT flags)
 // set new image size for thumbnail view mode
 void PhotoCtrl::SetImageSize(int width)
 {
-	if (mode_ == MOSAIC)
-		img_size_ = CSize(width, width);
-	else
-	{
+	//if (mode_ == MOSAIC)
+	//	img_size_ = CSize(width, width);
+	//else
+	//{
 		img_size_.cx = width + EXTRA - 5;	// cheesy: counter the margin taken out in DrawItem()
 		img_size_.cy = width + EXTRA - 5;
-	}
+	//}
 
-	if (mode_ == THUMBNAILS || mode_ == MOSAIC)
+	if (mode_ == THUMBNAILS/* || mode_ == MOSAIC*/)
 		SetMode(mode_);	// reset items' size
 }
 
@@ -5297,9 +5325,11 @@ void PhotoCtrl::SetColors(const std::vector<COLORREF>& colors)
 	rgb_sort_color_				= colors[C_SORT];
 	rgb_separator_				= colors[C_SEPARATOR];
 	rgb_tile_dim_text_color_	= colors[C_DIM_TEXT];
+	rgb_active_bg_				= colors[C_ACTIVEBG];
 
-	scroll_bar_.SetColors(colors[C_BACKGND], colors[C_DIM_TEXT], colors[C_TEXT]);
-
+	//scroll_bar_.SetColors(colors[C_BACKGND], colors[C_DIM_TEXT], colors[C_TEXT]);
+	scroll_bar_.SetColors(RGB(190,190,190), RGB(150,150,150), RGB(75,75,75));
+	
 	if (m_hWnd)
 		Invalidate();
 }
@@ -5319,30 +5349,32 @@ void PhotoCtrl::GetColors(std::vector<COLORREF>& colors) const
 	colors[C_SORT]			= rgb_sort_color_;
 	colors[C_SEPARATOR]		= rgb_separator_;
 	colors[C_DIM_TEXT]		= rgb_tile_dim_text_color_;
+	colors[C_ACTIVEBG]		= rgb_active_bg_;
 }
 
 // reset colors based on system colors and hardcoded values
 void PhotoCtrl::ResetColors()
 {
-	rgb_bk_color_		= ::GetSysColor(COLOR_WINDOW);
-	rgb_sel_color_		= RGB(247, 123, 0);//::GetSysColor(COLOR_HIGHLIGHT);
-	rgb_text_color_		= ::GetSysColor(COLOR_WINDOWTEXT);
-	rgb_sel_text_color_	= ::GetSysColor(COLOR_HIGHLIGHTTEXT);
-	rgb_separator_		= rgb_sel_color_;//::GetSysColor(COLOR_HIGHLIGHT);
+	//rgb_bk_color_		= RGB(230, 230, 230);//::GetSysColor(COLOR_WINDOW);
+	rgb_sel_color_		= RGB(145, 201, 247);//RGB(247, 123, 0);//::GetSysColor(COLOR_HIGHLIGHT);
+	//rgb_text_color_		= RGB(20, 20, 20);//::GetSysColor(COLOR_WINDOWTEXT);
+	//rgb_sel_text_color_	= RGB(255, 255, 255);//::GetSysColor(COLOR_HIGHLIGHTTEXT);
+	//rgb_separator_		= rgb_sel_color_;//::GetSysColor(COLOR_HIGHLIGHT);
 	rgb_tag_bkgnd_		= rgb_sel_color_;//RGB(247, 123, 0);
 	rgb_tag_text_		= RGB(255, 255, 255);
-	rgb_tile_dim_text_color_ = CalcNewColor(rgb_text_color_, 50.0f);
+	//rgb_tile_dim_text_color_ = CalcNewColor(rgb_text_color_, 50.0f);
+	//rgb_sort_color_ = RGB(230, 230, 230);
 
-	{	// calculate sorting indicator color
-		COLORREF rgb_wnd= ::GetSysColor(COLOR_WINDOW);
-		int r= GetRValue(rgb_wnd);
-		int g= GetGValue(rgb_wnd);
-		int b= GetBValue(rgb_wnd);
-		if (r > 0xf0 && g > 0xf0 && b > 0xf0)
-			rgb_sort_color_ = RGB(r - 8, g - 8, b - 8);
-		else
-			rgb_sort_color_ = RGB(std::min(r + 8, 0xff), std::min(g + 8, 0xff), std::min(b + 8, 0xff));
-	}
+	//{	// calculate sorting indicator color
+	//	COLORREF rgb_wnd= ::GetSysColor(COLOR_WINDOW);
+	//	int r= GetRValue(rgb_wnd);
+	//	int g= GetGValue(rgb_wnd);
+	//	int b= GetBValue(rgb_wnd);
+	//	if (r > 0xf0 && g > 0xf0 && b > 0xf0)
+	//		rgb_sort_color_ = RGB(r - 8, g - 8, b - 8);
+	//	else
+	//		rgb_sort_color_ = RGB(std::min(r + 8, 0xff), std::min(g + 8, 0xff), std::min(b + 8, 0xff));
+	//}
 
 	if (m_hWnd)
 		Invalidate();
@@ -5442,14 +5474,14 @@ void PhotoCtrl::ShowTagText(bool show)
 		Invalidate();
 }
 
-void PhotoCtrl::ShowNoExif(bool show)
+void PhotoCtrl::ShowMarker(bool show)
 {
-	if (show_noexif_ == show)
+	if (show_marker_ == show)
 		return;
 
-	show_noexif_ = show;
+	show_marker_ = show;
 
-	if (mode_ != DETAILS)		// in details mode there are no noexif info displayed
+	if (mode_ != DETAILS)		// in details mode there are no marker info displayed
 		Invalidate();
 }
 
@@ -5924,8 +5956,8 @@ CRect PhotoCtrl::GetImageRect(const CRect& item_rect, PhotoInfoPtr photo, bool b
 			if (bmp_outline)
 				return item_rect;
 		}
-		else if (mode_ == MOSAIC)
-			return item_rect;
+		//else if (mode_ == MOSAIC)
+		//	return item_rect;
 
 		UINT flags= PhotoInfo::DRAW_SHADOW;
 		CRect photo_rect= img_rect;

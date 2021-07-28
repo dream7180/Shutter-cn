@@ -13,6 +13,7 @@ ____________________________________________________________________________*/
 #include "FileSend.h"
 #include "CatchAll.h"
 #include "StringConversions.h"
+#include "GetDefaultGuiFont.h"
 
 
 // ErrorDlg dialog
@@ -153,7 +154,7 @@ HBRUSH ErrorDlg::OnCtlColor(CDC* dc, CWnd* ctrl, UINT code)
 
 	if (ctrl != 0 && ctrl->GetDlgCtrlID() == IDC_TITLE)
 	{
-		if (bold_fnt_.m_hObject == 0)
+		/*if (bold_fnt_.m_hObject == 0)
 		{
 			LOGFONT lf;
 			if (CFont* font= GetFont())
@@ -165,12 +166,12 @@ HBRUSH ErrorDlg::OnCtlColor(CDC* dc, CWnd* ctrl, UINT code)
 			}
 			lf.lfWeight =  FW_BOLD;
 			//lf.lfQuality = ANTIALIASED_QUALITY;
-			lf.lfHeight += 1;
+			//lf.lfHeight += 1;
 			_tcscpy(lf.lfFaceName, _T("Tahoma"));
 			bold_fnt_.CreateFontIndirect(&lf);
 		}
-
-		dc->SelectObject(&bold_fnt_);
+		*/
+		dc->SelectObject(&GetDefaultGuiBoldFont());//(&bold_fnt_);
 	}
 	else if (ctrl != 0 && ctrl->GetDlgCtrlID() == IDC_DETAILS)
 	{
@@ -185,7 +186,8 @@ HBRUSH ErrorDlg::OnCtlColor(CDC* dc, CWnd* ctrl, UINT code)
 				::GetObject(font_handle, sizeof(lf), &lf);
 			}
 			lf.lfPitchAndFamily = FIXED_PITCH;
-			wcscpy_s(lf.lfFaceName, LF_FACESIZE, L"Lucida Console");
+			lf.lfQuality = CLEARTYPE_QUALITY;
+			wcscpy_s(lf.lfFaceName, LF_FACESIZE, L"Consolas");
 			mono_fnt_.CreateFontIndirect(&lf);
 
 			ctrl->SetFont(&mono_fnt_);
@@ -223,7 +225,7 @@ void ErrorDlg::OnReport()
 		// save report into disk
 
 		std::ofstream report(fname);
-		report << "ExifPro error report.\n\n";
+		report << "Shutter error report.\n\n";
 
 		report << "Error: " << TStr2AStr(title_) << '\n';
 
@@ -237,7 +239,7 @@ void ErrorDlg::OnReport()
 		std::vector<Path> files(1, Path(CString(fname)));
 		std::vector<String> names(1, L"report.txt");
 
-		String msg= L"ExifPro 错误报告. 请描述你的操作和遇到的错误:\n\n\n";
+		String msg= L"Shutter 错误报告. 请描述你的操作和遇到的错误:\n\n\n";
 
 		mail.SendFiles(files, names, &msg, "错误报告", "dream7180@gmail.com");
 	}

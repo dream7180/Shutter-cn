@@ -48,7 +48,7 @@ public:
 	//{{AFX_VIRTUAL(MainFrame)
 public:
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
-	virtual void WinHelp(DWORD data, UINT cmd = HELP_CONTEXT);
+	//virtual void WinHelp(DWORD data, UINT cmd = HELP_CONTEXT);
 protected:
 	virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* context);
 	//}}AFX_VIRTUAL
@@ -104,8 +104,8 @@ protected:
 	afx_msg void OnTaskTransfer();
 	afx_msg void OnUpdateTaskTransfer(CCmdUI* cmd_ui);
 	afx_msg void OnSize(UINT type, int cx, int cy);
-	afx_msg void OnHelpWindow();
-	afx_msg void OnUpdateHelpWindow(CCmdUI* cmd_ui);
+	//afx_msg void OnHelpWindow();
+	//afx_msg void OnUpdateHelpWindow(CCmdUI* cmd_ui);
 	afx_msg LRESULT OnPrintClient(WPARAM HDC, LPARAM flags);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

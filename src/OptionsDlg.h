@@ -59,7 +59,7 @@ protected:
 	afx_msg void OnDestroy();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
-	void OnHelp();
+	//void OnHelp();
 
 private:
 	OptionsGeneral		page_general_;

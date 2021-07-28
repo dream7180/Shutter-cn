@@ -101,9 +101,9 @@ CopyMoveDlg::CopyMoveDlg(bool copy, const TCHAR* dest_path, CWnd* parent, Folder
 	impl_.copy_operation_ = copy;
 	impl_.current_photo_path_ = cur_path;
 
-//	label_ = copy ? _T("Copy") : _T("Move");
-//	label_ += _T(" selected images to this folder:");
-	label_ = RString(copy ? IDS_COPY_FILES : IDS_MOVE_FILES);
+	label_ = copy ? _T("复制") : _T("移动");
+	label_ += _T("选定的图像到文件夹:");
+	//label_ = RString(copy ? IDS_COPY_FILES : IDS_MOVE_FILES);
 	path_ = dest_path;
 
 	SHFILEINFO info;
@@ -179,12 +179,12 @@ BOOL CopyMoveDlg::InitDialog()
 	impl_.resize_.SetCallbacks(&impl_);
 	impl_.resize_.DrawBar(false);
 
-	SubclassHelpBtn(impl_.copy_operation_ ? _T("ToolCopy.htm") : _T("ToolMove.htm"));
+	//SubclassHelpBtn(impl_.copy_operation_ ? _T("ToolCopy.htm") : _T("ToolMove.htm"));
 
 	SetWindowText(impl_.copy_operation_ ? _T("复制照片") : _T("移动照片"));
 	btn_ok_.SetWindowText(impl_.copy_operation_ ? _T("复制") : _T("移动"));
 
-	COLORREF dark= ::CalcShade(::GetSysColor(COLOR_3DFACE), -21.5f);
+	COLORREF dark= ::CalcShade(::GetSysColor(COLOR_3DFACE), -5.0f);// -21.5f);
 	impl_.recent_.SetBackgndColor(dark);
 	impl_.recent_.SetMenuLikeSelection(true);
 	impl_.recent_.SetItemSpace(1.4f);
@@ -274,7 +274,7 @@ BOOL CopyMoveDlg::InitDialog()
 	SetWndResizing(IDC_TOOLBAR, DlgAutoResize::NONE, DlgAutoResize::SHIFT);
 	SetWndResizing(IDC_BROWSE, DlgAutoResize::MOVE_H);
 	SetWndResizing(IDC_LIST, DlgAutoResize::RESIZE, DlgAutoResize::SHIFT_LEFT);
-	SetWndResizing(IDC_HELP_BTN, DlgAutoResize::MOVE_V, DlgAutoResize::SHIFT);
+	//SetWndResizing(IDC_HELP_BTN, DlgAutoResize::MOVE_V, DlgAutoResize::SHIFT);
 	SetWndResizing(IDCANCEL, DlgAutoResize::MOVE);
 	SetWndResizing(IDOK, DlgAutoResize::MOVE);
 	SetWndResizing(IDC_RESIZE, DlgAutoResize::RESIZE_V, DlgAutoResize::SHIFT);

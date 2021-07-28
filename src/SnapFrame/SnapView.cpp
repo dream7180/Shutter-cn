@@ -122,7 +122,7 @@ void SnapView::Dump(CDumpContext& dc) const
 /////////////////////////////////////////////////////////////////////////////
 // SnapView message handlers
 
-static const COLORREF g_rgb_mark= RGB(247, 123, 0);//::GetSysColor(COLOR_HIGHLIGHT);
+static const COLORREF g_rgb_mark= g_Settings.AppColors()[AppColors::Selection];//::GetSysColor(COLOR_HIGHLIGHT);
 static const COLORREF g_rgb_back= ::GetSysColor(COLOR_3DFACE);
 //static const COLORREF g_rgb_caption= ::GetSysColor(COLOR_INACTIVECAPTION);
 
@@ -157,7 +157,8 @@ static COLORREF CalcShade(COLORREF rgb_color, float shade)
 
 CSize SnapView::GetBarThickness()
 {
-	int n = Pixels(1);
+	auto dpi = GetResolutionDpi();
+	int n = Pixels(dpi.Width < 97 ? 3 : 2);///可拉分割的宽度定制?
 	return CSize(n, n);
 }
 
@@ -187,26 +188,34 @@ BOOL SnapView::OnEraseBkgnd(CDC* dc)
 	CRect rect(0,0,0,0);
 	GetClientRect(rect);
 
-	CSize size = GetBarThickness();
+	//CSize size = GetBarThickness();
 
-	for (int i = 0; i < size.cx; ++i)
-	{
-		auto shade = GetShadeFactors(i, size.cx);
+	//for (int i = 0; i < size.cx; ++i)
+	//{
+		//auto shade = GetShadeFactors(i, size.cx);
 
-		COLORREF c1 = CalcShade(separator_base_color_, shade.first);// shades[idx++]);
-		COLORREF c2 = CalcShade(separator_base_color_, shade.second);// shades[idx++]);
+		//COLORREF c1 = CalcShade(separator_base_color_, shade.first);// shades[idx++]);
+		//COLORREF c2 = CalcShade(separator_base_color_, shade.second);// shades[idx++]);
 
-		dc->Draw3dRect(rect, c1, c2);
+		//dc->Draw3dRect(rect, c1, c2);//水平和垂直的拖动分割条
+		dc->FillSolidRect(rect, g_Settings.AppColors()[AppColors::Background]);
+		//auto dpi = GetResolutionDpi();
+		//if(dpi.Width < 97)
+		//	rect.DeflateRect(1, 1, 1, 1);
+		//else
+			rect.DeflateRect(2, 2, 2, 2);
+		dc->FillSolidRect(rect, g_Settings.AppColors()[AppColors::Separator]);
+		//dc->FillSolidRect(rect.left, rect.top, 1, rect.bottom - rect.top, g_Settings.AppColors()[AppColors::Separator]);
 
-		rect.DeflateRect(1, 1);
-	}
+		//rect.DeflateRect(1, 1);
+	//}
 
-	dc->FillSolidRect(rect, background_color_);// ::GetSysColor(COLOR_3DFACE));
+	//dc->FillSolidRect(rect, background_color_);// ::GetSysColor(COLOR_3DFACE));
 
 	return true;
 }
 
-
+/*
 void SnapView::DrawHorzSeparator(CDC* dc, COLORREF color, CRect rect)
 {
 	dc->FillSolidRect(rect, color);
@@ -251,9 +260,9 @@ void SnapView::DrawHorzSeparator(CDC* dc, COLORREF color, CRect rect)
 
 		rect.DeflateRect(0, 1);
 	}
-*/
-}
 
+}
+*/
 
 void SnapView::OnGetInfoTip(NMHDR* nmhdr, LRESULT* result)	// provide tool tip text for toolbar
 {

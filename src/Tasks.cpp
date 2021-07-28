@@ -1345,11 +1345,11 @@ extern bool ApplyTagToPhotos(VectPhotoInfo photos, String tag, bool apply, CWnd*
 		else
 		{
 			oStringstream operation;
-			operation << (apply ? _T("应用标记 '") : _T("移除标记 '")) << tag << _T("'");
+			operation << (apply ? _T("应用标签 '") : _T("移除标签 '")) << tag << _T("'");
 
 			ImgProcessingPool proc(std::auto_ptr<ImgProcessingThread>(new ApplyMetadataThread(photos, tag, apply, 0)));
 
-			ProcessingProgressDlg progress(parent, proc, _T("正在更改标记"),
+			ProcessingProgressDlg progress(parent, proc, _T("正在更改标签"),
 				operation.str().c_str(), ProcessingProgressDlg::AUTO_CLOSE | ProcessingProgressDlg::OUTPUT_ONLY);
 
 			progress.DoModal();

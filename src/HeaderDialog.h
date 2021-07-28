@@ -106,7 +106,7 @@ private:
 //	bool IsResizable();
 //	bool IsFooterVisible();
 	int GetFooterHeight();
-	static const int SEPARATOR_H= 3;	// space for footer separator
+	static const int SEPARATOR_H= 1;	// space for footer separator
 	int HeaderHeight() const;
 
 	void Init();

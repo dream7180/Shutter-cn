@@ -74,7 +74,7 @@ private:
 	CRect parent_rect_;
 	CSize last_size_;
 	CFont* font_dc;
-	CFont fontDC, boldFontDC;
+	CFont fontDC;//, boldFontDC;
 	CEdit* edit_ctrl_;
 	LOGFONT logfont;
 	bool in_update_;

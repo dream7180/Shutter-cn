@@ -242,6 +242,7 @@ public:
 	String LightSource() const;
 	String Flash() const;
 	String FocalLength() const;
+	String FocalLengthInt() const;
 	String FocalLength35mm() const;
 	String ISOSpeed() const;
 	uint16 GetISOSpeed() const;

@@ -12,6 +12,7 @@ ____________________________________________________________________________*/
 #include "Pane.h"
 #include "ToolBarWnd.h"
 #include "FolderPath.h"
+//#include "TopSeparatorCtrl.h"
 
 
 // FolderPane window (folder tree)
@@ -62,6 +63,7 @@ protected:
 	afx_msg void OnTimer(UINT_PTR id_event);
 	afx_msg void OnFolderRefresh();
 	afx_msg void OnDestroy();
+	afx_msg BOOL OnEraseBkgnd(CDC* dc);
 	//}}AFX_MSG
 	void OnFolderUp();
 	void OnUpdateFolderUp(CCmdUI* cmd_ui);
@@ -75,6 +77,7 @@ private:
 	enum { TREE_WINDOW_ID= 1234 };
 	FolderView tree_wnd_;
 	ToolBarWnd tool_bar_wnd_;
+	//TopSeparatorCtrl separator_;
 	UINT_PTR timer_id_;
 
 	LRESULT OnSelChanged(WPARAM, LPARAM path);

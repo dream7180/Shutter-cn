@@ -154,11 +154,13 @@ class CFilterDialog_3 : public FilterDialog
 public:
 	CFilterDialog_3(CWnd* parent = NULL);   // standard constructor
 
-	String GetRule() const;
+	String GetRule();// const;
 	void SetRule(const String& rule);
+	CListCtrl filterrule_;
 
 	virtual bool IsFilterActive() const;
 	virtual void ClearFilter();
+	CStringArray filter_rules;
 
 protected:
 	enum { IDD = IDD_FILTER_3 };
@@ -167,10 +169,16 @@ protected:
 	virtual BOOL OnInitDialog();
 	void OnEditRule();
 	void UpdateRule(const String& rule);
+	void LoadFilterRules(const TCHAR* filename);
 
 	String rule_;
 	ToolBarWnd edit_rule_;
 	DECLARE_MESSAGE_MAP()
+	
+private:
+	bool m_bHit = false;
+	afx_msg void OnItemClicked(NMHDR* nmhdr, LRESULT* result);
+	afx_msg void OnItemChanged(NMHDR* nmhdr, LRESULT* result);
 };
 
 

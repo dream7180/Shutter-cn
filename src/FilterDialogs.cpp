@@ -19,8 +19,11 @@ ____________________________________________________________________________*/
 #include "PhotoInfoJPEG.h"
 #include "CatchAll.h"
 #include "SamplePhoto.h"
+#include <boost/algorithm/string/replace.hpp>
+#include "FilterRules.h"
 extern void ManageTagsCollection(CWnd* parent, PhotoTagsCollection& tag_collection);
 
+using namespace boost::algorithm;
 
 FilterDialog::FilterDialog(int id, CWnd* parent) : DialogBase(id, parent)
 {
@@ -301,8 +304,8 @@ void CFilterDialog_1::PopulateTree(const PhotoTagsCollection& tags)
 
 	exclude_ = include_ = 0;
 
-	include_ = tags_.InsertItem(_T("查找标记"), -1, -1);
-	exclude_ = tags_.InsertItem(_T("排除标记"), -1, -1);
+	include_ = tags_.InsertItem(_T("查找标签"), -1, -1);
+	exclude_ = tags_.InsertItem(_T("排除标签"), -1, -1);
 
 	RemoveCheckBox(tags_, include_);
 	RemoveCheckBox(tags_, exclude_);
@@ -693,6 +696,8 @@ void CFilterDialog_3::DoDataExchange(CDataExchange* DX)
 
 
 BEGIN_MESSAGE_MAP(CFilterDialog_3, FilterDialog)
+	ON_NOTIFY(NM_CLICK, IDC_FILTER, &CFilterDialog_3::OnItemClicked)
+	ON_NOTIFY(LVN_ITEMCHANGED, IDC_FILTER, &CFilterDialog_3::OnItemChanged)
 	ON_BN_CLICKED(IDC_DEFINE, &CFilterDialog_3::OnEditRule)
 END_MESSAGE_MAP()
 
@@ -711,20 +716,53 @@ BOOL CFilterDialog_3::OnInitDialog()
 	resize_map_.SetWndResizing(IDC_DEFINE, DlgAutoResize::MOVE_V);
 
 	min_height_ = min_height_ * 3 / 4;
+	filterrule_.SubclassDlgItem(IDC_FILTER, this);
+	filterrule_.SetExtendedStyle(LVS_EX_CHECKBOXES | LVS_EX_FULLROWSELECT);
+	CRect rect;
+	GetDlgItem(IDC_FILTER)->GetClientRect(&rect);
+	filterrule_.InsertColumn(0, _T("Filter"), LVCFMT_LEFT, rect.Width());
+	/*LVITEM li;
+		memset(&li, 0, sizeof li);
 
+		li.mask			= LVIF_TEXT | LVIF_PARAM | LVIF_STATE | LVIF_IMAGE;
+		li.iItem		= 0;
+		li.iSubItem		= 0;
+		li.state		= (0 == 0 ? LVIS_SELECTED | LVIS_FOCUSED : 0); // doesn't work -> | INDEXTOSTATEIMAGEMASK(scan_[i] ? 2 : 1);
+		li.stateMask	= LVIS_SELECTED | LVIS_FOCUSED; // | LVIS_STATEIMAGEMASK;
+		li.pszText		= LPSTR_TEXTCALLBACK;
+		li.cchTextMax	= 0;
+		li.iImage		= 0; //I_IMAGECALLBACK;
+		li.lParam		= 0;
+		li.iIndent		= 0;
+	filterrule_.InsertItem(&li);//LoadFilterRules(AdvFilter::GetFiltersPathName().c_str()));
+*/
+	LoadFilterRules(AdvFilter::GetFiltersPathName().c_str());
+	for (int i= 0; i < filter_rules.GetSize(); ++i){
+		filterrule_.InsertItem(i,filter_rules[i]);
+	}
+	//filterrule_.InsertItem(0, LoadFilterRules(AdvFilter::GetFiltersPathName().c_str()).c_str());
 	return true;
 }
 
 
 bool CFilterDialog_3::IsFilterActive() const
 {
-	return !rule_.empty();
+	return !rule_.empty()&&(rule_!=_T("x = 1 if x > 0\r\nthen return true\r\nend"));
 }
 
 
-String CFilterDialog_3::GetRule() const
+String CFilterDialog_3::GetRule()// const
 {
-	return rule_;
+	rule_.clear();
+	for (int i= 0; i < filter_rules.GetSize(); ++i){
+		if(filterrule_.GetCheck(i))
+		{
+			rule_ += _T("and ");
+			rule_ += String(filter_rules[i]);
+			rule_ += _T("\n");
+		}
+	}
+	return _T("x = 1 if x > 0\r\n") + rule_ + _T("then return true\r\nend");
 }
 
 
@@ -738,6 +776,9 @@ void CFilterDialog_3::ClearFilter()
 {
 	if (IsFilterActive())
 	{
+		for (int i= 0; i < filter_rules.GetSize(); ++i){
+			filterrule_.SetCheck(i, false);
+		}
 		UpdateRule(String());
 		NotifyFilterChanged();
 	}
@@ -747,7 +788,54 @@ void CFilterDialog_3::ClearFilter()
 void CFilterDialog_3::UpdateRule(const String& rule)
 {
 	rule_ = rule;
-	SetDlgItemText(IDC_FILTER, rule.c_str());
+	//SetDlgItemText(IDC_FILTER, rule.c_str());
+}
+
+void CFilterDialog_3::LoadFilterRules(const TCHAR* filename)
+{
+	//Path path(GetFiltersPathName().c_str());
+	Path path(filename);
+	if (!path.FileExists())
+		return;
+
+	CFile file(filename, CFile::modeRead);
+
+	ULONGLONG len= file.GetLength();
+	//if (len > 0x500000)
+	//{
+	//	if (parent)
+	//		new BalloonMsg(parent, _T("标签文件太大"), _T("尝试载入的文件过大.\n文件应不大于 5 MB."), BalloonMsg::IERROR);
+//
+	//	return false;
+	//}
+
+	DWORD length= static_cast<DWORD>(len);
+
+	std::vector<TCHAR> buf(1 + length / sizeof TCHAR);
+
+	//TODO: handle non-Unicode
+
+	file.Read(&buf.front(), length);
+
+	// skip Unicode signature
+	if (length > 2 && buf.front() == 0xfeff)		// Unicode marker?
+		buf.erase(buf.begin(), buf.begin() + 1);
+
+	replace_all(buf, _T("\xd\xa"), _T("\xa"));
+	//return String(&buf.front());
+	String _rules = String(&buf.front());
+	iStringstream si(_rules);
+	String filter_rule;
+	filter_rules.RemoveAll();
+	for (;;)
+	{
+		if (!getline(si, filter_rule, _T('\n')))
+			break;
+		trim_if(filter_rule, is_from_range(_T('\0'), _T('\x20')));
+		if(filter_rule.length() != 0)
+			filter_rules.Add(filter_rule.c_str());
+	}
+	//return arr;
 }
 
 
@@ -763,18 +851,67 @@ void CFilterDialog_3::OnEditRule()
 		EditFilterDlg dlg(this, *photo, Tags::GetTagCollection());
 		HeaderDialog frame(dlg, _T("TTL"), GetParent());
 
-		if (!rule_.empty())
-			dlg.filter_rule_ = rule_;
-
+		//if (!rule_.empty())
+		//	dlg.filter_rule_ = rule_;
+		String dlg_rules;
+		for (int i= 0; i < filter_rules.GetSize(); ++i){
+			dlg_rules += filter_rules[i];
+			dlg_rules += _T("\n");
+		}
+		//SetDlgItemText(IDC_FILTER, dlg_rules);
+		dlg.filter_rule_ = dlg_rules;
 		if (frame.DoModal() != IDOK)
 			return;
-
-		UpdateRule(dlg.filter_rule_);
+		filter_rules.RemoveAll();
+		filterrule_.DeleteAllItems();
+		LoadFilterRules(AdvFilter::GetFiltersPathName().c_str());
+		for (int i= 0; i < filter_rules.GetSize(); ++i){
+			filterrule_.InsertItem(i,filter_rules[i]);
+		}
+		UpdateRule(GetRule());
 		NotifyFilterChanged();
 	}
 	CATCH_ALL_W(this);
 }
 
+void CFilterDialog_3::OnItemClicked(NMHDR* nmhdr, LRESULT* result)
+{
+	DWORD dwPos = GetMessagePos();  
+	CPoint point( LOWORD(dwPos), HIWORD(dwPos) );
+	filterrule_.ScreenToClient(&point);     
+	LVHITTESTINFO lvinfo;  
+	lvinfo.pt = point;
+	int nItem = filterrule_.HitTest(&lvinfo);
+	if(nItem != -1)  
+	//m_itemSel = lvinfo.iItem;
+	if(lvinfo.flags == LVHT_ONITEMSTATEICON)  
+		m_bHit = true;  
+	*result = 0;
+}
+
+void CFilterDialog_3::OnItemChanged(NMHDR* nmhdr, LRESULT* result)
+{
+	//NM_LISTVIEW* pNMListView = (NM_LISTVIEW*)nmhdr;
+	LPNMLISTVIEW pNMListView = reinterpret_cast<LPNMLISTVIEW>(nmhdr);
+	if(m_bHit){
+		m_bHit = false;
+		//if(filterrule_.GetCheck(m_itemSel)){
+		UpdateRule(GetRule());
+		NotifyFilterChanged();
+		//}
+	}
+
+/*	if(pNMListView->uChanged==LVIF_STATE || m_bHit)
+	{
+		if(pNMListView->uNewState & LVIS_SELECTED)
+		{
+			//GetRule();
+			UpdateRule(GetRule());
+			NotifyFilterChanged();
+		}
+	}*/
+	*result = 0;
+}
 
 // CFilterDialog_4 dialog (filter by rating/stars) ====================================================================
 

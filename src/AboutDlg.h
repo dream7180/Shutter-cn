@@ -10,7 +10,7 @@ ____________________________________________________________________________*/
 
 //#include "Dib.h"
 //#include "LinkWnd.h"
-
+#include "ImageCtrl.h"
 
 class AboutDlg : public CDialog
 {
@@ -58,4 +58,5 @@ protected:
 	//CDC backgnd_dc_;
 private:
 	HBRUSH OnCtlColor(CDC* dc, CWnd* wnd, UINT ctl_color);
+	ImageCtrl image_;
 };

@@ -38,12 +38,12 @@ struct FilterPanelDlg::Impl
 
 	void InitDlg(DialogBase* self);
 	void SubFilterChanged(FilterDialog* dlg);
-	void UpdateStoreButton();
+	//void UpdateStoreButton();
 
 	DialogBase* self_;
 	DlgAutoResize resize_map_;
 	DlgListCtrl list_;
-	CEdit filter_name_;
+	//CEdit filter_name_;
 	CFilterDialog_1 dlg_1_;
 	CFilterDialog_2 dlg_2_;
 	CFilterDialog_4 dlg_4_;
@@ -51,7 +51,7 @@ struct FilterPanelDlg::Impl
 	FilterDialog* dialogs_[5];
 	FilterOperations* operations_;
 	CImageList funnel_;
-	ToolBarWnd toolbar_;
+	//ToolBarWnd toolbar_;
 	bool block_notifications_;
 };
 
@@ -78,8 +78,8 @@ enum { ADD_FILTER= 1111, DELETE_FILTER, UPDATE_FILTER };
 BEGIN_MESSAGE_MAP(FilterPanelDlg, DialogBase)
 	ON_WM_SIZE()
 	ON_WM_ERASEBKGND()
-	ON_COMMAND_RANGE(ADD_FILTER, UPDATE_FILTER, OnFilterCommand)
-	ON_EN_CHANGE(IDC_FILTER_NAME, OnFilterNameChanged)
+	//ON_COMMAND_RANGE(ADD_FILTER, UPDATE_FILTER, OnFilterCommand)
+	//ON_EN_CHANGE(IDC_FILTER_NAME, OnFilterNameChanged)
 END_MESSAGE_MAP()
 
 
@@ -128,17 +128,17 @@ void FilterPanelDlg::Impl::InitDlg(DialogBase* self)
 	list_.SetBottomMargin(MARGIN);
 	list_.SetImageList(&funnel_);
 
-	filter_name_.SubclassDlgItem(IDC_FILTER_NAME, self);
+	//filter_name_.SubclassDlgItem(IDC_FILTER_NAME, self);
 
 	// limit name length to make tabs widths reasonable
-	filter_name_.LimitText(50);
+	//filter_name_.LimitText(50);
 
 	resize_map_.BuildMap(self);
 	resize_map_.SetWndResizing(IDC_DLG_LIST, DlgAutoResize::RESIZE);
 	resize_map_.SetWndResizing(IDC_SEPARATOR, DlgAutoResize::MOVE_V_RESIZE_H);
-	resize_map_.SetWndResizing(IDC_LABEL_1, DlgAutoResize::MOVE_V);
-	resize_map_.SetWndResizing(IDC_FILTER_NAME, DlgAutoResize::MOVE_V_RESIZE_H);
-	resize_map_.SetWndResizing(IDC_TOOLBAR, DlgAutoResize::MOVE_V);
+	//resize_map_.SetWndResizing(IDC_LABEL_1, DlgAutoResize::MOVE_V);
+	//resize_map_.SetWndResizing(IDC_FILTER_NAME, DlgAutoResize::MOVE_V_RESIZE_H);
+	//resize_map_.SetWndResizing(IDC_TOOLBAR, DlgAutoResize::MOVE_V);
 
 	//resize_map_.SetWndResizing(IDC_DEL_FILTER, DlgAutoResize::MOVE_V, DlgAutoResize::HALF_MOVE_H);
 	//resize_map_.SetWndResizing(IDC_UPDATE_FILTER, DlgAutoResize::MOVE_V, DlgAutoResize::HALF_MOVE_H);
@@ -148,16 +148,16 @@ void FilterPanelDlg::Impl::InitDlg(DialogBase* self)
 	for (int i= 0; dialogs_[i]; ++i)
 		list_.AddSubDialog(dialogs_[i], no_image, 0, true);
 
-	toolbar_.SubclassDlgItem(IDC_TOOLBAR, self);
+	/*toolbar_.SubclassDlgItem(IDC_TOOLBAR, self);
 	int cmd[]= { ADD_FILTER, DELETE_FILTER, UPDATE_FILTER };
 	toolbar_.SetPadding(DEFAULT_TB_PAD_DX, DEFAULT_TB_PAD_DY);
 	toolbar_.AddButtons("PPP", cmd, IDB_CUSTOM_FILTERS, IDS_CUSTOM_FILTERS);
 	toolbar_.SetOnIdleUpdateState(false);
 	toolbar_.HideButton(DELETE_FILTER);
-	toolbar_.HideButton(UPDATE_FILTER);
+	toolbar_.HideButton(UPDATE_FILTER);*/
 }
 
-
+/*
 void FilterPanelDlg::OnFilterNameChanged()
 {
 	impl_->UpdateStoreButton();
@@ -195,7 +195,7 @@ void FilterPanelDlg::OnFilterCommand(UINT cmd)
 		break;
 	}
 }
-
+*/
 
 void FilterPanelDlg::Impl::SubFilterChanged(FilterDialog* dlg)
 {
@@ -219,7 +219,7 @@ void FilterPanelDlg::GetCurrentFilter(FilterData& filter) const
 
 	filter.stars_.stars = impl_->dlg_4_.GetStars();
 
-	filter.name_ = GetFilterName();
+	//filter.name_ = GetFilterName();
 }
 
 
@@ -235,8 +235,8 @@ void FilterPanelDlg::SetFilter(const FilterData& filter, bool custom)
 
 	impl_->dlg_4_.SetStars(filter.stars_.stars);
 
-	impl_->filter_name_.SetWindowText(filter.name_.c_str());
-	impl_->UpdateStoreButton();
+	//impl_->filter_name_.SetWindowText(filter.name_.c_str());
+	//impl_->UpdateStoreButton();
 
 	// refresh funnel icons and 'clear' buttons
 	for (int i= 0; impl_->dialogs_[i]; ++i)
@@ -249,9 +249,9 @@ void FilterPanelDlg::SetFilter(const FilterData& filter, bool custom)
 		dlg->ShowClearAllBtn(active);
 	}
 
-	impl_->toolbar_.HideButton(ADD_FILTER, custom);
-	impl_->toolbar_.HideButton(DELETE_FILTER, !custom);
-	impl_->toolbar_.HideButton(UPDATE_FILTER, !custom);
+	//impl_->toolbar_.HideButton(ADD_FILTER, custom);
+	//impl_->toolbar_.HideButton(DELETE_FILTER, !custom);
+	//impl_->toolbar_.HideButton(UPDATE_FILTER, !custom);
 }
 
 
@@ -282,7 +282,7 @@ BOOL FilterPanelDlg::OnEraseBkgnd(CDC* dc)
 	return true;
 }
 
-
+/*
 String FilterPanelDlg::GetFilterName() const
 {
 	CString name;
@@ -296,7 +296,7 @@ void FilterPanelDlg::ShowNameInUseErr()
 	new BalloonMsg(&impl_->filter_name_, _T("过滤器名称使用中"),
 		_T("请提供唯一的过滤器名称."), BalloonMsg::IERROR);
 }
-
+*/
 
 void FilterPanelDlg::GetPanelUISettings(size_t panel, int& height, bool& expanded, int& flags)
 {

@@ -64,7 +64,7 @@ BOOL CCopyTaggedDlg::OnInitDialog()
 {
 	DialogChild::OnInitDialog();
 
-	SubclassHelpBtn(_T("ToolCopyTagged.htm"));
+	//SubclassHelpBtn(_T("ToolCopyTagged.htm"));
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE

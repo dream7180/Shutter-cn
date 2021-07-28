@@ -131,7 +131,7 @@ BOOL CDescriptionDlg::InitDlg()
 
 	CDialogChild::OnInitDialog();
 
-	SubclassHelpBtn(_T("ToolDescription.htm"));
+	//SubclassHelpBtn(_T("ToolDescription.htm"));
 
 	BuildToolbar();
 
@@ -165,7 +165,7 @@ BOOL CDescriptionDlg::InitDlg()
 
 	SetWndResizing(IDC_DESCRIPTION, CDlgAutoResize::RESIZE);
 	SetWndResizing(IDC_TOOLBAR, CDlgAutoResize::MOVE_H);
-	SetWndResizing(IDC_HELP_BTN, CDlgAutoResize::MOVE_V);
+	//SetWndResizing(IDC_HELP_BTN, CDlgAutoResize::MOVE_V);
 	SetWndResizing(IDC_NAVIGATION, CDlgAutoResize::MOVE_V);
 	SetWndResizing(IDC_INFO, CDlgAutoResize::MOVE_V);
 	SetWndResizing(IDCANCEL, CDlgAutoResize::MOVE);

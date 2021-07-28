@@ -34,7 +34,7 @@ ExifStatusBar::ExifStatusBar(const Columns& columns) : columns_(columns)
 	recipient_ = 0;
 	DefaultFields();
 
-	::LoadPngImageList(funnel_icon_, IDB_FUNNEL_ICON, ::GetSysColor(COLOR_3DFACE), true, 1);
+	::LoadPngImageList(funnel_icon_, IDB_FUNNEL, ::GetSysColor(COLOR_3DFACE), true, 1);
 
 	background_ = RGB(255, 0, 0);
 	text_color_ = 0;
@@ -72,14 +72,14 @@ void ExifStatusBar::DrawItem(DRAWITEMSTRUCT* draw)
 			if (draw->itemID == 1 && *text == '@')
 			{
 				if (funnel_icon_.m_hImageList)
-					funnel_icon_.Draw(dc, 0, CPoint(rect.left, rect.top), ILD_TRANSPARENT);
+					funnel_icon_.Draw(dc, 0, CPoint(rect.left, rect.top + rect.Height()/5), ILD_TRANSPARENT);
 				rect.left += Pixels(20);
 				++text;
 			}
 
 			if (draw->itemID == 1 && *text == '!')
 			{
-				dc->DrawIcon(rect.left, rect.top + rect.Height()/4, ::AfxGetApp()->LoadIcon(IDI_WARNING_2));
+				dc->DrawIcon(rect.left, rect.top + rect.Height()/6, ::AfxGetApp()->LoadIcon(IDI_WARNING_));
 				rect.left += Pixels(20);
 				++text;
 			}
@@ -207,8 +207,8 @@ int ExifStatusBar::OnCreate(LPCREATESTRUCT create_struct)
 	VERIFY(dc.GetTextMetrics(&tm));
 	dc.SelectObject(old);
 	// extra height
-	m_nMinHeight = tm.tmHeight * 2 + tm.tmInternalLeading;
-	m_cyBottomBorder = tm.tmInternalLeading;// / 2;
+	m_nMinHeight = tm.tmHeight * 1.5 + tm.tmInternalLeading;
+	m_cyBottomBorder = tm.tmInternalLeading / 2;
 	
 	//CWnd* pParentWnd;
 	//pParentWnd->ModifyStyle(WS_THICKFRAME, 0, 0);

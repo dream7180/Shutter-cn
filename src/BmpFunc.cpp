@@ -981,6 +981,8 @@ bool MagnifyBitmapWorker(Dib& dibSrc, double zoom_x, double zoom_y, Dib& dibDest
 	CSize dest_size;
 	dest_size.cx = static_cast<int>(zoom_x * src_size.cx + 0.5);
 	dest_size.cy = static_cast<int>(zoom_y * src_size.cy + 0.5);
+	//dest_size.cx = static_cast<int>(zoom_x * src_size.cx * 1.025);
+	//dest_size.cy = static_cast<int>(zoom_y * src_size.cy * 1.025);
 
 	dibDest.CreateEx(dest_size.cx, dest_size.cy, dibSrc.GetBitsPerPixel(), false);
 

@@ -62,7 +62,7 @@ BOOL FileOperDlg::OnInitDialog()
 {
 	DialogChild::OnInitDialog();
 
-	SubclassHelpBtn(copy_operation_ ? _T("ToolCopy.htm") : _T("ToolMove.htm"));
+	//SubclassHelpBtn(copy_operation_ ? _T("ToolCopy.htm") : _T("ToolMove.htm"));
 
 	SetWindowText(copy_operation_ ? _T("复制照片") : _T("移动照片"));
 	btn_ok_.SetWindowText(copy_operation_ ? _T("复制") : _T("移动"));

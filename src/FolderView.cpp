@@ -12,6 +12,7 @@ ____________________________________________________________________________*/
 #include "intrusive_ptr.h"
 typedef mik::intrusive_ptr<ShellFolder> CShellFolderPtr;
 #include "CatalogFolder.h"
+#include "GetDefaultGuiFont.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -79,12 +80,14 @@ bool FolderView::Create(CWnd* parent, UINT id, FolderPathPtr path/*= 0*/, bool r
 	TreeView_SetExtendedStyle(m_hWnd, TVS_EX_DOUBLEBUFFER, TVS_EX_DOUBLEBUFFER);
 	
 	LOGFONT lf;
-	HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
+	/*HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
 	::GetObject(hfont, sizeof(lf), &lf);
 	//lf.lfQuality = ANTIALIASED_QUALITY;
-	lf.lfHeight += 1;
+	//lf.lfHeight += 1;
 	_tcscpy(lf.lfFaceName, _T("Tahoma"));
-	hfont = CreateFontIndirectW(&lf);
+	hfont = CreateFontIndirectW(&lf);*/
+	::GetDefaultGuiFont(lf);
+	HFONT hfont = CreateFontIndirectW(&lf);
 	SendMessage(WM_SETFONT, WPARAM(hfont));
 
 	//SendMessage(WM_SETFONT, WPARAM(::GetStockObject(DEFAULT_GUI_FONT)));

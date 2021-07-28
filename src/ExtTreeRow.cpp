@@ -16,6 +16,7 @@ ____________________________________________________________________________*/
 #include "ColorProfile.h"
 #include "resource.h"
 #include "CtrlDraw.h"
+#include "GetDefaultGuiFont.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -42,11 +43,12 @@ ExtTreeRow::ExtTreeRow(ExtTreeNode* Parent, ICMProfilePtr icm, UINT flags/*= REN
 	{
 		// create bold font
 		LOGFONT lf;
-		::GetObject(::GetStockObject(DEFAULT_GUI_FONT), sizeof lf, &lf);
+		/*::GetObject(::GetStockObject(DEFAULT_GUI_FONT), sizeof lf, &lf);
 		lf.lfWeight = FW_BOLD;
 		//lf.lfQuality = ANTIALIASED_QUALITY;
-		lf.lfHeight += 1;
-		_tcscpy(lf.lfFaceName, _T("Tahoma"));
+		//lf.lfHeight += 1;
+		_tcscpy(lf.lfFaceName, _T("Tahoma"));*/
+		::GetDefaultGuiBoldFont(lf);
 		bold_fnt_.CreateFontIndirect(&lf);
 	}
 }

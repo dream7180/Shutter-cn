@@ -312,8 +312,8 @@ void TagsBarCommon::OnSize(UINT type, int cx, int cy)
 		rating_wnd_.GetClientRect(w);
 		UINT flags= SWP_SHOWWINDOW;
 		int h= w.Height();
-		int SEP_H = Pixels(2);
-		int margin = Pixels(5);
+		int SEP_H = Pixels(1);
+		int margin = Pixels(0);
 		if (h > rect.Height())
 			flags = SWP_HIDEWINDOW;
 		else
@@ -926,7 +926,7 @@ void TagsBarCommon::OnUpdateTagsManage(CCmdUI* cmd_ui)
 
 static TCHAR* g_ext= _T(".txt");
 static TCHAR* g_name= _T("Photo Tags.txt");
-static TCHAR* g_filter= _T("标记文本文件 (*.txt)|*.txt|所有文件 (*.*)|*.*||");
+static TCHAR* g_filter= _T("标签文本文件 (*.txt)|*.txt|所有文件 (*.*)|*.*||");
 
 void TagsBarCommon::OnTagsLoad()
 {
@@ -954,7 +954,7 @@ bool TagsBarCommon::LoadTags(const TCHAR* filename)
 	ULONGLONG long_len= file.GetLength();
 	if (long_len > 0x100000)
 	{
-		new BalloonMsg(this, _T("标记文件太大"), _T("尝试载入的文件过大.\n文件应不大于 1 MB."), BalloonMsg::IERROR);
+		new BalloonMsg(this, _T("标签文件太大"), _T("尝试载入的文件过大.\n文件应不大于 1 MB."), BalloonMsg::IERROR);
 		return false;
 	}
 
@@ -1063,9 +1063,9 @@ void TagsBarCommon::UpdateStatusBar(bool selection, bool still_loading)
 		if (err)
 			ost << _T("只读 ");
 		else
-			ost << _T("选定的 ");
+			//ost << _T("选定的 ");
 		// name in double quotation marks
-		ost << L'\x201c' << selected_photos_.front()->GetName() << L'\x201d';
+		ost << selected_photos_.front()->GetName();//L'\x201c' << selected_photos_.front()->GetName() << L'\x201d';
 
 		status_label_.SetWindowText(ost.str().c_str());
 	}
@@ -1174,7 +1174,7 @@ void TagsBarCommon::ItemColors(ListViewCtrl& ctrl, int index, size_t param, COLO
 
 void TagsBarCommon::DrawItemBackground(ListViewCtrl& ctrl, int index, size_t param, CDC& dc, CRect rect)
 {
-	if (param < tags_.size())
+/*	if (param < tags_.size())
 		if (tags_[param].state_ == TagBtn::SELECTED)
 		{
 			auto margin = Pixels(1);
@@ -1182,6 +1182,7 @@ void TagsBarCommon::DrawItemBackground(ListViewCtrl& ctrl, int index, size_t par
 			auto color = GetAppColors()[AppColors::AccentBackground];
 			::FillRoundRect(dc, rect, 2.0f, color);
 		}
+		*/
 }
 
 
@@ -1272,7 +1273,7 @@ extern void ResetPopupMenuTags(CMenu& menu, int first_id, const PhotoTagsCollect
 	const int count= std::min<int>(int(tags.GetCount()), MAX_TAGS);
 
 	if (count == 0)	// this menu cannot
-		menu.AppendMenu(MF_STRING, first_id, _T("<无定义的标记>"));
+		menu.AppendMenu(MF_STRING, first_id, _T("<无定义的标签>"));
 	else
 	{
 		for (int i= 0; i < count; ++i)

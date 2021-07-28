@@ -29,15 +29,15 @@ bool DarkCloseBar::Create(CWnd* parent)
 		0, WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN, CRect(0,0,0,0), parent, -1))
 		return false;
 
-	backgnd_.Load(IDR_CLOSE_BAR);
+	//backgnd_.Load(IDR_CLOSE_BAR);
 
 	toolbar_.SetOnIdleUpdateState(false);
 
-	const int commands[]= { SC_RESTORE, SC_CLOSE };
+	const int commands[]= { SC_MINIMIZE, SC_RESTORE, SC_CLOSE };
 
 	FancyToolBar::Params p;
 	p.shade = -0.28f;
-	if (!toolbar_.Create(this, "pp", commands, IDR_CLOSEBAR_PNG, &p))
+	if (!toolbar_.Create(this, "ppp", commands, IDR_CLOSEBAR_PNG, &p))
 		return false;
 
 	toolbar_.SetPadding(CRect(4,4,4,4));
@@ -61,6 +61,8 @@ CString DarkCloseBar::Toolbar::GetToolTip(int cmdId)
 		tip.LoadString(IDS_RESTOR_WND);
 	else if (cmdId == SC_CLOSE)
 		tip.LoadString(IDS_CLOSE_WND);
+	else if (cmdId == SC_MINIMIZE)
+		tip.LoadString(IDS_MINIMIZE_WND);
 	else
 		return FancyToolBar::GetToolTip(cmdId);
 
@@ -70,12 +72,13 @@ CString DarkCloseBar::Toolbar::GetToolTip(int cmdId)
 
 BOOL DarkCloseBar::OnEraseBkgnd(CDC* dc)
 {
-	if (backgnd_.IsValid())
-	{
+	//if (backgnd_.IsValid())
+	//{
 		CRect rect(0,0,0,0);
 		GetClientRect(rect);
-		backgnd_.Draw(dc, rect);
-	}
+		dc->FillSolidRect(rect, RGB(25,25,25));
+		//backgnd_.Draw(dc, rect);
+	//}
 	return true;
 }
 

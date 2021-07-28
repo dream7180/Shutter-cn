@@ -14,6 +14,7 @@ ____________________________________________________________________________*/
 #include "MemoryDC.h"
 #include "UIElements.h"
 #include "CtrlDraw.h"
+#include "GetDefaultGuiFont.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -92,7 +93,7 @@ struct ListViewCtrl::Impl
 		rgb_normal_text_ = ::GetSysColor(COLOR_WINDOWTEXT);
 		rgb_disabled_text_ = ::GetSysColor(COLOR_GRAYTEXT);
 		rgb_selected_text_ = ::GetSysColor(COLOR_HIGHLIGHTTEXT);
-		rgb_selection_ = RGB(247, 123, 0);//::GetSysColor(COLOR_HIGHLIGHT);
+		rgb_selection_ = ::GetSysColor(COLOR_HIGHLIGHT);
 		times_text_height_ = 1.2f;
 		menu_like_selection_ = false;
 		intercol_space_ = cell_margin_ = 0;
@@ -227,11 +228,12 @@ void ListViewCtrl::PreSubclassWindow()
 
 void ListViewCtrl::Impl::PreSubclassWindow()
 {
-	HFONT font= static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
+	//HFONT font= static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
 	LOGFONT lf;
-	::GetObject(font, sizeof(lf), &lf);
-	lf.lfHeight += 1;
-	_tcscpy(lf.lfFaceName, _T("Tahoma"));
+	/*::GetObject(font, sizeof(lf), &lf);
+	//lf.lfHeight += 1;
+	_tcscpy(lf.lfFaceName, _T("Tahoma"));*/
+	::GetDefaultGuiFont(lf);
 	normal_fnt_.CreateFontIndirect(&lf);
 
 	lf.lfUnderline = true;

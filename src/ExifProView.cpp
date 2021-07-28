@@ -67,6 +67,7 @@ ____________________________________________________________________________*/
 #include "DateTimeUtils.h"
 
 #include "UIElements.h"
+#include "GetDefaultGuiFont.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -187,8 +188,8 @@ BEGIN_MESSAGE_MAP(ExifView, PaneWnd)
 	ON_UPDATE_COMMAND_UI(ID_SHOW_OPTIONS, OnUpdateShowOptions)
 	ON_COMMAND(ID_VIEW_SHOW_TAGS, OnShowTags)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_SHOW_TAGS, OnUpdateShowTags)
-	ON_COMMAND(ID_VIEW_SHOW_NOEXIF, OnShowNoExif)
-	ON_UPDATE_COMMAND_UI(ID_VIEW_SHOW_NOEXIF, OnUpdateShowNoExif)
+	ON_COMMAND(ID_VIEW_SHOW_MARKER, OnShowMarker)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_SHOW_MARKER, OnUpdateShowMarker)
 	ON_COMMAND(ID_VIEW_SHOW_TIMELINE, OnViewShowTimeLine)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_SHOW_TIMELINE, OnUpdateViewShowTimeLine)
 
@@ -431,7 +432,7 @@ ExifView::ExifView(Columns& columns)
 	view_mode_ = VIEW_MODE_THUMBNAILS;
 	old_grouping_ = grouping_mode_ = GROUP_BY_FOLDERS;
 	frame_ = 0;
-	sort_by_ = 2;	// defaults to the date & time
+	sort_by_ = 1;	// defaults to the date & time
 	secondary_sorting_column_ = 0;	// no secondary key
 	last_sync_time_ = 0;
 	img_size_index_ = array_count(thumb_size_levels) * 2 / 3;
@@ -440,7 +441,7 @@ ExifView::ExifView(Columns& columns)
 	rated_photos_in_groups_ = true;
 	date_grouping_ = BY_DAY;	// crrently this is fixed and doesn't change
 	//show_labels_ = SHOW_DATE_TIME;
-	show_labels_ = SHOW_FILE_NAME_EXT;
+	show_labels_ = SHOW_FILE_NAME;
 	notifications_enabled_counter_ = 0;
 
 	sorted_photos_.reserve(100);
@@ -477,7 +478,7 @@ ExifView::ExifView(Columns& columns)
 	profile_show_labels_.Register(REGISTRY_ENTRY_EXIF, _T("ShowLabels"), show_labels_);
 	profile_show_balloons_.Register(REGISTRY_ENTRY_EXIF, _T("ShowBalloons"), true);
 	profile_show_tags_.Register(REGISTRY_ENTRY_EXIF, _T("ShowTagText"), true);
-	profile_show_noexif_.Register(REGISTRY_ENTRY_EXIF, _T("ShowNoExif"), false);
+	profile_show_marker_.Register(REGISTRY_ENTRY_EXIF, _T("ShowMarker"), true);
 	profile_show_time_line_.Register(REGISTRY_ENTRY_EXIF, _T("ShowTimeLine"), true);
 	profile_images_across_.Register(REGISTRY_ENTRY_EXIF, _T("ImagesAcross"), images_across_index_);
 	fieldSelectionProfile1_.Register(REGISTRY_ENTRY_EXIF, _T("FieldSelThumbs"), customInfoFields_[0]);
@@ -535,14 +536,16 @@ void ExifView::OnDraw(CDC* dc)
 void ExifView::InitialUpdate()
 {
 	PaneWnd::InitialUpdate();
-	
 	LOGFONT lf;
-	HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
+	/*HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
 	::GetObject(hfont, sizeof(lf), &lf);
 	//lf.lfQuality = ANTIALIASED_QUALITY;
-	lf.lfHeight += 1;
-	_tcscpy(lf.lfFaceName, _T("Tahoma"));
-	hfont = CreateFontIndirectW(&lf);
+	//lf.lfHeight += 1;
+	lf.lfQuality = CLEARTYPE_QUALITY;
+	_tcscpy(lf.lfFaceName, _T("Microsoft Yahei"));
+	hfont = CreateFontIndirectW(&lf);*/
+	::GetDefaultGuiFont(lf);
+	HFONT hfont = CreateFontIndirectW(&lf);
 	SendMessage(WM_SETFONT, WPARAM(hfont));
 	//SendMessage(WM_SETFONT, WPARAM(::GetStockObject(DEFAULT_GUI_FONT)));
 
@@ -636,7 +639,7 @@ void ExifView::InitialUpdate()
 	}
 	else	// there is no registry info stored yet; apply default settings
 	{
-		const int COUNT= 16;
+		const int COUNT= 12;//默认列的数量！！！！！！！！！
 		columns_.resize(COUNT);
 		for (int i= 0; i < COUNT; ++i)
 		{
@@ -2386,13 +2389,13 @@ void ExifView::SetColors(CDC* dc, const CRect& img_rect, UINT state, bool frame/
 
 	if (state & LVIS_SELECTED)
 	{
-		rgb_fill = ::GetFocus() == GetListCtrl().m_hWnd ? /*::GetSysColor(COLOR_HIGHLIGHT)*/RGB(247, 123, 0) : ::GetSysColor(COLOR_3DFACE);
+		rgb_fill = ::GetFocus() == GetListCtrl().m_hWnd ? /*::GetSysColor(COLOR_HIGHLIGHT)*/ g_Settings.AppColors()[AppColors::Selection] : ::GetSysColor(COLOR_3DFACE);
 		rgb_frame = rgb_fill;
 		rgb_text = ::GetSysColor(COLOR_HIGHLIGHTTEXT);
 	}
 
 	if (frame && (state & LVIS_FOCUSED))
-		rgb_frame = RGB(247, 123, 0);//::GetSysColor(COLOR_HIGHLIGHT);
+		rgb_frame =  g_Settings.AppColors()[AppColors::Selection];//::GetSysColor(COLOR_HIGHLIGHT);
 
 	// fill backgnd
 	CRect rect= img_rect;
@@ -2575,7 +2578,7 @@ void ExifView::ViewPhoto(PhotoInfoPtr photo, ViewerType type)
 	{
 		ViewerDlg* viewer= new ViewerDlg(&viewer_link_, viewer_photos_, all_photos_, this, cols_);
 		viewer_link_.Connect(viewer);
-		viewer->Create(_T("图像查看器"));
+		viewer->Create(_T("Shutter图像查看器"));
 	}
 	else
 	{
@@ -2675,6 +2678,9 @@ void ExifView::OnUpdateViewPictures(CCmdUI* cmd_ui)		{ cmd_ui->SetRadio(GetViewM
 
 BOOL ExifView::OnEraseBkgnd(CDC* dc)
 {
+	CRect rect;
+	GetClientRect(rect);
+	dc->FillSolidRect(rect, g_Settings.AppColors()[AppColors::SecondarySeparator]);
 	return true;
 }
 
@@ -2831,7 +2837,7 @@ void ExifView::AddTaggedPhotos(VectPhotoInfo::iterator begin, VectPhotoInfo::ite
 
 #ifdef MULTI_GROUPS
 #else
-	String label= photo.GetTags().size() > 1 ? _T("多个标记") : _T("标记 \"") + tags + _T("\"");
+	String label= photo.GetTags().size() > 1 ? _T("多个标签") : _T("标签 \"") + tags + _T("\"");
 #endif
 
 	if (add_photo != 0 && end - begin == 1)
@@ -3490,7 +3496,7 @@ void ExifView::SaveSettings()
 	profile_show_labels_ = show_labels_;
 	profile_show_balloons_ = GetListCtrl().IsBalloonInfoEnabled();
 	profile_show_tags_ = GetListCtrl().ShowingTagText();
-	profile_show_noexif_ = GetListCtrl().ShowingNoExif();
+	profile_show_marker_ = GetListCtrl().ShowingMarker();
 	fieldSelectionProfile1_ = customInfoFields_[0];
 	fieldSelectionProfile2_ = customInfoFields_[1];
 
@@ -3748,7 +3754,7 @@ int ExifView::OnCreate(LPCREATESTRUCT create_struct)
 	GetListCtrl().ShowItemLabel(show_labels_ != NO_LABELS);
 	GetListCtrl().EnableBalloonInfo(profile_show_balloons_);
 	GetListCtrl().ShowTagText(profile_show_tags_);
-	GetListCtrl().ShowNoExif(profile_show_noexif_);
+	GetListCtrl().ShowMarker(profile_show_marker_);
 	GetListCtrl().SetImageSize(Pixels(thumb_size_levels[img_size_index_]));
 	GetListCtrl().SetItemsAcross(images_across_levels[images_across_index_]);
 
@@ -3806,13 +3812,13 @@ int ExifView::OnCreate(LPCREATESTRUCT create_struct)
 	return 0;
 }
 
-
+/*
 void ExifView::NameChanged()		// filter name changed
 {
 	if (FilterData* current= GetCurrentFilterData())
 		current->name_ = filter_dlg_.GetFilterName();
 }
-
+*/
 
 void ExifView::GetCurrentFilter(FilterData& filter)
 {
@@ -3821,7 +3827,7 @@ void ExifView::GetCurrentFilter(FilterData& filter)
 	filter.time_.to = sel_hist_date_to_;
 }
 
-
+/*
 void ExifView::StoreFilter()		// store current filter
 {
 	FilterData filter;
@@ -3880,7 +3886,7 @@ void ExifView::UpdateFilter()		// update current filter
 		tab_ctrl_.SetItemText(tab, cur->name_.c_str());
 	}
 }
-
+*/
 
 int ExifView::GetCurFilterTab() const
 {
@@ -4101,7 +4107,7 @@ void ExifView::Resize()
 		if (rect.Height() < 0)
 			rect.bottom = rect.top;
 	}
-
+	rect.top += 1;
 	if (filter_dlg_.m_hWnd && (filter_dlg_.GetStyle() & WS_VISIBLE))
 	{
 		filter_dlg_.SetWindowPos(0, rect.left, rect.top, filter_dlg_width_, rect.Height(), SWP_NOZORDER | SWP_NOACTIVATE);
@@ -5473,8 +5479,8 @@ void ExifView::OnTaskCopyTagged()
 
 		if (tagged_photos.empty())
 		{
-			new BalloonMsg(&GetListCtrl(), _T("没有标记的照片"),
-				_T("请先给图片进行标记."), BalloonMsg::IERROR);
+			new BalloonMsg(&GetListCtrl(), _T("没有标签的照片"),
+				_T("请先给图片添加标签."), BalloonMsg::IERROR);
 			return;
 		}
 
@@ -5922,16 +5928,16 @@ void ExifView::OnUpdateShowTags(CCmdUI* cmd_ui)
 	cmd_ui->SetCheck(enabled && GetListCtrl().ShowingTagText() ? 1 : 0);
 }
 
-void ExifView::OnShowNoExif()
+void ExifView::OnShowMarker()
 {
-	GetListCtrl().ShowNoExif(!GetListCtrl().ShowingNoExif());
+	GetListCtrl().ShowMarker(!GetListCtrl().ShowingMarker());
 }
 
-void ExifView::OnUpdateShowNoExif(CCmdUI* cmd_ui)
+void ExifView::OnUpdateShowMarker(CCmdUI* cmd_ui)
 {
 	bool enabled= true; //view_mode_ != VIEW_MODE_DETAILS;
 	cmd_ui->Enable(enabled);
-	cmd_ui->SetCheck(enabled && GetListCtrl().ShowingNoExif() ? 1 : 0);
+	cmd_ui->SetCheck(enabled && GetListCtrl().ShowingMarker() ? 1 : 0);
 }
 
 

@@ -231,7 +231,7 @@ BOOL ImageProcessorDlg::OnInitDialog()
 		SetWndResizing(IDC_CONTAINER, DlgAutoResize::RESIZE_V);
 		SetWndResizing(IDC_MONITOR, DlgAutoResize::RESIZE);
 
-		SetWndResizing(IDC_HELP_BTN, DlgAutoResize::MOVE_V);
+		//SetWndResizing(IDC_HELP_BTN, DlgAutoResize::MOVE_V);
 		SetWndResizing(IDC_LABEL_1, DlgAutoResize::MOVE_V);
 		SetWndResizing(IDC_TEMPLATES, DlgAutoResize::MOVE_V);
 		SetWndResizing(IDC_PATH, DlgAutoResize::MOVE_V_RESIZE_H);

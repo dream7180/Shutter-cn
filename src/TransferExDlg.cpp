@@ -114,7 +114,7 @@ BOOL CTransferDlg::OnInitDialog()
 
 	CDialogChild::OnInitDialog();
 
-	SubclassHelpBtn(_T("ToolTransfer.htm"));
+	//SubclassHelpBtn(_T("ToolTransfer.htm"));
 
 	symbols_wnd_.SubclassDlgItem(IDC_SYMBOLS, this);
 	int cmd_id[]= { IDC_SYMBOLS };

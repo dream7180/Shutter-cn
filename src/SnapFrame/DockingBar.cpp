@@ -13,6 +13,7 @@ ____________________________________________________________________________*/
 #include "DockingBar.h"
 #include "../MemoryDC.h"
 #include "MDIFrame.h"
+#include "GetDefaultGuiFont.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -64,11 +65,12 @@ bool CDockingBar::Create(CWnd* parent, CFramePages* pages, bool show)
 	CDC dc;
 	dc.CreateIC(_T("DISPLAY"), 0, 0, 0);
 	LOGFONT lf;
-	HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
+	/*HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
 	::GetObject(hfont, sizeof(lf), &lf);
-	lf.lfHeight += 1;
+	//lf.lfHeight += 1;
 	//lf.lfQuality = ANTIALIASED_QUALITY;
-	_tcscpy(lf.lfFaceName, _T("Tahoma"));
+	_tcscpy(lf.lfFaceName, _T("Tahoma"));*/
+	::GetDefaultGuiFont(lf);
 	_font.CreateFontIndirect(&lf);
 	dc.SelectObject(&_font);
 	//dc.SelectStockObject(DEFAULT_GUI_FONT);

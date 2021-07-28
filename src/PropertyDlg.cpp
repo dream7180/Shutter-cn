@@ -171,7 +171,7 @@ BOOL CPropertyDlg::OnInitDialog()
 		BuildResizingMap();
 
 		SetWndResizing(IDC_CONTAINER, DlgAutoResize::RESIZE);
-		SetWndResizing(IDC_HELP_BTN, DlgAutoResize::MOVE_V);
+		//SetWndResizing(IDC_HELP_BTN, DlgAutoResize::MOVE_V);
 		SetWndResizing(IDC_TEMPLATES, DlgAutoResize::MOVE_V);
 		SetWndResizing(IDC_PREVIOUS, DlgAutoResize::MOVE);
 		SetWndResizing(IDC_NEXT, DlgAutoResize::MOVE);
@@ -485,7 +485,7 @@ void CPropertyDlg::Impl::InitDlg(DialogChild* wnd)
 		//templates_tb_.AddButtons("V", &cmd, IDB_TEMPLATES, IDS_TEMPLATES);
 	}
 
-	wnd->SubclassHelpBtn(_T("ToolFileInfo.htm"));
+	//wnd->SubclassHelpBtn(_T("ToolFileInfo.htm"));
 
 	fields0_.push_back(new Field(_T("descr"), &data_.Description));
 	//-------------------------------------------------
@@ -495,7 +495,7 @@ void CPropertyDlg::Impl::InitDlg(DialogChild* wnd)
 		fields.push_back(new Field(_T("作者"), &data_.Author));
 		fields.push_back(new Field(_T("图像评级"), Field::STARS, &data_.ImageRating));
 		fields.push_back(new Field(_T("版权信息"), 1, &data_.CopyrightNotice));
-		fields.push_back(new Field(_T("关键字 (标记)"), 3, &data_.Keywords));
+		fields.push_back(new Field(_T("关键字 (标签)"), 3, &data_.Keywords));
 	}
 	//-------------------------------------------------
 	{
@@ -910,7 +910,7 @@ void CPropertyDlg::OnLoadTemplateFile(UINT id)
 
 extern String GetAppIdentifier(bool including_build)
 {
-	return String(_T("ExifPro ") + ReadAppVersion(including_build));
+	return String(_T("Shutter ") + ReadAppVersion(including_build));
 }
 
 

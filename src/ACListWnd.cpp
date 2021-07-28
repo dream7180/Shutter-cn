@@ -7,6 +7,7 @@
 #include "WhistlerLook.h"
 #include "MultiMonitor.h"
 #include "MemoryDC.h"
+#include "GetDefaultGuiFont.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -110,7 +111,7 @@ void AutoCompletePopup::DrawItem(CDC* dc, long item, long width)
 	if (item == selected_item_)
 	{
 		rcLabel.left = 0;
-		COLORREF highlight= RGB(247, 123, 0);//::GetSysColor(COLOR_HIGHLIGHT);
+		COLORREF highlight= ::GetSysColor(COLOR_HIGHLIGHT);
 		dc->FillSolidRect(rcLabel, highlight);
 		dc->SetTextColor(::GetSysColor(COLOR_HIGHLIGHTTEXT));
 		dc->SetBkColor(highlight);
@@ -203,7 +204,6 @@ bool AutoCompletePopup::Create()
 	VERIFY(CreateEx(WS_EX_TOOLWINDOW,
 		AfxRegisterWndClass(CS_CLASSDC | CS_HREDRAW | CS_VREDRAW | classStyle, 0, HBRUSH(COLOR_WINDOW + 1), 0),
 		NULL, WS_CHILD | WS_CLIPSIBLINGS | WS_CLIPCHILDREN, rect, CWnd::GetDesktopWindow(), -1, NULL));
-
 	Init();
 
 	return true;
@@ -213,7 +213,6 @@ bool AutoCompletePopup::Create()
 void AutoCompletePopup::Init()
 {
 	VERIFY(vert_scrollbar_.Create(WS_VISIBLE | SBS_VERT, CRect(0, 0, 0, 0), this, 0));
-
 	SetScroller();
 	edit_ctrl_ = 0;
 
@@ -222,14 +221,15 @@ void AutoCompletePopup::Init()
 
 	CClientDC dc(this);
 	LOGFONT lf;
-	HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
+	::GetDefaultGuiFont(lf);
+	/*HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
 	::GetObject(hfont, sizeof(lf), &lf);
 	lf.lfWeight = FW_NORMAL;
-	lf.lfHeight += 1;
-	_tcscpy(lf.lfFaceName, _T("Tahoma"));
-	//lf.lfQuality = ANTIALIASED_QUALITY;
+	//lf.lfHeight += 1;
+	lf.lfQuality = CLEARTYPE_QUALITY;
+	_tcscpy(lf.lfFaceName, _T("Microsoft Yahei"));*/
 	fontDC.CreateFontIndirect(&lf);
-	dc.SelectObject(&fontDC);
+	dc.SelectObject(&GetDefaultGuiFont());
 	item_height_ = dc.GetOutputTextExtent("X").cy * 13 / 10;
 
 	if (last_size_.cy == 0)

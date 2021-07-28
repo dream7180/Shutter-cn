@@ -364,7 +364,7 @@ void PreviewPane::SetColors()
 {
 	ResetColors();
 	std::vector<COLORREF> colors= g_Settings.main_wnd_colors_.Colors();
-	SetBkColor(RGB(25, 25, 25));//SetBkColor(colors[0]);	// same backgnd as main wnd
+	SetBkColor(RGB(150, 150, 150));//SetBkColor(colors[0]);	// same backgnd as main wnd
 	COLORREF descr_text= g_Settings.viewer_wnd_colors_[1].SelectedColor();
 	SetTextColor(descr_text);	// description text color
 

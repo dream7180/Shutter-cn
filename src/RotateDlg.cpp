@@ -166,7 +166,7 @@ BOOL CRotateDlg::OnInitDialog()
 
 	DialogChild::OnInitDialog();
 
-	SubclassHelpBtn(_T("ToolRotate.htm"));
+	//SubclassHelpBtn(_T("ToolRotate.htm"));
 
 	if (all_)
 		SetDlgItemText(IDOK, L"全部旋转!");

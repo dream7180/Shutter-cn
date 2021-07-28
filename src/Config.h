@@ -35,7 +35,7 @@ struct FileTypeConfig
 
 	FileTypeConfig(const TCHAR* name, const TCHAR* ext, const TCHAR* intern_name, bool show_marker= true)
 		: name(name), extensions(ext), internal_name(intern_name),
-		scan(true), show_marker(show_marker), show_no_exif(!show_marker)
+		scan(true), show_marker(show_marker), show_no_exif(false)//(!show_marker)
 	{}
 	FileTypeConfig() : scan(true), show_marker(true)
 	{}
@@ -55,7 +55,7 @@ public:
 
 	JpegDecoderMethod	dct_method_;				// jpeglib decoder param: DCT type
 	double				gamma_;						// gamma value
-	COLORREF			rgb_cur_selection_;			// preview pane current photo selection color
+	//COLORREF			rgb_cur_selection_;			// preview pane current photo selection color
 	bool				keep_sel_photo_centered_;	// keep selected photo in preview pane centered
 	bool				preload_photos_;			// preload photographs to speed up browsing
 	LOGFONT				description_font_;			// font used for photo description (user config.)

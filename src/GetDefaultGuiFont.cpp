@@ -26,9 +26,10 @@ CFont& GetDefaultGuiFont()
 		HFONT font = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
 		LOGFONT lf;
 		::GetObject(font, sizeof(lf), &lf);
-		lf.lfWeight = FW_NORMAL;
-		lf.lfHeight += 1;
-		_tcscpy(lf.lfFaceName, _T("Tahoma"));
+		lf.lfWeight = FW_MEDIUM;//NORMAL;
+		lf.lfQuality = CLEARTYPE_QUALITY;//CLEARTYPE_NATURAL_QUALITY;
+		//lf.lfHeight += 1;
+		_tcscpy(lf.lfFaceName, _T("Microsoft Yahei"));
 		default_font.CreateFontIndirect(&lf);
 	}
 
@@ -46,9 +47,10 @@ CFont& GetDefaultGuiBoldFont()
 		HFONT font = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
 		LOGFONT lf;
 		::GetObject(font, sizeof(lf), &lf);
-		lf.lfWeight = FW_NORMAL;
-		lf.lfHeight += 1;
-		_tcscpy(lf.lfFaceName, _T("Tahoma"));
+		lf.lfWeight = FW_BOLD;
+		lf.lfQuality = CLEARTYPE_QUALITY;
+		//lf.lfHeight += 1;
+		_tcscpy(lf.lfFaceName, _T("Microsoft Yahei"));
 		default_bold_font.CreateFontIndirect(&lf);
 	}
 

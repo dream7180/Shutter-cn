@@ -11,6 +11,7 @@ ____________________________________________________________________________*/
 #include "stdafx.h"
 #include "resource.h"
 #include "LinkWnd.h"
+#include "GetDefaultGuiFont.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -85,11 +86,12 @@ bool CLinkWnd::Create(CWnd* parent, CPoint top_left, const TCHAR* display, const
 			font->GetLogFont(&lf);
 		else
 		{
-			HFONT font= static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
+			/*HFONT font= static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
 			::GetObject(font, sizeof(lf), &lf);
 			//lf.lfQuality = ANTIALIASED_QUALITY;
-			lf.lfHeight += 1;
-			_tcscpy(lf.lfFaceName, _T("Tahoma"));
+			//lf.lfHeight += 1;
+			_tcscpy(lf.lfFaceName, _T("Tahoma"));*/
+			::GetDefaultGuiFont(lf);
 		}
 		lf.lfUnderline = true;
 		underlined_fnt_.CreateFontIndirect(&lf);
@@ -125,11 +127,12 @@ void CLinkWnd::PreSubclassWindow()
 			font->GetLogFont(&lf);
 		else
 		{
-			HFONT hfont= static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
+			/*HFONT hfont= static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
 			::GetObject(hfont, sizeof(lf), &lf);
-			lf.lfHeight += 1;
+			//lf.lfHeight += 1;
 			//lf.lfQuality = ANTIALIASED_QUALITY;
-			_tcscpy(lf.lfFaceName, _T("Tahoma"));
+			_tcscpy(lf.lfFaceName, _T("Tahoma"));*/
+			::GetDefaultGuiFont(lf);
 		}
 		lf.lfUnderline = true;
 		underlined_fnt_.CreateFontIndirect(&lf);

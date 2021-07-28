@@ -123,10 +123,10 @@ BOOL OptionsFileTypes::InitDialog()
 
 	types_wnd_.SetExtendedStyle(LVS_EX_CHECKBOXES | LVS_EX_FULLROWSELECT);
 
-	types_wnd_.InsertColumn(0, _T("文件类型"), LVCFMT_LEFT, Pixels(190));
-	types_wnd_.InsertColumn(1, _T("扩展名"), LVCFMT_LEFT, Pixels(80));
-	types_wnd_.InsertColumn(2, _T("厂商"), LVCFMT_LEFT, Pixels(55));
-	types_wnd_.InsertColumn(3, _T("无 EXIF"), LVCFMT_LEFT, Pixels(57));
+	types_wnd_.InsertColumn(0, _T("文件类型"), LVCFMT_LEFT, Pixels(180));
+	types_wnd_.InsertColumn(1, _T("扩展名"), LVCFMT_LEFT, Pixels(90));
+	types_wnd_.InsertColumn(2, _T("文件类型标识"), LVCFMT_LEFT, Pixels(85));
+	types_wnd_.InsertColumn(3, _T("无EXIF标识"), LVCFMT_LEFT, Pixels(80));
 
 	const auto count= g_Settings.file_types_.size();
 	no_marker_entry_ = static_cast<int>(count - 1);	// catalog files have no markers of its own

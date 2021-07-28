@@ -77,7 +77,7 @@ public:
 	void ResetColors();
 
 	// color indices (in a vector of colors for Get/SetColor)
-	enum Colors { C_BACKGND= 0, C_TEXT, C_SELECTION, C_SEL_TEXT, C_DISABLED_TEXT, C_TAG_BACKGND, C_TAG_TEXT, C_SORT, C_SEPARATOR, C_DIM_TEXT, C_EDIT_BACKGND, C_MAX_COLORS };
+	enum Colors { C_BACKGND= 0, C_TEXT, C_SELECTION, C_SEL_TEXT, C_DISABLED_TEXT, C_TAG_BACKGND, C_TAG_TEXT, C_SORT, C_SEPARATOR, C_DIM_TEXT, C_EDIT_BACKGND, C_ACTIVEBG, C_MAX_COLORS };
 
 	bool GetHalftoneDrawing() const		{ return halftone_drawing_; }
 	void SetHalftoneDrawing(bool on);
@@ -91,8 +91,8 @@ public:
 	bool ShowingTagText() const			{ return show_tags_; }
 	void ShowTagText(bool show);
 	
-	bool ShowingNoExif() const			{ return show_noexif_; }
-	void ShowNoExif(bool show);
+	bool ShowingMarker() const			{ return show_marker_; }
+	void ShowMarker(bool show);
 
 	void SetItemsAcross(int items);
 
@@ -111,7 +111,7 @@ public:
 	// call this method to enable/disable this behavior
 	void EnableSettingCurrentItem(bool enable);
 
-	void SetTagFont(const LOGFONT& font);
+	void SetTagFont(/*const */LOGFONT& font);
 
 	bool HasGroup(int group_id) const;
 
@@ -130,7 +130,7 @@ public:
 	// PREVIEWS - big preview images (decoded on the fly)
 	// LIST - tiny preview and a label; very tight display
 	// MOSAIC - not completely implemented; tightly packed images, image wall
-	enum Mode { THUMBNAILS= 1, DETAILS, TILES, PREVIEWS, LIST, MOSAIC };
+	enum Mode { THUMBNAILS= 1, DETAILS, TILES, PREVIEWS};//, LIST, MOSAIC };
 	void ChangeMode(Mode mode);
 
 	void RemoveAll();
@@ -452,7 +452,7 @@ private:
 		int GetRowHeight(int row) const;		// row's height
 
 		// fixed sizes
-		enum { HEADER_HEIGHT= 30, SEPARATOR_HEIGHT= 8 };
+		enum { HEADER_HEIGHT= 30, SEPARATOR_HEIGHT= 4 };
 
 		Group(const Group&);
 		Group& operator = (const Group&);
@@ -612,6 +612,7 @@ private:
 	COLORREF rgb_tag_bkgnd_;
 	COLORREF rgb_tag_text_;
 	COLORREF rgb_tile_dim_text_color_;
+	COLORREF rgb_active_bg_;
 	// font (for labels and detailed mode)
 	CFont default_fnt_;
 	// font for group names (bold & underlined)
@@ -628,8 +629,8 @@ private:
 	bool show_label_;
 	// if true tag text (keywords) will be draw over the photo
 	bool show_tags_;
-	// if noexif will draw over the photo
-	bool show_noexif_;
+	// if marker will draw over the photo
+	bool show_marker_;
 
 	// header ctrl for detailed view mode -----------------
 	CHeaderCtrl header_wnd_;

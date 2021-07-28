@@ -116,7 +116,7 @@ BOOL GenSlideShowDlg::OnInitDialog()
 
 	DialogChild::OnInitDialog();
 
-	SubclassHelpBtn(_T("ToolSlideShow.htm"));
+	//SubclassHelpBtn(_T("ToolSlideShow.htm"));
 
 	SetDlgItemInt(IDC_WIDTH_PX, app->GetProfileInt(REG_ENTRY_SLDSHOW, REG_WIDTH, 640));
 

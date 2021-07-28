@@ -395,14 +395,14 @@ static void DrawThumb(HDC hdc, RECT *rect, COLORREF backgnd, COLORREF foreground
 	if (horz)
 	{
 		auto h = rect->bottom - rect->top;
-		auto margin = h / 4;
+		auto margin = 0;//h / 4;
 		r.top += margin;
 		r.bottom -= margin;
 	}
 	else
 	{
 		auto w = rect->right - rect->left;
-		auto margin = w / 4;
+		auto margin = 0;//w / 4;
 		r.left += margin;
 		r.right -= margin;
 	}
@@ -1640,10 +1640,11 @@ static LRESULT NCPaint(SCROLLWND *sw, HWND hwnd, WPARAM wParam, LPARAM lParam)
 			CopyRect(&rect2, &rect);
 			OffsetRect(&rect2, winrect.left, winrect.top);
 
-			if(!sw->fLeftScrollbar && parent.right == rect2.right+sw->cxRightEdge && parent.bottom == rect2.bottom+sw->cyBottomEdge
-			 || sw->fLeftScrollbar && parent.left  == rect2.left -sw->cxLeftEdge  && parent.bottom == rect2.bottom+sw->cyBottomEdge)
-				DrawFrameControl(hdc, &rect, DFC_SCROLL, sw->fLeftScrollbar ? DFCS_SCROLLSIZEGRIPRIGHT : DFCS_SCROLLSIZEGRIP );
-			else
+			//if(!sw->fLeftScrollbar && parent.right == rect2.right+sw->cxRightEdge && parent.bottom == rect2.bottom+sw->cyBottomEdge
+			 //|| sw->fLeftScrollbar && parent.left  == rect2.left -sw->cxLeftEdge  && parent.bottom == rect2.bottom+sw->cyBottomEdge)
+				//DrawFrameControl(hdc, &rect, DFC_SCROLL, sw->fLeftScrollbar ? DFCS_SCROLLSIZEGRIPRIGHT : DFCS_SCROLLSIZEGRIP | DFCS_INACTIVE);
+				//DrawFrameControl(hdc, &rect, DFC_SCROLL, DFCS_SCROLLDOWN | DFCS_FLAT | DFCS_INACTIVE);
+			//else
 				PaintRect(hdc, &rect, sw->background);// GetSysColor(COLOR_3DFACE));
 		}
 	}

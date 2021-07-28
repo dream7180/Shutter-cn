@@ -98,7 +98,7 @@ void RadioListBox::PreDrawItem(LPDRAWITEMSTRUCT draw_item_struct)
 
 		BOOL disabled = !IsWindowEnabled() || !IsEnabled(drawItem.itemID);
 		if ((drawItem.itemState & ODS_SELECTED) && !disabled)
-			newBkColor = RGB(247, 123, 0);//GetSysColor(COLOR_HIGHLIGHT);
+			newBkColor = GetSysColor(COLOR_HIGHLIGHT);
 
 		COLORREF oldBkColor = dc->SetBkColor(newBkColor);
 

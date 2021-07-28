@@ -34,6 +34,8 @@ void ImageDraw::Draw(const Dib* bmp, CDC* dc, CRect& destination_rect,
 					 COLORREF rgb_text, COLORREF rgb_text_bk, UINT flags, const String* label)
 {
 	CRect dest_rect= destination_rect;
+	COLORREF rgb_destbg = RGB(225, 225, 225);
+	CSize text_size= dc->GetTextExtent(L"X", 1);//label->c_str(), static_cast<int>(label->size()));
 
 	// extra space for selection or drop shadow
 	if (flags & (DRAW_SELECTION | DRAW_SHADOW))
@@ -93,6 +95,7 @@ void ImageDraw::Draw(const Dib* bmp, CDC* dc, CRect& destination_rect,
 			double scale_h= double(dest_size.cy) / double(bmp_size.cy);
 
 			/*double*/ scale= MIN(scale_w, scale_h);
+			//if (scale > 1) scale= 1;
 
 			// rescale bmp
 			bmp_size.cx = static_cast<LONG>(bmp_size.cx * scale);
@@ -106,20 +109,21 @@ void ImageDraw::Draw(const Dib* bmp, CDC* dc, CRect& destination_rect,
 			CPoint pos(diff_size.cx / 2, diff_size.cy / 2);
 
 			if (flags & DRAW_BACKGND)
-			{
+			{	
 				CSize dest_size= destination_rect.Size();
+				dc->FillSolidRect(destination_rect.left, destination_rect.top, dest_size.cx, /*label? dest_size.cy + text_size.cy + 4 : */dest_size.cy, rgb_destbg);
 
 				// fill areas not covered by bitmap
-				if (diff_size.cx > diff_size.cy)
-				{
-					dc->FillSolidRect(destination_rect.left, destination_rect.top, pos.x, dest_size.cy, rgb_back);
-					dc->FillSolidRect(destination_rect.left + pos.x + bmp_size.cx, destination_rect.top, dest_size.cx - pos.x - bmp_size.cx, dest_size.cy, rgb_back);
-				}
-				else
-				{
-					dc->FillSolidRect(destination_rect.left, destination_rect.top, dest_size.cx, pos.y, rgb_back);
-					dc->FillSolidRect(destination_rect.left, destination_rect.top + pos.y + bmp_size.cy, dest_size.cx, dest_size.cy - pos.y - bmp_size.cy, rgb_back);
-				}
+				//if (diff_size.cx > diff_size.cy)
+				//{
+				//	dc->FillSolidRect(destination_rect.left, destination_rect.top, pos.x, dest_size.cy, rgb_back);
+				//	dc->FillSolidRect(destination_rect.left + pos.x + bmp_size.cx, destination_rect.top, dest_size.cx - pos.x - bmp_size.cx, dest_size.cy, rgb_back);
+				//}
+				//else
+				//{
+				//	dc->FillSolidRect(destination_rect.left, destination_rect.top, dest_size.cx, pos.y, rgb_back);
+				//	dc->FillSolidRect(destination_rect.left, destination_rect.top + pos.y + bmp_size.cy, dest_size.cx, dest_size.cy - pos.y - bmp_size.cy, rgb_back);
+				//}
 			}
 
 			// bitmap destination rect
@@ -129,33 +133,37 @@ void ImageDraw::Draw(const Dib* bmp, CDC* dc, CRect& destination_rect,
 	}
 
 	// draw outline/shadow/selection frame
-	if (flags & DRAW_SELECTION)
-		DrawOutline(dc, bmp_rect, SELECTION_DISTANCE, SELECTION_THICKNESS, rgb_selection);
-	else if (flags & DRAW_SHADOW && bmp != 0)
-		DrawShadow(dc, bmp_rect, rgb_back);
+	if (flags & DRAW_SELECTION){
+		CSize dest_size= destination_rect.Size();
+		dc->FillSolidRect(destination_rect.left, destination_rect.top, dest_size.cx, /*label? dest_size.cy + text_size.cy + 4 : */dest_size.cy, rgb_selection);
+		//DrawOutline(dc, bmp_rect, SELECTION_DISTANCE, SELECTION_THICKNESS, rgb_selection);
+	}
+	//else if (flags & DRAW_SHADOW && bmp != 0)
+		//DrawShadow(dc, bmp_rect, rgb_destbg);
 
 	if (flags & DRAW_OUTLINE)
-		DrawOutline(dc, bmp_rect, SHADOW, OUTLINE_THICKNESS, rgb_outline);
+		dc->FillSolidRect(destination_rect, rgb_outline);
+		//DrawOutline(dc, destination_rect, /*bmp_rect, SHADOW, OUTLINE_THICKNESS, */rgb_outline);
 
 	if (label)
 	{
 		CRect text_rect;
 		text_rect.left = destination_rect.left;
-		text_rect.top = bmp_rect.bottom + SHADOW;
+		//text_rect.top = bmp_rect.bottom + SHADOW;
 		text_rect.right = destination_rect.right;
-		text_rect.bottom = text_rect.top;
+		//text_rect.bottom = text_rect.top;
+		text_rect.top = destination_rect.bottom;
 
 		std::vector<String> lines;
 		split(lines, *label, is_any_of(L"\n"));
 
-		CSize text_size= dc->GetTextExtent(L"X", 1);//label->c_str(), static_cast<int>(label->size()));
+		//CSize text_size= dc->GetTextExtent(L"X", 1);//label->c_str(), static_cast<int>(label->size()));
 
 		//int lines= 1;
 		//for (size_t i= 0; i < label->size(); ++i)
 		//	if ((*label)[i] == L'\n')
 		//		lines++;
-		text_rect.bottom += text_size.cy;// * static_cast<int>(lines.size());
-
+		text_rect.bottom = text_rect.top + text_size.cy;// * static_cast<int>(lines.size());
 		UINT DT_flags= DT_CENTER | DT_TOP | DT_SINGLELINE | DT_NOPREFIX | DT_END_ELLIPSIS;
 		int max_width= 0;
 		int first_line_width= 0;
@@ -187,6 +195,11 @@ void ImageDraw::Draw(const Dib* bmp, CDC* dc, CRect& destination_rect,
 		}
 
 		int height= text_size.cy * static_cast<int>(lines.size());
+		
+		if (flags & DRAW_BACKGND)
+			dc->FillSolidRect(destination_rect.left, destination_rect.bottom, destination_rect.Width(), height + 4, rgb_destbg);
+		if (flags & DRAW_SELECTION)
+			dc->FillSolidRect(destination_rect.left, destination_rect.bottom, destination_rect.Width(), height + 4, rgb_selection);
 
 //		dc->DrawText(label->c_str(), static_cast<int>(label->length()), calc_rect, DT_flags | DT_CALCRECT);
 
@@ -204,7 +217,7 @@ void ImageDraw::Draw(const Dib* bmp, CDC* dc, CRect& destination_rect,
 		//else
 		//	calc_rect.OffsetRect(dx / 2, 0);	// center horizontally
 
-		if (flags & DRAW_SELECTION)
+		/*if (flags & DRAW_SELECTION)
 		{
 			Gdiplus::Graphics g(*dc);
 
@@ -225,12 +238,12 @@ void ImageDraw::Draw(const Dib* bmp, CDC* dc, CRect& destination_rect,
 				Gdiplus::SolidBrush brush(c2c(rgb_text_bk));
 				g.FillPath(&brush, &frame);
 			}
-		}
-		else
-			dc->FillSolidRect(first_line.left - 1, first_line.top, first_line.Width() + 3, first_line.Height(), rgb_text_bk);
+		}*/
+		//else
+			//dc->FillSolidRect(first_line.left - 1, first_line.top, first_line.Width() + 3, first_line.Height(), rgb_text_bk);
 
 		dc->SetTextColor(rgb_text);
-		dc->SetBkColor(rgb_text_bk);
+		//dc->SetBkColor(rgb_text_bk);
 		dc->SetBkMode(TRANSPARENT);
 
 		for (size_t i= 0; i < lines.size(); ++i)
@@ -242,7 +255,7 @@ void ImageDraw::Draw(const Dib* bmp, CDC* dc, CRect& destination_rect,
 //		dc->DrawText(label->c_str(), static_cast<int>(label->length()), calc_rect, DT_flags);
 
 		// draw two lines on the sides of text label extending outline
-		if ((flags & DRAW_OUTLINE) && !(flags & DRAW_SELECTION))
+	/*	if ((flags & DRAW_OUTLINE) && !(flags & DRAW_SELECTION))
 		{
 			int left= first_line.left - OUTLINE_THICKNESS - 1;
 			int right= first_line.right + OUTLINE_THICKNESS;
@@ -252,7 +265,7 @@ void ImageDraw::Draw(const Dib* bmp, CDC* dc, CRect& destination_rect,
 				dc->FillSolidRect(left, first_line.top, OUTLINE_THICKNESS, first_line.Height() * 2 / 4, rgb_outline);
 				dc->FillSolidRect(right, first_line.top, OUTLINE_THICKNESS, first_line.Height() * 2 / 4, rgb_outline);
 			}
-		}
+		}	*/
 	}
 
 	if (bmp != 0 && bmp->IsValid())
@@ -336,10 +349,9 @@ CRect ImageDraw::GetImageSize(Dib* bmp, const CRect& destination_rect, UINT flag
 	return bmp_rect;
 }
 
-
-
 // draw drop shadow
 //
+/*
 void ImageDraw::DrawShadow(CDC* dc, const CRect& rect, COLORREF rgb_back)
 {
 	if (rect.Width() < SHADOW || rect.Height() < SHADOW)
@@ -424,11 +436,11 @@ void ImageDraw::DrawShadow(CDC* dc, const CRect& rect, COLORREF rgb_back)
 	shadow_template_bmp_.Draw(dc, corner_rect, &CRect(0, 0, SHADOW, SHADOW), false);
 }
 
-
 // draw selection outline
 //
 void ImageDraw::DrawOutline(CDC* dc, const CRect& rect, int distance, int thickness, COLORREF rgb_selection)
 {
+	dc->FillSolidRect(rect, rgb_selection);
 	CRect frm= rect;
 	const int THICK= thickness;		// frame thickness
 	frm.InflateRect(THICK + distance, THICK + distance);
@@ -437,4 +449,5 @@ void ImageDraw::DrawOutline(CDC* dc, const CRect& rect, int distance, int thickn
 	dc->FillSolidRect(frm.left, frm.bottom - THICK, frm.Width(), THICK, rgb_selection);	// bottom
 	dc->FillSolidRect(frm.left, frm.top + THICK, THICK, frm.Height() - 2 * THICK, rgb_selection);	// left
 	dc->FillSolidRect(frm.right - THICK, frm.top + THICK, THICK, frm.Height() - 2 * THICK, rgb_selection);	// right
-}
+
+}*/

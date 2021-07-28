@@ -177,6 +177,9 @@
     <ClCompile Include="FilterPanelDlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+	<ClCompile Include="FilterRules.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="FixRotatedPhoto.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -796,9 +799,6 @@
       <Filter>CommonUI</Filter>
     </ClCompile>
     <ClCompile Include="HeaderDialog.cpp">
-      <Filter>CommonUI</Filter>
-    </ClCompile>
-    <ClCompile Include="HelpButton.cpp">
       <Filter>CommonUI</Filter>
     </ClCompile>
     <ClCompile Include="Histogram.cpp">
@@ -1690,6 +1690,9 @@
     <ClInclude Include="FilterPanelDlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+	<ClInclude Include="FilterRules.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="FindTabCtrl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1742,9 +1745,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="HeaderDialog.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HelpButton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Histogram.h">
@@ -2296,9 +2296,9 @@
     <ClInclude Include="SliderEditForm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SliderToolBar.h">
+    <!--ClInclude Include="SliderToolBar.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
+    </ClInclude-->
     <ClInclude Include="SlideShowGenerator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -2607,9 +2607,9 @@
     <Image Include="res\chevron_hot.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\close_bar.bmp">
+    <!--Image Include="res\close_bar.bmp">
       <Filter>Resource Files</Filter>
-    </Image>
+    </Image-->
     <!--Image Include="res\close_bar_hot.bmp">
       <Filter>Resource Files</Filter>
     </Image-->
@@ -2718,18 +2718,18 @@
     <Image Include="res\FolderViewCtrlTb.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\funnel-icon.png">
+    <!--Image Include="res\funnel-icon.png">
       <Filter>Resource Files</Filter>
-    </Image>
+    </Image-->
     <Image Include="res\funnel-small.png">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\funnel.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\grid_pattern.bmp">
+    <!--Image Include="res\grid_pattern.bmp">
       <Filter>Resource Files</Filter>
-    </Image>
+    </Image-->
     <Image Include="res\grip.bmp">
       <Filter>Resource Files</Filter>
     </Image>
@@ -2844,12 +2844,12 @@
     <Image Include="res\light_table_tb_dis.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\LightTableHeader.bmp">
+    <!--Image Include="res\LightTableHeader.bmp">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\LightTableHeader.png">
       <Filter>Resource Files</Filter>
-    </Image>
+    </Image-->
     <Image Include="res\main_toolbar.bmp">
       <Filter>Resource Files</Filter>
     </Image>
@@ -3165,9 +3165,9 @@
     <Image Include="res\vert_scrollbar.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\view_caption.png">
+    <!--Image Include="res\view_caption.png">
       <Filter>Resource Files</Filter>
-    </Image>
+    </Image-->
     <Image Include="res\viewer.ico">
       <Filter>Resource Files</Filter>
     </Image>

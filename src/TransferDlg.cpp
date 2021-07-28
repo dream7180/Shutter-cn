@@ -29,6 +29,7 @@ ____________________________________________________________________________*/
 #include "NewFolderDlg.h"
 #include "BalloonMsg.h"
 #include "DateTimeUtils.h"
+#include "GetDefaultGuiFont.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -305,11 +306,12 @@ BOOL CTransferDlg::InitDlg()
 			font->GetLogFont(&lf);
 		else
 		{
-			HFONT hfont= static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
+			/*HFONT hfont= static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
 			::GetObject(hfont, sizeof(lf), &lf);
 			//lf.lfQuality = ANTIALIASED_QUALITY;
-			lf.lfHeight += 1;
-			_tcscpy(lf.lfFaceName, _T("Tahoma"));
+			//lf.lfHeight += 1;
+			_tcscpy(lf.lfFaceName, _T("Tahoma"));*/
+			::GetDefaultGuiFont(lf);
 		}
 		pImpl_->normal_font_.CreateFontIndirect(&lf);
 		lf.lfWeight = FW_BOLD;
@@ -328,7 +330,7 @@ BOOL CTransferDlg::InitDlg()
 		pImpl_->placeholders_[i].SetBitmap(pImpl_->oper_bmp_[i]);
 	}
 
-	SubclassHelpBtn(_T("ToolTransfer.htm"));
+	//SubclassHelpBtn(_T("ToolTransfer.htm"));
 
 	pImpl_->symbols_tb_.SubclassDlgItem(IDC_SYMBOLS, this);
 	int cmd_id[]= { IDC_SYMBOLS };
@@ -401,7 +403,7 @@ BOOL CTransferDlg::InitDlg()
 	SetWndResizing(IDC_EXAMPLE, DlgAutoResize::MOVE_H_RESIZE_H, DlgAutoResize::HALF_MOVE_H | DlgAutoResize::HALF_RESIZE_H);
 
 	SetWndResizing(IDC_PANES, DlgAutoResize::RESIZE);
-	SetWndResizing(IDC_HELP_BTN, DlgAutoResize::MOVE_V);
+	//SetWndResizing(IDC_HELP_BTN, DlgAutoResize::MOVE_V);
 	SetWndResizing(IDC_OPTIONS, DlgAutoResize::MOVE_V);
 	SetWndResizing(IDCANCEL, DlgAutoResize::MOVE);
 	SetWndResizing(IDOK, DlgAutoResize::MOVE);

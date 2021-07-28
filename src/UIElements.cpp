@@ -645,7 +645,7 @@ void FillSolidRect(HDC dc, const CRect& rect, COLORREF clr)
 	FillSolidRect(dc, rect.left, rect.top, rect.Width(), rect.Height(), clr);
 }
 
-
+/*
 void DrawDimple(HDC dc, const CRect& rect, COLORREF rgb_light, COLORREF rgb_dark)
 {
 	CRect grip= rect;
@@ -687,3 +687,4 @@ void DrawResizingGrip(HDC dc, const CRect& rect, COLORREF base, bool is_active)
 	}
 	DrawDimple(dc, grip, rgb_light, rgb_dark);
 }
+*/

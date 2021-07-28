@@ -40,7 +40,7 @@ BEGIN_MESSAGE_MAP(DialogChild, CDialog)
 	//{{AFX_MSG_MAP(DialogChild)
 		// NOTE: the ClassWizard will add message map macros here
 	//}}AFX_MSG_MAP
-	ON_BN_CLICKED(IDC_HELP_BTN, &DialogChild::OnHelpBtn)
+	//ON_BN_CLICKED(IDC_HELP_BTN, &DialogChild::OnHelpBtn)
 	ON_WM_WINDOWPOSCHANGED()
 END_MESSAGE_MAP()
 
@@ -133,7 +133,7 @@ void DialogChild::SetRightSide(int width)
 		parent_->SetRightSide(width);
 }
 
-
+/*
 void DialogChild::SubclassHelpBtn(const TCHAR* help_page)
 {
 	if (btn_help_.m_hWnd == 0)
@@ -150,7 +150,7 @@ void DialogChild::OnHelpBtn()
 	if (!help_page_.IsEmpty())
 		OpenHelp(help_page_);
 }
-
+*/
 
 // HACK: this is the means of tapping into the modal loop to handle F1 key down message
 //
@@ -159,11 +159,11 @@ BOOL DialogChild::ContinueModal()
 	if (!CDialog::ContinueModal())
 		return false;
 
-	if (MSG *msg = AfxGetCurrentMessage())
-	{
-		if (!help_page_.IsEmpty() && msg->message == WM_KEYDOWN && msg->wParam == VK_F1)
-			OnHelpBtn();
-	}
+	//if (MSG *msg = AfxGetCurrentMessage())
+	//{
+	//	if (!help_page_.IsEmpty() && msg->message == WM_KEYDOWN && msg->wParam == VK_F1)
+	//		OnHelpBtn();
+	//}
 
 	return true;
 }

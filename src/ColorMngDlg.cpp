@@ -18,6 +18,7 @@ ____________________________________________________________________________*/
 #include "WhistlerLook.h"
 #include "CatchAll.h"
 #include "UIElements.h"
+#include "GetDefaultGuiFont.h"
 
 namespace {
 	const TCHAR* REG_ICC_DLG=		_T("ICC Dialog");
@@ -455,16 +456,16 @@ void ColorMngDlg::ShowProfilesMenu(ExtTreeRow* item, CPoint pos)
 	// (lame) estimation of menu item height
 	CDC dc;
 	dc.CreateIC(_T("DISPLAY"), 0, 0, 0);
-	LOGFONT lf;
+	/*LOGFONT lf;
 	HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
 	::GetObject(hfont, sizeof(lf), &lf);
 	lf.lfWeight = FW_NORMAL;
-	lf.lfHeight += 1;
+	//lf.lfHeight += 1;
 	_tcscpy(lf.lfFaceName, _T("Tahoma"));
 	//lf.lfQuality = ANTIALIASED_QUALITY;
 	CFont _font;
-	_font.CreateFontIndirect(&lf);
-	dc.SelectObject(&_font);
+	_font.CreateFontIndirect(&lf);*/
+	dc.SelectObject(&GetDefaultGuiFont());
 	//dc.SelectStockObject(DEFAULT_GUI_FONT);
 	TEXTMETRIC tm;
 	dc.GetTextMetrics(&tm);
@@ -565,7 +566,7 @@ HBRUSH ColorMngDlg::OnCtlColor(CDC* dc, CWnd* wnd, UINT ctl_color)
 
 	int id= wnd ? wnd->GetDlgCtrlID() : 0;
 
-	if (bold_fnt_.m_hObject == 0)
+	/*if (bold_fnt_.m_hObject == 0)
 	{
 		LOGFONT lf;
 		if (CFont* font= GetParent()->GetFont())
@@ -574,20 +575,20 @@ HBRUSH ColorMngDlg::OnCtlColor(CDC* dc, CWnd* wnd, UINT ctl_color)
 		{
 			HFONT font_handle= static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
 			::GetObject(font_handle, sizeof(lf), &lf);
-			lf.lfHeight += 1;
+			//lf.lfHeight += 1;
 			_tcscpy(lf.lfFaceName, _T("Tahoma"));
 			//lf.lfQuality = ANTIALIASED_QUALITY;
 		}
 		lf.lfWeight =  FW_BOLD;
 		bold_fnt_.CreateFontIndirect(&lf);
 	}
-
+*/
 	switch (id)
 	{
 	case IDC_LABEL_NAME:
 //	case IDC_LABEL_DESC:
 	case IDC_LABEL_INFO:
-		dc->SelectObject(&bold_fnt_);
+		dc->SelectObject(&GetDefaultGuiFont());
 		break;
 	}
 

@@ -96,7 +96,7 @@ BOOL CSendEMailDlg::OnInitDialog()
 
 	DialogChild::OnInitDialog();
 
-	SubclassHelpBtn(_T("ToolEMail.htm"));
+	//SubclassHelpBtn(_T("ToolEMail.htm"));
 
 	SetDlgItemInt(IDC_WIDTH_PX, app->GetProfileInt(REGISTRY_ENTRY_EMAIL, REG_WIDTH, 640));
 

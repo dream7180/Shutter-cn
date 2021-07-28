@@ -11,6 +11,7 @@ ____________________________________________________________________________*/
 #include "stdafx.h"
 #include "ExifPro.h"
 #include "TransparentBar.h"
+#include "GetDefaultGuiFont.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -52,12 +53,13 @@ bool CTransparentBar::Create(CWnd* parent, UINT id)
 	}
 	
 	LOGFONT lf;
-	HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
-	::GetObject(hfont, sizeof(lf), &lf);
+	//HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
+	//::GetObject(hfont, sizeof(lf), &lf);
 	//lf.lfQuality = ANTIALIASED_QUALITY;
-	lf.lfHeight += 1;
-	_tcscpy(lf.lfFaceName, _T("Tahoma"));
-	hfont = CreateFontIndirectW(&lf);
+	//lf.lfHeight += 1;
+	//_tcscpy(lf.lfFaceName, _T("Tahoma"));
+	::GetDefaultGuiFont(lf);
+	HFONT hfont = CreateFontIndirectW(&lf);
 	SendMessage(WM_SETFONT, WPARAM(hfont));
 	//SendMessage(WM_SETFONT, WPARAM(::GetStockObject(DEFAULT_GUI_FONT)));
 

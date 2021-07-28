@@ -26,6 +26,7 @@ ____________________________________________________________________________*/
 #include "PhotoTagsCollection.h"
 #include "PhotoCtrl.h"
 #include "Tasks.h"
+#include "GetDefaultGuiFont.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -43,7 +44,7 @@ struct ViewerTagPane::Impl
 		ui_gamma_correction_ = 1.0;
 	}
 
-	Dib header_;
+	//Dib header_;
 	Dib separator_;
 	FancyToolBar toolbar_;
 	PreviewBandWnd ctrl_;
@@ -95,12 +96,12 @@ const static COLORREF DISABLED_TEXT_COLOR= RGB(160,160,160);
 
 void ViewerTagPane::Impl::LoadBitmaps(double gamma)
 {
-	VERIFY(::LoadPingFromRsrc(MAKEINTRESOURCE(IDB_LIGHT_TABLE_HEADER), header_));
+	//VERIFY(::LoadPingFromRsrc(MAKEINTRESOURCE(IDB_LIGHT_TABLE_HEADER), header_));
 	separator_.Load(IDB_LIGHT_TABLE_SEP);
 
 	if (gamma != 1.0)
 	{
-		::ApplyGammaInPlace(&header_, gamma, -1, -1);
+		//::ApplyGammaInPlace(&header_, gamma, -1, -1);
 		::ApplyGammaInPlace(&separator_, gamma, -1, -1);
 	}
 }
@@ -139,10 +140,10 @@ bool ViewerTagPane::Create(CWnd* parent, UINT id, int width)
 
 	// --------- close btn -----------
 	{
-		const int close_cmd[]= { 1, ID_HIDE_TAG_PANE };
+		const int close_cmd[]= { 1, 1, ID_HIDE_TAG_PANE };
 		FancyToolBar::Params p;
 		p.shade = -0.28f;
-		if (!impl_.close_btn_.Create(this, ".p", close_cmd, IDR_CLOSEBAR_PNG, &p))
+		if (!impl_.close_btn_.Create(this, "..p", close_cmd, IDR_CLOSEBAR_PNG, &p))
 			return false;
 	}
 
@@ -180,7 +181,7 @@ bool ViewerTagPane::Create(CWnd* parent, UINT id, int width)
 	colors.push_back(std::make_pair(AppColors::SelectedText, text));
 	colors.push_back(std::make_pair(AppColors::Separator, CalcShade(bkgnd, -36.0f)));
 	colors.push_back(std::make_pair(AppColors::EditBox, CalcShade(bkgnd, -13.0f)));
-	colors.push_back(std::make_pair(AppColors::Selection, RGB(247, 123, 0)/*RGB(0x33, 0x99, 0xff)*/)); //::GetSysColor(COLOR_HIGHLIGHT)
+	colors.push_back(std::make_pair(AppColors::Selection, g_Settings.AppColors()[AppColors::Selection]/*RGB(0x33, 0x99, 0xff)*/)); //::GetSysColor(COLOR_HIGHLIGHT)
 
 	impl_.tag_ctrl_.SetColors(ApplicationColors(colors));
 
@@ -209,7 +210,7 @@ void ViewerTagPane::Resize()
 	CRect rect(0,0,0,0);
 	GetClientRect(rect);
 
-	int height= impl_.header_.GetHeight();
+	int height= VIEWER_TAGPANE_H;//impl_.header_.GetHeight();
 
 	CSize s= impl_.toolbar_.Size();
 	SetWindowSize(impl_.toolbar_, rect.left, rect.top + height - s.cy, s.cx, s.cy);
@@ -239,23 +240,24 @@ BOOL ViewerTagPane::OnEraseBkgnd(CDC* dc)
 	try
 	{
 		int bottom= rect.bottom;
-		rect.bottom = rect.top + impl_.header_.GetHeight();
-		impl_.header_.Draw(dc, rect);
+		rect.bottom = rect.top + VIEWER_TAGPANE_H;//impl_.header_.GetHeight();
+		dc->FillSolidRect(rect, RGB(25,25,25));
+		//impl_.header_.Draw(dc, rect);
 
-		HFONT hfont= static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
+		/*HFONT hfont= static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
 		LOGFONT lf;
 		::GetObject(hfont, sizeof(lf), &lf);
 		lf.lfWeight = FW_BOLD;
-		lf.lfHeight += 1;
+		//lf.lfHeight += 1;
 		//lf.lfQuality = ANTIALIASED_QUALITY;
 		_tcscpy(lf.lfFaceName, _T("Tahoma"));
 		CFont font;
 		font.CreateFontIndirect(&lf);
-
-		CFont* old= dc->SelectObject(&font);
+*/
+		CFont* old= dc->SelectObject(&GetDefaultGuiFont());//&_font);
 		dc->SetTextColor(TITLE_TEXT_COLOR);
 		dc->SetBkMode(TRANSPARENT);
-		CString str= L"应用标记";
+		CString str= L"应用标签";
 //		str.LoadString(IDS_LIGHT_TABLE);
 		dc->TextOut(rect.left + 5, rect.top + 4, str);
 		dc->SelectObject(old);

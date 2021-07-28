@@ -147,7 +147,7 @@ OptionsDlg::~OptionsDlg()
 BEGIN_MESSAGE_MAP(OptionsDlg, CPropertySheet)
 	ON_WM_DESTROY()
 	ON_WM_SIZE()
-	ON_COMMAND(ID_HELP, OnHelp)
+	//ON_COMMAND(ID_HELP, OnHelp)
 	ON_MESSAGE(WM_APP, OnResizePages)
 	ON_WM_GETMINMAXINFO()
 END_MESSAGE_MAP()
@@ -243,7 +243,7 @@ BOOL OptionsDlg::OnInitDialog()
 
 	resize_.SetWndResizing(IDOK, DlgAutoResize::MOVE);
 	resize_.SetWndResizing(IDCANCEL, DlgAutoResize::MOVE);
-	resize_.SetWndResizing(IDHELP, DlgAutoResize::MOVE);
+	//resize_.SetWndResizing(IDHELP, DlgAutoResize::MOVE);
 
 	resize_.SetWndResizing(TAB, DlgAutoResize::RESIZE);
 
@@ -294,14 +294,14 @@ void OptionsDlg::OnDestroy()
 	CPropertySheet::OnDestroy();
 }
 
-
+/*
 void OptionsDlg::OnHelp()
 {
 	extern void OpenHelp(const TCHAR* initial_page);
 
 	OpenHelp(_T("OptionsDlg.htm"));
 }
-
+*/
 
 BOOL OptionsDlg::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* result)
 {

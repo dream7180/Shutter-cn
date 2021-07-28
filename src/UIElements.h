@@ -57,7 +57,7 @@ extern void RoundRect(Gdiplus::GraphicsPath& rr, const Gdiplus::RectF& area, flo
 void DrawNCBorder(HDC hdc, const CRect& rect);
 
 // draw resizing grid (dimples)
-void DrawResizingGrip(HDC dc, const CRect& rect, COLORREF base, bool is_active);
+//void DrawResizingGrip(HDC dc, const CRect& rect, COLORREF base, bool is_active);
 
 void FillSolidRect(HDC dc, const CRect& rect, COLORREF clr);
 void FillSolidRect(HDC dc, int x, int y, int cx, int cy, COLORREF clr);

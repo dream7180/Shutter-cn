@@ -158,8 +158,8 @@ public:
 	void						SetDragCursors(HCURSOR cursor_move, HCURSOR cursor_copy);
 	bool						ModifyStyle(DWORD remove, DWORD add, UINT flags=0);
 	bool						ModifyStyleEx(DWORD remove, DWORD add, UINT flags=0);
-	void						SetControlFont(const LOGFONT& lf, bool redraw=FALSE);
-	static const LOGFONT&		GetDefaultFont() {return lf_default;}
+	void						SetControlFont(/*const LOGFONT& lf, */bool redraw=FALSE);
+	//static const LOGFONT&		GetDefaultFont() {return lf_default;}
 	bool						IsVertical() { return (GetStyle()&CTCS_TOP && GetStyle()&CTCS_RIGHT) || GetStyle()&CTCS_RIGHT;}
 	void SetIdealHeight(int height);
 	int GetIdealHeight() const;
@@ -223,7 +223,7 @@ private:
 	void DrawCtrl(CDC& dc, int selection_tinge);
 
 private:
-	static LOGFONT				lf_default;
+	//static LOGFONT				lf_default;
 	static BYTE					bits_glyphs_[];
 	HCURSOR						cursor_move_;
 	HCURSOR						cursor_copy_;

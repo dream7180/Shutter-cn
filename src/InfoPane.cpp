@@ -135,7 +135,7 @@ CRect InfoPane::GetPreviewRect()
 
 BOOL InfoPane::OnEraseBkgnd(CDC* dc)
 {
-	COLORREF rgb_background = g_Settings.AppColors()[AppColors::Background];// CalcNewColor(::GetSysColor(COLOR_3DFACE), g_backgnd_brightness);
+	COLORREF rgb_background = g_Settings.AppColors()[AppColors::SecondarySeparator];//g_Settings.AppColors()[AppColors::Background];// CalcNewColor(::GetSysColor(COLOR_3DFACE), g_backgnd_brightness);
 	MemoryDC mem_dc(*dc, this, rgb_background);
 
 	if (img_preview_ && photo_)
@@ -143,7 +143,8 @@ BOOL InfoPane::OnEraseBkgnd(CDC* dc)
 		// draw preview
 		CRect rect= GetPreviewRect();
 		//mem_dc.FillSolidRect(rect.left, rect.top, rect.Width(), 1, ::GetSysColor(COLOR_3DSHADOW));
-		rect.DeflateRect(0, 5);
+		//rect.DeflateRect(0, 5);
+		rect.top += 1;
 		photo_->Draw(&mem_dc, rect, rgb_background);
 	}
 
@@ -181,7 +182,7 @@ void InfoPane::Resize()
 			wnd_height = 0;
 
 		CSize wnd_size(client.Width(), std::max(0, wnd_height));
-		disp_wnd_.SetWindowPos(0, 0, h, wnd_size.cx, wnd_size.cy, SWP_NOZORDER | SWP_NOACTIVATE);
+		disp_wnd_.SetWindowPos(0, 0, h+1, wnd_size.cx, wnd_size.cy-1, SWP_NOZORDER | SWP_NOACTIVATE);
 	}
 }
 
@@ -581,7 +582,7 @@ void InfoPane::SetColors()
 {
 	auto dim_text = g_Settings.AppColors()[AppColors::DimText];
 	auto text = g_Settings.AppColors()[AppColors::Text];
-	auto backgnd = g_Settings.AppColors()[AppColors::Background];
+	auto backgnd =RGB(255,255,255);// g_Settings.AppColors()[AppColors::Background];
 
 	float brightness = CalcColorBrightness(backgnd);
 

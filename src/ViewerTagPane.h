@@ -40,6 +40,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 private:
+	static const int VIEWER_TAGPANE_H = 60;
 	struct Impl;
 	Impl& impl_;
 

@@ -18,6 +18,7 @@ ____________________________________________________________________________*/
 #include "Dib.h"
 #include "CtrlDraw.h"
 #include "Color.h"
+#include "GetDefaultGuiFont.h"
 
 CImageList DlgListCtrl::img_list_triangles_;
 
@@ -40,7 +41,7 @@ static const TCHAR* cls_name_= _T("DialogListCtrl");
 static const int LAST_TRIANGLE= 6;
 static const int TRIANGLE_LEFT_SPACE= 5;
 static const int TRIANGLE_RIGHT_SPACE= 5;
-static const int SHADOW_SPACE= 3;
+static const int SHADOW_SPACE= 0;
 static const int TOP_SPACE= 1 + SHADOW_SPACE;
 static const int IDEAL_HEIGHT= 22;
 
@@ -173,12 +174,13 @@ void DlgListCtrl::SelectFont(CDC& dc)
 		dc.SelectObject(font);
 	else{
 		LOGFONT lf;
-		HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
+		/*HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
 		::GetObject(hfont, sizeof(lf), &lf);
 		lf.lfWeight = FW_NORMAL;
-		lf.lfHeight += 1;
-		_tcscpy(lf.lfFaceName, _T("Tahoma"));
-		//lf.lfQuality = ANTIALIASED_QUALITY;
+		//lf.lfHeight += 1;
+		lf.lfQuality = CLEARTYPE_QUALITY;
+		_tcscpy(lf.lfFaceName, _T("Microsoft Yahei"));*/
+		::GetDefaultGuiFont(lf);
 		_font.CreateFontIndirect(&lf);
 		dc.SelectObject(&_font);
 		//dc.SelectStockObject(DEFAULT_GUI_FONT);
@@ -290,11 +292,11 @@ bool DlgListCtrl::SubDlg::SetLocation(CPoint dlg_pos, int available_width, int h
 
 static void DrawShade(CDC& dc, CRect rect)
 {
-	static const short shades[]=
-		{ 253, 252, 251, 250, 249, 248, 246, 245, 244, 242, 241, 236, 231, 228, 227, 228, 230, 231, 233, 235, 244 };
-
 	int height= rect.Height();
 	int width= rect.Width();
+	dc.FillSolidRect(rect.left, rect.top, width, height, RGB(225, 225, 225));
+	/*static const short shades[]=
+		{ 253, 252, 251, 250, 249, 248, 246, 245, 244, 242, 241, 236, 231, 228, 227, 228, 230, 231, 233, 235, 244 };
 
 	if (height > 0 && width > 0)
 	{
@@ -306,7 +308,7 @@ static void DrawShade(CDC& dc, CRect rect)
 			int gray= shades[index];
 			dc.FillSolidRect(rect.left, rect.top + y, width, 1, RGB(gray, gray, gray));
 		}
-	}
+	}*/
 }
 
 
@@ -380,7 +382,7 @@ void DlgListCtrl::SubDlg::DrawHeader(CDC& dc, CRect rect, int width_wnd, int lef
 	CRect header= CRect(rect.TopLeft(), CSize(width_wnd - right_margin - left_margin, rect.Height() + 1));
 	dc.Draw3dRect(header, frame, frame);
 
-	CRect shadow= header;
+	//CRect shadow= header;
 
 	rect.top++;
 
@@ -428,7 +430,7 @@ void DlgListCtrl::SubDlg::DrawHeader(CDC& dc, CRect rect, int width_wnd, int lef
 	}
 
 	// draw shadow
-	try
+	/*try
 	{
 		shadow.top = rect.bottom + 1;
 		shadow.bottom = shadow.top + SHADOW_SPACE;
@@ -462,6 +464,7 @@ void DlgListCtrl::SubDlg::DrawHeader(CDC& dc, CRect rect, int width_wnd, int lef
 	}
 	catch (...)
 	{}
+*/
 }
 
 

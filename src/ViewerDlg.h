@@ -80,8 +80,10 @@ private:
 	afx_msg void OnSize(UINT type, int cx, int cy);
 	afx_msg void OnViewerBar();
 	afx_msg void OnFullScreen();
+	afx_msg void OnShowTaskbar();
 	afx_msg BOOL OnEraseBkgnd(CDC* dc);
 	afx_msg void OnUpdateFullScreen(CCmdUI* cmd_ui);
+	afx_msg void OnUpdateShowTaskbar(CCmdUI* cmd_ui);
 	afx_msg void OnUpdateViewerBar(CCmdUI* cmd_ui);
 	afx_msg void OnPhotoFirst();
 	afx_msg void OnPhotoLast();
@@ -101,6 +103,7 @@ private:
 	afx_msg void OnDestroy();
 	afx_msg void OnNcDestroy();
 	afx_msg void OnSysCommand(UINT id, LPARAM lParam);
+	afx_msg void OnCmdMinimize();
 	afx_msg void OnCmdClose();
 	afx_msg void OnRestore();
 	afx_msg void OnGamma();

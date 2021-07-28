@@ -33,6 +33,7 @@ DeleteConfirmationDlg::~DeleteConfirmationDlg()
 void DeleteConfirmationDlg::DoDataExchange(CDataExchange* DX)
 {
 	CDialog::DoDataExchange(DX);
+	DDX_Control(DX, IDC_IMAGE, image_);
 }
 
 
@@ -69,6 +70,7 @@ BOOL DeleteConfirmationDlg::OnInitDialog()
 	SetDlgItemText(IDC_LABEL, msg_);
 
 	this->GotoDlgCtrl(GetDlgItem(IDOK));
+	image_.SetImage(IDB_TRASHCAN);
 
 	return false;
 }

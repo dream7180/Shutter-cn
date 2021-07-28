@@ -39,6 +39,7 @@
     <RootNamespace>ExifPro</RootNamespace>
     <Keyword>MFCProj</Keyword>
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <ProjectName>Shutter</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseANSI|Win32'" Label="Configuration">
@@ -623,6 +624,7 @@
     <ClCompile Include="FilterData.cpp" />
     <ClCompile Include="FilterDialogs.cpp" />
     <ClCompile Include="FilterPanelDlg.cpp" />
+	<ClCompile Include="FilterRules.cpp" />
     <ClCompile Include="FixRotatedPhoto.cpp" />
     <ClCompile Include="GetDefaultGuiFont.cpp" />
     <ClCompile Include="ImageLabelDlg.cpp" />
@@ -841,7 +843,6 @@
     <ClCompile Include="FolderListCtrl.cpp" />
     <ClCompile Include="GridCtrl.cpp" />
     <ClCompile Include="HeaderDialog.cpp" />
-    <ClCompile Include="HelpButton.cpp" />
     <ClCompile Include="Histogram.cpp" />
     <ClCompile Include="HistogramCtrl.cpp" />
     <ClCompile Include="HistogramImg.cpp" />
@@ -884,7 +885,7 @@
     <ClCompile Include="UniqueLetter.cpp" />
     <ClCompile Include="WhistlerLook.cpp" />
     <ClCompile Include="OptionsAdvanced.cpp" />
-	<ClCompile Include="OptionsCache.cpp" />
+    <ClCompile Include="OptionsCache.cpp" />
     <ClCompile Include="OptionsAppearance.cpp" />
     <ClCompile Include="OptionsBalloons.cpp" />
     <ClCompile Include="OptionsColumns.cpp" />
@@ -1140,6 +1141,7 @@
     <ClInclude Include="FilterData.h" />
     <ClInclude Include="FilterDialogs.h" />
     <ClInclude Include="FilterPanelDlg.h" />
+	<ClInclude Include="FilterRules.h" />
     <ClInclude Include="FindTabCtrl.h" />
     <ClInclude Include="FolderListCtrl.h" />
     <ClInclude Include="FolderPane.h" />
@@ -1158,7 +1160,6 @@
     <ClInclude Include="GPSData.h" />
     <ClInclude Include="GridCtrl.h" />
     <ClInclude Include="HeaderDialog.h" />
-    <ClInclude Include="HelpButton.h" />
     <ClInclude Include="Histogram.h" />
     <ClInclude Include="HistogramCtrl.h" />
     <ClInclude Include="HistogramDlg.h" />
@@ -1231,8 +1232,8 @@
     <ClInclude Include="NEFDecoder.h" />
     <ClInclude Include="NEFReader.h" />
     <ClInclude Include="NewFolderDlg.h" />
-	<ClInclude Include="OptionsAdvanced.h" />
-	<ClInclude Include="OptionsCache.h" />
+    <ClInclude Include="OptionsAdvanced.h" />
+    <ClInclude Include="OptionsCache.h" />
     <ClInclude Include="OptionsAppearance.h" />
     <ClInclude Include="OptionsBalloons.h" />
     <ClInclude Include="OptionsColumns.h" />
@@ -1342,7 +1343,7 @@
     <ClInclude Include="ShellItem.h" />
     <ClInclude Include="SliderCtrlEx.h" />
     <ClInclude Include="SliderEditForm.h" />
-    <ClInclude Include="SliderToolBar.h" />
+    <!--ClInclude Include="SliderToolBar.h" /-->
     <ClInclude Include="SlideShowGenerator.h" />
     <ClInclude Include="SlideShowOptDlg.h" />
     <ClInclude Include="SmoothScroll.h" />
@@ -1446,7 +1447,7 @@
     <Image Include="res\chevron_big.bmp" />
     <Image Include="res\chevron_big_hot.bmp" />
     <Image Include="res\chevron_hot.bmp" />
-    <Image Include="res\close_bar.bmp" />
+    <!--Image Include="res\close_bar.bmp" /-->
     <!--Image Include="res\close_bar_hot.bmp" /-->
     <Image Include="res\close_tb.png" />
     <Image Include="res\closebar.bmp" />
@@ -1483,10 +1484,10 @@
     <Image Include="res\folder_pane_tb.png" />
     <Image Include="res\folder_popup.bmp" />
     <Image Include="res\FolderViewCtrlTb.png" />
-    <Image Include="res\funnel-icon.png" />
+    <!--Image Include="res\funnel-icon.png" /-->
     <Image Include="res\funnel-small.png" />
     <Image Include="res\funnel.png" />
-    <Image Include="res\grid_pattern.bmp" />
+    <!--Image Include="res\grid_pattern.bmp" /-->
     <Image Include="res\grip.bmp" />
     <!--<Image Include="res\group_header_icons.bmp" />-->
     <Image Include="res\GroupHeaderIcons.png" />
@@ -1525,8 +1526,8 @@
     <Image Include="res\light_table_tb.bmp" />
     <Image Include="res\light_table_tb.png" />
     <Image Include="res\light_table_tb_dis.bmp" />
-    <Image Include="res\LightTableHeader.bmp" />
-    <Image Include="res\LightTableHeader.png" />
+    <!--Image Include="res\LightTableHeader.bmp" />
+    <Image Include="res\LightTableHeader.png" /-->
     <Image Include="res\main_toolbar.bmp" />
     <Image Include="res\marked.bmp" />
     <!--Image Include="res\mask.bmp" /-->
@@ -1632,7 +1633,7 @@
     <Image Include="res\trashcan.bmp" />
     <Image Include="res\Triangles.png" />
     <Image Include="res\vert_scrollbar.bmp" />
-    <Image Include="res\view_caption.png" />
+    <!--Image Include="res\view_caption.png" /-->
     <Image Include="res\viewer.ico" />
     <!--Image Include="res\viewer_rebar_backgnd.bmp" /-->
     <Image Include="res\viewer_toolbar.bmp" />

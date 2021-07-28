@@ -325,7 +325,7 @@ bool BrowserFrame::CreateWindows()
 	//rebar_wnd_.SetBottomMargin(10);	// pixel gap for some breathing space
 
 	// two pixels high border for a little shade below rebar control
-	auto gap = SnapView::GetSeparatorThickness();
+	auto gap = CSize(2,2);//SnapView::GetSeparatorThickness();
 	m_rectBorder.top = gap.cy + TOP_GAP;
 	m_rectBorder.bottom = gap.cy;
 	// tool bar
@@ -477,9 +477,9 @@ bool BrowserFrame::CreateWindows()
 		// initial layout of pane windows; all sizes are relative (0-100%) and provided as corners: left-top, right-bottom.
 		// entire window area has to be covered by panes, without overlaps, but some of them may be hidden
 		PaneLayoutInfo(folders,   CRect( 0,  0,  20,  60), L"文件夹",   PANE_NORMAL | PANE_NO_CLOSE | PANE_NO_MAXIMIZE, -1, EDGE_NONE, EDGE_LEFT),
-		PaneLayoutInfo(tagbar,    CRect( 0, 60,  20,  70), L"标记",      PANE_NORMAL | PANE_NO_CLOSE | PANE_NO_MAXIMIZE, 0, EDGE_BOTTOM, EDGE_NONE, 200 / 8),
+		PaneLayoutInfo(tagbar,    CRect( 0, 60,  20,  70), L"标签",      PANE_NORMAL | PANE_NO_CLOSE | PANE_NO_MAXIMIZE, 0, EDGE_BOTTOM, EDGE_NONE, 200 / 8),
 		PaneLayoutInfo(histogram, CRect( 0, 70,  20, 100), L"直方图", PANE_HIDDEN | PANE_NO_CLOSE, 0, EDGE_BOTTOM, EDGE_NONE, 200 / 8),
-		PaneLayoutInfo(preview,   CRect(20,  0,  75,  35), L"预览",   PANE_NORMAL, -1, EDGE_NONE, EDGE_NONE),
+		PaneLayoutInfo(preview,   CRect(20,  0,  75,  35), L"预览",   PANE_HIDDEN, -1, EDGE_NONE, EDGE_NONE),
 		PaneLayoutInfo(mainview,  CRect(20, 35,  75, 100), L"图像",    PANE_NORMAL | PANE_NO_CLOSE, -1, EDGE_NONE, EDGE_NONE),
 		PaneLayoutInfo(infobar,   CRect(75,  0, 100, 100), L"信息 ",     PANE_HIDDEN, -1, EDGE_NONE, EDGE_RIGHT, 300 / 8),
 	};
@@ -1329,7 +1329,7 @@ void BrowserFrame::OnUpdateViewFilterbar(CCmdUI* cmd_ui)
 
 void BrowserFrame::RepositionTaskBar()
 {
-	auto gap = SnapView::GetSeparatorThickness();
+	auto gap = CSize(2,2);//SnapView::GetSeparatorThickness();
 	m_rectBorder.bottom = gap.cy;
 
 	if (toolbar_.IsWindowVisible())
@@ -1834,7 +1834,7 @@ void BrowserFrame::OnUpdateDefineCustomColumns(CCmdUI* cmd_ui)
 	cmd_ui->Enable(exif_view_wnd_.CurrentItem() != 0);
 }
 
-void BrowserFrame::DrawSeparator(CDC& dc, const CRect& client)
+void BrowserFrame::DrawSeparator(CDC& dc, const CRect& client)//状态栏顶上的分割条
 {
 	if (rebar_wnd_.m_hWnd == 0 || frame_wnd_.m_hWnd == 0)
 		return;
@@ -1850,6 +1850,7 @@ void BrowserFrame::DrawSeparator(CDC& dc, const CRect& client)
 		CRect rect(client.left, y, client.right, y + TOP_GAP);
 		dc.FillSolidRect(rect, base);
 		rect.OffsetRect(0, TOP_GAP);
+		rect.top += 1;
 		//CRect rect(client.left, rect1.bottom, client.right, rect1.bottom + m_rectBorder.top - TOP_GAP);
 		rect.bottom = rect.top + m_rectBorder.top - TOP_GAP;
 		dc.FillSolidRect(rect, separator);
@@ -1860,7 +1861,7 @@ void BrowserFrame::DrawSeparator(CDC& dc, const CRect& client)
 		//dc.FillSolidRect(rect, CalcShade(base, -7.0f));
 	}
 
-	auto gap = SnapView::GetSeparatorThickness();
+	//auto gap = SnapView::GetSeparatorThickness();
 
 	if (frame_wnd_.GetWindowPlacement(&wp))
 	{
@@ -1877,17 +1878,20 @@ void BrowserFrame::DrawSeparator(CDC& dc, const CRect& client)
 				rect.top = wp.rcNormalPosition.top;
 
 				// horizontal separator (edge)
-				dc.FillSolidRect(rect.left, y, rect.Width(), gap.cy, separator);
+				//dc.FillSolidRect(rect.left, y, rect.Width(), gap.cy-1, separator);
+				dc.FillSolidRect(rect.left, y, rect.Width(), 1, separator);
 			}
 			else		// vertical toolbar
 			{
 				CRect rect = wp.rcNormalPosition;
 
 				// vertical separator (edge)
-				dc.FillSolidRect(rect.right, rect.top, gap.cx, rect.Height(), separator);
+				//dc.FillSolidRect(rect.right, rect.top, gap.cx-1, rect.Height(), separator);
+				dc.FillSolidRect(rect.right, rect.top,1, rect.Height(), separator);
 
 				// horizontal separator
-				dc.FillSolidRect(rect.left, rect.bottom, client.Width(), gap.cy, separator);
+				//dc.FillSolidRect(rect.left, rect.bottom, client.Width(), gap.cy-1, separator);
+				dc.FillSolidRect(rect.left, rect.bottom, client.Width(), 1, separator);
 			}
 		}
 		else
@@ -1895,7 +1899,8 @@ void BrowserFrame::DrawSeparator(CDC& dc, const CRect& client)
 			CRect rect = wp.rcNormalPosition;
 
 			// horizontal separator (edge) at the bottom
-			dc.FillSolidRect(rect.left, rect.bottom, client.Width(), gap.cy, separator);
+			//dc.FillSolidRect(rect.left, rect.bottom, client.Width(), gap.cy-1, separator);
+			dc.FillSolidRect(rect.left, rect.bottom, client.Width(), 1, separator);
 			//dc.FillSolidRect(client, RGB(0, 255, 0));
 		}
 	}

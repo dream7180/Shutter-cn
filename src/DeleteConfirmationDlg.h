@@ -8,7 +8,8 @@ ____________________________________________________________________________*/
 // Simple delete confirmation dialog with pretty background bitmap
 
 #pragma once
-#include "Dib.h"
+//#include "Dib.h"
+#include "ImageCtrl.h"
 
 // DeleteConfirmationDlg dialog
 
@@ -30,6 +31,7 @@ private:
 	//AutoPtr<Dib> background_;
 	CString msg_;
 	CBrush back_;
+	ImageCtrl image_;
 
 	afx_msg BOOL OnEraseBkgnd(CDC* dc);
 	virtual BOOL OnInitDialog();

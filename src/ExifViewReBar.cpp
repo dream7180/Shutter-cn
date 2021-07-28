@@ -17,6 +17,7 @@ ____________________________________________________________________________*/
 #include "UIElements.h"
 #include "WhistlerLook.h"
 #include "Config.h"
+#include "GetDefaultGuiFont.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -243,15 +244,15 @@ ExifViewReBar::Part ExifViewReBar::PositionBar(ToolBarWnd& tool_bar_wnd, const T
 	if (label)
 	{
 		CClientDC dc(this);
-		LOGFONT lf;
+		/*LOGFONT lf;
 		HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
 		::GetObject(hfont, sizeof(lf), &lf);
 		//lf.lfQuality = ANTIALIASED_QUALITY;
-		lf.lfHeight += 1;
+		//lf.lfHeight += 1;
 		_tcscpy(lf.lfFaceName, _T("Tahoma"));
 		CFont _font;
-		_font.CreateFontIndirect(&lf);
-		dc.SelectObject(&_font);
+		_font.CreateFontIndirect(&lf);*/
+		dc.SelectObject(&GetDefaultGuiFont());//(&_font);
 		//dc.SelectStockObject(DEFAULT_GUI_FONT);
 		int width= dc.GetTextExtent(label, static_cast<int>(_tcslen(label))).cx;
 		int space= dc.GetTextExtent(_T(" "), 1).cx;

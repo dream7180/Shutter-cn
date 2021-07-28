@@ -17,14 +17,19 @@ ____________________________________________________________________________*/
 #include "Attributes.h"
 #include "BalloonMsg.h"
 #include "PhotoTagsCollection.h"
+#include <boost/algorithm/string/trim.hpp>
+#include "FilterRules.h"
 
+using namespace boost::algorithm;
 
 // EditFilterDlg dialog
+String filter_rule_head =  _T("x = 1 if x > 0\r\n");
+String filter_rule_end =  _T("then return true\r\nend");
 
 EditFilterDlg::EditFilterDlg(CWnd* parent, const PhotoInfo& example, const PhotoTagsCollection& collection)
 	: DialogChild(EditFilterDlg::IDD, parent), example_(example), collection_(collection)
 {
-	filter_rule_ = _T("x = 1 if x > 0 --不要编辑此行\r\n--去注释或编辑以下规则，逻辑为and或or\r\n-------------------------------\r\n--and img.fl == 50\r\n--and img.iso > 100\r\n--and img.fn < 8.0\r\nthen return true\r\nend");
+	//filter_rule_ = _T("--and img.fl == 50\n--and img.iso > 100\n--and img.fn < 8.0\n");
 }
 
 EditFilterDlg::~EditFilterDlg()
@@ -78,12 +83,12 @@ BOOL EditFilterDlg::OnInitDialog()
 		SetWndResizing(IDC_LABEL_3, DlgAutoResize::MOVE_V);
 		SetWndResizing(IDC_STATUS, DlgAutoResize::MOVE_V_RESIZE_H);
 		SetWndResizing(IDC_VERIFY, DlgAutoResize::MOVE);
-		SetWndResizing(IDC_HELP_BTN, DlgAutoResize::MOVE_V);
+		//SetWndResizing(IDC_HELP_BTN, DlgAutoResize::MOVE_V);
 
 		//TODO
 //		SubclassHelpBtn(_T("EditFilterRule.htm"));
-if (CWnd* h= GetDlgItem(IDC_HELP_BTN))
-	h->ShowWindow(SW_HIDE);
+//if (CWnd* h= GetDlgItem(IDC_HELP_BTN))
+//	h->ShowWindow(SW_HIDE);
 
 		int cmds[]= { INSERT_ATTRIB, INSERT_TAG, INSERT_XMP, INSERT_FILE };
 		insert_.SetPadding(8, 12);
@@ -138,8 +143,10 @@ bool EditFilterDlg::ReadExpr(String& filter_rule)
 
 void EditFilterDlg::OnOK()
 {
-	if (ReadExpr(filter_rule_))
+	if (ReadExpr(filter_rule_)){
+		AdvFilter::SaveFilters(AdvFilter::GetFiltersPathName().c_str(), filter_rule_);
 		EndDialog(IDOK);
+	}
 }
 
 
@@ -171,12 +178,30 @@ bool EditFilterDlg::VerifyExpr(const CString& expr, String* err_message)
 	if (expr.IsEmpty())
 	{
 		if (err_message)
-			*err_message = _T("Please enter valid expression, it cannot be empty.");
+			*err_message = _T("请输入有效的过滤规则.");
 
 		return false;
 	}
+	
+	CString expr_ = expr;
+	iStringstream si(expr_.GetBuffer(0));
+	String expr_i;
+	String expr_all;
+	for (;;)
+	{
+		if (!getline(si, expr_i, _T('\n')))
+			break;
+		trim_if(expr_i, is_from_range(_T('\0'), _T('\x20')));
+		if(expr_i.length() != 0){
+			expr_all += _T("and ");
+			expr_all += expr_i;
+			expr_all += _T("\n");
+		}
+	}
+	
+	expr_all = filter_rule_head + expr_all + filter_rule_end;
 
-	ExprCalculator calc(expr);
+	ExprCalculator calc(expr_all.c_str());
 	String err_msg;
 
 	bool valid= calc.IsValid(err_msg, example_);

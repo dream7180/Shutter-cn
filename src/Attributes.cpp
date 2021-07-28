@@ -251,7 +251,7 @@ String GetImgAttribsHelpString(unsigned int include_help)
 		_T("img.subdist\t- 物距\r\n");
 
 	if (include_help & IAH_TAG_INFO)
-		help << _T("img.tags\t- 图像标记字典\r\n");
+		help << _T("img.tags\t- 图像标签字典\r\n");
 
 	help <<
 		_T("img.time\t- 创建时间戳 (number)\r\n")
@@ -259,8 +259,8 @@ String GetImgAttribsHelpString(unsigned int include_help)
 		_T("\r\n")
 		_T("字符串函数:\t string.lower, string.upper, string.len, string.sub(str, from, to), string.find(str, what)\r\n")
 		_T("\r\n")
-		_T("数学函数:\t math.abs math.acos math.asin math.atan math.atan2 math.ceil math.cos math.cosh math.deg math.exp math.floor math.fmod math.frexp math.huge math.ldexp math.log math.log10 math.max math.min math.modf math.pi math.pow math.rad math.random math.randomseed math.sin math.sinh math.sqrt math.tan math.tanh math.mod\r\n")
-		_T("\r\n")
+		/*_T("数学函数:\t math.abs math.acos math.asin math.atan math.atan2 math.ceil math.cos math.cosh math.deg math.exp math.floor math.fmod math.frexp math.huge math.ldexp math.log math.log10 math.max math.min math.modf math.pi math.pow math.rad math.random math.randomseed math.sin math.sinh math.sqrt math.tan math.tanh math.mod\r\n")
+		_T("\r\n")*/
 		_T("完整函数和文档清单请访问 www.lua.org");
 
 /*
@@ -348,6 +348,7 @@ void CreateScriptEditingFont(CFont& font)
 	::GetObject(hfont, sizeof(lf), &lf);
 	_tcscpy(lf.lfFaceName, _T("Consolas"));
 	lf.lfPitchAndFamily = FIXED_PITCH;
+	lf.lfQuality = CLEARTYPE_QUALITY;
 	//lf.lfHeight -= 2; // larger text
 	font.DeleteObject();
 	font.CreateFontIndirect(&lf);

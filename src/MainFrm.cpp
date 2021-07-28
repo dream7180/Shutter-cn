@@ -59,8 +59,8 @@ BEGIN_MESSAGE_MAP(MainFrame, CFrameWnd)
 	ON_COMMAND(ID_TASK_TRANSFER, OnTaskTransfer)
 	ON_UPDATE_COMMAND_UI(ID_TASK_TRANSFER, OnUpdateTaskTransfer)
 	ON_WM_SIZE()
-	ON_COMMAND(ID_HELP_WINDOW, OnHelpWindow)
-	ON_UPDATE_COMMAND_UI(ID_HELP_WINDOW, OnUpdateHelpWindow)
+	//ON_COMMAND(ID_HELP_WINDOW, OnHelpWindow)
+	//ON_UPDATE_COMMAND_UI(ID_HELP_WINDOW, OnUpdateHelpWindow)
 	//}}AFX_MSG_MAP
 //	ON_UPDATE_COMMAND_UI_RANGE(ID_FILE_MRU_FILE1, ID_FILE_MRU_FILE1 + MAX_RECENT_PATHS - 1, OnUpdateRecentPath)
 	ON_NOTIFY(RBN_CHILDSIZE, AFX_IDW_REBAR, OnReBarChildSize)
@@ -382,7 +382,7 @@ BOOL MainFrame::OnEraseBkgnd(CDC* dc)
 	//DrawVertLineSeparator(*dc, line, &backgnd);
 
 	// give derived class chance to draw separator
-	DrawSeparator(*dc, rect);
+	DrawSeparator(*dc, rect);//horizontal top toolbar & vertical task bar 1px seprator
 
 	return true;
 }
@@ -450,7 +450,7 @@ CRect MainFrame::GetScanningWndRect()
 		const int PROGRESS_ANIM_WIDTH= 68;
 		rect.right -= 20;
 		rect.left = rect.right - PROGRESS_ANIM_WIDTH;
-		rect.top += rect.Height()/2-5;//3;
+		rect.top += rect.Height()/2-4;//3;
 		rect.bottom = rect.top + 9;
 	}
 	return rect;
@@ -497,23 +497,24 @@ void MainFrame::UpdateStatusBar()
 
 BOOL MainFrame::OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* context)
 {
-	ModifyStyle(WS_THICKFRAME, 0);//remove SBARS_SIZEGRIP
+	//ModifyStyle(WS_THICKFRAME, 0);//remove SBARS_SIZEGRIP
 	if (!status_bar_wnd_.Create(this, WS_CHILD | WS_VISIBLE | WS_CLIPCHILDREN | CBRS_BOTTOM) ||
 		!status_bar_wnd_.SetIndicators(indicators, array_count(indicators)))
 	{
 		TRACE0("Failed to create status bar\n");
 		return false;      // fail to create
 	}
-	ModifyStyle(0, WS_THICKFRAME);//recover thickframe after removing SBARS_SIZEGRIP
+	//ModifyStyle(0, WS_THICKFRAME);//recover thickframe after removing SBARS_SIZEGRIP
 	status_bar_wnd_.SetPaneStyle(0, SBPS_OWNERDRAW | SBPS_STRETCH | SBPS_NOBORDERS);
 	status_bar_wnd_.SetPaneStyle(1, SBPS_OWNERDRAW | SBPS_NOBORDERS);
 	LOGFONT lf;
-	HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
-	::GetObject(hfont, sizeof(lf), &lf);
-	lf.lfHeight += 1;
-	//lf.lfQuality = ANTIALIASED_QUALITY;
-	_tcscpy(lf.lfFaceName, _T("Tahoma"));
-	hfont = CreateFontIndirectW(&lf);
+	//HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
+	//::GetObject(hfont, sizeof(lf), &lf);
+	//lf.lfHeight += 1;
+	//lf.lfQuality = CLEARTYPE_QUALITY;
+	//_tcscpy(lf.lfFaceName, _T("Microsoft Yahei"));
+	::GetDefaultGuiFont(lf);
+	HFONT hfont = CreateFontIndirectW(&lf);
 	status_bar_wnd_.SendMessage(WM_SETFONT, WPARAM(hfont));
 	//status_bar_wnd_.SendMessage(WM_SETFONT, WPARAM(::GetDefaultGuiHFont()));
 
@@ -548,7 +549,7 @@ void MainFrame::OnSize(UINT type, int cx, int cy)
 		scanning_wnd_.MoveWindow(GetScanningWndRect());
 }
 
-
+/*
 void MainFrame::OnHelpWindow()
 {
 	WinHelp(0, 0);
@@ -596,7 +597,7 @@ void MainFrame::WinHelp(DWORD, UINT)
 
 //	CFrameWnd::WinHelp(data, cmd);
 }
-
+*/
 
 HACCEL MainFrame::GetDefaultAccelerator()
 {

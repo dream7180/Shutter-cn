@@ -31,6 +31,7 @@ ____________________________________________________________________________*/
 #include "TagsCommonCode.h"
 #include "Tasks.h"
 #include "PhotoCollection.h"
+#include "GetDefaultGuiFont.h"
 
 
 #ifdef _DEBUG
@@ -56,7 +57,7 @@ struct LightTable::Impl
 	}
 
 	PhotoInfoStorage& photo_storage_;
-	Dib header_;
+	//Dib header_;
 	Dib separator_;
 	FancyToolBar toolbar_;
 	PreviewBandWnd ctrl_;
@@ -283,13 +284,13 @@ const static COLORREF TEXT_COLOR= RGB(200,200,200);
 
 void LightTable::Impl::LoadBitmaps(double gamma)
 {
-	VERIFY(::LoadPingFromRsrc(MAKEINTRESOURCE(IDB_LIGHT_TABLE_HEADER), header_));
-//	header_.Load(IDB_LIGHT_TABLE_HEADER);
+	//VERIFY(::LoadPingFromRsrc(MAKEINTRESOURCE(IDB_LIGHT_TABLE_HEADER), header_));
+////header_.Load(IDB_LIGHT_TABLE_HEADER);
 	separator_.Load(IDB_LIGHT_TABLE_SEP);
 
 	if (gamma != 1.0)
 	{
-		::ApplyGammaInPlace(&header_, gamma, -1, -1);
+		//::ApplyGammaInPlace(&header_, gamma, -1, -1);
 		::ApplyGammaInPlace(&separator_, gamma, -1, -1);
 	}
 }
@@ -343,10 +344,10 @@ bool LightTable::Create(CWnd* parent, UINT id, int width, const boost::function<
 
 	// --------- close btn -----------
 	{
-		const int close_cmd[]= { 1, ID_HIDE_LIGHT_TABLE };
+		const int close_cmd[]= { 1, 1, ID_HIDE_LIGHT_TABLE };
 		FancyToolBar::Params p;
 		p.shade = -0.28f;
-		if (!pImpl_->close_btn_.Create(this, ".p", close_cmd, IDR_CLOSEBAR_PNG, &p))
+		if (!pImpl_->close_btn_.Create(this, "..p", close_cmd, IDR_CLOSEBAR_PNG, &p))
 			return false;
 	}
 
@@ -420,7 +421,7 @@ void LightTable::Resize()
 	CRect rect(0,0,0,0);
 	GetClientRect(rect);
 
-	int height= pImpl_->header_.GetHeight();
+	int height= LIGHTTABLE_H;//pImpl_->header_.GetHeight();
 
 	CSize s= pImpl_->toolbar_.Size();
 	SetWindowSize(pImpl_->toolbar_, rect.left, rect.top + height - s.cy, s.cx, s.cy);
@@ -582,20 +583,21 @@ BOOL LightTable::OnEraseBkgnd(CDC* dc)
 	try
 	{
 		int bottom= rect.bottom;
-		rect.bottom = rect.top + pImpl_->header_.GetHeight();
-		pImpl_->header_.Draw(dc, rect);
-
+		rect.bottom = rect.top + LIGHTTABLE_H;//pImpl_->header_.GetHeight();
+		dc->FillSolidRect(rect, RGB(25,25,25));
+		//pImpl_->header_.Draw(dc, rect);
+/*
 		HFONT hfont= static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
 		LOGFONT lf;
 		::GetObject(hfont, sizeof(lf), &lf);
 		lf.lfWeight = FW_BOLD;
-		lf.lfHeight += 1;
+		//lf.lfHeight += 1;
 		//lf.lfQuality = ANTIALIASED_QUALITY;
 		_tcscpy(lf.lfFaceName, _T("Tahoma"));
 		CFont font;
 		font.CreateFontIndirect(&lf);
-
-		CFont* old= dc->SelectObject(&font);
+*/
+		CFont* old= dc->SelectObject(&GetDefaultGuiBoldFont());//&font);
 		dc->SetTextColor(TEXT_COLOR);
 		dc->SetBkMode(TRANSPARENT);
 		CString str;

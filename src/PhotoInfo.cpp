@@ -351,6 +351,16 @@ String PhotoInfo::FocalLength() const
 	return ost.str();
 }
 
+String PhotoInfo::FocalLengthInt() const
+{
+	int fl= focal_length_.Double();
+	if (fl == 0.0)
+		return _T("-");
+	oStringstream ost;
+	ost << std::fixed << std::setprecision(1) << fl;
+	return ost.str();
+}
+
 /*
 bool PhotoInfo::IsDescriptionEditable() const
 {
@@ -1013,7 +1023,7 @@ CImageDecoderPtr PhotoInfo::GetDecoder() const
 // save tags inside photo
 void PhotoInfo::SaveTags(const WriteAccessFn& get_write_access)
 {
-	throw String(_T("此类型图像不能保存标记."));
+	throw String(_T("此类型图像不能保存标签."));
 }
 
 // load saved tags

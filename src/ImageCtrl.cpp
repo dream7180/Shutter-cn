@@ -37,7 +37,7 @@ static void RegisterWndClass(const TCHAR* class_name)
 		wndcls.cbClsExtra = wndcls.cbWndExtra = 0;
 		wndcls.hInstance = instance;
 		wndcls.hIcon = 0;
-		wndcls.hCursor = AfxGetApp()->LoadCursor(IDC_VERT_RESIZE);
+		wndcls.hCursor = 0;//AfxGetApp()->LoadCursor(IDC_CURSOR_POINT);//IDC_VERT_RESIZE);
 		wndcls.hbrBackground = 0;
 		wndcls.lpszMenuName = NULL;
 		wndcls.lpszClassName = class_name;

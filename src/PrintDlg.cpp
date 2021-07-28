@@ -21,6 +21,8 @@ ____________________________________________________________________________*/
 #include "Config.h"
 #include "LoadImageList.h"
 #include "WhistlerLook.h"
+#include "GetDefaultGuiFont.h"
+#include "UIElements.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -541,7 +543,7 @@ BOOL PrintDlg::InitDialog()
 
 	DialogChild::OnInitDialog();
 
-	SubclassHelpBtn(_T("ToolPrint.htm"));
+	//SubclassHelpBtn(_T("ToolPrint.htm"));
 
 	if (!dlg_range_.Create(this, IDC_PAGE_RANGE_PLACE) ||
 		!dlg_thumbs_options_.Create(this, options_placeholder_wnd) ||
@@ -568,15 +570,15 @@ BOOL PrintDlg::InitDialog()
 	{
 		CDC dc;
 		dc.CreateIC(_T("DISPLAY"), 0, 0, 0);
-		LOGFONT lf;
+		/*LOGFONT lf;
 		HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
 		::GetObject(hfont, sizeof(lf), &lf);
-		lf.lfHeight += 1;
+		//lf.lfHeight += 1;
 		//lf.lfQuality = ANTIALIASED_QUALITY;
 		_tcscpy(lf.lfFaceName, _T("Tahoma"));
 		CFont _font;
-		_font.CreateFontIndirect(&lf);
-		dc.SelectObject(&_font);
+		_font.CreateFontIndirect(&lf);*/
+		dc.SelectObject(&GetDefaultGuiFont());//&_font);
 		//dc.SelectStockObject(DEFAULT_GUI_FONT);
 		int extra_width= dc.GetTextExtent(_T("XXX"), 3).cx;
 
@@ -649,10 +651,10 @@ BOOL PrintDlg::InitDialog()
 		preview_wnd_.Create(this, wp.rcNormalPosition);
 		preview_wnd_.SetDlgCtrlID(IDC_PREVIEW);
 	}
-
-	const int img_width= 48;
+	auto dpi = GetResolutionDpi();
+	const int img_width= static_cast<int>(48/dpi.Width*96);
 	VERIFY(::LoadImageList(img_list_layouts_, IDB_LAYOUTS, img_width, RGB(255,255,255), false));
-	type_wnd_.SetIconSpacing(img_width + 12, 62 + 26);
+	type_wnd_.SetIconSpacing(img_width + 30, 126 + 26);
 	type_wnd_.SetImageList(&img_list_layouts_, LVSIL_NORMAL);
 
 	static const TCHAR* labels[]=
@@ -732,7 +734,7 @@ BOOL PrintDlg::InitDialog()
 	SetWndResizing(IDC_LAYOUT_INFO, DlgAutoResize::MOVE_H);
 	SetWndResizing(IDC_TYPE, DlgAutoResize::MOVE_H);
 	SetWndResizing(IDC_PAGE_SETUP, DlgAutoResize::MOVE_H);
-	SetWndResizing(IDC_HELP_BTN, DlgAutoResize::MOVE);
+	//SetWndResizing(IDC_HELP_BTN, DlgAutoResize::MOVE);
 	SetWndResizing(IDC_ICM, DlgAutoResize::MOVE);
 	SetWndResizing(IDCANCEL, DlgAutoResize::MOVE);
 	SetWndResizing(IDOK, DlgAutoResize::MOVE);
@@ -832,7 +834,7 @@ void PrintDlg::UpdatePageAndImageSizes()
 	if (page_size.cx > 0 && page_size.cy > 0 && print_ != 0)
 	{
 		ost.precision(3);
-		ost << _T("Page size: ");
+		ost << _T("页面尺寸: ");
 		if (use_metric_units_for_info_)
 			ost << page_size.cx / CM << _T(" x ") << page_size.cy / CM << _T(" [cm]");
 		else
@@ -843,7 +845,7 @@ void PrintDlg::UpdatePageAndImageSizes()
 			CSize size= print_->GetImageSize();
 			if (size.cx > 0 && size.cy > 0)
 			{
-				ost << _T("   Image space: ");
+				ost << _T("   图像尺寸: ");
 				if (use_metric_units_for_info_)
 					ost << size.cx / CM << _T(" x ") << size.cy / CM << _T(" [cm]");
 				else

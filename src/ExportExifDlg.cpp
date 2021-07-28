@@ -82,7 +82,7 @@ BOOL CExportExifDlg::OnInitDialog()
 
 	DialogChild::OnInitDialog();
 
-	SubclassHelpBtn(_T("ToolExport.htm"));
+	//SubclassHelpBtn(_T("ToolExport.htm"));
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE

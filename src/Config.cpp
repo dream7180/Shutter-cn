@@ -42,7 +42,7 @@ Config::Config()
 	dct_method_ = JDEC_INTEGER_HIQ;			// jpeglib decoder param: DCL type
 	gamma_ = 1.6;							// gamma value
 //	use_gamma_ = false;						// use image color correction in preview pane & printing
-	rgb_cur_selection_ = RGB(192,192,192);	// preview pane current photo selection color
+	//rgb_cur_selection_ = RGB(192,192,192);	// preview pane current photo selection color
 	keep_sel_photo_centered_ = false;
 	preload_photos_ = true;
 	language_ = 1;
@@ -89,7 +89,7 @@ Config::Config()
 	file_types_.push_back(FileTypeConfig(_T("松下 RAW 文件"), _T("rw2"), _T("RW2")));
 	file_types_.push_back(FileTypeConfig(_T("适马 RAW 文件"), _T("x3f"), _T("X3F")));
 	file_types_.push_back(FileTypeConfig(_T("三星 RAW 文件"), _T("srw"), _T("SRW")));
-	file_types_.push_back(FileTypeConfig(_T("ExifPro 分类文件"), _T("catalog"), _T("catalog"), false));
+	file_types_.push_back(FileTypeConfig(_T("Shutter 分类文件"), _T("catalog"), _T("catalog"), false));
 
 	//open_photo_app_
 	main_wnd_ = new ICMProfile(_T("浏览器主窗口"));
@@ -185,7 +185,7 @@ void Config::Store()
 	app->WriteProfileInt(REGISTRY_ENTRY_CONFIG, REG_DCT_METHOD, dct_method_);
 	app->WriteProfileInt(REGISTRY_ENTRY_CONFIG, REG_GAMMA_VAL, int(gamma_ * 100));
 	//app->WriteProfileInt(REGISTRY_ENTRY_CONFIG, REG_USE_GAMMA, use_gamma_ ? 1 : 0);
-	app->WriteProfileInt(REGISTRY_ENTRY_CONFIG, REG_SEL_COLOR, rgb_cur_selection_);
+	//app->WriteProfileInt(REGISTRY_ENTRY_CONFIG, REG_SEL_COLOR, rgb_cur_selection_);
 	app->WriteProfileInt(REGISTRY_ENTRY_CONFIG, REG_CENTER_SEL, keep_sel_photo_centered_ ? 1 : 0);
 	app->WriteProfileInt(REGISTRY_ENTRY_CONFIG, REG_PRELOAD, preload_photos_ ? 1 : 0);
 	app->WriteProfileBinary(REGISTRY_ENTRY_CONFIG, REG_DESC_FONT, reinterpret_cast<BYTE*>(&description_font_), sizeof description_font_);
@@ -207,6 +207,7 @@ void Config::Store()
 
 	app->WriteProfileString(REGISTRY_ENTRY_CONFIG, REG_OPEN_PHOTO_APP, open_photo_app_);
 	app->WriteProfileString(REGISTRY_ENTRY_CONFIG, REG_OPEN_RAW_PHOTO_APP, open_raw_photo_app_);
+	//::WritePrivateProfileString(REGISTRY_ENTRY_CONFIG,REG_OPEN_RAW_PHOTO_APP,open_raw_photo_app_,_T(".\\Shutter.ini"));//////////////////////////////////////ini file//////////////
 
 	app->WriteProfileInt(REGISTRY_ENTRY_CONFIG, REG_DISPLAY_METHOD, display_method_);
 
@@ -282,7 +283,7 @@ void Config::Restore()
 	gamma_				= app->GetProfileInt(REGISTRY_ENTRY_CONFIG, REG_GAMMA_VAL, 160);
 	gamma_ /= 100.0;
 //	use_gamma_			= !!app->GetProfileInt(REGISTRY_ENTRY_CONFIG, REG_USE_GAMMA, use_gamma_);
-	rgb_cur_selection_	= app->GetProfileInt(REGISTRY_ENTRY_CONFIG, REG_SEL_COLOR, rgb_cur_selection_);
+	//rgb_cur_selection_	= app->GetProfileInt(REGISTRY_ENTRY_CONFIG, REG_SEL_COLOR, rgb_cur_selection_);
 //	scrolling_ = app->GetProfileInt(REGISTRY_ENTRY_CONFIG, REG_SCROLLING, scrolling_);
 	keep_sel_photo_centered_	= !!app->GetProfileInt(REGISTRY_ENTRY_CONFIG, REG_CENTER_SEL, keep_sel_photo_centered_);
 	preload_photos_		= !!app->GetProfileInt(REGISTRY_ENTRY_CONFIG, REG_PRELOAD, preload_photos_);
@@ -787,21 +788,23 @@ void Config::UpdateAppColors()
 	std::vector<std::pair<::AppColors, ColorCfg>> colors;
 	colors.reserve(20);
 
-	auto bkgnd = RGB(45, 45, 45);	// gray background
-	auto text = RGB(230, 230, 230);	// light text
+	auto bkgnd = ::GetSysColor(COLOR_3DFACE);//RGB(235, 235, 235);// gray background
+	auto text = ::GetSysColor(COLOR_WINDOWTEXT);	// light text
 
 	colors.push_back(std::make_pair(AppColors::Background, bkgnd));
 	colors.push_back(std::make_pair(AppColors::Text, text));
 	colors.push_back(std::make_pair(AppColors::DimText, CalcNewColor(bkgnd, text, 0.60f)));
 	colors.push_back(std::make_pair(AppColors::DisabledText, CalcNewColor(bkgnd, text, 0.40f)));
-	colors.push_back(std::make_pair(AppColors::ActiveText, RGB(255, 255, 255)));
-	colors.push_back(std::make_pair(AppColors::SelectedText, RGB(255, 255, 255)));
+	colors.push_back(std::make_pair(AppColors::ActiveText, text));
+	colors.push_back(std::make_pair(AppColors::SelectedText, text));//RGB(255, 255, 255)));//::GetSysColor(COLOR_HIGHLIGHTTEXT)));
 	auto sep = CalcShade(bkgnd, -30.0f);
 	colors.push_back(std::make_pair(AppColors::Separator, sep));
-	colors.push_back(std::make_pair(AppColors::SecondarySeparator, CalcNewColor(sep, bkgnd, 0.50f)));
-	colors.push_back(std::make_pair(AppColors::EditBox, CalcShade(bkgnd, -20.0f)));
-	colors.push_back(std::make_pair(AppColors::Selection, RGB(247, 123, 0)));//RGB(41, 138, 190))); //::GetSysColor(COLOR_HIGHLIGHT)
+	colors.push_back(std::make_pair(AppColors::SecondarySeparator,  CalcShade(bkgnd, -20.0f)));//CalcNewColor(sep, bkgnd, -2.50f)));
+	colors.push_back(std::make_pair(AppColors::EditBox, RGB(255,255,255)));//CalcShade(bkgnd, -20.0f)));
+	auto sel = RGB(145, 201, 247);//auto sel = RGB(247, 123, 0);
+	colors.push_back(std::make_pair(AppColors::Selection, sel));//::GetSysColor(COLOR_HIGHLIGHT)));
 	colors.push_back(std::make_pair(AppColors::AccentBackground, CalcShade(bkgnd, +12.0f)));
+	colors.push_back(std::make_pair(AppColors::Activebg, CalcNewColor(sel, bkgnd, 0.6f)));//RGB(250, 210, 170)));
 
 	app_colors_.SetColors(colors);
 }

@@ -108,7 +108,7 @@ BOOL HistogramDlg::OnInitDialog()
 {
 	DialogChild::OnInitDialog();
 
-	SubclassHelpBtn(_T("ToolHistogram.htm"));
+	//SubclassHelpBtn(_T("ToolHistogram.htm"));
 
 	channels_wnd_.AddString(_T("亮度 & RGB"));
 	channels_wnd_.AddString(_T("RGB 覆盖"));
@@ -139,7 +139,7 @@ BOOL HistogramDlg::OnInitDialog()
 
 	channels_wnd_.SetCurSel(chnl_sel >= 0 ? chnl_sel : 1);
 	if (channels_wnd_.GetCurSel() < 0)
-		channels_wnd_.SetCurSel(0);
+		channels_wnd_.SetCurSel(1);
 
 	OnSelChangeChannel();
 

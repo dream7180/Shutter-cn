@@ -15,6 +15,7 @@ ____________________________________________________________________________*/
 #include "DrawFields.h"
 #include "CatchAll.h"
 #include "MemoryDC.h"
+#include "GetDefaultGuiFont.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -62,12 +63,13 @@ bool InfoBand::Create(CWnd* parent, InfoBandNotification* recipient)
 	CDC dc;
 	dc.CreateIC(_T("DISPLAY"), 0, 0, 0);
 	LOGFONT lf;
-	HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
+	/*HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
 	::GetObject(hfont, sizeof(lf), &lf);
 	lf.lfWeight = FW_NORMAL;
-	lf.lfHeight += 1;
-	_tcscpy(lf.lfFaceName, _T("Tahoma"));
-	//lf.lfQuality = ANTIALIASED_QUALITY;
+	//lf.lfHeight += 1;
+	lf.lfQuality = CLEARTYPE_QUALITY;
+	_tcscpy(lf.lfFaceName, _T("Microsoft Yahei"));*/
+	::GetDefaultGuiFont(lf);
 	_font.CreateFontIndirect(&lf);
 	dc.SelectObject(&_font);
 	//dc.SelectStockObject(DEFAULT_GUI_FONT);

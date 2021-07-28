@@ -153,7 +153,7 @@ BOOL ViewerSeparatorWnd::OnEraseBkgnd(CDC* dc)
 	return CWnd::OnEraseBkgnd(dc);
 */
 }
-
+/*
 #if 0
 extern COLORREF CalcShade(COLORREF rgb_color, float shade)
 {
@@ -207,7 +207,7 @@ void ViewerSeparatorWnd::DrawSeparatorBar(CDC& dc, CRect rect, bool horizontal)
 		for (int n= 0; n < 6; ++n, x += 5)
 		{
 			dc.FillSolidRect(x, y + 2, 2, 2, rgb_darker_color);
-			dc.FillSolidRect(x + 1, y + 3, 2, 2, rgb_light);
+			//dc.FillSolidRect(x + 1, y + 3, 2, 2, rgb_light);
 		}
 	}
 	else
@@ -217,12 +217,13 @@ void ViewerSeparatorWnd::DrawSeparatorBar(CDC& dc, CRect rect, bool horizontal)
 		for (int n= 0; n < 6; ++n, y += 5)
 		{
 			dc.FillSolidRect(x + 2, y, 2, 2, rgb_darker_color);
-			dc.FillSolidRect(x + 3, y + 1, 2, 2, rgb_light);
+			//dc.FillSolidRect(x + 3, y + 1, 2, 2, rgb_light);
 		}
 	}
 }
-#endif
 
+#endif
+*/
 void ViewerSeparatorWnd::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting

@@ -9,7 +9,7 @@ ____________________________________________________________________________*/
 
 class Dib;
 #include "DlgAutoResize.h"
-#include "HelpButton.h"
+//#include "HelpButton.h"
 #include "PhotoInfo.h"
 #include "PhotoInfoPtr.h"
 #include "HeaderDlg.h"
@@ -37,7 +37,7 @@ public:
 
 	void ShowFooterDlg(bool show);
 
-	void SubclassHelpBtn(const TCHAR* help_page);
+	//void SubclassHelpBtn(const TCHAR* help_page);
 
 	bool IsResizable() const;
 
@@ -62,15 +62,15 @@ public:
 protected:
 	void EndDialog(int result);
 
-	void OnHelpBtn();
+	//void OnHelpBtn();
 
 	void BuildResizingMap();
 	void SetWndResizing(int id, DlgAutoResize::ResizeFlag flags);
 	void SetWndResizing(int id, DlgAutoResize::ResizeFlag flags, UINT half_flags);
 	void SetControlsShift(CSize shift);
 
-	HelpButton btn_help_;		// help btn
-	CString help_page_;
+	//HelpButton btn_help_;		// help btn
+	//CString help_page_;
 
 	CScrollBar& GetGripWnd()	{ return grip_wnd_; }
 

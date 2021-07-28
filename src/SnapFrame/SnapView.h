@@ -111,7 +111,7 @@ public:
 	void ResetCaption(const ColorConfiguration& colors);
 
 	// draw separator for preview purposes
-	static void DrawHorzSeparator(CDC* dc, COLORREF color, CRect rect);
+	//static void DrawHorzSeparator(CDC* dc, COLORREF color, CRect rect);
 
 // Overrides
 	// ClassWizard generated virtual function overrides

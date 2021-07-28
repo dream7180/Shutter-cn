@@ -439,7 +439,7 @@ BOOL CatalogDlg::OnInitDialog()
 		SetFooterDlg(&pImpl_->options_);
 		SetDlgItemText(IDC_OPTIONS, _T("显示选项(&O) >>"));
 
-		SubclassHelpBtn(_T("ToolCatalog.htm"));
+		//SubclassHelpBtn(_T("ToolCatalog.htm"));
 
 		BuildResizingMap();
 		SetWndResizing(IDC_SOURCE, DlgAutoResize::RESIZE);
@@ -476,7 +476,7 @@ BOOL CatalogDlg::OnInitDialog()
 		SetWndResizing(IDC_FILE, DlgAutoResize::MOVE_V_RESIZE_H);
 		SetWndResizing(IDC_COUNTER, DlgAutoResize::MOVE);
 		SetWndResizing(IDC_PROGRESS, DlgAutoResize::MOVE_V_RESIZE_H);
-		SetWndResizing(IDC_HELP_BTN, DlgAutoResize::MOVE_V);
+		//SetWndResizing(IDC_HELP_BTN, DlgAutoResize::MOVE_V);
 		SetWndResizing(IDC_OPTIONS, DlgAutoResize::MOVE_V);
 		SetWndResizing(IDC_ABORT, DlgAutoResize::MOVE);
 		SetWndResizing(IDCANCEL, DlgAutoResize::MOVE);

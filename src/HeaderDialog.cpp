@@ -130,7 +130,7 @@ BOOL HeaderDialog::OnInitDialog()
 
 	// create font
 	font_.CreateFont(-Pixels(14), 0, 0, 0, FW_BOLD, false, false, false, DEFAULT_CHARSET,
-		OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, ANTIALIASED_QUALITY, DEFAULT_PITCH, _T("Tahoma"));
+		OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY, DEFAULT_PITCH, _T("Microsoft Yahei"));
 
 	struct xCDialog : public CDialog
 	{
@@ -362,14 +362,15 @@ BOOL HeaderDialog::OnEraseBkgnd(CDC* dc)
 
 	if (footer_visible_)
 	{
-		int y= std::max(rect.bottom, cl_rect.bottom - GetFooterHeight());
+		//int y= std::max(rect.bottom, cl_rect.bottom - GetFooterHeight());
 
-		int sep = Pixels(SEPARATOR_H);
-		for (int i = 0; i < sep; ++i)
+		//int sep = Pixels(SEPARATOR_H);
+		dc->FillSolidRect(cl_rect.left, cl_rect.bottom - GetFooterHeight(), cl_rect.Width(), SEPARATOR_H, RGB(168,168,168));
+		/*for (int i = 0; i < sep; ++i)
 		{
 			float s = -4.0f * static_cast<float>(Shade(i, sep));
 			dc->FillSolidRect(cl_rect.left, y + i, cl_rect.Width(), 1, CalcShade(back_color, s));
-		}
+		}*/
 	}
 
 	return true;

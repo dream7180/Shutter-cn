@@ -33,7 +33,7 @@ private:
 	bool active_;
 	boost::function<void (void)> on_clicked_;
 	static Dib active_marker_;
-	static Dib caption_;
+	//static Dib caption_;
 
 	BOOL OnEraseBkgnd(CDC* dc);
 	LRESULT OnPrintClient(WPARAM HDC, LPARAM flags);

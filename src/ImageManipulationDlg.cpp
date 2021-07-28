@@ -122,7 +122,7 @@ bool ImageManipulationDlg::InitDialog()
 
 	DialogChild::OnInitDialog();
 
-	SubclassHelpBtn(_T("ToolImgAdjust.htm"));
+	//SubclassHelpBtn(_T("ToolImgAdjust.htm"));
 
 	CacheImg* img= 0;
 
@@ -239,7 +239,7 @@ bool ImageManipulationDlg::InitDialog()
 		MoveCtrl(GetDlgItem(IDC_OPTIONS), 0, height);
 		MoveCtrl(GetDlgItem(IDCANCEL), 0, height);
 		MoveCtrl(GetDlgItem(IDOK), 0, height);
-		MoveCtrl(GetDlgItem(IDC_HELP_BTN), 0, height);
+		//MoveCtrl(GetDlgItem(IDC_HELP_BTN), 0, height);
 
 		dlg_batch_mode_.SetDlgCtrlID(IDD_IMG_BATCH_MODE);
 
@@ -286,7 +286,7 @@ bool ImageManipulationDlg::InitDialog()
 	SetWndResizing(IDCANCEL, DlgAutoResize::MOVE);
 	SetWndResizing(IDOK, DlgAutoResize::MOVE);
 	SetWndResizing(IDC_OPTIONS, DlgAutoResize::MOVE_V);
-	SetWndResizing(IDC_HELP_BTN, DlgAutoResize::MOVE_V);
+	//SetWndResizing(IDC_HELP_BTN, DlgAutoResize::MOVE_V);
 	SetWndResizing(IDC_INFO_FRAME, DlgAutoResize::MOVE);
 	SetWndResizing(IDC_INFO, DlgAutoResize::MOVE);
 	if (show_batch_mode_params_)

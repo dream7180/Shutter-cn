@@ -122,7 +122,7 @@ BOOL Separator::OnEraseBkgnd(CDC* dc)
 {
 	CRect rect(0,0,0,0);
 	GetClientRect(rect);
-	SnapView::DrawHorzSeparator(dc, color_, rect);
+	//SnapView::DrawHorzSeparator(dc, color_, rect);
 	return true;
 }
 
@@ -154,9 +154,9 @@ struct OptionsAppearance::Impl : GridCtrlNotification, PhotoCtrlNotification
 				_T("选定项"),
 				//_T("Selected Text"),
 				//_T("Disabled Text"),
-				_T("标记背景"),
-				_T("标记文本"),
-				_T("标记字体")//,
+				_T("标签背景"),
+				_T("标签文本"),
+				_T("标签字体")//,
 				//_T("Sorting Column"),
 				//_T("Group Separator"),
 				//_T("Tile Dim Text"),
@@ -188,8 +188,8 @@ struct OptionsAppearance::Impl : GridCtrlNotification, PhotoCtrlNotification
 				_T("预览栏亮度"),
 			//	_T("Reserved, unused"),
 				_T("选定的照片"),
-				_T("标记背景"),
-				_T("标记文本"),
+				_T("标签背景"),
+				_T("标签文本"),
 				0
 			};
 

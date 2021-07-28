@@ -55,7 +55,7 @@ BOOL FileErrorDlg::OnInitDialog()
 	CDialog::OnInitDialog();
 
 	title_fnt_.CreateFont(-18, 0, 0, 0, FW_BOLD, false, false, false, DEFAULT_CHARSET,
-		OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, ANTIALIASED_QUALITY, DEFAULT_PITCH, _T("Tahoma"));
+		OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY, DEFAULT_PITCH, _T("Microsoft Yahei"));
 	
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE

@@ -89,9 +89,9 @@ BOOL CustomColumnsDlg::OnInitDialog()
 		SetWndResizing(IDC_LABEL_3, DlgAutoResize::MOVE_V);
 		SetWndResizing(IDC_STATUS, DlgAutoResize::MOVE_V_RESIZE_H);
 		SetWndResizing(IDC_VERIFY, DlgAutoResize::MOVE);
-		SetWndResizing(IDC_HELP_BTN, DlgAutoResize::MOVE_V);
+		//SetWndResizing(IDC_HELP_BTN, DlgAutoResize::MOVE_V);
 
-		SubclassHelpBtn(_T("CustomColumns.htm"));
+		//SubclassHelpBtn(_T("CustomColumns.htm"));
 
 		int cmds[]= { INSERT_ATTRIB, /*INSERT_TAG,*/ INSERT_XMP, INSERT_FILE };
 		insert_.SetPadding(8, 14);

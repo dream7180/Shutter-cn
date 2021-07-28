@@ -79,7 +79,7 @@ namespace {
 
 	void ShowMessageBox(const TCHAR* msg)
 	{
-		::MessageBox(AfxGetMainWnd()->GetSafeHwnd(), msg, _T("ExifPro"), MB_OK);
+		::MessageBox(AfxGetMainWnd()->GetSafeHwnd(), msg, _T("Shutter"), MB_OK);
 	}
 }
 

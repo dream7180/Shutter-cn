@@ -12,6 +12,7 @@ ____________________________________________________________________________*/
 #include "resource.h"
 #include "ExtTreeCtrl.h"
 #include "ExtTreeRow.h"
+#include "GetDefaultGuiFont.h"
 
 
 #ifdef _DEBUG
@@ -146,12 +147,13 @@ bool ExtTreeCtrl::CreateTree()
 	//HGDIOBJ hfont= font ? font->m_hObject : ::GetStockObject(DEFAULT_GUI_FONT);
 	
 	LOGFONT lf;
-	HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
+	/*HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
 	::GetObject(hfont, sizeof(lf), &lf);
 	//lf.lfQuality = ANTIALIASED_QUALITY;
-	lf.lfHeight += 1;
-	_tcscpy(lf.lfFaceName, _T("Tahoma"));
-	hfont = CreateFontIndirectW(&lf);
+	//lf.lfHeight += 1;
+	_tcscpy(lf.lfFaceName, _T("Tahoma"));*/
+	::GetDefaultGuiFont(lf);
+	HFONT hfont = CreateFontIndirectW(&lf);
 
 	header_wnd_.SendMessage(WM_SETFONT, WPARAM(hfont));
 	tree_wnd_.SendMessage(WM_SETFONT, WPARAM(hfont));
@@ -171,8 +173,10 @@ bool ExtTreeCtrl::Create(CWnd* parent, CImageList* img_list, UINT id, bool check
 		if (!CWnd::CreateEx(WS_EX_CLIENTEDGE | WS_EX_CONTROLPARENT, wnd_class_, _T(""), WS_CHILD | WS_CLIPCHILDREN | WS_VISIBLE | WS_TABSTOP,
 			empty_rect, parent, id))
 			return false;
-
-		SendMessage(WM_SETFONT, WPARAM(::GetStockObject(DEFAULT_GUI_FONT)));
+		LOGFONT lf;
+		::GetDefaultGuiFont(lf);
+		HFONT hfont = CreateFontIndirectW(&lf);
+		SendMessage(WM_SETFONT, WPARAM(hfont));//::GetStockObject(DEFAULT_GUI_FONT)));
 	}
 
 	CreateTree();
@@ -327,7 +331,7 @@ void ExtTreeCtrl::OnDrawTree(NMHDR* nmhdr, LRESULT* result)
 		CRect cell= rect;
 
 		int state= tree_wnd_.GetItemState(HTREEITEM(NM_custom_draw->nmcd.dwItemSpec), TVIS_EXPANDED | TVIS_DROPHILITED);
-		bool selected= NM_custom_draw->clrTextBk == RGB(247, 123, 0);//::GetSysColor(COLOR_HIGHLIGHT);
+		bool selected= NM_custom_draw->clrTextBk == ::GetSysColor(COLOR_HIGHLIGHT);
 
 		ExtTreeRow* item= reinterpret_cast<ExtTreeRow*>(NM_custom_draw->nmcd.lItemlParam);
 		ASSERT(item != 0);

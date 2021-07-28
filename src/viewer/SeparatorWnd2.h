@@ -19,7 +19,7 @@ class ViewerSeparatorWnd : public CWnd
 public:
 	ViewerSeparatorWnd();
 
-	static void DrawSeparatorBar(CDC& dc, CRect rect, bool horizontal);
+	//static void DrawSeparatorBar(CDC& dc, CRect rect, bool horizontal);
 
 // Attributes
 public:

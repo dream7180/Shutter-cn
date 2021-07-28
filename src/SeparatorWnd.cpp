@@ -108,7 +108,7 @@ bool SeparatorWnd::Create(CWnd* parent, ResizeWnd* resize_wnd)
 extern void DrawSeparatorRivets(CDC& dc, CRect rect, bool horizontal)
 {
 	COLORREF rgb_darker_color= ::GetSysColor(COLOR_3DSHADOW); //CalcNewColor(::GetSysColor(COLOR_3DSHADOW), 0.0);
-	COLORREF rgb_light= ::GetSysColor(COLOR_3DHILIGHT);
+	//COLORREF rgb_light= ::GetSysColor(COLOR_3DHILIGHT);
 
 	// draw rivets
 	if (horizontal)
@@ -118,7 +118,7 @@ extern void DrawSeparatorRivets(CDC& dc, CRect rect, bool horizontal)
 		for (int n= 0; n < 6; ++n, x += 5)
 		{
 			dc.FillSolidRect(x, y + 2, 2, 2, rgb_darker_color);
-			dc.FillSolidRect(x + 1, y + 3, 2, 2, rgb_light);
+			//dc.FillSolidRect(x + 1, y + 3, 2, 2, rgb_light);
 		}
 	}
 	else
@@ -128,7 +128,7 @@ extern void DrawSeparatorRivets(CDC& dc, CRect rect, bool horizontal)
 		for (int n= 0; n < 6; ++n, y += 5)
 		{
 			dc.FillSolidRect(x + 2, y, 2, 2, rgb_darker_color);
-			dc.FillSolidRect(x + 3, y + 1, 2, 2, rgb_light);
+			//dc.FillSolidRect(x + 3, y + 1, 2, 2, rgb_light);
 		}
 	}
 }
@@ -141,7 +141,7 @@ BOOL SeparatorWnd::OnEraseBkgnd(CDC* dc)
 
 	COLORREF gray= ::GetSysColor(COLOR_3DFACE);
 	COLORREF rgb_dark= whistler ? rgb_darker_color : gray;
-	COLORREF rgb_light= ::GetSysColor(COLOR_3DHILIGHT);
+	//COLORREF rgb_light= ::GetSysColor(COLOR_3DHILIGHT);
 
 	CRect rect(0,0,0,0);
 	GetClientRect(rect);
@@ -204,12 +204,12 @@ void SeparatorWnd::DrawSeparatorBar(CDC& dc, CRect rect, bool horizontal)
 {
 	COLORREF gray= ::GetSysColor(COLOR_3DFACE);
 
-	static const float shades[]= { 0.0f, 40.0f, 98.0f, 40.0f, 0.0f, -5.0f, -18.0f };
+	/*static const float shades[]= { 0.0f, 40.0f, 98.0f, 40.0f, 0.0f, -5.0f, -18.0f };
 	CPoint pos= rect.TopLeft();
 
 	for (int i= 0; i < array_count(shades); ++i)
 	{
-		COLORREF rgb_color= CalcShade(gray, shades[i]);
+		COLORREF rgb_color= gray;//CalcShade(gray, shades[i]);
 
 		if (horizontal)
 			dc.FillSolidRect(pos.x, pos.y++, rect.Width(), 1, rgb_color);
@@ -221,7 +221,10 @@ void SeparatorWnd::DrawSeparatorBar(CDC& dc, CRect rect, bool horizontal)
 		dc.FillSolidRect(pos.x, pos.y, rect.Width(), rect.Height() - array_count(shades), gray);
 	else if (!horizontal && rect.Width() > array_count(shades))
 		dc.FillSolidRect(pos.x, pos.y, rect.Width() - array_count(shades), rect.Height(), gray);
-
+*/
+	dc.FillSolidRect(rect.left, rect.top, rect.Width(), rect.Height(), gray);
+	dc.FillSolidRect(rect.left, rect.top, rect.Width(), 1, RGB(178, 178, 178));
+	rect.DeflateRect(0,2,0,0);
 	DrawSeparatorRivets(dc, rect, horizontal);
 }
 

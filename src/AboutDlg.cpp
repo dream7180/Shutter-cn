@@ -14,12 +14,14 @@ ____________________________________________________________________________*/
 #include "CatchAll.h"
 //#include "PNGImage.h"
 #include "UIElements.h"
+#include "GetDefaultGuiFont.h"
 
 //#define	WEB_SITE	L"https://github.com/dream7180/ExifPro-mod"
-#define	WEB_SITE	L"https://gitee.com/dream7180/ExifPro-mod-cn"
-#define	BLOG_SITE	L"https://www.cnblogs.com/foobox"
+#define	GPL_SITE	L"https://www.gnu.org/licenses/gpl-3.0-standalone.html"
+#define	WEB_SITE	L"https://gitee.com/dream7180/Shutter"
+//#define	BLOG_SITE	L"https://www.cnblogs.com/foobox"
 #define	CODE_SITE	L"https://github.com/mikekov/ExifPro"
-#define	OFF_SITE	L"http://www.exifpro.com/"
+//#define	OFF_SITE	L"http://www.exifpro.com/"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -49,6 +51,7 @@ AboutDlg::~AboutDlg()
 void AboutDlg::DoDataExchange(CDataExchange* DX)
 {
 	CDialog::DoDataExchange(DX);
+	DDX_Control(DX, IDC_IMAGE, image_);
 	//{{AFX_DATA_MAP(AboutDlg)
 //	DDX_Text(DX, IDC_VERSION, version_);
 	//}}AFX_DATA_MAP
@@ -59,6 +62,7 @@ BEGIN_MESSAGE_MAP(AboutDlg, CDialog)
 	ON_WM_ERASEBKGND()
 	ON_WM_LBUTTONUP()
 	ON_WM_TIMER()
+	ON_NOTIFY(NM_CLICK, IDC_LINK_2, &AboutDlg::OnNMClickSyslink1)
 	ON_NOTIFY(NM_CLICK, IDC_LINK, &AboutDlg::OnNMClickSyslink1)
 	ON_WM_CTLCOLOR()
 	//}}AFX_MSG_MAP
@@ -126,15 +130,18 @@ BOOL AboutDlg::OnInitDialog()
 		CDialog::OnInitDialog();
 		
 		LOGFONT lf;
-		HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
-		::GetObject(hfont, sizeof(lf), &lf);
-		lf.lfHeight -= 2;
-		lf.lfWeight = FW_BOLD;
-		_tcscpy(lf.lfFaceName, _T("Tahoma"));
+		//HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
+		//::GetObject(hfont, sizeof(lf), &lf);
+		//lf.lfHeight -= 3;
+		//lf.lfWeight = FW_BOLD;
+		//lf.lfQuality = CLEARTYPE_QUALITY;
+		//_tcscpy(lf.lfFaceName, _T("Microsoft Yahei"));
+		::GetDefaultGuiBoldFont(lf);
+		lf.lfHeight -= 3;
 		small_fnt_.CreateFontIndirect(&lf);
 		
 		GetDlgItem(IDC_LABEL)->SetFont(&small_fnt_);
-		GetDlgItem(IDC_LABEL_2)->SetFont(&small_fnt_);
+		//GetDlgItem(IDC_LABEL_2)->SetFont(&small_fnt_);
 /*		LOGFONT lf;
 		lf.lfHeight -= 2;//= -Pixels(14);
 		lf.lfWidth = 0;
@@ -161,9 +168,12 @@ BOOL AboutDlg::OnInitDialog()
 		CRect rect(0,0,0,0);
 		GetClientRect(rect);
 		SetWindowPos(0, 0, 0, rect.Width(), rect.Height(), SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE);
-		
-		GetDlgItem(IDC_LINK)->SetWindowText(L"Mod by dreamawake: <a href=\"" WEB_SITE L"\">https://gitee.com/dream7180/ExifPro-mod-cn</a>\n\n其他链接: <a href=\"" BLOG_SITE L"\">我的博客</a>, <a href=\"" CODE_SITE L"\">mod from v2.3</a>, <a href=\"" OFF_SITE L"\">www.exifpro.com</a>");
+		GetDlgItem(IDC_LINK_2)->SetWindowText(L"Free software released under the terms of the <a href=\"" GPL_SITE L"\">GNU Public License</a>");
+		//GetDlgItem(IDC_LINK)->SetWindowText(L"项目主页: <a href=\"" WEB_SITE L"\">https://gitee.com/dream7180/ExifPro-mod-cn</a>\n\n其他链接: <a href=\"" BLOG_SITE L"\">我的博客</a>, 本软件基于已停止开发的 <a href=\"" CODE_SITE L"\">ExifPro</a>");//, <a href=\"" OFF_SITE L"\">www.exifpro.com</a>");
+		GetDlgItem(IDC_LINK)->SetWindowText(L"项目主页: <a href=\"" WEB_SITE L"\">https://gitee.com/dream7180/ExifPro-mod-cn</a>\n\n本软件基于已停止开发的 <a href=\"" CODE_SITE L"\">ExifPro</a>");//, <a href=\"" OFF_SITE L"\">www.exifpro.com</a>");
 		GetDlgItem(IDC_VERSION)->SetWindowText(version_);
+		image_.SetImage(IDR_ABOUT);
+		
 		//CPoint pos= CPoint(Pixels(LEFTTOP.x), );
 		//pos.y += Pixels(AREA_SIZE.cy);
 	/*	link_wnd_.Create(this, CPoint(Pixels(LINK_TOP.x), Pixels(LINK_TOP.y)), _T("https://github.com/dream7180/ExifPro-mod"), _T("https://github.com/dream7180/ExifPro-mod"), &small_fnt_);
@@ -323,11 +333,13 @@ void AboutDlg::OnNMClickSyslink1(NMHDR *pNMHDR, LRESULT *pResult)
 	 if (wcscmp(pNMLink->item.szUrl, WEB_SITE) == 0)
      {
 		ShellExecuteW(NULL, L"open", pNMLink->item.szUrl, NULL, NULL, SW_SHOWNORMAL);  //主要执行语句
-     } else if (wcscmp(pNMLink->item.szUrl, BLOG_SITE) == 0){
-		ShellExecuteW(NULL, L"open", pNMLink->item.szUrl, NULL, NULL, SW_SHOWNORMAL);
+     //} else if (wcscmp(pNMLink->item.szUrl, BLOG_SITE) == 0){
+	//	ShellExecuteW(NULL, L"open", pNMLink->item.szUrl, NULL, NULL, SW_SHOWNORMAL);
 	 } else if (wcscmp(pNMLink->item.szUrl, CODE_SITE) == 0){
 		ShellExecuteW(NULL, L"open", pNMLink->item.szUrl, NULL, NULL, SW_SHOWNORMAL);
-	 } else{
+	 } else if (wcscmp(pNMLink->item.szUrl, GPL_SITE) == 0){
+		ShellExecuteW(NULL, L"open", pNMLink->item.szUrl, NULL, NULL, SW_SHOWNORMAL);
+	 }else{
 		ShellExecuteW(NULL, L"open", pNMLink->item.szUrl, NULL, NULL, SW_SHOWNORMAL);
 	 }
 	*pResult = 0;

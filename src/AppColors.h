@@ -31,6 +31,7 @@ enum class AppColors : int
 	EditBox = 'edit',
 	// color of selection
 	Selection = 'sel',
+	Activebg = 'act',
 	// slightly highlighted background
 	AccentBackground = 'acbg'
 };

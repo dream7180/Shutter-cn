@@ -13,6 +13,7 @@ ____________________________________________________________________________*/
 #include "resource.h"
 #include "MenuFolders.h"
 #include "ItemIdList.h"
+#include "GetDefaultGuiFont.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -129,15 +130,15 @@ void CMenuFolders::CalcStringLengths(CString text)
 {
 	CDC dc;
 	dc.CreateDC(_T("DISPLAY"), 0, 0, 0);
-	LOGFONT lf;
+	/*LOGFONT lf;
 	HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
 	::GetObject(hfont, sizeof(lf), &lf);
-	lf.lfHeight += 1;
+	//lf.lfHeight += 1;
 	//lf.lfQuality = ANTIALIASED_QUALITY;
 	_tcscpy(lf.lfFaceName, _T("Tahoma"));
 	CFont _font;
-	_font.CreateFontIndirect(&lf);
-	dc.SelectObject(&_font);
+	_font.CreateFontIndirect(&lf);*/
+	dc.SelectObject(&GetDefaultGuiFont());//&_font);
 	//dc.SelectStockObject(DEFAULT_GUI_FONT);
 
 	// check if there is a tab char (preceding shortcut text)
@@ -226,18 +227,18 @@ void CMenuFolders::DrawItem(LPDRAWITEMSTRUCT draw_item_struct)
 	CRect rect(draw_item_struct->rcItem);
 
 	dc.SetBkMode(OPAQUE);
-	LOGFONT lf;
+	/*LOGFONT lf;
 	HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
 	::GetObject(hfont, sizeof(lf), &lf);
 	//lf.lfQuality = ANTIALIASED_QUALITY;
-	lf.lfHeight += 1;
+	//lf.lfHeight += 1;
 	_tcscpy(lf.lfFaceName, _T("Tahoma"));
 	CFont _font;
-	_font.CreateFontIndirect(&lf);
-	dc.SelectObject(&_font);
+	_font.CreateFontIndirect(&lf);*/
+	dc.SelectObject(&GetDefaultGuiFont());//&_font);
 	//dc.SelectStockObject(DEFAULT_GUI_FONT);
 
-	COLORREF rgb_back= !selected ? ::GetSysColor(COLOR_MENU) : RGB(247, 123, 0)/*::GetSysColor(COLOR_HIGHLIGHT)*/;
+	COLORREF rgb_back= !selected ? ::GetSysColor(COLOR_MENU) : ::GetSysColor(COLOR_HIGHLIGHT);
 	COLORREF rgb_text= !selected ? ::GetSysColor(COLOR_MENUTEXT) : ::GetSysColor(COLOR_HIGHLIGHTTEXT);
 
 	dc.FillSolidRect(rect, rgb_back);

@@ -11,6 +11,7 @@
 #include "CustomTabCtrl.h"
 #include <math.h>
 #include "UIElements.h"
+#include "GetDefaultGuiFont.h"
 
 #ifndef M_PI
 	#define M_PI       3.14159265358979323846
@@ -332,7 +333,7 @@ void CCustomTabCtrlItem::Draw(CDC& dc, CFont& font, bool selected, bool on_top, 
 				if (selection_tinge > 0)
 				{
 					float ratio= float(selection_tinge) / 100.0f;
-					tab_color = CalcColor(RGB(247, 123, 0)/*::GetSysColor(COLOR_HIGHLIGHT)*/, tab_color, ratio);
+					tab_color = CalcColor(::GetSysColor(COLOR_HIGHLIGHT), tab_color, ratio);
 				}
 
 				Gdiplus::SolidBrush tab_brush(c2c(tab_color));
@@ -409,10 +410,10 @@ void CCustomTabCtrlItem::Draw(CDC& dc, CFont& font, bool selected, bool on_top, 
 
 // CustomTabCtrl
 
-LOGFONT CustomTabCtrl::lf_default = {-Pixels(11), 0, 0, 0, FW_NORMAL, 0, 0, 0,
+/*LOGFONT CustomTabCtrl::lf_default = {-Pixels(11), 0, 0, 0, FW_NORMAL, 0, 0, 0,
 			DEFAULT_CHARSET, OUT_CHARACTER_PRECIS, CLIP_CHARACTER_PRECIS,
-			DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, _T("Microsoft Sans Serif")};
-
+			CLEARTYPE_QUALITY, DEFAULT_PITCH | FF_DONTCARE, _T("Microsoft Yahei")};
+*/
 BYTE CustomTabCtrl::bits_glyphs_[] = {
 										0xBD, 0xFB, 0xDF, 0xBD, 0x3C, 0x00,
 										0xB9, 0xF3, 0xCF, 0x9D, 0x99, 0x00,
@@ -441,7 +442,7 @@ CustomTabCtrl::CustomTabCtrl() :
 			item_drag_dest_(0)
 {
 	RegisterWindowClass();
-	SetControlFont(GetDefaultFont());
+	SetControlFont(/*GetDefaultFont()*/);
 	glyphs_mono_bmp_.CreateBitmap(48, 7, 1, 1, bits_glyphs_);
 	divider_height_ = 0;
 	top_margin_ = 0;
@@ -1679,7 +1680,7 @@ void CustomTabCtrl::OnTimer(UINT_PTR id_event)
 	}
 }
 
-void CustomTabCtrl::SetControlFont(const LOGFONT& lf, bool redraw)
+void CustomTabCtrl::SetControlFont(/*const LOGFONT& lf, */bool redraw)
 {
 	if (font_.m_hObject)
 	{
@@ -1692,10 +1693,11 @@ void CustomTabCtrl::SetControlFont(const LOGFONT& lf, bool redraw)
 		DeleteObject(font_selected_);
 		font_selected_.m_hObject = NULL;
 	}
-
-	if (!font_.CreateFontIndirect(&lf))
-		font_.CreateFontIndirect(&lf_default);
-
+	LOGFONT lf;
+	//if (!font_.CreateFontIndirect(&lf)){
+		::GetDefaultGuiFont(lf);
+		font_.CreateFontIndirect(&lf);
+	//}
 
 	LOGFONT lfSel;
 	font_.GetLogFont(&lfSel);

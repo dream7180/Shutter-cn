@@ -31,7 +31,7 @@ protected:
 	void OnDetails();
 	void OnReport();
 	HBRUSH OnCtlColor(CDC* dc, CWnd* ctrl, UINT code);
-	CFont bold_fnt_;
+	//CFont bold_fnt_;
 	CFont mono_fnt_;
 	CBrush window_brush_;
 	int expanded_height_;

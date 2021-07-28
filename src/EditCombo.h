@@ -112,6 +112,7 @@ private:
 	CRect margins_;
 	COLORREF outside_color_;
 	COLORREF backgnd_color_;
+	COLORREF border_color_;
 	CBrush  backgnd_color_brush_;
 	COLORREF text_color_;
 

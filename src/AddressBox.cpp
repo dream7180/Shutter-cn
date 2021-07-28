@@ -44,7 +44,7 @@ bool AddressBox::Create(CWnd* parent)
 	if (!EditCombo::Create(parent, IDB_ADDRESS_TOOLBAR, ID_REFRESH, ID_STOP_SCANNING, EditCombo::AUTO_COMPLETE))
 		return false;
 
-	SetMargins(CRect(0, 0, Pixels(4), 0));
+	SetMargins(CRect(0, 0, Pixels(6), 0));
 
 	GetAutoComplete().HandleUpDownKey(false);
 	GetAutoComplete().RegisterTextSelectedFn(boost::bind(&AddressBox::Selected, this));
@@ -126,9 +126,12 @@ void AddressBox::SetHistory(const CRecentFileList& paths)
 	const int count= paths.GetSize();
 
 	history.reserve(count);
-
-	for (int i= 0; i < count; ++i)
-		history.push_back(String(const_cast<CRecentFileList&>(paths)[i]));
+	String path_i;
+	for (int i= 0; i < count; ++i){
+		path_i = String(const_cast<CRecentFileList&>(paths)[i]);
+		if(path_i.length()!=0)
+			history.push_back(path_i);
+	}
 
 	EditCombo::SetHistory(history);
 }

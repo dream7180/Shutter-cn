@@ -90,6 +90,7 @@ bool PNGImage::Load(int resource_id, Dib& dib, BITMAPINFOHEADER* bih, float satu
 
 const int LOW_RES = 96;
 // Inkscape outputs 1:1 PNGs at 90 dpi rather than 96; correction factor
+//const double INKSCAPE_CORRECTION = 1;
 const double INKSCAPE_CORRECTION = 96.0 / 90.0;
 
 int GetLowResValue()		// low resolution in pixels/meter
@@ -160,6 +161,7 @@ bool PNGImage::Load(LPCTSTR resource_id, Dib& dib, BITMAPINFOHEADER* bmpih, floa
 			auto size = CSize(width, height);
 			auto scale = GetResolution();
 			CSize pix(static_cast<int>(size.cx * scale.Width / xpm + 0.5), static_cast<int>(size.cy * scale.Height / ypm + 0.5));
+			//CSize pix(static_cast<int>(size.cx * scale.Width / xpm), static_cast<int>(size.cy * scale.Height / ypm));
 			// resized?
 			if (size != pix)
 			{
@@ -482,6 +484,7 @@ extern std::auto_ptr<Gdiplus::Bitmap> LoadPng(int rsrc_id, const wchar_t* rsrc_t
 			auto size = CSize(bmp->GetWidth(), bmp->GetHeight());
 			auto scale = GetResolutionDpi();
 			CSize pix(static_cast<int>(size.cx * scale.Width / dpi_x + 0.5), static_cast<int>(size.cy * scale.Height / dpi_y + 0.5));
+			//CSize pix(static_cast<int>(size.cx * scale.Width / dpi_x), static_cast<int>(size.cy * scale.Height / dpi_y));
 			if (size != pix)
 			{
 				std::auto_ptr<Gdiplus::Bitmap> resized(new Gdiplus::Bitmap(pix.cx, pix.cy, bmp->GetPixelFormat()));

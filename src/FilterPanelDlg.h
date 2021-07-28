@@ -15,10 +15,10 @@ class FilterOperations
 {
 public:
 	virtual void FilterParamsChanged() = 0;		// notification: filter params have been modified
-	virtual void NameChanged() = 0;			// filter name changed
-	virtual void StoreFilter() = 0;			// store current filter
-	virtual void DeleteFilter() = 0;		// delete current filter
-	virtual void UpdateFilter() = 0;		// update current filter
+	//virtual void NameChanged() = 0;			// filter name changed
+	//virtual void StoreFilter() = 0;			// store current filter
+	//virtual void DeleteFilter() = 0;		// delete current filter
+	//virtual void UpdateFilter() = 0;		// update current filter
 };
 
 
@@ -35,8 +35,8 @@ public:
 	void GetCurrentFilter(FilterData& filter) const;
 	void SetFilter(const FilterData& filter, bool custom);
 
-	String GetFilterName() const;
-	void ShowNameInUseErr();
+	//String GetFilterName() const;
+	//void ShowNameInUseErr();
 
 	size_t GetPanelCount() const;
 

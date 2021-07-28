@@ -651,9 +651,9 @@ DistributionBar::DistributionBar() : impl_(new Impl)
 	impl_->leftMargin_ = 0;
 	impl_->rightMargin_ = 0;
 	impl_->fontLabels_.CreateFont(-Pixels(10), 0, 0, 0, FW_NORMAL, false, false, false, DEFAULT_CHARSET,
-		OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, ANTIALIASED_QUALITY, DEFAULT_PITCH, _T("Tahoma"));
+		OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY, DEFAULT_PITCH, _T("Microsoft Yahei"));
 	impl_->fontBold_.CreateFont(-Pixels(10), 0, 0, 0, FW_BOLD, false, false, false, DEFAULT_CHARSET,
-		OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, ANTIALIASED_QUALITY, DEFAULT_PITCH, _T("Tahoma"));
+		OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY, DEFAULT_PITCH, _T("Microsoft Yahei"));
 	impl_->area_valid_ = false;
 	impl_->tracking_cursor_ = false;
 	impl_->hist_area_.SetRectEmpty();
@@ -778,7 +778,7 @@ BOOL DistributionBar::OnEraseBkgnd(CDC* dc_ptr)
 
 	COLORREF rgbBARS = RGB(45, 200, 100);//g_Settings.AppColors()[AppColors::DimText];//  RGB(105, 130, 191);
 	COLORREF rgbTICK = g_Settings.AppColors()[AppColors::DimText];//rgbBARS;// CalcShade(rgb_color, -30.0f);// RGB(105, 130, 191);
-
+	
 	::DrawPanelBackground(dc, rect);
 
 	CRect hist_rect= rect;
@@ -1021,7 +1021,7 @@ DistributionBar::Impl::Precision DistributionBar::Impl::DrawTimeHistogram(CDC& d
 	const COLORREF rgb_bar = base_color;// CalcShade(base_color, 40.0f);
 	const COLORREF rgb_selection= CalcShade(base_color, -35.0f);
 	const COLORREF rgb_outline= CalcShade(base_color, 30.0f);
-	const COLORREF selected_range_color = RGB(247, 123, 0);//::GetSysColor(COLOR_HIGHLIGHT);
+	const COLORREF selected_range_color = g_Settings.AppColors()[AppColors::Selection];//::GetSysColor(COLOR_HIGHLIGHT);
 	const COLORREF label_color = g_Settings.AppColors()[AppColors::DimText];
 
 	const Date from_date= hist.StartingDate();

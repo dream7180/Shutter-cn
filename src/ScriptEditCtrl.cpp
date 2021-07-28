@@ -313,7 +313,7 @@ void ScriptEditCtrl::Impl::PreSubclassWindow()
 	SetWrapMode(SC_WRAP_WORD);
 	SetWrapVisualFlags(SC_WRAPVISUALFLAG_END);
 
-	SetSelBack(true, CalcShade(/*::GetSysColor(COLOR_HIGHLIGHT)*/RGB(247, 123, 0), 50.0f));
+	SetSelBack(true, CalcShade(::GetSysColor(COLOR_HIGHLIGHT), 50.0f));
 
 	SetTabWidth(4);
 	SetIndent(4);

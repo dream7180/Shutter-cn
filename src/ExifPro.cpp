@@ -132,7 +132,7 @@ BOOL App::InitInstance()
 	}
 	catch (...)
 	{
-		::MessageBox(0, _T("ExifPro 初始化失败."), _T("ExifPro"), MB_ICONERROR | MB_OK);
+		::MessageBox(0, _T("Shutter 初始化失败."), _T("Shutter"), MB_ICONERROR | MB_OK);
 	}
 	return false;
 }
@@ -181,17 +181,17 @@ addr:
 
 bool App::InitializeInstance()
 {
-	app_event_ = ::CreateEvent(0, false, true, _T("ExifProSingleStart"));
+	app_event_ = ::CreateEvent(0, false, true, NULL);//_T("ExifProSingleStart"));
 	DWORD err= ::GetLastError();
 
 	// prevent multiple ExifPro instances from running concurrently
-	if ( /*::InterlockedIncrement(&shared_instance_counter) > 1 || */
+	/*if ( //::InterlockedIncrement(&shared_instance_counter) > 1 || 
 		err == ERROR_ALREADY_EXISTS)	// due to the UPX shared counter fails; rely on event instead
 	{
 //		::InterlockedDecrement(&shared_instance_counter);
 
 		// find running ExifPro window
-		HWND running= ::FindWindowEx(HWND_DESKTOP, 0, 0, _T("ExifPro"));
+		HWND running= ::FindWindowEx(HWND_DESKTOP, 0, 0, _T("Shutter"));
 
 		if (running)
 		{
@@ -205,13 +205,13 @@ bool App::InitializeInstance()
 		else
 		{
 			::MessageBox(0,
-				_T("已经有一个 ExifPro 实例正在运行.\n")
+				_T("已经有一个 Shutter 实例正在运行.\n")
 				_T("如果没有响应你需要在任务管理器中终止它."),
-				_T("ExifPro"), MB_OK | MB_ICONWARNING);
+				_T("Shutter"), MB_OK | MB_ICONWARNING);
 		}
 
 		return false;
-	}
+	}*/
 
 	AfxEnableControlContainer();
 
@@ -231,8 +231,8 @@ bool App::InitializeInstance()
 	DWORD commonControlLibVersion = GetDllVersion(_T("comctl32.dll"));
 	if (commonControlLibVersion < PACKVERSION(4,71))
 	{
-		AfxMessageBox(_T("ExifPro requires Common Control library\n(comctl32.dll) version 4.71 or higher.\n")
-					  _T("Please reinstall ExifPro."), MB_OK | MB_ICONERROR);
+		AfxMessageBox(_T("Shutter requires Common Control library\n(comctl32.dll) version 4.71 or higher.\n")
+					  _T("Please reinstall Shutter."), MB_OK | MB_ICONERROR);
 		return false;
 	}
 
@@ -252,10 +252,10 @@ bool App::InitializeInstance()
 
 	Scintilla_RegisterClasses(AfxGetInstanceHandle());
 
-	SetRegistryKey(_T("ExifPro"));	// Registry key under which settings are stored.
+	SetRegistryKey(_T("Shutter"));	// Registry key under which settings are stored.
 	BOOL enable= AfxEnableMemoryTracking(FALSE);
 	free(const_cast<TCHAR*>(m_pszProfileName));
-	m_pszProfileName = _tcsdup(_T("MOD3"));
+	m_pszProfileName = _tcsdup(_T("Shutter Photo Browser"));
 	AfxEnableMemoryTracking(enable);
 
 #ifdef USE_GDI_PLUS
@@ -272,7 +272,7 @@ bool App::InitializeInstance()
 		filter->SetMessagePendingDelay(60000); // 60 sec
 	}
 
-	Profile<bool> profileFirstTimeUp(_T("ExifPro"), _T("FirstTimeUp"), true);
+	Profile<bool> profileFirstTimeUp(_T("Shutter"), _T("FirstTimeUp"), true);
 	g_first_time_up = profileFirstTimeUp;
 	profileFirstTimeUp = false;
 
@@ -282,10 +282,10 @@ bool App::InitializeInstance()
 	SetImageCache(g_Settings.image_cache_size_);
 
 	// associate *.catalog files with ExifPro
-	CString ExifProCatalog= _T("ExifPro.catalog");
+	CString ExifProCatalog= _T("Shutter.catalog");
 	if (SetRegKey(_T(".catalog"), ExifProCatalog))
 	{
-		VERIFY(SetRegKey(ExifProCatalog, _T("ExifPro Image Catalog")));
+		VERIFY(SetRegKey(ExifProCatalog, _T("Shutter Image Catalog")));
 
 		TCHAR path[_MAX_PATH + 16];
 		VERIFY(::GetModuleFileName(AfxGetInstanceHandle(), path, _MAX_PATH));

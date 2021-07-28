@@ -73,6 +73,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 private:
+	static const int LIGHTTABLE_H = 60;
 	struct Impl;
 	std::auto_ptr<Impl> pImpl_;
 

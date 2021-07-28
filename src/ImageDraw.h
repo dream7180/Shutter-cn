@@ -18,11 +18,11 @@ struct ImageDraw
 	static void Draw(const Dib* bmp, CDC* dc, CRect& dest_rect, COLORREF rgb_back, COLORREF rgb_selection, COLORREF rgb_outline,
 		COLORREF rgb_text, COLORREF rgb_text_bk, UINT flags, const String* pstrLabel);
 
-	static void DrawShadow(CDC* dc, const CRect& rect, COLORREF rgb_back);
+	//static void DrawShadow(CDC* dc, const CRect& rect, COLORREF rgb_back);
 
-	static void DrawOutline(CDC* dc, const CRect& rect, int distance, int thickness, COLORREF rgb_selection);
+	//static void DrawOutline(CDC* dc, const CRect& rect, int distance, int thickness, COLORREF rgb_selection);
 
-	enum { SELECTION_DISTANCE= 1, SELECTION_THICKNESS= 3, OUTLINE_THICKNESS= 2 };
+	//enum { SELECTION_DISTANCE= 1, SELECTION_THICKNESS= 3, OUTLINE_THICKNESS= 2 };
 
 	static CRect GetImageSize(Dib* bmp, const CRect& dest_rect, UINT flags);
 

@@ -101,7 +101,7 @@ void CExifExport::ExportHeader()
 	{
 		if (!line.empty())
 			line += separator_;
-		line += _T("标记");
+		line += _T("标签");
 	}
 
 	line += _T("\n\n");

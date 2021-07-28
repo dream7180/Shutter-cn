@@ -57,7 +57,7 @@ protected:
 	DlgAutoResize dlg_resize_map_;
 	WindowPosition wnd_pos_;		// registry settings
 	ToolBarWnd tool_bar_wnd_;
-	CFont bold_fnt_;
+	//CFont bold_fnt_;
 
 	CExtTreeNodePtr monitors_;
 	CExtTreeNodePtr printers_;

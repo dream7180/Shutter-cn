@@ -1,4 +1,12 @@
-Libtiff:
+jpeg-turbo: configure时可选jpeg8支持
+
+-----------------------------------------------------------------
+TIFFLib
+用cmake configure生成tiffconf.h, tif_config.h拷进libtiff,
+precomp.c拷入libtiff
+几个tifflib项目文件拷进根目录
+libtiff\tif_fax3sm.c加入#include "tiffiop.h"
+
+---4.3.0不适用了---
 1）libtiff\tiffop.h里注释掉
 #define snprintf _TIFF_snprintf_f
-2）libtiff\tif_fax3sm.c沿用4.1.0旧版的即可
