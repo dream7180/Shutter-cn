@@ -80,12 +80,6 @@ bool FolderView::Create(CWnd* parent, UINT id, FolderPathPtr path/*= 0*/, bool r
 	TreeView_SetExtendedStyle(m_hWnd, TVS_EX_DOUBLEBUFFER, TVS_EX_DOUBLEBUFFER);
 	
 	LOGFONT lf;
-	/*HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
-	::GetObject(hfont, sizeof(lf), &lf);
-	//lf.lfQuality = ANTIALIASED_QUALITY;
-	//lf.lfHeight += 1;
-	_tcscpy(lf.lfFaceName, _T("Tahoma"));
-	hfont = CreateFontIndirectW(&lf);*/
 	::GetDefaultGuiFont(lf);
 	HFONT hfont = CreateFontIndirectW(&lf);
 	SendMessage(WM_SETFONT, WPARAM(hfont));

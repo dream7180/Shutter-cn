@@ -86,11 +86,6 @@ bool CLinkWnd::Create(CWnd* parent, CPoint top_left, const TCHAR* display, const
 			font->GetLogFont(&lf);
 		else
 		{
-			/*HFONT font= static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
-			::GetObject(font, sizeof(lf), &lf);
-			//lf.lfQuality = ANTIALIASED_QUALITY;
-			//lf.lfHeight += 1;
-			_tcscpy(lf.lfFaceName, _T("Tahoma"));*/
 			::GetDefaultGuiFont(lf);
 		}
 		lf.lfUnderline = true;
@@ -127,11 +122,6 @@ void CLinkWnd::PreSubclassWindow()
 			font->GetLogFont(&lf);
 		else
 		{
-			/*HFONT hfont= static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
-			::GetObject(hfont, sizeof(lf), &lf);
-			//lf.lfHeight += 1;
-			//lf.lfQuality = ANTIALIASED_QUALITY;
-			_tcscpy(lf.lfFaceName, _T("Tahoma"));*/
 			::GetDefaultGuiFont(lf);
 		}
 		lf.lfUnderline = true;

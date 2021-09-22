@@ -65,11 +65,6 @@ bool CDockingBar::Create(CWnd* parent, CFramePages* pages, bool show)
 	CDC dc;
 	dc.CreateIC(_T("DISPLAY"), 0, 0, 0);
 	LOGFONT lf;
-	/*HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
-	::GetObject(hfont, sizeof(lf), &lf);
-	//lf.lfHeight += 1;
-	//lf.lfQuality = ANTIALIASED_QUALITY;
-	_tcscpy(lf.lfFaceName, _T("Tahoma"));*/
 	::GetDefaultGuiFont(lf);
 	_font.CreateFontIndirect(&lf);
 	dc.SelectObject(&_font);

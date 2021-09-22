@@ -138,14 +138,6 @@ bool TaskToolbar::Create(CWnd* parent, UINT id, bool vertical)
 	int w= 0;
 	{
 		CClientDC dc(parent);
-		/*LOGFONT lf;
-		HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
-		::GetObject(hfont, sizeof(lf), &lf);
-		lf.lfHeight += 2;
-		//lf.lfQuality = ANTIALIASED_QUALITY;
-		_tcscpy(lf.lfFaceName, _T("Tahoma"));
-		CFont _font;
-		_font.CreateFontIndirect(&lf);*/
 		dc.SelectObject(&GetDefaultGuiFont());//&_font);
 		//dc.SelectStockObject(DEFAULT_GUI_FONT);
 		w = dc.GetTextExtent(_T("NNNNNNNa"), 8).cx;

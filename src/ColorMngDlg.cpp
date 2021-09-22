@@ -456,15 +456,6 @@ void ColorMngDlg::ShowProfilesMenu(ExtTreeRow* item, CPoint pos)
 	// (lame) estimation of menu item height
 	CDC dc;
 	dc.CreateIC(_T("DISPLAY"), 0, 0, 0);
-	/*LOGFONT lf;
-	HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
-	::GetObject(hfont, sizeof(lf), &lf);
-	lf.lfWeight = FW_NORMAL;
-	//lf.lfHeight += 1;
-	_tcscpy(lf.lfFaceName, _T("Tahoma"));
-	//lf.lfQuality = ANTIALIASED_QUALITY;
-	CFont _font;
-	_font.CreateFontIndirect(&lf);*/
 	dc.SelectObject(&GetDefaultGuiFont());
 	//dc.SelectStockObject(DEFAULT_GUI_FONT);
 	TEXTMETRIC tm;

@@ -75,16 +75,6 @@ bool InfoDisplay::Create(CWnd* parent, const GetTextFn& get_text, COLORREF rgb_b
 		CRect(0,0,0,0), parent, -1))
 		return false;
 
-	// create bold font
-/*	HFONT font= static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
-	LOGFONT lf;
-	::GetObject(font, sizeof(lf), &lf);
-	//lf.lfWeight = 700;
-	//lf.lfHeight += 1;
-	lf.lfQuality = CLEARTYPE_QUALITY;
-	_tcscpy(lf.lfFaceName, _T("Microsoft Yahei"));
-	bold_fnt_.CreateFontIndirect(&lf);
-	*/
 #endif
 	if (!CListCtrl::Create(WS_CHILD | WS_VISIBLE | LVS_REPORT | LVS_SINGLESEL | LVS_NOSORTHEADER | LVS_OWNERDATA,
 		CRect(0,0,0,0), parent, IDC_LIST))

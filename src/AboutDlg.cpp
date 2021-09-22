@@ -130,35 +130,12 @@ BOOL AboutDlg::OnInitDialog()
 		CDialog::OnInitDialog();
 		
 		LOGFONT lf;
-		//HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
-		//::GetObject(hfont, sizeof(lf), &lf);
-		//lf.lfHeight -= 3;
-		//lf.lfWeight = FW_BOLD;
-		//lf.lfQuality = CLEARTYPE_QUALITY;
-		//_tcscpy(lf.lfFaceName, _T("Microsoft Yahei"));
 		::GetDefaultGuiBoldFont(lf);
 		lf.lfHeight -= 3;
 		small_fnt_.CreateFontIndirect(&lf);
 		
 		GetDlgItem(IDC_LABEL)->SetFont(&small_fnt_);
 		//GetDlgItem(IDC_LABEL_2)->SetFont(&small_fnt_);
-/*		LOGFONT lf;
-		lf.lfHeight -= 2;//= -Pixels(14);
-		lf.lfWidth = 0;
-		lf.lfEscapement = 0;
-		lf.lfOrientation = 0;
-		lf.lfWeight = FW_NORMAL;
-		lf.lfItalic = false;
-		lf.lfUnderline = false;
-		lf.lfStrikeOut = false;
-		lf.lfCharSet = DEFAULT_CHARSET;
-		lf.lfOutPrecision = OUT_DEFAULT_PRECIS;
-		lf.lfClipPrecision = CLIP_DEFAULT_PRECIS;
-		lf.lfQuality = ANTIALIASED_QUALITY;
-		lf.lfPitchAndFamily = FF_SWISS;
-		_tcscpy(lf.lfFaceName, _T("Arial"));
-
-		small_fnt_.CreateFontIndirect(&lf);*/
 
 		//if (!PNGImage().Load(IDR_ABOUT, dib_about_) || !dib_about_.IsValid())
 		//	EndDialog(IDCANCEL);

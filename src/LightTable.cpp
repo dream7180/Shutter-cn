@@ -586,17 +586,6 @@ BOOL LightTable::OnEraseBkgnd(CDC* dc)
 		rect.bottom = rect.top + LIGHTTABLE_H;//pImpl_->header_.GetHeight();
 		dc->FillSolidRect(rect, RGB(25,25,25));
 		//pImpl_->header_.Draw(dc, rect);
-/*
-		HFONT hfont= static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
-		LOGFONT lf;
-		::GetObject(hfont, sizeof(lf), &lf);
-		lf.lfWeight = FW_BOLD;
-		//lf.lfHeight += 1;
-		//lf.lfQuality = ANTIALIASED_QUALITY;
-		_tcscpy(lf.lfFaceName, _T("Tahoma"));
-		CFont font;
-		font.CreateFontIndirect(&lf);
-*/
 		CFont* old= dc->SelectObject(&GetDefaultGuiBoldFont());//&font);
 		dc->SetTextColor(TEXT_COLOR);
 		dc->SetBkMode(TRANSPARENT);

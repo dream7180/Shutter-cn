@@ -130,14 +130,6 @@ void CMenuFolders::CalcStringLengths(CString text)
 {
 	CDC dc;
 	dc.CreateDC(_T("DISPLAY"), 0, 0, 0);
-	/*LOGFONT lf;
-	HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
-	::GetObject(hfont, sizeof(lf), &lf);
-	//lf.lfHeight += 1;
-	//lf.lfQuality = ANTIALIASED_QUALITY;
-	_tcscpy(lf.lfFaceName, _T("Tahoma"));
-	CFont _font;
-	_font.CreateFontIndirect(&lf);*/
 	dc.SelectObject(&GetDefaultGuiFont());//&_font);
 	//dc.SelectStockObject(DEFAULT_GUI_FONT);
 
@@ -227,14 +219,6 @@ void CMenuFolders::DrawItem(LPDRAWITEMSTRUCT draw_item_struct)
 	CRect rect(draw_item_struct->rcItem);
 
 	dc.SetBkMode(OPAQUE);
-	/*LOGFONT lf;
-	HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
-	::GetObject(hfont, sizeof(lf), &lf);
-	//lf.lfQuality = ANTIALIASED_QUALITY;
-	//lf.lfHeight += 1;
-	_tcscpy(lf.lfFaceName, _T("Tahoma"));
-	CFont _font;
-	_font.CreateFontIndirect(&lf);*/
 	dc.SelectObject(&GetDefaultGuiFont());//&_font);
 	//dc.SelectStockObject(DEFAULT_GUI_FONT);
 

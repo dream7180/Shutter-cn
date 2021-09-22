@@ -552,9 +552,9 @@
     <ClCompile Include="FileCopyMove.cpp">
       <Filter>Tools</Filter>
     </ClCompile>
-    <ClCompile Include="FileOperDlg.cpp">
+    <!--ClCompile Include="FileOperDlg.cpp">
       <Filter>Tools</Filter>
-    </ClCompile>
+    </ClCompile-->
     <ClCompile Include="FileRenameDlg.cpp">
       <Filter>Tools</Filter>
     </ClCompile>
@@ -1295,7 +1295,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="ExifPro.rc">
+    <ResourceCompile Include="Shutter.rc">
       <Filter>Source Files</Filter>
     </ResourceCompile>
   </ItemGroup>
@@ -1666,9 +1666,9 @@
     <ClInclude Include="FileListCtrl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FileOperDlg.h">
+    <!--ClInclude Include="FileOperDlg.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
+    </ClInclude-->
     <ClInclude Include="FilePaneWnd.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -3219,7 +3219,7 @@
     <None Include="res\cross.cur">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="res\ExifPro.rc2">
+    <None Include="res\Shutter.rc2">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="res\eye_drop.cur">

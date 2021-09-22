@@ -508,11 +508,6 @@ BOOL MainFrame::OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* context)
 	status_bar_wnd_.SetPaneStyle(0, SBPS_OWNERDRAW | SBPS_STRETCH | SBPS_NOBORDERS);
 	status_bar_wnd_.SetPaneStyle(1, SBPS_OWNERDRAW | SBPS_NOBORDERS);
 	LOGFONT lf;
-	//HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
-	//::GetObject(hfont, sizeof(lf), &lf);
-	//lf.lfHeight += 1;
-	//lf.lfQuality = CLEARTYPE_QUALITY;
-	//_tcscpy(lf.lfFaceName, _T("Microsoft Yahei"));
 	::GetDefaultGuiFont(lf);
 	HFONT hfont = CreateFontIndirectW(&lf);
 	status_bar_wnd_.SendMessage(WM_SETFONT, WPARAM(hfont));

@@ -222,12 +222,6 @@ void AutoCompletePopup::Init()
 	CClientDC dc(this);
 	LOGFONT lf;
 	::GetDefaultGuiFont(lf);
-	/*HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
-	::GetObject(hfont, sizeof(lf), &lf);
-	lf.lfWeight = FW_NORMAL;
-	//lf.lfHeight += 1;
-	lf.lfQuality = CLEARTYPE_QUALITY;
-	_tcscpy(lf.lfFaceName, _T("Microsoft Yahei"));*/
 	fontDC.CreateFontIndirect(&lf);
 	dc.SelectObject(&GetDefaultGuiFont());
 	item_height_ = dc.GetOutputTextExtent("X").cy * 13 / 10;

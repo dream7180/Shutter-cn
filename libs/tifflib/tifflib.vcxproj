@@ -21,30 +21,30 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{E0E851A7-3D38-419F-9597-3EC0FF1C5CA4}</ProjectGuid>
     <RootNamespace>tifflib</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -213,11 +213,11 @@
     <ClCompile Include="libtiff\tif_fax3sm.c" />
     <ClCompile Include="libtiff\tif_flush.c" />
     <ClCompile Include="libtiff\tif_getimage.c" />
-	<ClCompile Include="libtiff\tif_jbig.c" />
+    <ClCompile Include="libtiff\tif_jbig.c" />
     <ClCompile Include="libtiff\tif_jpeg.c" />
-	<ClCompile Include="libtiff\tif_jpeg_12.c" />
+    <ClCompile Include="libtiff\tif_jpeg_12.c" />
     <ClCompile Include="libtiff\tif_luv.c" />
-	<ClCompile Include="libtiff\tif_lzma.c" />
+    <ClCompile Include="libtiff\tif_lzma.c" />
     <ClCompile Include="libtiff\tif_lzw.c" />
     <ClCompile Include="libtiff\tif_next.c" />
     <ClCompile Include="libtiff\tif_ojpeg.c" />
@@ -233,11 +233,11 @@
     <ClCompile Include="libtiff\tif_tile.c" />
     <ClCompile Include="libtiff\tif_version.c" />
     <ClCompile Include="libtiff\tif_warning.c" />
-	<ClCompile Include="libtiff\tif_webp.c" />
+    <ClCompile Include="libtiff\tif_webp.c" />
     <ClCompile Include="libtiff\tif_win32.c" />
     <ClCompile Include="libtiff\tif_write.c" />
     <ClCompile Include="libtiff\tif_zip.c" />
-	<ClCompile Include="libtiff\tif_zstd.c" />
+    <ClCompile Include="libtiff\tif_zstd.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libtiff\t4.h" />

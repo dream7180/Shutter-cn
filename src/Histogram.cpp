@@ -366,17 +366,6 @@ void Histogram::Draw(CDC* dc, CRect rect, ChannelSel channels, UINT flags)
 {
 	if ((flags & NO_ERASE_BACKGND) == 0)
 		dc->FillSolidRect(rect, rgb_back_);
-	/*
-	LOGFONT lf;
-	HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
-	::GetObject(hfont, sizeof(lf), &lf);
-	//lf.lfQuality = ANTIALIASED_QUALITY;
-	//lf.lfHeight += 1;
-	_tcscpy(lf.lfFaceName, _T("Tahoma"));
-	CFont _font;
-	_font.CreateFontIndirect(&lf);
-	dc->SelectObject(&_font);
-	*/
 	dc->SelectObject(&GetDefaultGuiFont());
 	//dc->SelectStockObject(DEFAULT_GUI_FONT);
 

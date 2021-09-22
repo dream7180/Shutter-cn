@@ -102,7 +102,7 @@ CopyMoveDlg::CopyMoveDlg(bool copy, const TCHAR* dest_path, CWnd* parent, Folder
 	impl_.current_photo_path_ = cur_path;
 
 	label_ = copy ? _T("复制") : _T("移动");
-	label_ += _T("选定的图像到文件夹:");
+	label_ += _T("选定的图像到此文件夹:");
 	//label_ = RString(copy ? IDS_COPY_FILES : IDS_MOVE_FILES);
 	path_ = dest_path;
 

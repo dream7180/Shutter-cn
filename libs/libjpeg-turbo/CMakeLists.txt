@@ -5,7 +5,7 @@ if(CMAKE_EXECUTABLE_SUFFIX)
 endif()
 
 project(libjpeg-turbo C)
-set(VERSION 2.1.0)
+set(VERSION 2.1.1)
 string(REPLACE "." ";" VERSION_TRIPLET ${VERSION})
 list(GET VERSION_TRIPLET 0 VERSION_MAJOR)
 list(GET VERSION_TRIPLET 1 VERSION_MINOR)
@@ -24,6 +24,15 @@ endfunction()
 pad_number(VERSION_MINOR 3)
 pad_number(VERSION_REVISION 3)
 set(LIBJPEG_TURBO_VERSION_NUMBER ${VERSION_MAJOR}${VERSION_MINOR}${VERSION_REVISION})
+
+# CMake 3.14 and later sets CMAKE_MACOSX_BUNDLE to TRUE by default when
+# CMAKE_SYSTEM_NAME is iOS, tvOS, or watchOS, which breaks the libjpeg-turbo
+# build.  (Specifically, when CMAKE_MACOSX_BUNDLE is TRUE, executables for
+# Apple platforms are built as application bundles, which causes CMake to
+# complain that our install() directives for executables do not specify a
+# BUNDLE DESTINATION.  Even if CMake did not complain, building executables as
+# application bundles would break our iOS packages.)
+set(CMAKE_MACOSX_BUNDLE FALSE)
 
 string(TIMESTAMP DEFAULT_BUILD "%Y%m%d")
 set(BUILD ${DEFAULT_BUILD} CACHE STRING "Build string (default: ${DEFAULT_BUILD})")
@@ -582,6 +591,9 @@ if(WITH_SIMD)
   endif()
 else()
   add_library(simd OBJECT jsimd_none.c)
+  if(NOT WIN32 AND (CMAKE_POSITION_INDEPENDENT_CODE OR ENABLE_SHARED))
+    set_target_properties(simd PROPERTIES POSITION_INDEPENDENT_CODE 1)
+  endif()
 endif()
 
 if(WITH_JAVA)

@@ -856,14 +856,6 @@ void PreviewBandWnd::Impl::PaintToBmp(Dib& bmp, CRect rect, CPoint scrl, bool sc
 
 	if (!IsEmpty())
 	{
-		/*LOGFONT lf;
-		HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
-		::GetObject(hfont, sizeof(lf), &lf);
-		//lf.lfHeight += 1;
-		//lf.lfQuality = ANTIALIASED_QUALITY;
-		_tcscpy(lf.lfFaceName, _T("Tahoma"));
-		CFont _font;
-		_font.CreateFontIndirect(&lf);*/
 		dc.SelectObject(&GetDefaultGuiFont());//&_font);
 		//dc.SelectStockObject(DEFAULT_GUI_FONT);
 		dc.SetBkMode(TRANSPARENT);

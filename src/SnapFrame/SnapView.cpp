@@ -198,6 +198,7 @@ BOOL SnapView::OnEraseBkgnd(CDC* dc)
 		//COLORREF c2 = CalcShade(separator_base_color_, shade.second);// shades[idx++]);
 
 		//dc->Draw3dRect(rect, c1, c2);//水平和垂直的拖动分割条
+		rect.InflateRect(2, 2, 2, 2);
 		dc->FillSolidRect(rect, g_Settings.AppColors()[AppColors::Background]);
 		//auto dpi = GetResolutionDpi();
 		//if(dpi.Width < 97)

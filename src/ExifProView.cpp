@@ -537,13 +537,6 @@ void ExifView::InitialUpdate()
 {
 	PaneWnd::InitialUpdate();
 	LOGFONT lf;
-	/*HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
-	::GetObject(hfont, sizeof(lf), &lf);
-	//lf.lfQuality = ANTIALIASED_QUALITY;
-	//lf.lfHeight += 1;
-	lf.lfQuality = CLEARTYPE_QUALITY;
-	_tcscpy(lf.lfFaceName, _T("Microsoft Yahei"));
-	hfont = CreateFontIndirectW(&lf);*/
 	::GetDefaultGuiFont(lf);
 	HFONT hfont = CreateFontIndirectW(&lf);
 	SendMessage(WM_SETFONT, WPARAM(hfont));

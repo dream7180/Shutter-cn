@@ -64,11 +64,6 @@ bool HistogramPane::Create(CWnd* parent)
 	channels_ = profile_channel_;
 	
 	LOGFONT lf;
-	/*HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
-	::GetObject(hfont, sizeof(lf), &lf);
-	//lf.lfQuality = ANTIALIASED_QUALITY;
-	//lf.lfHeight += 1;
-	_tcscpy(lf.lfFaceName, _T("Tahoma"));*/
 	::GetDefaultGuiFont(lf);
 	HFONT hfont = CreateFontIndirectW(&lf);
 	channels_wnd_.SendMessage(WM_SETFONT, WPARAM(hfont));

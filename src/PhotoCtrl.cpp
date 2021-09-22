@@ -86,7 +86,6 @@ PhotoCtrl::PhotoCtrl()
 	memset(&last_info_, 0, sizeof last_info_);
 
 	// default font
-//	HFONT font= static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
 	LOGFONT lf, bold;
 	::GetDefaultGuiFont(lf);
 	::GetDefaultGuiBoldFont(bold);
@@ -678,7 +677,7 @@ void PhotoCtrl::SetTagFont(/*const */LOGFONT& font)
 {
 	if (tags_fnt_.m_hObject)
 		tags_fnt_.DeleteObject();
-	font.lfHeight += 1;
+	//font.lfHeight += 1;
 	tags_fnt_.CreateFontIndirect(&font);
 
 	if (m_hWnd)

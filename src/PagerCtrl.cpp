@@ -53,11 +53,6 @@ bool PagerCtrlEx::Create(CWnd* parent, int id)
 		return false;
 	}
 	LOGFONT lf;
-	//HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
-	//::GetObject(hfont, sizeof(lf), &lf);
-	//lf.lfHeight += 1;
-	//lf.lfQuality = ANTIALIASED_QUALITY;
-	//_tcscpy(lf.lfFaceName, _T("Tahoma"));
 	::GetDefaultGuiFont(lf);
 	HFONT hfont = CreateFontIndirectW(&lf);
 	SendMessage(WM_SETFONT, WPARAM(hfont));

@@ -605,14 +605,6 @@ static void SelectFont(CDC& dc)
 			dc.SelectObject(font);
 			return;
 		}
-	/*LOGFONT lf;
-	HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
-	::GetObject(hfont, sizeof(lf), &lf);
-	//lf.lfQuality = ANTIALIASED_QUALITY;
-	//lf.lfHeight += 1;
-	_tcscpy(lf.lfFaceName, _T("tahoma"));
-	CFont _font;
-	_font.CreateFontIndirect(&lf);*/
 	dc.SelectObject(&GetDefaultGuiFont());//&_font);
 	//dc.SelectStockObject(DEFAULT_GUI_FONT);
 }

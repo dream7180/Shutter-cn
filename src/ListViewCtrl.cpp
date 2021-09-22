@@ -228,11 +228,7 @@ void ListViewCtrl::PreSubclassWindow()
 
 void ListViewCtrl::Impl::PreSubclassWindow()
 {
-	//HFONT font= static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
 	LOGFONT lf;
-	/*::GetObject(font, sizeof(lf), &lf);
-	//lf.lfHeight += 1;
-	_tcscpy(lf.lfFaceName, _T("Tahoma"));*/
 	::GetDefaultGuiFont(lf);
 	normal_fnt_.CreateFontIndirect(&lf);
 

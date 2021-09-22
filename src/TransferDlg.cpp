@@ -306,11 +306,6 @@ BOOL CTransferDlg::InitDlg()
 			font->GetLogFont(&lf);
 		else
 		{
-			/*HFONT hfont= static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
-			::GetObject(hfont, sizeof(lf), &lf);
-			//lf.lfQuality = ANTIALIASED_QUALITY;
-			//lf.lfHeight += 1;
-			_tcscpy(lf.lfFaceName, _T("Tahoma"));*/
 			::GetDefaultGuiFont(lf);
 		}
 		pImpl_->normal_font_.CreateFontIndirect(&lf);

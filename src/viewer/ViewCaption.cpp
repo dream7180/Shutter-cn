@@ -49,12 +49,6 @@ bool ViewCaption::Create(CWnd* parent, int toolbarBmp, const int commands[], int
 	CDC dc;
 	dc.CreateCompatibleDC(0);
 	LOGFONT lf;
-	/*HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
-	::GetObject(hfont, sizeof(lf), &lf);
-	//lf.lfQuality = ANTIALIASED_QUALITY;
-	//lf.lfHeight += 1;
-	lf.lfWeight =  FW_BOLD;
-	_tcscpy(lf.lfFaceName, _T("Tahoma"));*/
 	::GetDefaultGuiBoldFont(lf);
 	_font.CreateFontIndirect(&lf);
 	dc.SelectObject(&_font);

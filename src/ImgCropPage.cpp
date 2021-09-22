@@ -65,7 +65,7 @@ END_MESSAGE_MAP()
 
 static struct { const TCHAR* name; SIZE size; } ratios[]=
 {
-	{ _T("No constraints"), { 0, 0 } },
+	{ _T("无强制比例"), { 0, 0 } },
 	{ _T("3\"x5\""),	{ 3, 5 } },
 	{ _T("3.5\"x5\""),	{ 35, 50 } },
 	{ _T("4\"x6\""),	{ 4, 6 } },
@@ -83,12 +83,12 @@ static struct { const TCHAR* name; SIZE size; } ratios[]=
 	{ _T("15 cm x 20 cm"),	{ 15, 20 } },
 	{ _T("20 cm x 25 cm"),	{ 20, 25 } },
 	{ _T("20 cm x 30 cm"),	{ 20, 30 } },
-	{ _T("Square (1:1)"),	{ 1, 1 } },
-	{ _T("Screen (4:3)"),	{ 3, 4 } },
+	{ _T("正方形 (1:1)"),	{ 1, 1 } },
+	{ _T("屏幕 (4:3)"),	{ 3, 4 } },
 //	{ _T("Wide screen (19:12)"),	{ 12, 19 } },
-	{ _T("Wide screen (16:9)"),		{ 9, 16 } },
-	{ _T("Wide screen (16:10)"),	{ 10, 16 } },
-	{ _T("Image aspect ratio"),	{ 0, 0 } }
+	{ _T("宽屏 (16:9)"),		{ 9, 16 } },
+	{ _T("宽屏 (16:10)"),	{ 10, 16 } },
+	{ _T("原图比例"),	{ 0, 0 } }
 };
 
 

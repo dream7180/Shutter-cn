@@ -1,18 +1,9 @@
-/*____________________________________________________________________________
-
-   ExifPro Image Viewer
-
-   Copyright (C) 2000-2015 Michael Kowalski
-____________________________________________________________________________*/
-
 //{{NO_DEPENDENCIES}}
-// Microsoft Visual C++ generated include file.
-// Used by ExifPro.rc
+// Microsoft Visual C++ 生成的包含文件。
+// 供 ExifPro.rc 使用
 //
 #define IDD_ABOUTBOX                    100
-//#define IDD_EVALUATION                  101
 #define IDR_MAINFRAME                   128
-//#define IDI_CATALOG                     129
 #define IDS_CANCEL                      129
 #define IDS_FILTER                      130
 #define IDB_BROWSER_TOOLBAR             131
@@ -24,13 +15,10 @@ ____________________________________________________________________________*/
 #define IDS_EDIT_TAGS                   134
 #define IDB_OBJ_LIST2                   135
 #define IDC_HORZ_RESIZE                 135
-//#define IDS_CUSTOM_FILTERS              135
 #define IDC_VERT_RESIZE                 136
 #define IDS_INSERT_TEXT2                136
 #define IDR_VIEW_POPUP_MENU             137
-#define IDD_COPYMOVE                    137
 #define IDS_BROWSER_TOOL                137
-//#define IDS_BROWSER_TOOLS               137
 #define IDI_FILE2                       138
 #define IDS_INSERT_TEXT3                138
 #define IDR_CAMERA_POPUP_MENU           139
@@ -54,7 +42,6 @@ ____________________________________________________________________________*/
 #define IDD_OPTIONS_GENERAL             154
 #define IDR_PNG1                        155
 #define IDD_OPTIONS_VIEWER              155
-//#define IDR_CLOSEBAR                    156
 #define IDD_OPTIONS_COLUMNS             156
 #define IDB_PATTERN                     157
 #define IDR_VIEWER_CONTEXT              158
@@ -113,19 +100,15 @@ ____________________________________________________________________________*/
 #define IDB_PHOTO_5                     224
 #define IDB_PHOTO_6                     225
 #define IDB_PHOTO_8                     226
-//#define IDB_HELP_BTN                    228
 #define IDB_TAGS_TOOLBAR                229
 #define IDB_LAYOUTS                     230
-//#define IDB_TAGS_TOOLBAR_BIG            231
 #define IDB_NO_EXIF                     232
 #define IDR_COPY_ANIM                   233
 #define IDB_TAGGED_SINGLE_DIR           234
 #define IDB_TAGGED_SEPARATE_DIRS        235
 #define IDR_FOLDER_CONTEXT              236
 #define IDD_SLIDE_SHOW_OPTIONS          237
-//#define IDB_GRID_PATTERN                238
 #define IDD_OPTIONS_ADVANCED            238
-#define IDD_OPTIONS_CACHE	            281
 #define IDD_OPTIONS_FILE_TYPES          239
 #define IDD_HEADER_DLG_RESIZABLE        240
 #define IDB_EMPTY                       241
@@ -152,10 +135,9 @@ ____________________________________________________________________________*/
 #define IDB_CHEVRON_HOT                 277
 #define IDB_SHADOW                      279
 #define IDD_MANAGE_PANE_LAYOUTS         280
-//#define IDB_SHORTCUTS                   281
+#define IDD_OPTIONS_CACHE               281
 #define IDD_OPTIONS_SHORTCUTS           282
 #define IDB_BITMAP1                     283
-//#define IDB_CLOSE_BAR_HOT               283
 #define IDB_CTRL_DRAW_IMAGES            284
 #define IDD_ICC_SETUP                   285
 #define IDD_ICM_SETUP                   285
@@ -175,17 +157,12 @@ ____________________________________________________________________________*/
 #define IDB_IMG_EFFECTS                 293
 #define IDR_PNG2                        294
 #define IDB_INFO_TOOLBAR                294
-//#define IDB_INFO_TOOLBAR_BIG            295
 #define IDR_PNG3                        296
 #define IDB_HEADER_IMAGES               296
-//#define IDD_SERIAL                      298
 #define IDD_IMG_CROP                    299
 #define IDC_CROSS_CURSOR                300
 #define IDB_EMPTY_BMP                   301
-//#define IDB_PANE_TOOLBAR_BIG            302
 #define IDD_DIALOG1                     302
-//#define IDD_THANKS                      302
-//#define IDB_PANE_TOOLBAR_BIG_HOT        303
 #define IDD_RESIZE_OPTIONS              303
 #define IDB_CHEVRON_BIG                 304
 #define IDD_GEN_HTML_OPTIONS            304
@@ -201,28 +178,16 @@ ____________________________________________________________________________*/
 #define IDD_INFO_BAR                    310
 #define IDB_VERT_SCROLLBARS             311
 #define IDB_GRIP                        312
-//#define IDB_PREVIEW_BACKGND             313
-//#define IDB_PREVIEW_BACKGND_TOP         314
-//#define IDB_PREVIEW_BACKGND_BTM         315
-//#define IDB_PREVIEW_BACKGND_VERT        316
-//#define IDB_PREVIEW_BACKGND_VERT_TOP    317
-//#define IDB_PREVIEW_BACKGND_VERT_R      318
 #define IDB_PREVIEW_SCRL_BAR            319
 #define IDB_PREVIEW_SCRL_BAR_V          320
 #define IDR_ARROW_DOWN_IMG              321
-//#define IDB_VIEW_CAPTION                324
-//#define IDR_TOOLBAR_BIG                 325
 #define IDB_HORZ_VERT_TB                326
 #define IDB_CLOSE_TB                    327
 #define IDB_ACTIVE_VIEW                 328
 #define IDB_INFO_BAND_OPT               329
 #define IDB_INFO_BAND_OPT_HOT           330
-//#define IDB_VIEWER_REBAR_BACK           331
-//#define IDB_INFOBAR                     332
 #define IDB_BITMAP4                     333
-//#define IDR_CLOSE_BAR                   333
 #define IDB_LIGHT_TABLE                 334
-//#define IDB_LIGHT_TABLE_HEADER          335
 #define IDB_LIGHT_TABLE_TB              336
 #define IDB_LIGHT_TABLE_SEP             337
 #define IDR_PNG4                        338
@@ -276,7 +241,6 @@ ____________________________________________________________________________*/
 #define IDD_PROCESSOR_SHARPEN           382
 #define IDD_SLIDER_EDIT                 383
 #define IDD_FILTER_PANEL                384
-//#define IDD_FILTER_PANEL_ex             385
 #define IDD_FILTER_1                    386
 #define IDD_FILTER_2                    387
 #define IDB_PNG2                        387
@@ -309,7 +273,6 @@ ____________________________________________________________________________*/
 #define IDD_COPY_MOVE_FORM              400
 #define IDD_ERROR                       400
 #define IDB_ROTATE_LEFT                 401
-//#define IDB_ERROR_ICON                  401
 #define IDD_RESIZING1                   401
 #define IDD_PROGRESS                    401
 #define IDB_ROTATE_RIGHT                402
@@ -321,7 +284,6 @@ ____________________________________________________________________________*/
 #define IDB_LIGHT_BULB                  408
 #define IDB_FUNNEL_SMALL                409
 #define IDB_ENTER_TOOLBAR               410
-//#define IDD_UPDATE                      412
 #define IDC_LIST                        1002
 #define IDC_TOOLBAR                     1003
 #define ID_DELETE                       1003
@@ -479,7 +441,6 @@ ____________________________________________________________________________*/
 #define IDC_EXAMPLE_LABEL               1041
 #define IDC_TAGS                        1042
 #define IDC_KEEP_SEL_CENTERED           1043
-//#define IDC_ATTRIBS                     1043
 #define IDC_PRELOAD                     1044
 #define IDC_TAB1                        1044
 #define IDC_TAB                         1044
@@ -602,7 +563,6 @@ ____________________________________________________________________________*/
 #define IDR_SHOW_OPTIONS                1120
 #define IDR_ICM_DLG_POPUP               1121
 #define IDC_ROOT_DIR                    1122
-//#define IDR_TOOLBAR_CONTEXT1            1122
 #define IDR_CAPTION_CONTEXT             1122
 #define IDC_FIELDS                      1123
 #define IDR_FILE_PANE_POPUP             1123
@@ -618,7 +578,6 @@ ____________________________________________________________________________*/
 #define IDR_ATTRIBUTES1                 1127
 #define IDR_METADATA                    1127
 #define IDC_MARGIN_SELECT               1128
-//#define IDR_TOOLBAR_CONTEXT2            1128
 #define IDR_TASK_TOOLBAR_CONTEXT        1128
 #define IDC_MARGIN                      1129
 #define IDR_ATTRIBUTES2                 1129
@@ -670,7 +629,6 @@ ____________________________________________________________________________*/
 #define IDC_PRINTING_ICM                1167
 #define IDC_BUTTON1                     1167
 #define ID_OK                           1167
-//#define IDC_BUTTON_1                    1167
 #define IDC_SAVE_AS                     1167
 #define IDC_ALL                         1167
 #define IDC_PREVIOUS                    1167
@@ -688,20 +646,14 @@ ____________________________________________________________________________*/
 #define IDC_NONE                        1168
 #define IDC_NEXT                        1168
 #define IDC_LOOP                        1168
-//#define IDC_ADD_FILTER                  1168
 #define IDC_CLEAR                       1168
 #define IDC_EDIT_TAGS                   1168
 #define IDC_CALL_STACK                  1168
 #define IDC_COMBO5                      1169
 #define IDC_CHECK5                      1169
-//#define IDC_DEL_FILTER                  1169
-//#define IDC_BUTTON_2                    1170
 #define IDC_FRAME                       1170
-//#define IDC_UPDATE_FILTER               1170
-//#define IDC_BUTTON_3                    1171
 #define IDC_THUMB_ACCESS                1171
 #define IDC_THUMB_MEM                   1172
-//#define IDC_BUTTON_4                    1172
 #define IDC_DATETIMEPICKER1             1174
 #define IDC_DATE                        1174
 #define IDC_DATETIMEPICKER2             1175
@@ -783,7 +735,6 @@ ____________________________________________________________________________*/
 #define IDC_VIRT                        1233
 #define IDC_CREATOR10                   1234
 #define IDC_LABEL3                      1234
-//#define IDC_CAPTIONS                    1235
 #define IDC_LABEL4                      1235
 #define IDC_DIVIDER_1                   1236
 #define IDC_LABEL5                      1236
@@ -816,7 +767,6 @@ ____________________________________________________________________________*/
 #define IDC_AMOUNT                      1251
 #define IDC_THRESHOLD2                  1252
 #define IDC_RADIUS                      1252
-//#define IDC_FILTER_NAME                 1253
 #define IDC_DLG_LIST                    1254
 #define IDC_INCLUDE_TEXT                1255
 #define IDC_EXCLUDE_TEXT                1256
@@ -853,9 +803,6 @@ ____________________________________________________________________________*/
 #define IDC_IMG_SPIN                    1286
 #define IDC_RATE                        1287
 #define IDC_                            1288
-//#define IDI_TAGS_EDIT                   30000
-//#define IDI_TAGS_NO_EDIT                30001
-//#define IDI_WARNING_2                   30002
 #define ID_BROWSER                      32771
 #define ID_FOLDERS                      32773
 #define ID_FOLDER_LIST                  32774
@@ -872,6 +819,7 @@ ____________________________________________________________________________*/
 #define ID_VIEW_TILES                   32785
 #define ID_VIEW_SMALL_THUMBNAILS        32786
 #define ID_SET_CAMERA_FOLDER            32787
+#define ID_VIEWER_TASKBAR               32788
 #define ID_PREVIOUS                     32791
 #define ID_NEXT                         32792
 #define ID_FIRST                        32795
@@ -883,7 +831,6 @@ ____________________________________________________________________________*/
 #define ID_ZOOM_TO_FIT                  32801
 #define ID_VIEWER_BAR                   32802
 #define ID_VIEWER_FULLSCR               32803
-#define ID_VIEWER_TASKBAR				32788
 #define ID_VIEW                         32804
 #define ID_PHOTO_FIRST                  32805
 #define ID_PHOTO_LAST                   32806
@@ -995,8 +942,6 @@ ____________________________________________________________________________*/
 #define IDS_VIEWER_ZOOM_FIT             33401
 #define IDS_VIEWER_PHOTO                33402
 #define IDS_JPEG_FILTER                 33403
-//#define IDS_SAVING_OPTIONS              33404
-//#define IDS_CLOSE_SAVING_OPTIONS        33405
 #define IDS_CHEVRON                     33406
 #define IDS_PROCESS_PHOTOS              33407
 #define IDS_IMG_TRANSFORM_LOADING       33408
@@ -1047,7 +992,6 @@ ____________________________________________________________________________*/
 #define ID_PATH_TYPED                   33484
 #define ID_ADDRESS_BAR                  33485
 #define ID_PATH_CANCELLED               33486
-//#define ID_HELP_WINDOW                  33487
 #define ID_SLIDE_SHOW_PARAMS            33488
 #define IDS_NAVIGATION                  33489
 #define ID_JPEG_ROTATE_90_CW            33490
@@ -1237,7 +1181,7 @@ ____________________________________________________________________________*/
 #define IDS_ZOOMBAR                     33828
 #define IDS_CLOSE_WND                   33829
 #define IDS_RESTOR_WND                  33830
-#define IDS_MINIMIZE_WND				33831
+#define IDS_MINIMIZE_WND                33831
 #define ID_MASK_JPEG                    33900
 #define ID_MASK_PSD                     33901
 #define ID_MASK_TIFF                    33902
@@ -1263,7 +1207,6 @@ ____________________________________________________________________________*/
 #define ID_SHOW_PRINT_AREA              34005
 #define ID_TOGGLE_LIGHT_TABLE           34006
 #define ID_ADD_TO_LIGHT_TABLE           34007
-//#define IDS_LIGHT_TABLE_TOOLBAR         34008
 #define ID_REMOVE_FROM_LIGHT_TABLE      34009
 #define ID_LIGHT_TABLE_OPTIONS          34010
 #define ID_LIGHT_TABLE_COPY             34011
@@ -1327,8 +1270,6 @@ ____________________________________________________________________________*/
 #define ID_SMALL_ICONS                  34110
 #define ID_LARGE_ICONS                  34111
 #define ID_VIEW_PICTURES                34112
-//#define IDS_COPY_FILES                  34113
-//#define IDS_MOVE_FILES                  34114
 #define IDS_FOLDER_LIST_VIEW_TB         34115
 #define IDS_INFO_BAND_OPT               34116
 #define ID_IMAGESPANEOPTIONS_           34117
@@ -1344,8 +1285,7 @@ ____________________________________________________________________________*/
 #define ID_NOTHING                      34153
 #define ID_VIEWER_BAR_SMOOTH_SCROLL     34155
 #define ID_PREVIEWBAR_ID                34157
-//#define ID_VIEWER_BAR_OVERLAY_TAGS      34159
-#define ID_VIEW_SHOW_MARKER				34159
+#define ID_VIEW_SHOW_MARKER             34159
 #define ID_RECENT_FOLDERS               34161
 #define ID_COMPARE_MULTIPLE             34168
 #define ID_HORZ_VIEWS                   34170
@@ -1442,7 +1382,6 @@ ____________________________________________________________________________*/
 #define ID_MASK_RAW_ONLY                34395
 #define ID_HIDE_TAG_PANE                34398
 #define ID_APPLY_TAGS                   34399
-//#define IDC_HELP_BTN                    34400
 #define ID_TAG_FILTER                   34401
 #define ID_HELP_CHECKFORUPDATES         34404
 #define ID_UPDATE_CHECK                 34405
@@ -1501,7 +1440,7 @@ ____________________________________________________________________________*/
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        413
+#define _APS_NEXT_RESOURCE_VALUE        414
 #define _APS_NEXT_COMMAND_VALUE         34411
 #define _APS_NEXT_CONTROL_VALUE         1289
 #define _APS_NEXT_SYMED_VALUE           104

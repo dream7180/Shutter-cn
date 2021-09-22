@@ -38,59 +38,59 @@
     <ProjectGuid>{83399A46-1776-4216-8B8F-ACF66DC52AB1}</ProjectGuid>
     <RootNamespace>ExifPro</RootNamespace>
     <Keyword>MFCProj</Keyword>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ProjectName>Shutter</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseANSI|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <UseOfMfc>Static</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugANSI|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <UseOfMfc>Dynamic</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <UseOfMfc>Static</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>false</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <UseOfMfc>Dynamic</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseANSI|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <UseOfMfc>Static</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugANSI|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <UseOfMfc>Dynamic</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <UseOfMfc>Static</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>false</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <UseOfMfc>Dynamic</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -624,7 +624,7 @@
     <ClCompile Include="FilterData.cpp" />
     <ClCompile Include="FilterDialogs.cpp" />
     <ClCompile Include="FilterPanelDlg.cpp" />
-	<ClCompile Include="FilterRules.cpp" />
+    <ClCompile Include="FilterRules.cpp" />
     <ClCompile Include="FixRotatedPhoto.cpp" />
     <ClCompile Include="GetDefaultGuiFont.cpp" />
     <ClCompile Include="ImageLabelDlg.cpp" />
@@ -760,7 +760,7 @@
     <ClCompile Include="ExtractingThread.cpp" />
     <ClCompile Include="ExtractJpegDlg.cpp" />
     <ClCompile Include="FileCopyMove.cpp" />
-    <ClCompile Include="FileOperDlg.cpp" />
+    <!--ClCompile Include="FileOperDlg.cpp" /-->
     <ClCompile Include="FileRenameDlg.cpp" />
     <ClCompile Include="FileSend.cpp" />
     <ClCompile Include="GenHTMLAlbumDlg.cpp" />
@@ -1003,7 +1003,7 @@
     <ClCompile Include="TransformationThread.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="ExifPro.rc">
+    <ResourceCompile Include="Shutter.rc">
       <Culture Condition="'$(Configuration)|$(Platform)'=='Release|x64'">0x0804</Culture>
     </ResourceCompile>
   </ItemGroup>
@@ -1133,7 +1133,7 @@
     <ClInclude Include="FileErrorDlg.h" />
     <ClInclude Include="FileGuard.h" />
     <ClInclude Include="FileListCtrl.h" />
-    <ClInclude Include="FileOperDlg.h" />
+    <!--ClInclude Include="FileOperDlg.h" /-->
     <ClInclude Include="FilePaneWnd.h" />
     <ClInclude Include="FileRenameDlg.h" />
     <ClInclude Include="FileSend.h" />
@@ -1141,7 +1141,7 @@
     <ClInclude Include="FilterData.h" />
     <ClInclude Include="FilterDialogs.h" />
     <ClInclude Include="FilterPanelDlg.h" />
-	<ClInclude Include="FilterRules.h" />
+    <ClInclude Include="FilterRules.h" />
     <ClInclude Include="FindTabCtrl.h" />
     <ClInclude Include="FolderListCtrl.h" />
     <ClInclude Include="FolderPane.h" />
@@ -1650,7 +1650,7 @@
   <ItemGroup>
     <None Include="res\copy-anim.avi" />
     <None Include="res\cross.cur" />
-    <None Include="res\ExifPro.rc2" />
+    <None Include="res\Shutter.rc2" />
     <None Include="res\eye_drop.cur" />
     <None Include="res\horz_line_res.cur" />
     <None Include="res\horz_resize.cur" />
@@ -1757,7 +1757,7 @@
   </ImportGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties RESOURCE_FILE="ExifPro.rc" />
+      <UserProperties RESOURCE_FILE="Shutter.rc" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

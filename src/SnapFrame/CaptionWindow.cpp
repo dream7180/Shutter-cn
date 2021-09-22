@@ -187,13 +187,6 @@ CaptionWindow::CaptionWindow()
 
 		//InitializeImageLists(static_active_caption_color, static_inactive_caption_color);
 
-		// create bold font
-		//HFONT font= static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
-		//LOGFONT lf;
-		//::GetObject(font, sizeof(lf), &lf);
-		//lf.lfWeight = FW_NORMAL;
-		//_tcscpy(lf.lfFaceName, _T("Segoe UI Semibold"));
-		//title_fnt_.CreateFontIndirect(&lf);
 
 		//big_ = AfxGetApp()->GetProfileInt(REG_KEY, REG_ENTRY, big_) != 0;
 	}

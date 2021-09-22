@@ -244,16 +244,6 @@ BOOL ViewerTagPane::OnEraseBkgnd(CDC* dc)
 		dc->FillSolidRect(rect, RGB(25,25,25));
 		//impl_.header_.Draw(dc, rect);
 
-		/*HFONT hfont= static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
-		LOGFONT lf;
-		::GetObject(hfont, sizeof(lf), &lf);
-		lf.lfWeight = FW_BOLD;
-		//lf.lfHeight += 1;
-		//lf.lfQuality = ANTIALIASED_QUALITY;
-		_tcscpy(lf.lfFaceName, _T("Tahoma"));
-		CFont font;
-		font.CreateFontIndirect(&lf);
-*/
 		CFont* old= dc->SelectObject(&GetDefaultGuiFont());//&_font);
 		dc->SetTextColor(TITLE_TEXT_COLOR);
 		dc->SetBkMode(TRANSPARENT);

@@ -174,12 +174,6 @@ void DlgListCtrl::SelectFont(CDC& dc)
 		dc.SelectObject(font);
 	else{
 		LOGFONT lf;
-		/*HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
-		::GetObject(hfont, sizeof(lf), &lf);
-		lf.lfWeight = FW_NORMAL;
-		//lf.lfHeight += 1;
-		lf.lfQuality = CLEARTYPE_QUALITY;
-		_tcscpy(lf.lfFaceName, _T("Microsoft Yahei"));*/
 		::GetDefaultGuiFont(lf);
 		_font.CreateFontIndirect(&lf);
 		dc.SelectObject(&_font);

@@ -1,10 +1,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27004.2009
+# Visual Studio 16
+VisualStudioVersion = 16.0.31702.278
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libs", "libs", "{F19F8CE6-A679-4F07-9001-B633405D41A9}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ExifPro", "src\ExifPro.vcxproj", "{83399A46-1776-4216-8B8F-ACF66DC52AB1}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Shutter", "src\Shutter.vcxproj", "{83399A46-1776-4216-8B8F-ACF66DC52AB1}"
 	ProjectSection(ProjectDependencies) = postProject
 		{C5BB1536-3776-4474-861D-B5923C610FE4} = {C5BB1536-3776-4474-861D-B5923C610FE4}
 	EndProjectSection
@@ -72,7 +72,7 @@ Global
 		{D472AF5A-E596-4807-B395-9DFB34B3A658}.MinSizeRel|x64.Build.0 = Release|x64
 		{D472AF5A-E596-4807-B395-9DFB34B3A658}.Release|Win32.ActiveCfg = Release|Win32
 		{D472AF5A-E596-4807-B395-9DFB34B3A658}.Release|Win32.Build.0 = Release|Win32
-		{D472AF5A-E596-4807-B395-9DFB34B3A658}.Release|x64.ActiveCfg = Release|Win32
+		{D472AF5A-E596-4807-B395-9DFB34B3A658}.Release|x64.ActiveCfg = Release|x64
 		{D472AF5A-E596-4807-B395-9DFB34B3A658}.RelWithDebInfo|Win32.ActiveCfg = Release|Win32
 		{D472AF5A-E596-4807-B395-9DFB34B3A658}.RelWithDebInfo|Win32.Build.0 = Release|Win32
 		{D472AF5A-E596-4807-B395-9DFB34B3A658}.RelWithDebInfo|x64.ActiveCfg = Release|x64

@@ -294,7 +294,7 @@ void Config::Restore()
 	default_description_font_.lfHeight -= 14;
 	default_description_font_.lfWeight = FW_BOLD;
 	//default_description_font_.lfQuality = ANTIALIASED_QUALITY;
-	_tcscpy(default_description_font_.lfFaceName, _T("Tahoma"));
+	_tcscpy(default_description_font_.lfFaceName, _T("Microsoft Yahei"));
 	/*default_description_font_.lfItalic = 0;
 	default_description_font_.lfUnderline = 0;
 	default_description_font_.lfStrikeOut = 0;
@@ -530,11 +530,9 @@ void Config::Restore()
 
 	//HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
 	::GetObject(hfont, sizeof(img_default_tag_font_), &img_default_tag_font_);
-	img_default_tag_font_.lfHeight -= 2;
-	_tcscpy(img_default_tag_font_.lfFaceName, _T("Tahoma"));
-	//img_default_tag_font_.lfQuality = ANTIALIASED_QUALITY;
-	img_default_tag_font_.lfWeight = FW_BOLD;
-	//img_default_tag_font_ = ::CreateBoldLogFont(0);
+	//img_default_tag_font_.lfHeight -= 2;
+	_tcscpy(img_default_tag_font_.lfFaceName, _T("Microsoft Yahei"));
+	//img_default_tag_font_.lfWeight = FW_BOLD;
 	img_tag_font_ = img_default_tag_font_;
 
 	{

@@ -185,10 +185,6 @@ void DrawPaneIndicator(CDC& dc, const CRect& rect, COLORREF text_color, COLORREF
 	dc.SetTextColor(text_color);
 	LOGFONT lf;
 	::GetDefaultGuiBoldFont(lf);
-	/*HFONT hfont = static_cast<HFONT>(::GetStockObject(DEFAULT_GUI_FONT));
-	::GetObject(hfont, sizeof(lf), &lf);
-	lf.lfQuality = CLEARTYPE_QUALITY;
-	_tcscpy(lf.lfFaceName, _T("Microsoft Yahei"));*/
 	CFont _font;
 	_font.CreateFontIndirect(&lf);
 	int size= sizeof(&_font)*2 + 4;
