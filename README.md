@@ -1,4 +1,4 @@
-#Shutter
+# Shutter
 
 Shutter 基于停止开发的 ExifPro ( https://github.com/mikekov/ExifPro ), 是一个优秀的图像浏览，查看及管理工具, 使用 VC++ 开发, 小巧快速, 支持查看丰富的 EXIF 信息, 非常适用于查看您的 RAW 数字照片和其他常规图像.
 
