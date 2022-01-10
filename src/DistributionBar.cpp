@@ -530,13 +530,13 @@ return false;
 ///////////////////////////////////////////////////////////////////////////////
 
 static const int TOP_DIST= 4;
-static const int HIST_HEIGHT= 20;
+static const int HIST_HEIGHT= 22;
 
 extern int GetDefaultLineHeight();
 
 int DistributionBar::GetHeight() const
 {
-	return Pixels(48);
+	return Pixels(TOP_DIST)*2 + HIST_HEIGHT + GetDefaultLineHeight();//Pixels(20 + GetDefaultLineHeight());
 }
 
 
@@ -783,7 +783,7 @@ BOOL DistributionBar::OnEraseBkgnd(CDC* dc_ptr)
 
 	CRect hist_rect= rect;
 	hist_rect.top += Pixels(TOP_DIST);
-	hist_rect.bottom = hist_rect.top + Pixels(dc, HIST_HEIGHT);
+	hist_rect.bottom = hist_rect.top + HIST_HEIGHT;//Pixels(dc, HIST_HEIGHT);
 	hist_rect.left += impl_->leftMargin_ + Pixels(dc, 6);
 	hist_rect.right -= impl_->rightMargin_ + Pixels(dc, 10);
 
@@ -1108,7 +1108,7 @@ DistributionBar::Impl::Precision DistributionBar::Impl::DrawTimeHistogram(CDC& d
 					int cnt= hist.GetCount(year, month, day);
 					DrawHistBar(dc, cnt, max_count, x, y, CSize(daySpace, rect.Height()), rgb_bar, rgb_outline);
 
-					CPoint label_pos(x + Pixels(dc, 1), Pixels(dc, y) + 2);
+					CPoint label_pos(x + 1, y + Pixels(TOP_DIST));//(x + Pixels(dc, 1), Pixels(dc, y));// + 2);
 
 					// label for a year?
 					if ((i == 0 && years_span == 1) || (drawYearsNames && month == 1 && day == 1))
@@ -1173,7 +1173,7 @@ DistributionBar::Impl::Precision DistributionBar::Impl::DrawTimeHistogram(CDC& d
 				int cnt= hist.GetCount(year, month);
 				DrawHistBar(dc, cnt, max_count, x, y, CSize(monthSpace, rect.Height()), rgb_bar, rgb_outline);
 
-				CPoint label_pos(x + 1, y + 2);
+				CPoint label_pos(x + 1, y + Pixels(TOP_DIST));//(x + Pixels(dc, 1), Pixels(dc, y));
 				int month_text_width= monthSpace;
 				bool year_label= (i == 0 && years_span == 1) || (drawYearsNames && month == 1);
 

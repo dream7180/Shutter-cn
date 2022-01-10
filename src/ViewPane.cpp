@@ -79,7 +79,7 @@ struct ViewPane::Impl
 };
 
 
-ViewPane::ViewPane(bool coolSB/*= false*/) : impl_(new Impl())
+ViewPane::ViewPane(/*bool coolSB= false*/) : impl_(new Impl())
 {
 	impl_->self_ = this;
 	logical_zoom_ = ZOOM_TO_FIT;
@@ -97,7 +97,7 @@ ViewPane::ViewPane(bool coolSB/*= false*/) : impl_(new Impl())
 	cache_ = 0;
 	cur_photo_ = 0;
 	scroll_bars_enabled_ = true;
-	use_cool_scroll_bars_ = coolSB;
+	//use_cool_scroll_bars_ = coolSB;
 //	padding_ = CRect(8, 8, 8, 8);
 	padding_.SetRectEmpty();
 
@@ -135,7 +135,7 @@ BEGIN_MESSAGE_MAP(ViewPane, CWnd)
 	ON_MESSAGE(WM_USER + 999, OnPartialLoad)
 	ON_MESSAGE(WM_USER + 998, OnOrientationChanged)
 	ON_MESSAGE(WM_USER + 1000, OnImgReloadingDone)
-	ON_NOTIFY_RANGE(CoolScrollBar::COOLSB_CUSTOMDRAW, 0, 0xffff, OnCustDrawScrollBar)
+	///ON_NOTIFY_RANGE(CoolScrollBar::COOLSB_CUSTOMDRAW, 0, 0xffff, OnCustDrawScrollBar)
 	ON_WM_HSCROLL()
 	ON_WM_VSCROLL()
 	ON_WM_MBUTTONDOWN()
@@ -162,23 +162,25 @@ bool ViewPane::Create(CWnd* parent)
 
 //	transparent_bar_wnd_.Create(this, -1);
 
-	if (!scroll_bar_.Create(*this, use_cool_scroll_bars_))
+	if (!scroll_bar_.Create(*this, true))//use_cool_scroll_bars_))
 		return false;
+	scroll_bar_.SetStyle(SB_BOTH, CoolScrollBar::COOLSB_FLAT);
+	scroll_bar_.SetColors(RGB(130,130,130), RGB(165,165,165), RGB(200,200,200));
 
-	if (use_cool_scroll_bars_)
-	{
+	//if (use_cool_scroll_bars_)
+	//{
 		static const int parts[]= { 21, 1, 21, 9, 1, 9 };
 
-		std::vector<int> p(parts, parts + array_count(parts));
+		//std::vector<int> p(parts, parts + array_count(parts));
 
-		scroll_bar_.LoadImages(IDB_HORZ_SCROLLBARS, IDB_VERT_SCROLLBARS, IDB_GRIP, p, 1.0);
+		//scroll_bar_.LoadImages(IDB_HORZ_SCROLLBARS, IDB_VERT_SCROLLBARS, IDB_GRIP, p, 1.0);
 
 		scroll_bar_.SetHotTrack(SB_BOTH, true);
 
 		// for custom draw scrollbars set sizes
 		scroll_bar_.SetSize(SB_BOTH, parts[0], 16);
 		scroll_bar_.SetMinThumbSize(SB_BOTH, 9 + 1 + 9);
-	}
+	//}
 
 	if (g_Settings.display_method_ == DIB_DIRECT_2D && Direct2D::IsAvailable())
 		impl_->direct_render_.reset(new DirectRender(m_hWnd));
@@ -2738,10 +2740,10 @@ void ViewPane::AlphaTransition(Dib& dibExisting, Dib& dibNext, Dib& dibResult, i
 }
 
 
-void ViewPane::OnCustDrawScrollBar(UINT id, NMHDR* hdr, LRESULT* result)
-{
-	*result = scroll_bar_.HandleCustomDraw(hdr);
-}
+///void ViewPane::OnCustDrawScrollBar(UINT id, NMHDR* hdr, LRESULT* result)
+///{
+///	*result = scroll_bar_.HandleCustomDraw(hdr);
+///}
 
 
 //-----------------------------------------------------------------------------

@@ -11,6 +11,8 @@ ____________________________________________________________________________*/
 
 #include "DockedPane.h"
 #include "PhotoInfo.h"
+#include "ToolBarWnd.h"
+#include "ColorSets.h"
 class PhotoTagsCollection;
 
 
@@ -40,7 +42,8 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 private:
-	static const int VIEWER_TAGPANE_H = 60;
+	//static const int VIEWER_TAGPANE_H = 60;
+	int header_h;
 	struct Impl;
 	Impl& impl_;
 

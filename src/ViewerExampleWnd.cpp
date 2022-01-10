@@ -67,7 +67,7 @@ int ViewerExampleWnd::OnCreate(LPCREATESTRUCT create_struct)
 
 	//VERIFY(preview_bar_wnd_.Create(this, &list_bar_wnd_));
 
-	preview_.Create(this);
+	preview_.Create(this, false);
 	preview_.EnableToolTips(false);
 	preview_.SetItemDrawCallback(boost::bind(&ViewerExampleWnd::DrawItem, this, _1, _2, _3, _4));
 	preview_.SetOrientation(true);

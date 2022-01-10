@@ -7,7 +7,8 @@ ____________________________________________________________________________*/
 
 #pragma once
 
-#include "viewer/FancyToolBar.h"
+//#include "viewer/FancyToolBar.h"
+#include "ToolBarWnd.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // InfoBand window
@@ -69,7 +70,7 @@ protected:
 //	ToolBarWnd options_wnd_;
 	int tool_bar_width_;
 	InfoBandNotification* recipient_;
-	FancyToolBar options_;
+	ToolBarWnd options_;
 	const Columns& columns_;
 
 	void OptionsPopup(CPoint pos);

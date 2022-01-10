@@ -8,7 +8,7 @@ ____________________________________________________________________________*/
 #pragma once
 
 #include "FolderView.h"
-#include "TaskBarView.h"
+///#include "TaskBarView.h"
 #include "Pane.h"
 #include "ToolBarWnd.h"
 #include "FolderPath.h"

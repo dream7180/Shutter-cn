@@ -152,8 +152,8 @@ BEGIN_MESSAGE_MAP(ExifView, PaneWnd)
 	ON_UPDATE_COMMAND_UI(ID_GROUP_FLAT, OnUpdateNoGrouping)
 	ON_COMMAND(ID_TASK_GEN_HTML_ALBUM, OnTaskGenHTMLAlbum)
 	ON_UPDATE_COMMAND_UI(ID_TASK_GEN_HTML_ALBUM, OnUpdateSelectionRequired)
-	ON_COMMAND(ID_TASK_EXPORT, OnTaskExport)
-	ON_UPDATE_COMMAND_UI(ID_TASK_EXPORT, OnUpdateTaskExport)
+	//ON_COMMAND(ID_TASK_EXPORT, OnTaskExport)
+	//ON_UPDATE_COMMAND_UI(ID_TASK_EXPORT, OnUpdateTaskExport)
 	ON_COMMAND(ID_TASK_ROTATE, OnTaskRotate)
 	ON_UPDATE_COMMAND_UI(ID_TASK_ROTATE, OnUpdateTaskRotate)
 	ON_COMMAND(ID_STICKY_SELECTION, OnStickySelection)
@@ -175,6 +175,8 @@ BEGIN_MESSAGE_MAP(ExifView, PaneWnd)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_TAGGED, OnUpdateViewTagged)
 	ON_COMMAND(ID_OPEN_IN_EXPLORER, OnOpenInExplorer)
 	ON_UPDATE_COMMAND_UI(ID_OPEN_IN_EXPLORER, OnUpdateOpenInExplorer)
+	ON_COMMAND(ID_PROPETIES, OnShowProperties)
+	ON_UPDATE_COMMAND_UI(ID_PROPETIES, OnUpdateShowProperties)
 	ON_COMMAND(ID_OPEN_PHOTO, OnOpenPhoto)
 	ON_UPDATE_COMMAND_UI(ID_OPEN_PHOTO, OnUpdateOpenPhoto)
 	ON_WM_CONTEXTMENU()
@@ -428,7 +430,7 @@ ExifView::ExifView(Columns& columns)
  : cols_(columns), image_loader_(boost::bind(&PhotoCache::CacheDecodedImage, global_photo_cache.get(), _1, _2), &CreateImageDecoderJob, &CanPhotoBeDecoded), thumbnail_loader_(&CacheThumbnail, &CreateThumbnailDecoderJob, &CanThumbnailBeDecoded)
 {
 	read_only_photos_withEXIF_ = false;
-	recursive_scan_ = true;
+	recursive_scan_ = false;
 	view_mode_ = VIEW_MODE_THUMBNAILS;
 	old_grouping_ = grouping_mode_ = GROUP_BY_FOLDERS;
 	frame_ = 0;
@@ -5224,6 +5226,7 @@ void ExifView::OnUpdateStickySelection(CCmdUI* cmd_ui)
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // export EXIF data from selected photos to text file
 //
+/*
 void ExifView::ExportExifData()
 {
 	VectPhotoInfo selected;
@@ -5260,7 +5263,7 @@ void ExifView::OnUpdateTaskExport(CCmdUI* cmd_ui)
 {
 	cmd_ui->Enable(PhotosPresent());
 }
-
+*/
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // rotate photos (lossless JPEG rotation)
@@ -5601,6 +5604,30 @@ void ExifView::OnOpenInExplorer()
 {
 	if (PhotoInfoPtr photo= CurrentItem())
 		::OpenPhotographInExplorer(photo->GetOriginalPath().c_str(), this);
+}
+
+void ExifView::OnUpdateShowProperties(CCmdUI* cmd_ui)
+{
+	cmd_ui->Enable(CurrentItem() != 0 && GetListCtrl().GetSelectedCount() <= 1);
+}
+
+void ExifView::OnShowProperties()
+{	
+	if (PhotoInfoPtr photo= CurrentItem())
+	{
+		SHELLEXECUTEINFO ShExecInfo = {0};
+		ShExecInfo.cbSize = sizeof(SHELLEXECUTEINFO);
+		ShExecInfo.fMask = SEE_MASK_INVOKEIDLIST|SEE_MASK_FLAG_NO_UI;
+		ShExecInfo.hwnd = NULL;//this->GetSafeHwnd();
+		ShExecInfo.lpVerb = _T("properties");
+		CString photo_path = photo->GetOriginalPath().c_str();
+		ShExecInfo.lpFile = photo_path;
+		ShExecInfo.lpParameters = _T(""); 
+		ShExecInfo.lpDirectory = NULL;
+		ShExecInfo.nShow = SW_SHOW;
+		ShExecInfo.hInstApp = NULL; 
+		ShellExecuteEx(&ShExecInfo);
+	}
 }
 
 

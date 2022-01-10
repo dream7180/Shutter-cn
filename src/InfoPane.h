@@ -58,8 +58,8 @@ protected:
 	afx_msg void OnUpdateRawInfo(CCmdUI* cmd_ui);
 	afx_msg void OnCopyInfo();
 	afx_msg void OnUpdateCopyInfo(CCmdUI* cmd_ui);
-	afx_msg void OnExportExif();
-	afx_msg void OnUpdateExportExif(CCmdUI* cmd_ui);
+	//afx_msg void OnExportExif();
+	//afx_msg void OnUpdateExportExif(CCmdUI* cmd_ui);
 	afx_msg void OnTogglePreview();
 	afx_msg void OnUpdateTogglePreview(CCmdUI* cmd_ui);
 	afx_msg void OnDestroy();

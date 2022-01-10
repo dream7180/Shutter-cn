@@ -70,6 +70,7 @@ BEGIN_MESSAGE_MAP(BrowserToolbar, CWnd)
 	ON_WM_INITMENUPOPUP()
 	ON_WM_CONTEXTMENU()
 	ON_WM_SIZE()
+	ON_WM_LBUTTONDOWN()
 	ON_WM_ERASEBKGND()
 END_MESSAGE_MAP()
 
@@ -289,9 +290,13 @@ void BrowserToolbar::PressButton(int cmd, bool down)
 {
 	UINT index= main_bar_.CommandToIndex(cmd);
 	if (index == 0-1)
+	{	
 		panels_.PressButton(cmd, down);
+	}
 	else
+	{	
 		main_bar_.PressButton(cmd, down);
+	}
 }
 
 
@@ -355,4 +360,12 @@ void BrowserToolbar::SetBackgroundColor(COLORREF color)
 	background_ = color;
 	if (m_hWnd)
 		Invalidate();
+}
+
+
+void BrowserToolbar::OnLButtonDown(UINT flags, CPoint pt)
+{
+	SetFocus();
+	ASSERT_VALID(this);
+	CWnd::OnLButtonDown(flags, pt);//   pass it on...
 }

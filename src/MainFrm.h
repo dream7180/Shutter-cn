@@ -75,7 +75,7 @@ protected:  // control bar embedded members
 	Columns		columns_;
 
 	enum { MAX_FAVORITE_FOLDERS= 1000, MAX_FILE_MASKS= 100 };
-	enum { MAX_RECENT_PATHS= 10 };
+	//enum { MAX_RECENT_PATHS= 20 };
 
 	virtual void GetMessageString(UINT id, CString& message) const;
 	virtual void OnUpdateFrameTitle(BOOL add_to_title);

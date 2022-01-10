@@ -27,6 +27,7 @@ ____________________________________________________________________________*/
 #include <set>
 #include "SetWindowSize.h"
 #include "UIElements.h"
+#include "ColorSets.h"
 
 extern void DrawParentBkgnd(CWnd& wnd, CDC& dc);
 
@@ -245,7 +246,7 @@ BOOL TagsBarCommon::OnEraseBkgnd(CDC* dc)
 	if (use_parent_background_)
 		DrawParentBkgnd(*this, *dc);
 	else
-		dc->FillSolidRect(rect, rgb_background_);
+		dc->FillSolidRect(rect, g_Colorsets.color_gui);//rgb_background_);
 
 	return true;
 }

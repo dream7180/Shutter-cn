@@ -644,7 +644,7 @@ BOOL PrintDlg::InitDialog()
 		preview_wnd_.SetDlgCtrlID(IDC_PREVIEW);
 	}
 	auto dpi = GetResolutionDpi();
-	const int img_width= static_cast<int>(48/dpi.Width*96);
+	const int img_width= static_cast<int>(49/dpi.Width*96);
 	VERIFY(::LoadImageList(img_list_layouts_, IDB_LAYOUTS, img_width, RGB(255,255,255), false));
 	type_wnd_.SetIconSpacing(img_width + 30, 126 + 26);
 	type_wnd_.SetImageList(&img_list_layouts_, LVSIL_NORMAL);

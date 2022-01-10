@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -274,6 +274,9 @@ int SimpleReBar::Impl::GetHeight()
 {
 	int h1= band1_.visible_ ? band1_.rect_.Height() : 0;
 	int h2= band2_.visible_ ? band2_.rect_.Height() : 0;
+//	CString inivalue;
+//	inivalue.Format(L"%d", h2);
+//	AfxMessageBox(inivalue, MB_OK);
 
 	int height= max(h1, h2);
 

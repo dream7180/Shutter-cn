@@ -24,8 +24,8 @@ using namespace std;
 extern void DrawParentBkgnd(CWnd& wnd, CDC& dc);
 
 
-static const int SBAR_SIZE= 20;	// height of horz scrollbar (derived from the height of a bitmap)
-COLORREF background = RGB(25,25,25);
+static const int SBAR_SIZE= 15;	// height of horz scrollbar (derived from the height of a bitmap)
+//COLORREF background = RGB(207,207,207);
 
 
 struct Item
@@ -48,7 +48,7 @@ struct PreviewBandWnd::Impl
 		current_item_ = NONE;
 		clicked_item_ = NONE;
 		valid_layout_ = false;
-		horz_layout_ = false;
+		horz_layout_ = true;
 		img_pos_range_ = 0;
 		aspect_ratios_ = make_pair(1.0, 1.0);
 		first_item_idx = 0;
@@ -63,6 +63,7 @@ struct PreviewBandWnd::Impl
 		click_location_ = CPoint(0, 0);
 		keep_selected_centered_ = false;
 		reserved_vert_space_ = 0;
+		_light = false;
 	}
 
 	void AddItem(AnyPointer key, CSize size);
@@ -105,7 +106,7 @@ struct PreviewBandWnd::Impl
 	bool IsEmpty() const				{ return items_.empty(); }
 	size_t GetCount() const				{ return items_.size(); }
 
-	void PaintToBmp(Dib& bmp, CRect rect, CPoint scrl, bool scrollbar, bool draw_shadow);
+	void PaintToBmp(Dib& bmp, CRect rect, CPoint scrl, bool scrollbar);//, bool draw_shadow);
 	void SmoothScroll(CDC& dc, CRect rect, CSize delta, bool scrollbar, bool repeated, int speed, int x_pos, int x_old);
 
 	//void ScrollToCenter(PreviewBandWnd& self, size_t photo);
@@ -132,6 +133,7 @@ struct PreviewBandWnd::Impl
 	CPoint click_location_;
 	bool keep_selected_centered_;
 	int reserved_vert_space_;
+	bool _light;
 
 	static const size_t NONE= ~0;
 
@@ -579,7 +581,7 @@ BEGIN_MESSAGE_MAP(PreviewBandWnd, CWnd)
 	ON_WM_SIZE()
 	ON_MESSAGE(WM_PRINTCLIENT, OnPrintClient)
 	ON_WM_DESTROY()
-	ON_NOTIFY_RANGE(CoolScrollBar::COOLSB_CUSTOMDRAW, 0, 0xffff, OnCustDrawScrollBar)
+	///ON_NOTIFY_RANGE(CoolScrollBar::COOLSB_CUSTOMDRAW, 0, 0xffff, OnCustDrawScrollBar)
 	ON_WM_HSCROLL()
 	ON_WM_VSCROLL()
 	ON_NOTIFY_EX_RANGE(TTN_NEEDTEXT, 0, 0xFFFF, OnToolTipNotify)
@@ -601,21 +603,21 @@ void PreviewBandWnd::SetUIBrightness(double gamma)
 	//if (!pImpl_->IsHorzLayout())
 		//pImpl_->backgnd_bottom_.RotateInPlace(false);
 
-	if (gamma != 1.0)
-	{
-		pImpl_->scrollbar_.SetImages(IDB_PREVIEW_SCRL_BAR, IDB_PREVIEW_SCRL_BAR_V, 0, gamma);
+	///if (gamma != 1.0)
+	///{
+		///pImpl_->scrollbar_.SetImages(IDB_PREVIEW_SCRL_BAR, IDB_PREVIEW_SCRL_BAR_V, 0, gamma);
 		//::ApplyGammaInPlace(&pImpl_->backgnd_, gamma, -1, -1);
 		//::ApplyGammaInPlace(&pImpl_->backgnd_top_, gamma, -1, -1);
 		//::ApplyGammaInPlace(&pImpl_->backgnd_bottom_, gamma, -1, -1);
 		//::ApplyGammaInPlace(&pImpl_->backgnd_vert_, gamma, -1, -1);
 		//::ApplyGammaInPlace(&pImpl_->backgnd_vert_right_, gamma, -1, -1);
-	}
+	///}
 
 	Invalidate(false);
 }
 
 
-bool PreviewBandWnd::Create(CWnd* parent)
+bool PreviewBandWnd::Create(CWnd* parent, bool isLightTable)
 {
 	if (!CWnd::Create(AfxRegisterWndClass(CS_VREDRAW | CS_HREDRAW | CS_DBLCLKS, AfxGetApp()->LoadStandardCursor(IDC_ARROW), 0, 0),
 		0, WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN, CRect(0,0,0,0), parent, 0x7ff0))
@@ -630,12 +632,17 @@ bool PreviewBandWnd::Create(CWnd* parent)
 
 	if (!pImpl_->scrollbar_.Create(*this, true))
 		return false;
+	pImpl_->scrollbar_.SetStyle(SB_BOTH, CoolScrollBar::COOLSB_FLAT);
+	if (isLightTable) {
+		pImpl_->_light = true;
+		pImpl_->scrollbar_.SetColors(RGB(230,230,230), RGB(205,205,205), RGB(166,166,166));
+	} else pImpl_->scrollbar_.SetColors(g_Colorsets.color_previewband_bg, RGB(125,125,125), RGB(160,160,160));
 
 	static const int parts[]= { 14, 1, 14, 10, 1, 10 };
 
-	vector<int> p(parts, parts + array_count(parts));
+	///vector<int> p(parts, parts + array_count(parts));
 
-	pImpl_->scrollbar_.LoadImages(IDB_PREVIEW_SCRL_BAR, IDB_PREVIEW_SCRL_BAR_V, 0, p, pImpl_->ui_gamma_);
+	///pImpl_->scrollbar_.LoadImages(IDB_PREVIEW_SCRL_BAR, IDB_PREVIEW_SCRL_BAR_V, 0, p, pImpl_->ui_gamma_);
 
 	pImpl_->scrollbar_.SetHotTrack(SB_BOTH, true);
 
@@ -743,7 +750,7 @@ BOOL PreviewBandWnd::OnEraseBkgnd(CDC* dc)
 			bool scrollbar= !!(style & (WS_HSCROLL | WS_VSCROLL));
 
 			Dib bmp;
-			pImpl_->PaintToBmp(bmp, rect, scrl, scrollbar, true);
+			pImpl_->PaintToBmp(bmp, rect, scrl, scrollbar);//, true);
 
 			bmp.Draw(dc, CPoint(0, 0));
 		}
@@ -767,9 +774,9 @@ void PreviewBandWnd::OnPaint()
 }
 
 
-static const int SHADOW_H= 5;		// height of drop shadow
-static const float SHADOW_OP= 0.3f;	// shadow's opacity
-static const int SHADOW_DIR= 2;		// shadow's direction
+//static const int SHADOW_H= 5;		// height of drop shadow
+//static const float SHADOW_OP= 0.3f;	// shadow's opacity
+//static const int SHADOW_DIR= 2;		// shadow's direction
 
 void PreviewBandWnd::Paint(CDC& paint_dc)
 {
@@ -787,16 +794,16 @@ void PreviewBandWnd::Paint(CDC& paint_dc)
 	bool scrollbar= !!(style & (WS_HSCROLL | WS_VSCROLL));
 
 	Dib bmp;
-	pImpl_->PaintToBmp(bmp, rect, scrl, scrollbar, true);
+	pImpl_->PaintToBmp(bmp, rect, scrl, scrollbar);//, true);
 
 	bmp.Draw(&paint_dc, CPoint(0, 0));
-//	paint_dc.BitBlt(0, 0, bmp.GetWidth(), bmp.GetHeight(), &dc, 0, 0, SRCCOPY);
+	//paint_dc.BitBlt(0, 0, bmp.GetWidth(), bmp.GetHeight(), &dc, 0, 0, SRCCOPY);
 }
 
 
-void PreviewBandWnd::Impl::PaintToBmp(Dib& bmp, CRect rect, CPoint scrl, bool scrollbar, bool draw_shadow)
+void PreviewBandWnd::Impl::PaintToBmp(Dib& bmp, CRect rect, CPoint scrl, bool scrollbar)//, bool draw_shadow)
 {
-	CRect shadow_rect= rect;
+	//CRect shadow_rect= rect;
 
 	if (rect.IsRectEmpty())
 		return;
@@ -809,6 +816,9 @@ void PreviewBandWnd::Impl::PaintToBmp(Dib& bmp, CRect rect, CPoint scrl, bool sc
 	CBitmap* oldBmp= dc.SelectObject(bmp.GetBmp());
 
 	// draw background
+	COLORREF backgnd;
+	if(_light) backgnd = g_Colorsets.color_gui;
+	else backgnd = g_Colorsets.color_previewband_bg;
 	if (IsHorzLayout())
 	{
 		CRect t= rect;
@@ -821,7 +831,7 @@ void PreviewBandWnd::Impl::PaintToBmp(Dib& bmp, CRect rect, CPoint scrl, bool sc
 		//	r.bottom -= SBAR_SIZE;
 		//if (t.Height() > 0)
 			//backgnd_.Draw(&dc, r);
-			dc.FillSolidRect(t, background);
+		dc.FillSolidRect(t, backgnd);
 
 		/*if (!scrollbar)
 		{
@@ -836,9 +846,9 @@ void PreviewBandWnd::Impl::PaintToBmp(Dib& bmp, CRect rect, CPoint scrl, bool sc
 		if (!scrollbar)
 			t.right -= SBAR_SIZE;
 		//backgnd_vert_.Draw(&dc, t);
-		dc.FillSolidRect(t, background);
-		t.bottom = t.top + SHADOW_H;
-		shadow_rect = t;
+		dc.FillSolidRect(t, backgnd);
+		//t.bottom = t.top + SHADOW_H;
+		//shadow_rect = t;
 
 		if (!scrollbar)
 		{
@@ -847,7 +857,7 @@ void PreviewBandWnd::Impl::PaintToBmp(Dib& bmp, CRect rect, CPoint scrl, bool sc
 			if (r.Width() > 0)
 			{
 				//backgnd_bottom_.Draw(&dc, r);
-				dc.FillSolidRect(r, background);
+				dc.FillSolidRect(r, backgnd);
 				//r.bottom = r.top + backgnd_vert_right_.GetHeight();
 				//backgnd_vert_right_.Draw(&dc, r);
 			}
@@ -876,7 +886,8 @@ void PreviewBandWnd::Impl::PaintToBmp(Dib& bmp, CRect rect, CPoint scrl, bool sc
 				if (i == current_item_ && draw_selection_)	// selected item?
 				{
 					// draw selection
-					DrawGlowEffect(bmp, frm, selection_color_, 1.0f, EFFECT_SIZE + 1, true);
+					if(!_light) DrawGlowEffect(bmp, frm, selection_color_, 1.0f, EFFECT_SIZE + 1, true);
+					else DrawGlowEffect(bmp, frm, RGB(120,0,255), 1.8f, 3, true);
 				}
 				else
 				{
@@ -897,13 +908,13 @@ void PreviewBandWnd::Impl::PaintToBmp(Dib& bmp, CRect rect, CPoint scrl, bool sc
 		}
 	}
 
-	if (!IsHorzLayout() && draw_shadow)
-	{
+	//if (!IsHorzLayout() && draw_shadow)
+	//{
 		// add drop shadow at the top of window
-		DrawBlackGradient(bmp, shadow_rect, SHADOW_OP, SHADOW_DIR);
-	}
+	//	DrawBlackGradient(bmp, shadow_rect, SHADOW_OP, SHADOW_DIR);
+	//}
 
-//	paint_dc.BitBlt(0, 0, bmp.GetWidth(), bmp.GetHeight(), &dc, 0, 0, SRCCOPY);
+	//paint_dc.BitBlt(0, 0, bmp.GetWidth(), bmp.GetHeight(), &dc, 0, 0, SRCCOPY);
 
 	dc.SelectObject(oldBmp);
 }
@@ -942,10 +953,10 @@ void PreviewBandWnd::OnDestroy()
 }
 
 
-void PreviewBandWnd::OnCustDrawScrollBar(UINT id, NMHDR* hdr, LRESULT* result)
-{
-	*result = pImpl_->scrollbar_.HandleCustomDraw(hdr);
-}
+///void PreviewBandWnd::OnCustDrawScrollBar(UINT id, NMHDR* hdr, LRESULT* result)
+///{
+///	*result = pImpl_->scrollbar_.HandleCustomDraw(hdr);
+///}
 
 
 void PreviewBandWnd::RemoveAllItems()
@@ -1179,10 +1190,10 @@ bool PreviewBandWnd::OnScrollBy(int scroll, int speed, bool repeated)
 		else
 		{
 			//HACK: shadow on the top must not be scrolled
-			CRect rect(0,0,0,0);
-			GetClientRect(rect);
-			rect.bottom = rect.top + SHADOW_H;
-			InvalidateRect(rect);
+			//CRect rect(0,0,0,0);
+			//GetClientRect(rect);
+			//rect.bottom = rect.top + SHADOW_H;
+			//InvalidateRect(rect);
 
 			ScrollWindow(0, delta);
 		}
@@ -1237,7 +1248,7 @@ void PreviewBandWnd::Impl::SmoothScroll(CDC& dc, CRect rect, CSize deltaScr, boo
 	CPoint scrl= GetScrollOffset();
 
 	bool horz= deltaScr.cx != 0;
-	bool shadow= !horz;
+	//bool shadow= !horz;
 	int delta= horz ? deltaScr.cx : deltaScr.cy;
 
 	if (deltaScr.cx < 0)
@@ -1257,10 +1268,10 @@ void PreviewBandWnd::Impl::SmoothScroll(CDC& dc, CRect rect, CSize deltaScr, boo
 	}
 
 	Dib bmp;
-	PaintToBmp(bmp, rect, scrl, scrollbar, false);
-	Dib tmp;
-	if (shadow)
-		tmp.Clone(bmp);
+	PaintToBmp(bmp, rect, scrl, scrollbar);//, false);
+	//Dib tmp;
+	//if (shadow)
+	//	tmp.Clone(bmp);
 
 	if (speed < 1)
 		speed = 1;
@@ -1296,20 +1307,20 @@ void PreviewBandWnd::Impl::SmoothScroll(CDC& dc, CRect rect, CSize deltaScr, boo
 
 		CPoint pos= horz ? CPoint(dist, 0) : CPoint(0, dist);
 
-		if (shadow)
-		{
-			CRect shadow_rect= rect;
-			shadow_rect.top -= dist;
-			shadow_rect.bottom = shadow_rect.top + SHADOW_H;
-			DrawBlackGradient(bmp, shadow_rect, SHADOW_OP, SHADOW_DIR);
-		}
+		//if (shadow)
+		//{
+			//CRect shadow_rect= rect;
+			//shadow_rect.top -= dist;
+			//shadow_rect.bottom = shadow_rect.top + SHADOW_H;
+			//DrawBlackGradient(bmp, shadow_rect, SHADOW_OP, SHADOW_DIR);
+		//}
 
 		bmp.Draw(&dc, pos);
 
 		::GdiFlush();
 
-		if (shadow)
-			memcpy(bmp.GetBuffer(), tmp.GetBuffer(), bmp.GetBufferSize());
+		//if (shadow)
+		//	memcpy(bmp.GetBuffer(), tmp.GetBuffer(), bmp.GetBufferSize());
 
 		if (step == delta)
 			break;

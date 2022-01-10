@@ -16,6 +16,7 @@ ____________________________________________________________________________*/
 #include "CatchAll.h"
 #include "MemoryDC.h"
 #include "GetDefaultGuiFont.h"
+#include "ColorSets.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -35,8 +36,8 @@ InfoBand::InfoBand(const Columns& columns) : columns_(columns)
 	recipient_ = 0;
 	fields_.push_back(COL_DATE_TIME);
 	show_field_names_ = true;
-	text_color_ = RGB(255,255,255);
-	label_color_ = RGB(160, 160, 160);
+	text_color_ = RGB(20,20,20);
+	label_color_ = g_Colorsets.color_viewer_label;//RGB(120, 120, 120);
 }
 
 InfoBand::~InfoBand()
@@ -49,7 +50,7 @@ BEGIN_MESSAGE_MAP(InfoBand, CWnd)
 	ON_WM_PAINT()
 	ON_WM_SIZE()
 	ON_WM_CONTEXTMENU()
-//	ON_NOTIFY(TBN_DROPDOWN, AFX_IDW_TOOLBAR, OnTbDropDown)
+	ON_NOTIFY(TBN_DROPDOWN, AFX_IDW_TOOLBAR, OnTbDropDown)
 	ON_COMMAND(POPUP_CMD, OnPopup)
 	ON_MESSAGE(WM_PRINTCLIENT, OnPrintClient)
 END_MESSAGE_MAP()
@@ -75,18 +76,21 @@ bool InfoBand::Create(CWnd* parent, InfoBandNotification* recipient)
 		0, WS_CHILD | WS_VISIBLE | WS_CLIPCHILDREN, CRect(0, 0, 40, h), parent, -1))
 		return false;
 
-	FancyToolBar::Params p;
-	p.shade = -0.25f;
-	if (!options_.Create(this, "p", &POPUP_CMD, IDB_INFO_BAND_OPT, &p))
+	//FancyToolBar::Params p;
+	//p.shade = -0.25f;
+	//if (!options_.Create(this, "p", &POPUP_CMD, IDB_INFO_BAND_OPT, &p))
+	if (!options_.Create("v", &POPUP_CMD, IDB_INFO_BAND_OPT, 0, this, AFX_IDW_TOOLBAR))
 		return false;
 
-	options_.SetPadding(CRect(2,2,2,2));
+	options_.SetPadding(2,2);
 //	options_.SetOption(FancyToolBar::BEVEL_LOOK, false);
-	options_.SetOption(FancyToolBar::HOT_OVERLAY, false);
+	//options_.SetOption(FancyToolBar::HOT_OVERLAY, false);
 //	options_.SetOption(FancyToolBar::SHIFT_BTN, false);
 	options_.SetOnIdleUpdateState(false);
+	options_.AutoResize();
+	options_.SetOwnerDraw(parent);
 
-	tool_bar_width_ = options_.Size().cx + 1;
+	tool_bar_width_ = options_.tb_size.cx + 1;
 	recipient_ = recipient;
 
 	Resize();
@@ -97,7 +101,8 @@ bool InfoBand::Create(CWnd* parent, InfoBandNotification* recipient)
 
 void InfoBand::OnPopup()
 {
-	CRect rect= options_.GetCmdButtonRect(POPUP_CMD);
+	CRect rect;
+	options_.GetRect(POPUP_CMD, rect);
 	CPoint pos(rect.right, rect.bottom);
 	options_.ClientToScreen(&pos);
 	OptionsPopup(pos);
@@ -217,7 +222,7 @@ void InfoBand::Resize()
 
 	if (options_.m_hWnd)
 	{
-		CSize s= options_.Size();
+		CSize s= options_.tb_size;
 		int x= cx - s.cx - 2;
 		int y= (cy - s.cy - 1) / 2;
 		options_.SetWindowPos(0, x, y, s.cx, s.cy, SWP_NOZORDER | SWP_NOACTIVATE);
@@ -234,23 +239,23 @@ LRESULT InfoBand::OnPrintClient(WPARAM wdc, LPARAM flags)
 }
 
 
-//void InfoBand::OnTbDropDown(NMHDR* nmhdr, LRESULT* result)
-//{
-//	NMTOOLBAR* info_tip= reinterpret_cast<NMTOOLBAR*>(nmhdr);
-//	switch (info_tip->iItem)
-//	{
-//	case ID_INFO_BAR_OPTIONS:
-//		{
-//			CRect rect;
-//			options_wnd_.GetRect(ID_INFO_BAR_OPTIONS, rect);
-//			CPoint pos(rect.left, rect.bottom);
-//			options_wnd_.ClientToScreen(&pos);
-//			OptionsPopup(pos);
-//		}
-//		break;
-//	}
-//	*result = TBDDRET_DEFAULT;
-//}
+void InfoBand::OnTbDropDown(NMHDR* nmhdr, LRESULT* result)
+{
+	NMTOOLBAR* info_tip= reinterpret_cast<NMTOOLBAR*>(nmhdr);
+	switch (info_tip->iItem)
+	{
+	case POPUP_CMD:
+		{
+			CRect rect;
+			options_.GetRect(POPUP_CMD, rect);
+			CPoint pos(rect.left, rect.bottom);
+			options_.ClientToScreen(&pos);
+			OptionsPopup(pos);
+		}
+		break;
+	}
+	*result = TBDDRET_DEFAULT;
+}
 
 
 void InfoBand::OptionsPopup(CPoint pos)

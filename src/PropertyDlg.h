@@ -55,7 +55,9 @@ protected:
 	void OnSaveTemplate();
 	void OnLoadTemplate();
 	void OnLoadTemplateFile(UINT id);
-
+	void onTemplatePopup();
+	//afx_msg void OnUpdateTmpOptions(CCmdUI* cmd_ui);
+	//void OnTbDropDown(CWnd* parent, int cmd, size_t btn_index);
 	DECLARE_MESSAGE_MAP()
 
 private:

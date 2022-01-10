@@ -308,6 +308,7 @@ void EditCombo::OnSetFocus()
 void EditCombo::OnKillFocus()
 {
 	focus_ = false;
+	auto_complete_.ShowWindow(SW_HIDE);
 	Invalidate();
 }
 

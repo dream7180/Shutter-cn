@@ -19,7 +19,7 @@ ____________________________________________________________________________*/
 #include "CatchAll.h"
 #include "ProfileVector.h"
 #include "PreviewPane.h"
-#include "TaskBarView.h"
+///#include "TaskBarView.h"
 #include "OptionsDlg.h"
 #include "PaneNotification.h"
 #include "ManagePaneLayouts.h"
@@ -479,9 +479,9 @@ bool BrowserFrame::CreateWindows()
 		PaneLayoutInfo(folders,   CRect( 0,  0,  20,  60), L"文件夹",   PANE_NORMAL | PANE_NO_CLOSE | PANE_NO_MAXIMIZE, -1, EDGE_NONE, EDGE_LEFT),
 		PaneLayoutInfo(tagbar,    CRect( 0, 60,  20,  70), L"标签",      PANE_NORMAL | PANE_NO_CLOSE | PANE_NO_MAXIMIZE, 0, EDGE_BOTTOM, EDGE_NONE, 200 / 8),
 		PaneLayoutInfo(histogram, CRect( 0, 70,  20, 100), L"直方图", PANE_HIDDEN | PANE_NO_CLOSE, 0, EDGE_BOTTOM, EDGE_NONE, 200 / 8),
-		PaneLayoutInfo(preview,   CRect(20,  0,  75,  35), L"预览",   PANE_HIDDEN, -1, EDGE_NONE, EDGE_NONE),
-		PaneLayoutInfo(mainview,  CRect(20, 35,  75, 100), L"图像",    PANE_NORMAL | PANE_NO_CLOSE, -1, EDGE_NONE, EDGE_NONE),
-		PaneLayoutInfo(infobar,   CRect(75,  0, 100, 100), L"信息 ",     PANE_HIDDEN, -1, EDGE_NONE, EDGE_RIGHT, 300 / 8),
+		PaneLayoutInfo(preview,   CRect(20,  0,  80,  35), L"预览",   PANE_HIDDEN, -1, EDGE_NONE, EDGE_NONE),
+		PaneLayoutInfo(mainview,  CRect(20, 35,  80, 100), L"图像",    PANE_NORMAL | PANE_NO_CLOSE, -1, EDGE_NONE, EDGE_NONE),
+		PaneLayoutInfo(infobar,   CRect(80,  0, 100, 100), L"信息 ",     PANE_HIDDEN, -1, EDGE_NONE, EDGE_RIGHT, 300 / 8),
 	};
 	static PaneLayoutInfoArray panes(layout, array_count(layout), _T("PaneLayout"), _T("Current"), _T("Name"), 0);
 

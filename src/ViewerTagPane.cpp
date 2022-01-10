@@ -14,7 +14,7 @@ ____________________________________________________________________________*/
 #include "ViewerTagPane.h"
 #include "CatchAll.h"
 #include "Dib.h"
-#include "viewer/FancyToolBar.h"
+//#include "viewer/FancyToolBar.h"
 #include "SetWindowSize.h"
 #include "viewer/PreviewBandWnd.h"
 #include "Config.h"
@@ -45,33 +45,35 @@ struct ViewerTagPane::Impl
 	}
 
 	//Dib header_;
-	Dib separator_;
-	FancyToolBar toolbar_;
+	//Dib separator_;
+	//FancyToolBar toolbar_;
+	ToolBarWnd toolbar_;
 	PreviewBandWnd ctrl_;
-	FancyToolBar close_btn_;
+	//FancyToolBar close_btn_;
+	ToolBarWnd close_btn_;
 	TagsBarCommon tag_ctrl_;
 
 	double ui_gamma_correction_;
 
-	void PaintSeparator(CDC& dc, const CRect& rect);
-	void ItemClicked(size_t item, AnyPointer key, PreviewBandWnd::ClickAction action);
-	void DrawItem(CDC& dc, CRect rect, size_t item, AnyPointer key);
-	String ItemToolTipText(size_t item, AnyPointer key);
-	void AddPhotoItem(PhotoInfoPtr p);
-	void PhotoModified(PhotoInfoPtr photo);
+	//void PaintSeparator(CDC& dc, const CRect& rect);
+	//void ItemClicked(size_t item, AnyPointer key, PreviewBandWnd::ClickAction action);
+	//void DrawItem(CDC& dc, CRect rect, size_t item, AnyPointer key);
+	//String ItemToolTipText(size_t item, AnyPointer key);
+	//void AddPhotoItem(PhotoInfoPtr p);
+	//void PhotoModified(PhotoInfoPtr photo);
 
-	CSize CalcItemSize(PhotoInfoPtr p) const;
-	void TagsPopup(CWnd* parent);
-	void LoadBitmaps(double gamma);
+	//CSize CalcItemSize(PhotoInfoPtr p) const;
+	//void TagsPopup(CWnd* parent);
+	//void LoadBitmaps(double gamma);
 };
 
 
-
+/*
 void ViewerTagPane::Impl::PaintSeparator(CDC& dc, const CRect& rect)
 {
 	separator_.Draw(&dc, rect);
 }
-
+*/
 //////////////////////////////////////////////////////////////////////
 
 ViewerTagPane::ViewerTagPane(PhotoTagsCollection& tag_collection) 
@@ -90,10 +92,10 @@ END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 
-const static COLORREF TITLE_TEXT_COLOR= RGB(200,200,200);
-const static COLORREF NORMAL_TEXT_COLOR= RGB(240,240,240);
-const static COLORREF DISABLED_TEXT_COLOR= RGB(160,160,160);
-
+//const static COLORREF TITLE_TEXT_COLOR= RGB(200,200,200);
+//const static COLORREF NORMAL_TEXT_COLOR= RGB(0,0,0);
+//const static COLORREF DISABLED_TEXT_COLOR= RGB(160,160,160);
+/*
 void ViewerTagPane::Impl::LoadBitmaps(double gamma)
 {
 	//VERIFY(::LoadPingFromRsrc(MAKEINTRESOURCE(IDB_LIGHT_TABLE_HEADER), header_));
@@ -105,34 +107,40 @@ void ViewerTagPane::Impl::LoadBitmaps(double gamma)
 		::ApplyGammaInPlace(&separator_, gamma, -1, -1);
 	}
 }
-
+*/
 
 bool ViewerTagPane::Create(CWnd* parent, UINT id, int width)
 {
 	if (!DockedPane::Create(parent, id, width))
 		return false;
 
-	impl_.LoadBitmaps(impl_.ui_gamma_correction_);
+	//impl_.LoadBitmaps(impl_.ui_gamma_correction_);
 
 	// --------- toolbar -----------
-	impl_.toolbar_.SetPadding(CRect(4,3,4,3));
+	//impl_.toolbar_.SetPadding(CRect(4,3,4,3));
+	impl_.toolbar_.SetPadding(4,3);
 	{
 		const int cmds[]= { ID_TAGS_MANAGE, ID_TAGS_OPTIONS };
-		FancyToolBar::Params p;
-		p.string_rsrc_id = 0;
-		p.text_color = TITLE_TEXT_COLOR;
-		p.hot_text_color = RGB(255,255,255);
-		p.dis_text_color = RGB(111,111,130);
-		if (!impl_.toolbar_.Create(this, "pv", cmds, IDB_TAGS_TOOLBAR, &p))
+		//FancyToolBar::Params p;
+		//p.string_rsrc_id = 0;
+		//p.text_color = TITLE_TEXT_COLOR;
+		//p.hot_text_color = RGB(255,255,255);
+		//p.dis_text_color = RGB(111,111,130);
+		//if (!impl_.toolbar_.Create(this, "pv", cmds, IDB_TAGS_TOOLBAR, &p))
+		if (!impl_.toolbar_.Create("pv", cmds, IDB_TAGS_TOOLBAR, 0, this, TagsBarCommon::ID_TOOLBAR))
 			return false;
 	}
+	
+	impl_.toolbar_.CreateDisabledImageList(IDB_TAGS_TOOLBAR, -0.6f, +0.5f);
+	impl_.toolbar_.AutoResize();
+	impl_.toolbar_.SetOwnerDraw(true);
 
-	impl_.toolbar_.SetDlgCtrlID(TagsBarCommon::ID_TOOLBAR);
-	impl_.toolbar_.SetOnIdleUpdateState(true);
+	//impl_.toolbar_.SetDlgCtrlID(TagsBarCommon::ID_TOOLBAR);
+	impl_.toolbar_.SetOnIdleUpdateState(false);
 
 	// --------- preview of images (background only) -----------
 
-	if (!impl_.ctrl_.Create(this))
+	if (!impl_.ctrl_.Create(this, false))
 		return false;
 
 	impl_.ctrl_.SetOrientation(false);
@@ -141,22 +149,25 @@ bool ViewerTagPane::Create(CWnd* parent, UINT id, int width)
 	// --------- close btn -----------
 	{
 		const int close_cmd[]= { 1, 1, ID_HIDE_TAG_PANE };
-		FancyToolBar::Params p;
-		p.shade = -0.28f;
-		if (!impl_.close_btn_.Create(this, "..p", close_cmd, IDR_CLOSEBAR_PNG, &p))
+		//FancyToolBar::Params p;
+		//p.shade = -0.28f;
+		//if (!impl_.close_btn_.Create(this, "..p", close_cmd, IDR_CLOSEBAR_PNG, &p))
+		if (!impl_.close_btn_.Create("..p", close_cmd, IDB_PANE_TOOLBAR, 0, this, id))
 			return false;
 	}
-
-	impl_.close_btn_.SetOption(FancyToolBar::HOT_OVERLAY, false);
 	impl_.close_btn_.SetOwner(parent);
+	impl_.close_btn_.AutoResize();
+	impl_.close_btn_.SetOnIdleUpdateState(false);
+
+	//impl_.close_btn_.SetOption(FancyToolBar::HOT_OVERLAY, false);
 
 	// --------- separator painting -----------
 
-	SetEraseCallback(boost::bind(&ViewerTagPane::Impl::PaintSeparator, &impl_, _1, _2));
+	//SetEraseCallback(boost::bind(&ViewerTagPane::Impl::PaintSeparator, &impl_, _1, _2));
 
 	// --------- tags control -----------
 
-	impl_.tag_ctrl_.UseParentBackground(true);
+	impl_.tag_ctrl_.UseParentBackground(false);
 
 	impl_.ctrl_.ModifyStyleEx(0, WS_EX_CONTROLPARENT);
 
@@ -172,14 +183,14 @@ bool ViewerTagPane::Create(CWnd* parent, UINT id, int width)
 	std::vector<std::pair<::AppColors, ColorCfg>> colors;
 	colors.reserve(20);
 
-	COLORREF text = NORMAL_TEXT_COLOR;
-	COLORREF bkgnd = 0;
+	COLORREF text = g_Colorsets.color_text;//NORMAL_TEXT_COLOR;
+	COLORREF bkgnd = g_Colorsets.color_gui;
 	colors.push_back(std::make_pair(AppColors::Background, bkgnd));
 	colors.push_back(std::make_pair(AppColors::Text, text));
 	colors.push_back(std::make_pair(AppColors::DimText, CalcNewColor(bkgnd, text, 0.60f)));
-	colors.push_back(std::make_pair(AppColors::DisabledText, DISABLED_TEXT_COLOR));
+	colors.push_back(std::make_pair(AppColors::DisabledText, g_Colorsets.color_text_disabled));//DISABLED_TEXT_COLOR));
 	colors.push_back(std::make_pair(AppColors::SelectedText, text));
-	colors.push_back(std::make_pair(AppColors::Separator, CalcShade(bkgnd, -36.0f)));
+	//colors.push_back(std::make_pair(AppColors::Separator, CalcShade(bkgnd, -36.0f)));
 	colors.push_back(std::make_pair(AppColors::EditBox, CalcShade(bkgnd, -13.0f)));
 	colors.push_back(std::make_pair(AppColors::Selection, g_Settings.AppColors()[AppColors::Selection]/*RGB(0x33, 0x99, 0xff)*/)); //::GetSysColor(COLOR_HIGHLIGHT)
 
@@ -209,18 +220,23 @@ void ViewerTagPane::Resize()
 
 	CRect rect(0,0,0,0);
 	GetClientRect(rect);
+	//CRect r(0,0,0,0);
+	//impl_.toolbar_.GetWindowRect(r);
 
-	int height= VIEWER_TAGPANE_H;//impl_.header_.GetHeight();
+	int height_= impl_.toolbar_.tb_size.cy;//r.Height();
+	header_h = height_ * 2 + 2;//VIEWER_TAGPANE_H;//impl_.header_.GetHeight();
 
-	CSize s= impl_.toolbar_.Size();
-	SetWindowSize(impl_.toolbar_, rect.left, rect.top + height - s.cy, s.cx, s.cy);
+	//CSize s= (rect_tb.Width(), rect_tb.Height());//impl_.toolbar_.Size();
+	//SetWindowSize(impl_.toolbar_, rect.left, rect.top + height - s.cy, s.cx, s.cy);
+	impl_.toolbar_.SetWindowPos(nullptr, 0, height_, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
 
-	SetWindowSize(impl_.ctrl_, 0, height, rect.Width(), rect.Height() - height);
+	SetWindowSize(impl_.ctrl_, 0, header_h, rect.Width(), rect.Height() - header_h);
 
-	SetWindowSize(impl_.tag_ctrl_, 0, 0, rect.Width(), rect.Height() - height);
+	SetWindowSize(impl_.tag_ctrl_, 0, 0, rect.Width(), rect.Height() - header_h);
 
-	CSize c= impl_.close_btn_.Size();
-	SetWindowSize(impl_.close_btn_, rect.right - c.cx, 0, c.cx, c.cy);
+	//CSize c= impl_.close_btn_.Size();
+	//impl_.close_btn_.GetWindowRect(r);
+	SetWindowSize(impl_.close_btn_, rect.right - impl_.close_btn_.tb_size.cx-2, 2, impl_.close_btn_.tb_size.cx, impl_.close_btn_.tb_size.cy);
 }
 
 
@@ -239,17 +255,20 @@ BOOL ViewerTagPane::OnEraseBkgnd(CDC* dc)
 
 	try
 	{
-		int bottom= rect.bottom;
-		rect.bottom = rect.top + VIEWER_TAGPANE_H;//impl_.header_.GetHeight();
-		dc->FillSolidRect(rect, RGB(25,25,25));
+		//int bottom= rect.bottom;
+		//rect.bottom = rect.top + VIEWER_TAGPANE_H;//impl_.header_.GetHeight();
+		dc->FillSolidRect(rect, g_Colorsets.color_gui);
+		dc->FillSolidRect(rect.left, rect.top, rect.Width(), 1, g_Colorsets.color_sepline);
+		dc->FillSolidRect(rect.left, header_h - 1, rect.Width()-7, 1, g_Colorsets.color_sepline_light);
+		//dc->FillSolidRect(0,0,1,rect.Height(), RGB(180,180,180));
 		//impl_.header_.Draw(dc, rect);
 
-		CFont* old= dc->SelectObject(&GetDefaultGuiFont());//&_font);
-		dc->SetTextColor(TITLE_TEXT_COLOR);
+		CFont* old= dc->SelectObject(&GetDefaultGuiBoldFont());//&_font);
+		//dc->SetTextColor(TITLE_TEXT_COLOR);
 		dc->SetBkMode(TRANSPARENT);
 		CString str= L"应用标签";
 //		str.LoadString(IDS_LIGHT_TABLE);
-		dc->TextOut(rect.left + 5, rect.top + 4, str);
+		dc->TextOut(rect.left + 5, rect.top + 6, str);
 		dc->SelectObject(old);
 
 		//COLORREF light= CalcNewColor(RGB(78,81,96), impl_.ui_gamma_correction_);
@@ -260,8 +279,8 @@ BOOL ViewerTagPane::OnEraseBkgnd(CDC* dc)
 		//dc->FillSolidRect(rect.left + 9, rect.top + 22, rect.Width() - 18, 1, dark);
 		//DrawHorzSeparatorBar(Dib& dest, int x, int y, int width, float black_opacity, float white_opacity)
 
-		rect.top = rect.bottom;
-		rect.bottom = bottom;
+		//rect.top = rect.bottom;
+		//rect.bottom = bottom;
 	}
 	catch(...)
 	{}
@@ -274,7 +293,7 @@ void ViewerTagPane::SetUIBrightness(double gamma)
 {
 	impl_.ctrl_.SetUIBrightness(gamma);
 	impl_.ui_gamma_correction_ = gamma;
-	impl_.LoadBitmaps(gamma);
+	//impl_.LoadBitmaps(gamma);
 	Invalidate();
 }
 

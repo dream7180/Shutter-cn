@@ -370,13 +370,17 @@ LRESULT CMenuBar::OnSetMenuNull(WPARAM wp, LPARAM lp)
 //
 void CMenuBar::OnLButtonDown(UINT flags, CPoint pt)
 {
+	parent_->SetFocus();
 	MBTRACEFN(_T("CMenuBar::OnLButtonDown\n"));
 	ASSERT_VALID(this);
 	int btn = HitTest(pt);
 	if (btn >= 0 && btn < GetButtonCount()) // if mouse is over a button:
 		TrackPopup(btn);								 //   track it
 	else														 // otherwise:
-		ToolBarWnd::OnLButtonDown(flags, pt);	 //   pass it on...
+	{
+		//parent_->SetFocus();
+		ToolBarWnd::OnLButtonDown(flags, pt);//   pass it on...
+	}
 }
 
 //////////////////

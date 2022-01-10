@@ -7,7 +7,8 @@ ____________________________________________________________________________*/
 
 #pragma once
 
-#include "FancyToolBar.h"
+//#include "FancyToolBar.h"
+#include "../ToolBarWnd.h"
 #include "../Dib.h"
 #include <boost/function.hpp>
 
@@ -17,7 +18,7 @@ class ViewCaption : public CWnd
 public:
 	ViewCaption();
 
-	bool Create(CWnd* parent, int toolbarBmp, const int commands[], int count,
+	bool Create(CWnd* parent, const char* a_template, int toolbarBmp, const int commands[], int count,
 		const boost::function<void (void)>& on_clicked);
 
 	void SetActive(bool active);
@@ -29,7 +30,8 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 private:
-	FancyToolBar toolbar_;
+	//FancyToolBar toolbar_;
+	ToolBarWnd toolbar_;
 	bool active_;
 	boost::function<void (void)> on_clicked_;
 	static Dib active_marker_;

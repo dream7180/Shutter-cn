@@ -60,8 +60,8 @@ BEGIN_MESSAGE_MAP(InfoPane, PaneWnd)
 	ON_UPDATE_COMMAND_UI(ID_RAW_INFO, OnUpdateRawInfo)
 	ON_COMMAND(ID_COPY_INFO, OnCopyInfo)
 	ON_UPDATE_COMMAND_UI(ID_COPY_INFO, OnUpdateCopyInfo)
-	ON_COMMAND(ID_TASK_EXPORT, OnExportExif)
-	ON_UPDATE_COMMAND_UI(ID_TASK_EXPORT, OnUpdateExportExif)
+	//ON_COMMAND(ID_TASK_EXPORT, OnExportExif)
+	//ON_UPDATE_COMMAND_UI(ID_TASK_EXPORT, OnUpdateExportExif)
 	ON_COMMAND(ID_TOGGLE_PREVIEW, OnTogglePreview)
 	ON_UPDATE_COMMAND_UI(ID_TOGGLE_PREVIEW, OnUpdateTogglePreview)
 	ON_WM_DESTROY()
@@ -99,13 +99,13 @@ bool InfoPane::Create(CWnd* parent)
 
 	static const int commands[]=
 	{
-		ID_COPY_INFO, ID_RAW_INFO, ID_TASK_EXPORT, ID_TOGGLE_PREVIEW
+		ID_COPY_INFO, ID_RAW_INFO, /*ID_TASK_EXPORT,*/ ID_TOGGLE_PREVIEW
 	};
 
 	tool_bar_wnd_.SetOwnerDraw(true);
-	tool_bar_wnd_.SetPadding(8, 10);
+	tool_bar_wnd_.SetPadding(8, 8);
 
-	if (!tool_bar_wnd_.Create("Pxpx", commands, /*IsCaptionBig() ? IDB_INFO_TOOLBAR_BIG : */IDB_INFO_TOOLBAR, IDS_INFO_TOOLBAR, this, -1))
+	if (!tool_bar_wnd_.Create(/*"Pxpx"*/"Pxx", commands, /*IsCaptionBig() ? IDB_INFO_TOOLBAR_BIG : */IDB_INFO_TOOLBAR, NULL/*IDS_INFO_TOOLBAR*/, this, -1))
 		return false;
 
 	tool_bar_wnd_.CWnd::SetOwner(this);
@@ -174,6 +174,7 @@ void InfoPane::Resize()
 
 		int h= r.Height();
 		bar_.SetWindowPos(0, client.left, client.top, client.Width(), h, SWP_NOZORDER | SWP_NOACTIVATE);
+		//bar_.SetWindowPos(0, std::max(0, (client.Width()-r.Width())/2), client.top, r.Width(), h, SWP_NOZORDER | SWP_NOACTIVATE);
 
 		int wnd_height= client.Height() - h;
 		if (img_preview_)
@@ -364,7 +365,7 @@ void InfoPane::OnUpdateCopyInfo(CCmdUI* cmd_ui)
 	cmd_ui->Enable(photo_ != 0);
 }
 
-
+/*
 void InfoPane::OnExportExif()
 {
 	AfxGetMainWnd()->SendMessage(WM_COMMAND, ID_TASK_EXPORT, 0);
@@ -374,7 +375,7 @@ void InfoPane::OnUpdateExportExif(CCmdUI* cmd_ui)
 {
 	cmd_ui->Enable(photo_ != 0);
 }
-
+*/
 
 void InfoPane::OnTogglePreview()
 {
@@ -586,7 +587,7 @@ void InfoPane::SetColors()
 
 	float brightness = CalcColorBrightness(backgnd);
 
-	COLORREF dark_backgnd = brightness > 128 ? CalcShade(backgnd, g_dark_backgnd_brightness) : CalcShade(backgnd, g_backgnd_brightness);
+	COLORREF dark_backgnd = RGB(250,250,250);//brightness > 128 ? CalcShade(backgnd, g_dark_backgnd_brightness) : CalcShade(backgnd, g_backgnd_brightness);
 
 	disp_wnd_.SetColors(backgnd, dark_backgnd, text, dim_text);
 

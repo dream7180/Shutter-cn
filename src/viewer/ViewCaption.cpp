@@ -11,6 +11,7 @@ ____________________________________________________________________________*/
 #include "../DrawFields.h"
 #include "../MemoryDC.h"
 #include "../GetDefaultGuiFont.h"
+#include "../ColorSets.h"
 
 extern bool LoadPingFromRsrc(LPCTSTR resource_id, Dib& bmp);
 
@@ -36,12 +37,12 @@ Dib ViewCaption::active_marker_;
 ViewCaption::ViewCaption()
 {
 	active_ = false;
-	text_color_ = RGB(220,220,220);
-	label_color_ = RGB(139,139,147);
+	text_color_;// = RGB(255,255,255);
+	label_color_;// = RGB(80,80,80);
 }
 
 
-bool ViewCaption::Create(CWnd* parent, int toolbarBmp, const int commands[], int count,
+bool ViewCaption::Create(CWnd* parent, const char* a_template, int toolbarBmp, const int commands[], int count,
 						 const boost::function<void (void)>& on_clicked)
 {
 	on_clicked_ = on_clicked;
@@ -49,7 +50,7 @@ bool ViewCaption::Create(CWnd* parent, int toolbarBmp, const int commands[], int
 	CDC dc;
 	dc.CreateCompatibleDC(0);
 	LOGFONT lf;
-	::GetDefaultGuiBoldFont(lf);
+	::GetDefaultGuiFont(lf);
 	_font.CreateFontIndirect(&lf);
 	dc.SelectObject(&_font);
 	//dc.SelectStockObject(DEFAULT_GUI_FONT);
@@ -68,15 +69,18 @@ bool ViewCaption::Create(CWnd* parent, int toolbarBmp, const int commands[], int
 
 	toolbar_.SetOnIdleUpdateState(false);
 
-	FancyToolBar::Params p;
-	p.shade = -0.28f;
-	std::string btn(count, 'p');
-	if (!toolbar_.Create(this, btn.c_str(), commands, toolbarBmp, &p))
+	//FancyToolBar::Params p;
+	//p.shade = -0.28f;
+	//std::string btn(count, 'p');
+	if (!toolbar_.Create(a_template, commands, toolbarBmp, 0, this, AFX_IDW_TOOLBAR))
 		return false;
 
-	toolbar_.SetPadding(CRect(5,4,5,4));
-	toolbar_.SetOption(FancyToolBar::HOT_OVERLAY, false);
+	//toolbar_.SetPadding(CRect(5,4,5,4));
+	toolbar_.SetPadding(0,0);
+	toolbar_.SetOwnerDraw(parent);
+	//toolbar_.SetOption(FancyToolBar::HOT_OVERLAY, false);
 	toolbar_.SetOwner(parent);
+	toolbar_.AutoResize();
 
 	return true;
 }
@@ -92,7 +96,7 @@ BOOL ViewCaption::OnEraseBkgnd(CDC* dc)
 		MemoryDC mdc(*dc, rect);
 
 		//caption_.Draw(&dc, rect);
-		mdc.FillSolidRect(rect, RGB(35,35,35));
+		mdc.FillSolidRect(rect, g_Colorsets.color_viewer_cap);
 		CPoint pos(4, 0);
 		pos.y = (rect.Height() - active_marker_.GetHeight()) / 2;
 		rect.left = pos.x + active_marker_.GetWidth();
@@ -115,7 +119,7 @@ BOOL ViewCaption::OnEraseBkgnd(CDC* dc)
 		text.Insert(0, _T("  "));
 
 		CRect text_rect= rect;
-		text_rect.right -= toolbar_.Size().cx;
+		text_rect.right -= toolbar_.tb_size.cx;//Size().cx;
 		if (text_rect.Width() > 0)
 			DrawFields::Draw(mdc, text, text_rect, text_color_, label_color_, text_color_);
 
@@ -138,7 +142,7 @@ void ViewCaption::OnSize(UINT type, int cx, int cy)
 {
 	if (toolbar_.m_hWnd)
 	{
-		CSize s= toolbar_.Size();
+		CSize s= toolbar_.tb_size;//Size();
 		int x= cx - s.cx;
 		int y= (cy - s.cy - 1) / 2;
 		toolbar_.SetWindowPos(0, x, y, s.cx, s.cy, SWP_NOZORDER | SWP_NOACTIVATE);

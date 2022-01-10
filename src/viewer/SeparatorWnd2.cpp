@@ -98,19 +98,19 @@ BOOL ViewerSeparatorWnd::OnEraseBkgnd(CDC* dc)
 
 	int y= rect.top;
 	int x= rect.left;
-	dc->FillSolidRect(x, y, w, h, RGB(10,10,10));
+	dc->FillSolidRect(x, y, w, h, RGB(80,80,80));
 	x += incx; y += incy;
-	dc->FillSolidRect(x, y, w, h, RGB(10,10,10));
+	dc->FillSolidRect(x, y, w, h, RGB(140,140,140));
 	x += incx; y += incy;
-	dc->FillSolidRect(x, y, w, h, RGB(10,10,10));
+	dc->FillSolidRect(x, y, w, h, RGB(140,140,140));
 	x += incx; y += incy;
-	dc->FillSolidRect(x, y, w, h, RGB(10,10,10));
+	dc->FillSolidRect(x, y, w, h, RGB(140,140,140));
 	x += incx; y += incy;
-	dc->FillSolidRect(x, y, w, h, RGB(10,10,10));
+	dc->FillSolidRect(x, y, w, h, RGB(140,140,140));
 	x += incx; y += incy;
-	dc->FillSolidRect(x, y, w, h, RGB(10,10,10));
+	dc->FillSolidRect(x, y, w, h, RGB(140,140,140));
 	x += incx; y += incy;
-	dc->FillSolidRect(x, y, w, h, RGB(10,10,10));
+	dc->FillSolidRect(x, y, w, h, RGB(80,80,80));
 /*
 	dc->FillSolidRect(0, y++, rect.Width(), 1, rgb_gray);
 	dc->FillSolidRect(0, y++, rect.Width(), 1, whistler ? rgb_light : rgb_gray);
@@ -263,7 +263,7 @@ void ViewerSeparatorWnd::OnMouseMove(UINT flags, CPoint pos)
 		ASSERT(resize_wnd_);
 		::GetCursorPos(&pos);
 		CSize delta_size= pos - start_;
-		resize_wnd_->ResizePane(horizontal_ ? pane_height_ + delta_size.cy : pane_height_ + delta_size.cx);
+		resize_wnd_->ResizePane(horizontal_ ? pane_height_ - delta_size.cy : pane_height_ + delta_size.cx);
 	}
 }
 

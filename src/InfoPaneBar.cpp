@@ -38,7 +38,7 @@ void InfoPaneBar::DoDataExchange(CDataExchange* DX)
 
 
 BEGIN_MESSAGE_MAP(InfoPaneBar, CDialog)
-	ON_EN_CHANGE(IDC_FILTER, OnChangeFilter)
+	ON_EN_CHANGE(IDC_FILTER_INFO, OnChangeFilter)
 	ON_BN_CLICKED(IDC_HIDE, OnClickedHide)
 	ON_COMMAND(ID_CANCEL, OnCancelQuickFilter)
 	ON_WM_ERASEBKGND()
@@ -54,7 +54,7 @@ bool InfoPaneBar::Create(CWnd* parent, const boost::function<void (const CString
 
 	filter_bar_.SetParams(IDB_FIND_TOOLBAR, 0, ID_CANCEL, EditCombo::NONE);
 	filter_bar_.SetImage(IDB_FUNNEL_SMALL);
-	filter_bar_.SubclassDlgItem(IDC_FILTER, this);
+	filter_bar_.SubclassDlgItem(IDC_FILTER_INFO, this);
 	filter_bar_.SetState(1);
 
 	filter_ = filter;
@@ -67,7 +67,7 @@ bool InfoPaneBar::Create(CWnd* parent, const boost::function<void (const CString
 	//if (!close_btn_.AddButtons("p", &command, IDB_INFO_BAR))
 	//	return false;
 
-	CheckDlgButton(IDC_HIDE, hideUnknown ? 1 : 0);
+	CheckDlgButton(IDC_HIDE, hideUnknown ? 0 : 1);
 
 	OnChangeFilter();
 
@@ -81,7 +81,7 @@ void InfoPaneBar::OnChangeFilter()
 	{
 		CString str= FilterText();
 		filter_bar_.EnableButton(!str.IsEmpty(), 0);
-		filter_(str, IsDlgButtonChecked(IDC_HIDE) != 0);
+		filter_(str, IsDlgButtonChecked(IDC_HIDE) == 0);
 	}
 	CATCH_ALL
 }
@@ -101,7 +101,7 @@ void InfoPaneBar::OnCancelQuickFilter()
 
 bool InfoPaneBar::IsUnknownHidden()
 {
-	return IsDlgButtonChecked(IDC_HIDE) != 0;
+	return IsDlgButtonChecked(IDC_HIDE) == 0;
 }
 
 
@@ -121,7 +121,6 @@ void InfoPaneBar::OnCancel()
 {
 	OnCancelQuickFilter();
 }
-
 
 BOOL InfoPaneBar::OnEraseBkgnd(CDC* dc)
 {

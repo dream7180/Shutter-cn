@@ -42,7 +42,7 @@ bool FilterBar::Create(CWnd* parent)
 	if (!EditCombo::Create(parent, IDB_FIND_TOOLBAR, ID_FILTER_PHOTOS, ID_CANCEL_FILTER, EditCombo::AUTO_COMPLETE))
 		return false;
 
-	SetMargins(CRect(0, 0, Pixels(4), 0));
+	SetMargins(CRect(0, 0, Pixels(6), 0));
 
 	// read texts into history_
 

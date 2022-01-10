@@ -52,6 +52,7 @@ protected:
 	//{{AFX_MSG(BrowserToolbar)
 	//afx_msg void OnToolbarCustomize();
 	afx_msg void OnDestroy();
+	afx_msg void OnLButtonDown(UINT flags, CPoint point);
 	//}}AFX_MSG
 
 	DECLARE_MESSAGE_MAP()

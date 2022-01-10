@@ -1,4 +1,4 @@
-/*____________________________________________________________________________
+﻿/*____________________________________________________________________________
 
    ExifPro Image Viewer
 
@@ -34,9 +34,9 @@ static char THIS_FILE[] = __FILE__;
 namespace {
 	//const int TBAR_WIDTH= 46;		// toolbar width (including right margin)
 	//const int TBAR_WIDTH= 52;	// toolbar width (including right margin)
-	const int CHEVRON= 20;			// chevron toolbar width
+	//const int CHEVRON= 20;			// chevron toolbar width
 	//const int CHEVRONBIG= 20;		// chevron toolbar width
-	const int CHEVRONSPACE= CHEVRON + 12;
+	//const int CHEVRONSPACE= CHEVRON + 12;
 	//const int CHEVRONBIGSPACE= CHEVRONBIG + 12;
 	//const TCHAR* REG_KEY= _T("Caption");
 	//const TCHAR* REG_ENTRY= _T("Large");
@@ -496,21 +496,28 @@ void CaptionWindow::DrawCaptionGradient(CDC* dc, const CRect& rect)
 int CaptionWindow::GetTollBarWidth()
 {
 	//int width= /*big_ ? TBARBIG_WIDTH : */TBAR_WIDTH;
-	CDC dc;
-	CDC* pdc = nullptr;
-	dc.CreateIC(_T("DISPLAY"), 0, 0, 0);
-	pdc = &dc;
-	int log_inch_x = pdc->GetDeviceCaps(LOGPIXELSX);
-	int width= 25/static_cast<Gdiplus::REAL>(log_inch_x)*96;
+	//CDC dc;
+	//CDC* pdc = nullptr;
+	//dc.CreateIC(_T("DISPLAY"), 0, 0, 0);
+	//pdc = &dc;
+	//int log_inch_x = pdc->GetDeviceCaps(LOGPIXELSX);
+	//int width= 25/static_cast<Gdiplus::REAL>(log_inch_x)*96;
+	
+	//CRect r(0,0,0,0);
+	//tool_bar_wnd_.GetWindowRect(r);
+	int width = tool_bar_wnd_.tb_size.cy;//r.Height();
+	//CString d;
+	//d.Format(_T("%d"),width);//整型转字符串
+	//AfxMessageBox(d);
 
 	if (maximized_wnd_toolbar_)
 		//return Pixels(width / 2 + 4);
-		return Pixels(width + 1);
+		return width + 1;//Pixels(width + 1);
 
 	if (no_close_btn_ && no_maximize_btn_)
 		return 0;
 	
-	return Pixels(no_close_btn_ ? width + 1: width*2 + 1);
+	return no_close_btn_ ? width + 1: width*2 + 1;//Pixels(no_close_btn_ ? width + 1: width*2 + 1);
 }
 
 
@@ -524,7 +531,7 @@ CRect CaptionWindow::GetTextRect(CDC* dc, const CRect& rect, const TCHAR* title,
 		rect.bottom);
 
 	if (chevron_wnd_.m_hWnd)
-		text_rect.right -= /*big_ ? CHEVRONBIGSPACE : */CHEVRONSPACE;
+		text_rect.right -= chevron_wnd_.tb_size.cx + 12;//*big_ ? CHEVRONBIGSPACE : */CHEVRONSPACE;
 
 	if (text_rect.right < rect.left)
 		text_rect.right = rect.left;
@@ -700,7 +707,7 @@ void CaptionWindow::SetChevronPos()
 	{
 		CRect rect;
 		GetClientRect(rect);
-		int width= /*big_ ? CHEVRONBIG : */CHEVRON;
+		int width= chevron_wnd_.tb_size.cx;
 		chevron_wnd_.SetWindowPos(0, rect.Width() - GetTollBarWidth() - width, 0, width, GetHeight(), SWP_NOZORDER | SWP_NOACTIVATE);
 	}
 }
@@ -963,7 +970,7 @@ void CaptionWindow::PositionHostedBar()
 					SetChevronPos();
 					Invalidate();
 				}
-				rect.right -= CHEVRON + 2;//(big_ ? CHEVRONBIG : CHEVRON) + 2;	// place for chevron
+				rect.right -= chevron_wnd_.tb_size.cx + 2;//CHEVRON + 2;//(big_ ? CHEVRONBIG : CHEVRON) + 2;	// place for chevron
 			}
 		}
 
@@ -992,8 +999,9 @@ void CaptionWindow::CreateChevron()
 	int bmp= /*big_ ? IDB_CHEVRON_BIG : */IDB_CHEVRON;
 	chevron_wnd_.Create("p", &chevron_cmd, bmp, 0, this);
 
-	int hot= /*big_ ? IDB_CHEVRON_BIG_HOT : */IDB_CHEVRON_HOT;
-	chevron_wnd_.SetHotImageList(hot);
+	//int hot= /*big_ ? IDB_CHEVRON_BIG_HOT : */IDB_CHEVRON_HOT;
+	//chevron_wnd_.SetHotImageList(hot);
+	chevron_wnd_.AutoResize();
 }
 
 
@@ -1124,11 +1132,11 @@ bool CaptionWindow::HasMaximizeButton() const
 
 int CaptionWindow::GetHeight()
 {
-	//CDC dc;
-	//dc.CreateIC(_T("DISPLAY"), 0, 0, 0);
-	//auto dpi = dc.GetDeviceCaps(LOGPIXELSY);
+	CDC dc;
+	dc.CreateIC(_T("DISPLAY"), 0, 0, 0);
+	auto dpi = dc.GetDeviceCaps(LOGPIXELSY);
 	auto h = 32;//big_ ? 38 : 28;
 	// caption window height
 	return Pixels(h);
-//	return h * dpi / 96;
+	return h * dpi / 96;
 }

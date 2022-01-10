@@ -27,6 +27,8 @@ public:
 	virtual void ResetToolBar(bool resize_to_fit);
 
 	virtual ~TaskToolbar();
+protected:
+	afx_msg void OnLButtonDown(UINT flags, CPoint point);
 
 private:
 	DECLARE_MESSAGE_MAP()

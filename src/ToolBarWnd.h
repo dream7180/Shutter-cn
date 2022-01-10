@@ -58,6 +58,7 @@ public:
 	bool AddButtons(int count, int first_command, const TCHAR* text, BYTE btn_style= BTNS_BUTTON | BTNS_AUTOSIZE | BTNS_SHOWTEXT);
 
 	void AutoResize();
+	CSize tb_size;
 
 	virtual void ResetToolBar(bool resize_to_fit);
 

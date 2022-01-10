@@ -8,6 +8,7 @@ ____________________________________________________________________________*/
 #pragma once
 #include <boost/function.hpp>
 #include "../AnyPointer.h"
+#include "../ColorSets.h"
 
 
 // PreviewBandWnd
@@ -18,7 +19,7 @@ public:
 	PreviewBandWnd();
 	virtual ~PreviewBandWnd();
 
-	bool Create(CWnd* parent);
+	bool Create(CWnd* parent, bool isLightTable);
 
 	// delete all items
 	void RemoveAllItems();
@@ -96,7 +97,7 @@ private:
 	LRESULT OnPrintClient(WPARAM HDC, LPARAM flags);
 	void OnSize(UINT type, int cx, int cy);
 	void OnDestroy();
-	void OnCustDrawScrollBar(UINT id, NMHDR* hdr, LRESULT* result);
+	//void OnCustDrawScrollBar(UINT id, NMHDR* hdr, LRESULT* result);
 	BOOL OnToolTipNotify(UINT id, NMHDR* hdr, LRESULT* result);
 	void OnHScroll(UINT sb_code, UINT pos, CScrollBar* scroll_bar);
 	void OnVScroll(UINT sb_code, UINT pos, CScrollBar* scroll_bar);

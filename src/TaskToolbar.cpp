@@ -37,6 +37,7 @@ BEGIN_MESSAGE_MAP(TaskToolbar, ToolBarWnd)
 //	ON_NOTIFY_REFLECT(NM_RCLICK, OnRightClick)
 	ON_WM_INITMENUPOPUP()
 	ON_WM_CONTEXTMENU()
+	ON_WM_LBUTTONDOWN()
 	ON_NOTIFY_REFLECT(TBN_GETDISPINFO, OnGetDispInfo)
 	ON_NOTIFY_REFLECT(TBN_RESTORE, OnButtonRestore)
 END_MESSAGE_MAP()
@@ -49,11 +50,11 @@ namespace {
 	const TCHAR* REG_STATE					= _T("TbState");
 	const TCHAR* REG_STATE_VERT				= _T("TbVertState");
 	const TCHAR* REG_ICONS					= _T("Icons");
-	const float saturation= -0.5f;
+	const float saturation= -0.6f;
 	const float lightness= 0.0f;
-	const float alpha= 0.55f;
-	//const int TOOLBAR_BITMAP_SMALL= IDB_BROWSER_TOOLS;
-	//const int TOOLBAR_BITMAP_BIG= IDB_BROWSER_TOOLS;
+	const float alpha= 0.5f;
+	//const int TOOLBAR_BITMAP_SMALL= IDB_TASK_TOOLS;
+	//const int TOOLBAR_BITMAP_BIG= IDB_TASK_TOOLS;
 }
 
 
@@ -108,7 +109,7 @@ bool TaskToolbar::Create(CWnd* parent, UINT id, bool vertical)
 		ID_TASK_TRANSFER, ID_TASK_COPY, ID_TASK_MOVE, ID_TASK_RENAME, ID_TASK_COPY_TAGGED,
 		ID_TASK_RESIZE, ID_TASK_ROTATE, ID_TASK_TOUCH_UP, ID_TASK_HISTOGRAM, ID_TASK_EXTRACT_JPEG, ID_TASK_EDIT_IPTC,
 		ID_TASK_GEN_SLIDE_SHOW, ID_TASK_GEN_HTML_ALBUM, ID_BUILD_CATALOG,
-		ID_TASK_PRINT, ID_TASK_EXPORT,
+		ID_TASK_PRINT,// ID_TASK_EXPORT,
 		ID_SEND_EMAIL, ID_DATE_TIME_ADJ,
 		ID_TASK_DELETE
 	};
@@ -116,11 +117,11 @@ bool TaskToolbar::Create(CWnd* parent, UINT id, bool vertical)
 	if (vertical)
 		SetPadding(0, 0);
 	else
-		SetPadding(0, 4);
+		SetPadding(4, 4);
 
 	//small_icons_ = AfxGetApp()->GetProfileInt(REGISTRY_SECTION_TOOLBAR, REG_ICONS, 0) == 0;
 
-	int bmp_id= IDB_BROWSER_TOOLS;//small_icons_ ? TOOLBAR_BITMAP_SMALL : TOOLBAR_BITMAP_BIG;
+	int bmp_id= IDB_TASK_TOOLS;//small_icons_ ? TOOLBAR_BITMAP_SMALL : TOOLBAR_BITMAP_BIG;
 
 	DWORD tb_style= WS_CHILD | WS_VISIBLE | TBSTYLE_TOOLTIPS | TBSTYLE_FLAT | TBSTYLE_TRANSPARENT |
 		/*CCS_TOP |*/ CCS_NORESIZE | CCS_NOPARENTALIGN | CCS_NODIVIDER | TBSTYLE_ALTDRAG | CCS_ADJUSTABLE;
@@ -151,7 +152,7 @@ bool TaskToolbar::Create(CWnd* parent, UINT id, bool vertical)
 	SendMessage(TB_SETMAXTEXTROWS, vertical ? 1 : 2, 0);
 
 	//AddButtons("P|PPPPP|PPPPPPPPPPPPPP", commands, bmp_id, /*IDS_BROWSER_TOOLS*/false, vertical);
-	AddButtons("PPPPP|PPPPPPPPPPPPPP", commands, bmp_id, /*IDS_BROWSER_TOOLS*/false, vertical);
+	AddButtons("PPPPP|PPPPPPPPPPPPP", commands, bmp_id, /*IDS_BROWSER_TOOLS*/false, vertical);
 	CreateDisabledImageList(bmp_id, saturation, lightness, alpha);
 
 	DeleteButtons();
@@ -179,7 +180,7 @@ void TaskToolbar::DeleteButtons()
 {
 	DeleteButton(ID_TASK_COPY_TAGGED);
 	DeleteButton(ID_TASK_GEN_SLIDE_SHOW);
-	DeleteButton(ID_TASK_EXPORT);
+	//DeleteButton(ID_TASK_EXPORT);
 	DeleteButton(ID_SEND_EMAIL);
 	DeleteButton(ID_DATE_TIME_ADJ);
 	DeleteButton(ID_TASK_EXTRACT_JPEG);
@@ -310,6 +311,13 @@ void TaskToolbar::SetOrientation(bool horizontal)
 	horizontal_ = horizontal;
 
 	RestoreState(REGISTRY_SECTION_TOOLBAR, horizontal ? REG_STATE : REG_STATE_VERT);
+}
+
+void TaskToolbar::OnLButtonDown(UINT flags, CPoint pt)
+{
+	SetFocus();
+	ASSERT_VALID(this);
+	ToolBarWnd::OnLButtonDown(flags, pt);//   pass it on...
 }
 
 

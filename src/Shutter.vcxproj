@@ -44,53 +44,53 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseANSI|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <UseOfMfc>Static</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugANSI|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <UseOfMfc>Dynamic</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <UseOfMfc>Static</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>false</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <UseOfMfc>Dynamic</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseANSI|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <UseOfMfc>Static</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugANSI|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <UseOfMfc>Dynamic</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <UseOfMfc>Static</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>false</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <UseOfMfc>Dynamic</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -724,14 +724,14 @@
     <ClCompile Include="viewer\DarkCloseBar.cpp" />
     <ClCompile Include="viewer\DrawParentBkgnd.cpp" />
     <ClCompile Include="viewer\DrawSeparatorBar.cpp" />
-    <ClCompile Include="viewer\FancyToolBar.cpp" />
+    <!--ClCompile Include="viewer\FancyToolBar.cpp" /-->
     <ClCompile Include="LightTable.cpp" />
     <ClCompile Include="viewer\PreviewBandWnd.cpp" />
     <ClCompile Include="viewer\SeparatorWnd2.cpp" />
     <ClCompile Include="viewer\SimpleReBar.cpp" />
     <ClCompile Include="ViewerDlg.cpp" />
     <ClCompile Include="ViewerTagPane.cpp" />
-    <ClCompile Include="ViewerToolBar.cpp" />
+    <!--ClCompile Include="ViewerToolBar.cpp" /-->
     <ClCompile Include="MemoryStatus\MemoryStatDlg.cpp" />
     <ClCompile Include="FilePaneWnd.cpp" />
     <ClCompile Include="FolderPane.cpp" />
@@ -746,7 +746,7 @@
     <ClCompile Include="PreviewBar.cpp" />
     <ClCompile Include="PreviewPane.cpp" />
     <ClCompile Include="TagBarView.cpp" />
-    <ClCompile Include="TaskBarView.cpp" />
+    <!--ClCompile Include="TaskBarView.cpp" /-->
     <ClCompile Include="CopyMoveDlg.cpp" />
     <ClCompile Include="CopyProgressDlg.cpp" />
     <ClCompile Include="CopyTaggedDlg.cpp" />
@@ -755,8 +755,8 @@
     <ClCompile Include="DeleteConfirmationDlg.cpp" />
     <ClCompile Include="DescriptionPane.cpp" />
     <ClCompile Include="EditFileInfo.cpp" />
-    <ClCompile Include="ExifExport.cpp" />
-    <ClCompile Include="ExportExifDlg.cpp" />
+    <!--ClCompile Include="ExifExport.cpp" />
+    <ClCompile Include="ExportExifDlg.cpp" /-->
     <ClCompile Include="ExtractingThread.cpp" />
     <ClCompile Include="ExtractJpegDlg.cpp" />
     <ClCompile Include="FileCopyMove.cpp" />
@@ -951,6 +951,7 @@
     <ClCompile Include="Cache.cpp" />
     <ClCompile Include="CatchAll.cpp" />
     <ClCompile Include="ColorProfile.cpp" />
+	<ClCompile Include="ColorSets.cpp" />
     <ClCompile Include="Data.cpp" />
     <ClCompile Include="DecoderJob.cpp" />
     <ClCompile Include="DelayedDirectoryChangeHandler.cpp" />
@@ -1053,6 +1054,7 @@
     <ClInclude Include="ColorMenu.h" />
     <ClInclude Include="ColorMngDlg.h" />
     <ClInclude Include="ColorProfile.h" />
+	<ClInclude Include="ColorSets.h" />
     <ClInclude Include="Columns.h" />
     <ClInclude Include="ColumnTree.h" />
     <ClInclude Include="Config.h" />
@@ -1111,13 +1113,13 @@
     <ClInclude Include="EstimatedTime.h" />
     <ClInclude Include="Exception.h" />
     <ClInclude Include="ExifBlock.h" />
-    <ClInclude Include="ExifExport.h" />
+    <!--ClInclude Include="ExifExport.h" /-->
     <ClInclude Include="ExifPro.h" />
     <ClInclude Include="ExifProView.h" />
     <ClInclude Include="ExifStatusBar.h" />
     <ClInclude Include="ExifTags.h" />
     <ClInclude Include="ExifViewReBar.h" />
-    <ClInclude Include="ExportExifDlg.h" />
+    <!--ClInclude Include="ExportExifDlg.h" /-->
     <ClInclude Include="ExprCalculator.h" />
     <ClInclude Include="ExtractingThread.h" />
     <ClInclude Include="ExtractJpegDlg.h" />
@@ -1360,7 +1362,7 @@
     <ClInclude Include="TagsBarCommon.h" />
     <ClInclude Include="TagsCommonCode.h" />
     <ClInclude Include="TagsManageDlg.h" />
-    <ClInclude Include="TaskBarView.h" />
+    <!--ClInclude Include="TaskBarView.h" /-->
     <ClInclude Include="Tasks.h" />
     <ClInclude Include="TaskToolbar.h" />
     <ClInclude Include="ThumbnailDecoder.h" />
@@ -1385,7 +1387,7 @@
     <ClInclude Include="ViewerDlgNotifications.h" />
     <ClInclude Include="ViewerExampleWnd.h" />
     <ClInclude Include="ViewerTagPane.h" />
-    <ClInclude Include="ViewerToolBar.h" />
+    <!--ClInclude Include="ViewerToolBar.h" /-->
     <ClInclude Include="ViewPane.h" />
     <ClInclude Include="WhistlerLook.h" />
     <ClInclude Include="XMPAccess.h" />
@@ -1405,7 +1407,7 @@
     <ClInclude Include="Database\StorageFile.h" />
     <ClInclude Include="ImgManipulation.h" />
     <ClInclude Include="viewer\DarkCloseBar.h" />
-    <ClInclude Include="viewer\FancyToolBar.h" />
+    <!--ClInclude Include="viewer\FancyToolBar.h" /-->
     <ClInclude Include="viewer\PreviewBandWnd.h" />
     <ClInclude Include="viewer\SeparatorWnd2.h" />
     <ClInclude Include="viewer\SimpleReBar.h" />
@@ -1416,143 +1418,64 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\about-alpha.png" />
-    <Image Include="res\about.png" />
     <Image Include="res\active_view_marker.png" />
     <Image Include="res\address_tb.png" />
-    <Image Include="res\aparat.jpg" />
     <Image Include="res\arrow_down.bmp" />
     <Image Include="res\arrow_up.bmp" />
     <Image Include="res\ascending.bmp" />
     <Image Include="res\auto-complete.png" />
-    <Image Include="res\bitmap1.bmp" />
-    <!--Image Include="res\browser.ico" /-->
-    <Image Include="res\browser_tbar.bmp" />
     <Image Include="res\BrowserToolBar.png" />
-    <!--<Image Include="res\BrowserToolBar30.png" />-->
-    <Image Include="res\BrowserTools.png" />
-    <!--Image Include="res\camera.ico" /-->
     <Image Include="res\cancel-filter.png" />
     <Image Include="res\cancel.png" />
-    <!--Image Include="res\catalog.ico" /-->
     <Image Include="res\CatalogHelp_1.png" />
     <Image Include="res\CatalogHelp_2.png" />
     <Image Include="res\CatalogHelp_3.png" />
     <Image Include="res\CatalogHelp_4.png" />
     <Image Include="res\CatalogHelp_arrow.png" />
     <Image Include="res\character.bmp" />
-    <Image Include="res\checked_btn.png" />
-    <Image Include="res\chevron-hot.png" />
-    <Image Include="res\chevron.bmp" />
     <Image Include="res\chevron.png" />
-    <Image Include="res\chevron_big.bmp" />
-    <Image Include="res\chevron_big_hot.bmp" />
-    <Image Include="res\chevron_hot.bmp" />
-    <!--Image Include="res\close_bar.bmp" /-->
-    <!--Image Include="res\close_bar_hot.bmp" /-->
     <Image Include="res\close_tb.png" />
-    <Image Include="res\closebar.bmp" />
     <Image Include="res\closebar.png" />
-    <!--Image Include="res\copy.ico" /-->
     <Image Include="res\ctrl_draw_images.bmp" />
-    <Image Include="res\CustomFilters.png" />
     <Image Include="res\descending.bmp" />
-    <Image Include="res\dock_bar.bmp" />
-    <Image Include="res\draw_toolbar.bmp" />
     <Image Include="res\empty.bmp" />
     <Image Include="res\empty2.bmp" />
     <Image Include="res\empty_bmp.bmp" />
     <Image Include="res\enter_tb.png" />
     <Image Include="res\Envelope.bmp" />
-    <!--Image Include="res\error_icon.bmp" />
-    <Image Include="res\ExifPro.ico" />
-    <Image Include="res\ExifProDoc.ico" /-->
     <Image Include="res\ExifProVista.ico" />
     <Image Include="res\eye_drop.bmp" />
-    <Image Include="res\file1.ico" />
-    <Image Include="res\file2.ico" />
     <Image Include="res\file_icons.png" />
     <Image Include="res\FilePaneFilterTb.png" />
     <Image Include="res\FilePaneTb.png" />
     <Image Include="res\FileTypeIndicators.png" />
-    <Image Include="res\filter_b.bmp" />
-    <Image Include="res\filter_bar.bmp" />
     <Image Include="res\find_tb.png" />
     <Image Include="res\flip_horizontally.png" />
-    <Image Include="res\flip_vertically.png" />
-    <Image Include="res\folder.ico" />
-    <Image Include="res\folder_pane_big_tb.png" />
     <Image Include="res\folder_pane_tb.png" />
     <Image Include="res\folder_popup.bmp" />
     <Image Include="res\FolderViewCtrlTb.png" />
-    <!--Image Include="res\funnel-icon.png" /-->
     <Image Include="res\funnel-small.png" />
     <Image Include="res\funnel.png" />
-    <!--Image Include="res\grid_pattern.bmp" /-->
     <Image Include="res\grip.bmp" />
-    <!--<Image Include="res\group_header_icons.bmp" />-->
     <Image Include="res\GroupHeaderIcons.png" />
-    <!--Image Include="res\HeaderImages.png" /-->
-    <Image Include="res\HelpBtn.bmp" />
-    <Image Include="res\HelpBtn.png" />
-    <Image Include="res\horz_scrollbar.bmp" />
-    <Image Include="res\horz_vert_tb.png" />
-    <Image Include="res\hot_arr_btn.png" />
-    <Image Include="res\hot_arr_overlay.png" />
-    <Image Include="res\hot_img.png" />
-    <Image Include="res\hot_overlay.png" />
     <Image Include="res\icm_icons.bmp" />
     <Image Include="res\icm_toolbar.bmp" />
-    <Image Include="res\icon1.ico" />
     <Image Include="res\img_effects.bmp" />
     <Image Include="res\img_error.bmp" />
     <Image Include="res\img_manip_icons.bmp" />
-    <Image Include="res\indicators.bmp" />
-    <Image Include="res\Indicators.png" />
-    <Image Include="res\indicators2.bmp" />
     <Image Include="res\info_band_opt.png" />
-    <Image Include="res\info_band_opt_hot.png" />
-    <Image Include="res\info_bar.bmp" />
-    <Image Include="res\info_toolbar.bmp" />
-    <!--Image Include="res\info_toolbar.png" /-->
-    <Image Include="res\infobar.bmp" />
     <Image Include="res\InfoToolbar.png" />
-    <Image Include="res\InfoToolBarBig.png" />
-    <Image Include="res\layouts.bmp" />
     <Image Include="res\layouts.png" />
-    <!--Image Include="res\layouts_thumbs.bmp" /-->
     <Image Include="res\light-bulb.png" />
-    <!--Image Include="res\light_table_bgnd.bmp" /-->
-    <Image Include="res\light_table_sep.bmp" />
-    <Image Include="res\light_table_tb.bmp" />
     <Image Include="res\light_table_tb.png" />
-    <Image Include="res\light_table_tb_dis.bmp" />
-    <!--Image Include="res\LightTableHeader.bmp" />
-    <Image Include="res\LightTableHeader.png" /-->
-    <Image Include="res\main_toolbar.bmp" />
     <Image Include="res\marked.bmp" />
-    <!--Image Include="res\mask.bmp" /-->
     <Image Include="res\menu-btn-right.bmp" />
     <Image Include="res\menu_btn.bmp" />
     <Image Include="res\monitor.ico" />
     <Image Include="res\move.ico" />
-    <Image Include="res\navigation.bmp" />
-    <Image Include="res\navigation_dis.bmp" />
     <Image Include="res\noExif.png" />
-    <Image Include="res\obj_list.bmp" />
-    <Image Include="res\obj_list3.bmp" />
-    <Image Include="res\obj_list4.bmp" />
-    <Image Include="res\obj_list_2.bmp" />
-    <Image Include="res\operation.bmp" />
-    <Image Include="res\output.bmp" />
-    <Image Include="res\pane_too.bmp" />
-    <Image Include="res\pane_toolbar.bmp" />
     <Image Include="res\pane_toolbar.png" />
-    <!--Image Include="res\pane_toolbar_big.bmp" />
-    <Image Include="res\pane_toolbar_big_hot.bmp" />
-    <Image Include="res\pane_toolbar_hot.png" /-->
     <Image Include="res\pattern.bmp" />
-    <Image Include="res\photo.bmp" />
-    <Image Include="res\photo.ico" />
     <Image Include="res\photo_1.bmp" />
     <Image Include="res\photo_2.bmp" />
     <Image Include="res\photo_3.bmp" />
@@ -1561,24 +1484,7 @@
     <Image Include="res\photo_6.bmp" />
     <Image Include="res\photo_7.bmp" />
     <Image Include="res\photo_8.bmp" />
-    <!--Image Include="res\photos_dis_tb.bmp" />
-    <Image Include="res\photos_dis_tb.png" />-->
-    <!--Image Include="res\photos_tb.bmp" /-->
     <Image Include="res\photos_tb.png" />
-    <!--<Image Include="res\PhotosToolbarBig.png" />-->
-    <Image Include="res\placeholder.bmp" />
-    <Image Include="res\placeholder3.bmp" />
-    <Image Include="res\placeholder_2.bmp" />
-    <Image Include="res\png6.png" />
-    <!--Image Include="res\preview_backgnd.bmp" />
-    <Image Include="res\preview_backgnd_btm.bmp" />
-    <Image Include="res\preview_backgnd_top.bmp" />
-    <Image Include="res\preview_backgnd_vert.bmp" />
-    <Image Include="res\preview_backgnd_vert_right.bmp" />
-    <Image Include="res\preview_backgnd_vert_top.bmp" /-->
-    <Image Include="res\preview_scrollbar.bmp" />
-    <Image Include="res\preview_scrollbar_v.bmp" />
-    <Image Include="res\preview_version.jpg" />
     <Image Include="res\print_dlg_tb.bmp" />
     <Image Include="res\rainbow.ico" />
     <Image Include="res\rotate_180.png" />
@@ -1589,62 +1495,24 @@
     <Image Include="res\rotation_90cw.bmp" />
     <Image Include="res\rotation_auto.bmp" />
     <Image Include="res\RunSlideShow.bmp" />
-    <Image Include="res\separator_img.png" />
-    <Image Include="res\Shadow.bmp" />
-    <Image Include="res\shortcuts.bmp" />
-    <Image Include="res\slider_bar.bmp" />
     <Image Include="res\small_arrow_down.png" />
     <Image Include="res\Stars.png" />
-    <Image Include="res\TabCaption.png" />
-    <Image Include="res\TabCaptionBig.png" />
-    <Image Include="res\TabCaptionEnd.png" />
-    <Image Include="res\TabCaptionEndBig.png" />
-    <Image Include="res\TabShape.png" />
-    <Image Include="res\TabShapeBig.png" />
-    <Image Include="res\TabShapeEnd.png" />
-    <Image Include="res\TabShapeEndBig.png" />
-    <Image Include="res\TaggedSeparateDirs.bmp" />
-    <Image Include="res\TaggedSingleDir.bmp" />
-    <Image Include="res\tags_checkboxes.bmp" />
-    <Image Include="res\tags_checkboxes_dis.bmp" />
-    <!--Image Include="res\tags_edit.ico" />
-    <Image Include="res\tags_no_edit.ico" /-->
-    <Image Include="res\tags_ok.bmp" />
-    <Image Include="res\tags_ok_dis.bmp" />
-    <Image Include="res\tags_toolbar.bmp" />
     <Image Include="res\TagsToolbar.png" />
-    <!--Image Include="res\TagsToolbarBig.png" />-->
-    <Image Include="res\task_bar.bmp" />
     <Image Include="res\task_bar.png" />
-    <Image Include="res\task_bar_tb.bmp" />
     <Image Include="res\tb_edit.bmp" />
     <Image Include="res\template_frames.bmp" />
     <Image Include="res\template_grid.bmp" />
     <Image Include="res\templates.bmp" />
     <Image Include="res\TimeLineTb.png" />
-    <!--Image Include="res\TimeLineTbDis.png" /-->
-    <Image Include="res\toolbar_close.bmp" />
-    <Image Include="res\toolbar_close_2.bmp" />
     <Image Include="res\TransferToolOper.png" />
     <Image Include="res\TransferToolOper1.png" />
     <Image Include="res\TransferToolOper2.png" />
     <Image Include="res\TransferToolOper3.png" />
-    <Image Include="res\transparent_bar.bmp" />
-    <Image Include="res\trashcan.bmp" />
+    <Image Include="res\trashcan.png" />
     <Image Include="res\Triangles.png" />
-    <Image Include="res\vert_scrollbar.bmp" />
-    <!--Image Include="res\view_caption.png" /-->
     <Image Include="res\viewer.ico" />
-    <!--Image Include="res\viewer_rebar_backgnd.bmp" /-->
-    <Image Include="res\viewer_toolbar.bmp" />
-    <Image Include="res\ViewerToolbar.bmp" />
     <Image Include="res\ViewerToolbar.png" />
-    <!--Image Include="res\ViewerToolbarBig.png" />-->
-    <!--<Image Include="res\ViewerToolbarDis.bmp" />
-    <Image Include="res\ViewerToolbarDis.png" />-->
     <Image Include="res\warning.ico" />
-    <Image Include="res\warning_2.ico" />
-    <Image Include="res\zoombar.bmp" />
     <Image Include="res\ZoomBar.png" />
   </ItemGroup>
   <ItemGroup>
@@ -1658,8 +1526,6 @@
     <None Include="res\move.cur" />
     <None Include="res\move_pane.cur" />
     <None Include="res\nodrop.cur" />
-    <None Include="res\png3.bin" />
-    <None Include="res\png5.bin" />
     <None Include="res\pointing.cur" />
     <None Include="res\pointing_hand.cur" />
     <None Include="res\pointing_hand_inv.cur" />

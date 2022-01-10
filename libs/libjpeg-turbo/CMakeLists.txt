@@ -1,11 +1,16 @@
 cmake_minimum_required(VERSION 2.8.12)
+# When using CMake 3.4 and later, don't export symbols from executables unless
+# the CMAKE_ENABLE_EXPORTS variable is set.
+if(POLICY CMP0065)
+  cmake_policy(SET CMP0065 NEW)
+endif()
 
 if(CMAKE_EXECUTABLE_SUFFIX)
   set(CMAKE_EXECUTABLE_SUFFIX_TMP ${CMAKE_EXECUTABLE_SUFFIX})
 endif()
 
 project(libjpeg-turbo C)
-set(VERSION 2.1.1)
+set(VERSION 2.1.2)
 string(REPLACE "." ";" VERSION_TRIPLET ${VERSION})
 list(GET VERSION_TRIPLET 0 VERSION_MAJOR)
 list(GET VERSION_TRIPLET 1 VERSION_MINOR)

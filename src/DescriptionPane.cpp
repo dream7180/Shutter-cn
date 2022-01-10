@@ -16,7 +16,7 @@ ____________________________________________________________________________*/
 #include "EnableCtrl.h"
 #include "DlgListCtrl.h"
 #include "PropertyField.h"
-
+#include "GetDefaultGuiFont.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -93,8 +93,10 @@ BOOL DescriptionPane::InitDlg()
 
 	edit_.SetDlgCtrlID(Pane::EDIT_ID);
 
-	LOGFONT lf= g_Settings.description_font_;
-	//lf.lfHeight = -18;
+	//LOGFONT lf= g_Settings.description_font_;
+	LOGFONT lf;
+	::GetDefaultGuiFont(lf);
+	lf.lfHeight -= 2;
 	fndEdit_.CreateFontIndirect(&lf);
 
 	edit_.SetFont(&fndEdit_);
@@ -141,7 +143,7 @@ void DescriptionPane::BuildToolbar()
 #else
 	toolBar_.AddButtons("pppppppppp..........", commands, IDB_CHARACTERS);
 #endif
-	toolBar_.SetRows(array_count(commands) / 4, false, 0);
+	toolBar_.SetRows(array_count(commands) / 5, false, 0);
 }
 
 

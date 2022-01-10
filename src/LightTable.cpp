@@ -14,7 +14,7 @@ ____________________________________________________________________________*/
 #include "LightTable.h"
 #include "CatchAll.h"
 #include "Dib.h"
-#include "viewer/FancyToolBar.h"
+//#include "viewer/FancyToolBar.h"
 #include "SetWindowSize.h"
 #include "ImageLoader.h"
 #include "viewer/PreviewBandWnd.h"
@@ -49,7 +49,7 @@ struct LightTable::Impl
 		img_loader_(boost::bind(&PhotoCache::CacheDecodedImage, cache, _1, _2), &CreateImageDecoderJob, &CanPhotoBeDecoded), color_transf_(0)
 	{
 		vertRes_ = horzRes_ = 0.0f;
-		ui_gamma_correction_ = 1.0;
+		//ui_gamma_correction_ = 1.0;
 
 		tags_changed_ =		PhotoCollection::Instance().ConnectOnTagsChanged(boost::bind(&Impl::RefreshAfterChange, this, _1));
 		rating_changed_ =	PhotoCollection::Instance().ConnectOnRatingChanged(boost::bind(&Impl::RefreshAfterChange, this, _1));
@@ -58,10 +58,10 @@ struct LightTable::Impl
 
 	PhotoInfoStorage& photo_storage_;
 	//Dib header_;
-	Dib separator_;
-	FancyToolBar toolbar_;
+	//Dib separator_;
+	ToolBarWnd toolbar_;
 	PreviewBandWnd ctrl_;
-	FancyToolBar close_btn_;
+	ToolBarWnd close_btn_;
 	ImageLoader img_loader_;
 	VectPhotoInfo photos_;
 	boost::function<void (PhotoInfoPtr)> selected_callback_;
@@ -69,14 +69,14 @@ struct LightTable::Impl
 	const ICMTransform* color_transf_; //TODO: use it
 	float vertRes_;
 	float horzRes_;
-	double ui_gamma_correction_;
+	//double ui_gamma_correction_;
 	PhotoCache* cache_;
 	std::auto_ptr<COleDropTarget> drop_target_;
 	auto_connection tags_changed_;
 	auto_connection rating_changed_;
 	auto_connection metadata_changed_;
 
-	void PaintSeparator(CDC& dc, const CRect& rect);
+	//void PaintSeparator(CDC& dc, const CRect& rect);
 	void ItemClicked(size_t item, AnyPointer key, PreviewBandWnd::ClickAction action);
 	void DrawItem(CDC& dc, CRect rect, size_t item, AnyPointer key);
 	String ItemToolTipText(size_t item, AnyPointer key);
@@ -86,7 +86,7 @@ struct LightTable::Impl
 	void PhotoLoaded(PhotoInfoPtr photo);
 	CSize CalcItemSize(PhotoInfoPtr p) const;
 	void TagsPopup(CWnd* parent);
-	void LoadBitmaps(double gamma);
+	//void LoadBitmaps(double gamma);
 	DROPEFFECT PhotoDragAndDrop(PhotoDrop::DropAction action, const TCHAR* files);
 	bool HasPhoto(ConstPhotoInfoPtr photo) const;
 	void AddPhoto(PhotoInfoPtr photo);
@@ -201,10 +201,10 @@ void LightTable::Impl::AddPhotoItem(PhotoInfoPtr photo)
 }
 
 
-void LightTable::Impl::PaintSeparator(CDC& dc, const CRect& rect)
-{
-	separator_.Draw(&dc, rect);
-}
+//void LightTable::Impl::PaintSeparator(CDC& dc, const CRect& rect)
+//{
+//	separator_.Draw(&dc, rect);
+//}
 
 
 void LightTable::Impl::ItemClicked(size_t item, AnyPointer key, PreviewBandWnd::ClickAction action)
@@ -280,8 +280,8 @@ END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 
-const static COLORREF TEXT_COLOR= RGB(200,200,200);
-
+//const static COLORREF TEXT_COLOR= RGB(200,200,200);
+/*
 void LightTable::Impl::LoadBitmaps(double gamma)
 {
 	//VERIFY(::LoadPingFromRsrc(MAKEINTRESOURCE(IDB_LIGHT_TABLE_HEADER), header_));
@@ -294,7 +294,7 @@ void LightTable::Impl::LoadBitmaps(double gamma)
 		::ApplyGammaInPlace(&separator_, gamma, -1, -1);
 	}
 }
-
+*/
 
 bool LightTable::Create(CWnd* parent, UINT id, int width, const boost::function<void (PhotoInfoPtr)>& selected_callback,
 						 const boost::function<PhotoInfoPtr (const TCHAR* path)>& path_to_photo)
@@ -305,33 +305,37 @@ bool LightTable::Create(CWnd* parent, UINT id, int width, const boost::function<
 	pImpl_->selected_callback_ = selected_callback;
 	pImpl_->path_to_photo_ = path_to_photo;
 
-	pImpl_->LoadBitmaps(pImpl_->ui_gamma_correction_);
+	//pImpl_->LoadBitmaps(pImpl_->ui_gamma_correction_);
 
 	// --------- toolbar -----------
-	pImpl_->toolbar_.SetPadding(CRect(4,3,4,3));
+	//pImpl_->toolbar_.SetPadding(CRect(4,3,4,3));
+	pImpl_->toolbar_.SetPadding(4,3);
 	{
 		const int cmd[]=
 		{ ID_ADD_TO_LIGHT_TABLE, ID_REMOVE_FROM_LIGHT_TABLE, ID_LIGHT_TABLE_TAGS, ID_LIGHT_TABLE_OPTIONS };
-		FancyToolBar::Params p;
+		//FancyToolBar::Params p;
 		//p.string_rsrc_id = IDS_LIGHT_TABLE_TOOLBAR;
-		p.text_color = TEXT_COLOR;
-		p.hot_text_color = RGB(255,255,255);
-		p.dis_text_color = RGB(111,111,130);
-		if (!pImpl_->toolbar_.Create(this, "PPVv", cmd, IDB_LIGHT_TABLE_TB, &p))
+		//p.text_color = TEXT_COLOR;
+		//p.hot_text_color = RGB(255,255,255);
+		//p.dis_text_color = RGB(111,111,130);
+		//if (!pImpl_->toolbar_.Create(this, "PPVv", cmd, IDB_LIGHT_TABLE_TB, &p))
+		if (!pImpl_->toolbar_.Create("PPVv", cmd, IDB_LIGHT_TABLE_TB, 0, this, AFX_IDW_TOOLBAR))
 			return false;
 	}
-
+	pImpl_->toolbar_.CreateDisabledImageList(IDB_LIGHT_TABLE_TB, -0.6f, +0.5f);//-0.5f, +0.15f);
 	pImpl_->toolbar_.SetOwner(parent);
-	pImpl_->toolbar_.SetDlgCtrlID(AFX_IDW_TOOLBAR);
+	pImpl_->toolbar_.AutoResize();
+	pImpl_->toolbar_.SetOwnerDraw(parent);
+	//pImpl_->toolbar_.SetDlgCtrlID(AFX_IDW_TOOLBAR);
 	pImpl_->toolbar_.SetOnIdleUpdateState(true);
 
 	// --------- preview of images -----------
 
-	if (!pImpl_->ctrl_.Create(this))
+	if (!pImpl_->ctrl_.Create(this, true))
 		return false;
 
 	pImpl_->ctrl_.SetOrientation(false);
-	pImpl_->ctrl_.EnableSelectionDisp(false);
+	pImpl_->ctrl_.EnableSelectionDisp(true);
 
 	pImpl_->ctrl_.SetCallBacks(
 		boost::bind(&Impl::ItemClicked, pImpl_.get(), _1, _2, _3),
@@ -345,18 +349,21 @@ bool LightTable::Create(CWnd* parent, UINT id, int width, const boost::function<
 	// --------- close btn -----------
 	{
 		const int close_cmd[]= { 1, 1, ID_HIDE_LIGHT_TABLE };
-		FancyToolBar::Params p;
-		p.shade = -0.28f;
-		if (!pImpl_->close_btn_.Create(this, "..p", close_cmd, IDR_CLOSEBAR_PNG, &p))
+		//FancyToolBar::Params p;
+		//p.shade = -0.28f;
+		//if (!pImpl_->close_btn_.Create(this, "..p", close_cmd, IDR_CLOSEBAR_PNG, &p))
+		if (!pImpl_->close_btn_.Create("..p", close_cmd, IDB_PANE_TOOLBAR, 0, this, id))
 			return false;
 	}
-
-	pImpl_->close_btn_.SetOption(FancyToolBar::HOT_OVERLAY, false);
 	pImpl_->close_btn_.SetOwner(parent);
+	pImpl_->close_btn_.AutoResize();
+	pImpl_->close_btn_.SetOnIdleUpdateState(false);
+	//pImpl_->close_btn_.SetOption(FancyToolBar::HOT_OVERLAY, false);
+	//pImpl_->close_btn_.SetOwner(parent);
 
 	// --------- separator painting -----------
 
-	SetEraseCallback(boost::bind(&Impl::PaintSeparator, pImpl_.get(), _1, _2));
+	//SetEraseCallback(boost::bind(&Impl::PaintSeparator, pImpl_.get(), _1, _2));
 
 	// --------- drag & drop (drop actually) support ------------
 
@@ -420,16 +427,23 @@ void LightTable::Resize()
 
 	CRect rect(0,0,0,0);
 	GetClientRect(rect);
+	//CRect r(0,0,0,0);
+	//pImpl_->toolbar_.GetWindowRect(r);
 
-	int height= LIGHTTABLE_H;//pImpl_->header_.GetHeight();
+	int height_= pImpl_->toolbar_.tb_size.cy;//r.Height();
+	header_h = height_ * 2 + 2;
 
-	CSize s= pImpl_->toolbar_.Size();
-	SetWindowSize(pImpl_->toolbar_, rect.left, rect.top + height - s.cy, s.cx, s.cy);
+	//int height= LIGHTTABLE_H;//pImpl_->header_.GetHeight();
 
-	SetWindowSize(pImpl_->ctrl_, 0, height, rect.Width(), rect.Height() - height);
+	//CSize s= pImpl_->toolbar_.Size();
+	//SetWindowSize(pImpl_->toolbar_, rect.left, rect.top + height - s.cy, s.cx, s.cy);
+	pImpl_->toolbar_.SetWindowPos(nullptr, 0, height_, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
 
-	CSize c= pImpl_->close_btn_.Size();
-	SetWindowSize(pImpl_->close_btn_, rect.right - c.cx, 0, c.cx, c.cy);
+	SetWindowSize(pImpl_->ctrl_, 0, header_h, rect.Width(), rect.Height() - header_h);
+
+	//CSize c= pImpl_->close_btn_.Size();
+	//pImpl_->close_btn_.GetWindowRect(r);
+	SetWindowSize(pImpl_->close_btn_, rect.right - pImpl_->close_btn_.tb_size.cx-2, 2, pImpl_->close_btn_.tb_size.cx, pImpl_->close_btn_.tb_size.cy);
 }
 
 
@@ -475,8 +489,11 @@ void LightTable::OperationsPopup()
 		return;
 
 	CMenu* popup= menu.GetSubMenu(0);
+	
+	CRect rect(0,0,0,0);
 
-	CRect rect= pImpl_->toolbar_.GetCmdButtonRect(ID_LIGHT_TABLE_OPTIONS);
+	//CRect rect= pImpl_->toolbar_.GetCmdButtonRect(ID_LIGHT_TABLE_OPTIONS);
+	pImpl_->toolbar_.GetRect(ID_LIGHT_TABLE_OPTIONS, rect);
 	pImpl_->toolbar_.ClientToScreen(rect);
 
 	popup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, rect.left, rect.bottom, GetParent());
@@ -498,8 +515,9 @@ void LightTable::Impl::TagsPopup(CWnd* parent)
 		return;
 
 	PhotoTagsCollection& tags= Tags::GetTagCollection();
-
-	CRect rect= toolbar_.GetCmdButtonRect(ID_LIGHT_TABLE_TAGS);
+	CRect rect(0,0,0,0);
+	toolbar_.GetRect(ID_LIGHT_TABLE_TAGS, rect);
+	//CRect rect= toolbar_.GetCmdButtonRect(ID_LIGHT_TABLE_TAGS);
 	CPoint pt(rect.left, rect.bottom);
 	toolbar_.ClientToScreen(&pt);
 
@@ -580,18 +598,20 @@ BOOL LightTable::OnEraseBkgnd(CDC* dc)
 	GetClientRect(rect);
 //dc->FillSolidRect(rect, RGB(255,0,0));
 //return 1;
-	try
-	{
-		int bottom= rect.bottom;
-		rect.bottom = rect.top + LIGHTTABLE_H;//pImpl_->header_.GetHeight();
-		dc->FillSolidRect(rect, RGB(25,25,25));
+	//try
+	//{
+		//int bottom= rect.bottom;
+		//rect.bottom = rect.top + LIGHTTABLE_H;//pImpl_->header_.GetHeight();
+		dc->FillSolidRect(rect, g_Colorsets.color_gui);
+		dc->FillSolidRect(rect.left, rect.top, rect.Width(), 1, g_Colorsets.color_sepline);
+		dc->FillSolidRect(rect.left, header_h - 1, rect.Width()-7, 1, g_Colorsets.color_sepline_light);
 		//pImpl_->header_.Draw(dc, rect);
 		CFont* old= dc->SelectObject(&GetDefaultGuiBoldFont());//&font);
-		dc->SetTextColor(TEXT_COLOR);
+		//dc->SetTextColor(TEXT_COLOR);
 		dc->SetBkMode(TRANSPARENT);
 		CString str;
 		str.LoadString(IDS_LIGHT_TABLE);
-		dc->TextOut(rect.left + 5, rect.top + 4, str);
+		dc->TextOut(rect.left + 5, rect.top + 6, str);
 		dc->SelectObject(old);
 
 		//COLORREF light= CalcNewColor(RGB(78,81,96), pImpl_->ui_gamma_correction_);
@@ -602,11 +622,11 @@ BOOL LightTable::OnEraseBkgnd(CDC* dc)
 		//dc->FillSolidRect(rect.left + 9, rect.top + 22, rect.Width() - 18, 1, dark);
 		//DrawHorzSeparatorBar(Dib& dest, int x, int y, int width, float black_opacity, float white_opacity)
 
-		rect.top = rect.bottom;
-		rect.bottom = bottom;
-	}
-	catch(...)
-	{}
+		//rect.top = rect.bottom;
+		//rect.bottom = bottom;
+	//}
+	//catch(...)
+	//{}
 
 	return true;
 }
@@ -621,8 +641,8 @@ void LightTable::SetBackgndColor(COLORREF rgb_backgnd)
 void LightTable::SetUIBrightness(double gamma)
 {
 	pImpl_->ctrl_.SetUIBrightness(gamma);
-	pImpl_->ui_gamma_correction_ = gamma;
-	pImpl_->LoadBitmaps(gamma);
+	//pImpl_->ui_gamma_correction_ = gamma;
+	//pImpl_->LoadBitmaps(gamma);
 	Invalidate();
 }
 

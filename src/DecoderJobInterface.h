@@ -5,7 +5,8 @@
    Copyright (C) 2000-2015 Michael Kowalski
 ____________________________________________________________________________*/
 
-#pragma once;
+#pragma once
+
 class Dib;
 #include "PhotoInfoPtr.h"
 typedef boost::shared_ptr<Dib> DibPtr;

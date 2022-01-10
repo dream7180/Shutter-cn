@@ -104,7 +104,7 @@ MainFrame::MainFrame() : wnd_pos_(REGISTRY_SECTION_MAIN_WND), status_bar_wnd_(co
 	favorite_folders_ = new FavoriteFolders(MAX_FAVORITE_FOLDERS);
 	favorite_folders_->RetrieveFolders(REGISTRY_SECTION_FAVORITES);
 
-	recent_path_list_ = new CRecentFileList(0, REGISTRY_ENTRY_PATHS, REG_RECENT_PATH, 10);
+	recent_path_list_ = new CRecentFileList(0, REGISTRY_ENTRY_PATHS, REG_RECENT_PATH, 20);
 	recent_path_list_->ReadList();
 
 	scanning_bar_ = false;

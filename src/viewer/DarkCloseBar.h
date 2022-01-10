@@ -7,7 +7,8 @@ ____________________________________________________________________________*/
 
 #pragma once
 
-#include "FancyToolBar.h"
+//#include "FancyToolBar.h"
+#include "../ToolBarWnd.h"
 #include "../Dib.h"
 
 /////////////////////////////////////////////////////////////////////////////
@@ -19,20 +20,21 @@ public:
 	DarkCloseBar() {}
 
 	bool Create(CWnd* parent);
+	CSize tbsize;
 
-	static const int CLOSE_BAR_WIDTH= 106;
+	//static const int CLOSE_BAR_WIDTH= 106;
 
 protected:
 	DECLARE_MESSAGE_MAP()
 
 private:
-	class Toolbar : public FancyToolBar
+	class Toolbar : public ToolBarWnd
 	{
 		virtual CString GetToolTip(int cmdId);
 	};
 
 	Toolbar toolbar_;
-	Dib backgnd_;
+	//Dib backgnd_;
 
 	BOOL OnEraseBkgnd(CDC* dc);
 	LRESULT OnPrintClient(WPARAM HDC, LPARAM flags);

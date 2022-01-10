@@ -9,6 +9,7 @@ ____________________________________________________________________________*/
 
 #include "ConnectionPoint.h"
 #include "VectPhotoInfo.h"
+#include "ToolBarWnd.h"
 class PhotoInfo;
 class PhotoInfoStorage;
 class ViewerDlgNotifications;
@@ -183,6 +184,7 @@ private:
 	//void OnUpdateToggleTagsInPreviewBar(CCmdUI* cmd_ui);
 	LRESULT OnAppCommand(WPARAM w, LPARAM l);
 	void OnOpenPhoto();
+	void OnShowProperties();
 	void OnToggleSmoothScroll();
 	void OnUpdateToggleSmoothScroll(CCmdUI* cmd_ui);
 	void OnToggleMultiView();
@@ -214,10 +216,10 @@ private:
 	void OnHideTagPane();
 
 private:
-	void OnSmallIcons();
-	void OnLargeIcons();
-	void OnUpdateSmallIcons(CCmdUI* cmd_ui);
-	void OnUpdateLargeIcons(CCmdUI* cmd_ui);
+	//void OnSmallIcons();
+	//void OnLargeIcons();
+	//void OnUpdateSmallIcons(CCmdUI* cmd_ui);
+	//void OnUpdateLargeIcons(CCmdUI* cmd_ui);
 
 	struct Impl;
 	std::auto_ptr<Impl> pImpl_;

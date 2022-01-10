@@ -1,4 +1,4 @@
-// This file comes from www.codeproject.com/combobox
+﻿// This file comes from www.codeproject.com/combobox
 
 
 #include "stdafx.h"
@@ -74,7 +74,6 @@ void AutoCompletePopup::OnActivateApp(BOOL active, DWORD task)
 	ShowWindow(SW_HIDE);
 }
 
-
 BEGIN_MESSAGE_MAP(AutoCompletePopup, CWnd)
 	//{{AFX_MSG_MAP(AutoCompletePopup)
 	ON_WM_PAINT()
@@ -124,7 +123,7 @@ void AutoCompletePopup::DrawItem(CDC* dc, long item, long width)
 		if (disp[i] == '\n')
 			disp[i] = ' ';
 		else if (disp[i] == '\r')
-			disp[i] = ' ';//'�';
+			disp[i] = ' ';//'�';
 
 	dc->DrawText(disp.c_str(), static_cast<int>(disp.size()), rcLabel, DT_LEFT | DT_SINGLELINE | DT_NOPREFIX | DT_VCENTER | DT_END_ELLIPSIS);
 }
@@ -494,7 +493,16 @@ LRESULT AutoCompletePopup::WindowProc(HWND wnd, UINT msg, WPARAM wParam, LPARAM 
 	ASSERT(edit_ctrl_ != 0);
 	ASSERT(wnd == edit_ctrl_->m_hWnd);
 	WNDPROC wnd_proc= reinterpret_cast<WNDPROC>(old_wnd_proc_);
-
+	CPoint Point;
+	CRect rc;
+	//CString st;
+	//CString path;
+	//CString debugFile;
+	//GetModuleFileName(NULL, path.GetBufferSetLength(MAX_PATH + 1), MAX_PATH);
+	//path.ReleaseBuffer();
+	//int pos = path.ReverseFind('\\');
+	//path = path.Left(pos);
+	//debugFile = path + L"\\debug.ini";
 	switch (msg)
 	{
 	case WM_SYSKEYDOWN:
@@ -509,6 +517,21 @@ LRESULT AutoCompletePopup::WindowProc(HWND wnd, UINT msg, WPARAM wParam, LPARAM 
 
 	case WM_WINDOWPOSCHANGING:
 		ShowWindow(SW_HIDE);
+		break;
+		
+		
+	case WM_LBUTTONDOWN:
+		//SetCapture();
+		GetWindowRect(rc);//返回下拉框屏幕上下左右坐标
+		//GetClientRect(rc);//返回0,0,下拉框长,下拉框高
+		GetCursorPos(&Point);
+		//st.Format(_T("鼠标位置:x=%d. y=%d. 窗格: 左=%d,上=%d,右=%d,下=%d"),Point.x,Point.y,rc.left,rc.top,rc.right,rc.bottom);
+		//WritePrivateProfileString(L"General", L"Startup", st, debugFile);
+		//AfxMessageBox(st);
+		//ScreenToClient(&Point);
+		if (!rc.PtInRect(Point))
+			ShowWindow(SW_HIDE);
+		//ReleaseCapture();
 		break;
 
 	case WM_LBUTTONDBLCLK:
@@ -815,7 +838,7 @@ BOOL AutoCompletePopup::OnSetCursor(CWnd* wnd, UINT hit_test, UINT message)
 	GetCursorPos(&cursor);
 	ScreenToClient(&cursor);
 
-	if (client_rect.PtInRect(cursor)) // Vergr��erungs-Cursor
+	if (client_rect.PtInRect(cursor)) // Vergr��erungs-Cursor
 		return CWnd::OnSetCursor(wnd, hit_test, message);
 
 	::SetCursor(AfxGetApp()->LoadStandardCursor(IDC_ARROW));

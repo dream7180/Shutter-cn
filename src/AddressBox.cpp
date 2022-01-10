@@ -44,7 +44,7 @@ bool AddressBox::Create(CWnd* parent)
 	if (!EditCombo::Create(parent, IDB_ADDRESS_TOOLBAR, ID_REFRESH, ID_STOP_SCANNING, EditCombo::AUTO_COMPLETE))
 		return false;
 
-	SetMargins(CRect(0, 0, Pixels(6), 0));
+	SetMargins(CRect(0, 0, Pixels(10), 0));
 
 	GetAutoComplete().HandleUpDownKey(false);
 	GetAutoComplete().RegisterTextSelectedFn(boost::bind(&AddressBox::Selected, this));

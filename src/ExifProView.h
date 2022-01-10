@@ -140,7 +140,7 @@ public:
 	void MovePhotos(const VectPhotoInfo& photos);
 
 	// export EXIF data
-	void ExportExifData();
+	//void ExportExifData();
 
 	// rotate photos (lossless JPEG rotation)
 	void RotatePhotos();
@@ -260,8 +260,8 @@ protected:
 	afx_msg void OnNoGrouping();
 	afx_msg void OnUpdateNoGrouping(CCmdUI* cmd_ui);
 	afx_msg void OnTaskGenHTMLAlbum();
-	afx_msg void OnTaskExport();
-	afx_msg void OnUpdateTaskExport(CCmdUI* cmd_ui);
+	//afx_msg void OnTaskExport();
+	//afx_msg void OnUpdateTaskExport(CCmdUI* cmd_ui);
 	afx_msg void OnTaskRotate();
 	afx_msg void OnUpdateTaskRotate(CCmdUI* cmd_ui);
 	afx_msg void OnStickySelection();
@@ -284,6 +284,8 @@ protected:
 	afx_msg void OnOpenPhoto();
 	afx_msg void OnOpenInExplorer();
 	afx_msg void OnUpdateOpenInExplorer(CCmdUI* cmd_ui);
+	afx_msg void OnShowProperties();
+	afx_msg void OnUpdateShowProperties(CCmdUI* cmd_ui);
 	afx_msg void OnUpdateOpenPhoto(CCmdUI* cmd_ui);
 	afx_msg void OnContextMenu(CWnd* wnd, CPoint point);
 	afx_msg void OnUpdateTaskCopy(CCmdUI* cmd_ui);

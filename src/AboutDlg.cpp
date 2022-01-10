@@ -95,10 +95,10 @@ extern CString ReadAppVersion(bool including_build)
 		if (ver->dwSignature == 0xfeef04bd)
 		{
 			//if (including_build)
-				//version.Format(_T("Version %d.%u.%u Build %u %s"),
-				version.Format(_T("Version %d.%u %s Build"),
+				version.Format(_T("Version %d.%u.%u Build %u %s"),
+				//version.Format(_T("Version %d.%u %s Build"),
 					(int)HIWORD(ver->dwProductVersionMS), (int)LOWORD(ver->dwProductVersionMS),
-					//(int)HIWORD(ver->dwProductVersionLS), (int)LOWORD(ver->dwProductVersionLS),
+					(int)HIWORD(ver->dwProductVersionLS), (int)LOWORD(ver->dwProductVersionLS),
 					sizeof(TCHAR) == 1 ? _T("ASCII") : _T("Unicode"));
 			//else
 				//version.Format(_T("Version %d.%u.%u\n%s Build"),
@@ -117,7 +117,8 @@ BOOL AboutDlg::OnInitDialog()
 	try
 	{
 		version_ = ReadAppVersion(true);
-/*		about_ = version_ + _T("\n")
+		//CString about_ = version_ + _T("\n")
+		version_ +=  _T("\n")
 #ifdef _WIN64
 			_T("x64")
 #else
@@ -125,8 +126,8 @@ BOOL AboutDlg::OnInitDialog()
 #endif
 			_T(" Release\n");
 
-		about_ += _T("Free software released under the terms of the GNU Public License.");
-*/
+//		about_ += _T("Free software released under the terms of the GNU Public License.");
+
 		CDialog::OnInitDialog();
 		
 		LOGFONT lf;

@@ -47,7 +47,7 @@ class ViewPane : public CWnd
 {
 // Construction
 public:
-	ViewPane(bool coolSB= false);
+	ViewPane(/*bool coolSB= false*/);
 
 // Attributes
 public:
@@ -240,7 +240,7 @@ private:
 
 	double CalcPhysicalZoom(double logical_zoom, bool screen_ratio_fix= false, Dib* dib= 0) const;
 
-	void OnCustDrawScrollBar(UINT id, NMHDR* hdr, LRESULT* result);
+	///void OnCustDrawScrollBar(UINT id, NMHDR* hdr, LRESULT* result);
 
 	double CalcRangeSizeAndZoom(const CRect& clientRect, Dib* bmp, int& bmp_width, int& bmp_height,
 								 int& width, int& height, CPoint& pos_img, CSize& range) const;

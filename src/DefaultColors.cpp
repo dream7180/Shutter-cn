@@ -49,7 +49,7 @@ std::vector<COLORREF> GetViewerWndDefaultColors()
 {
 	std::vector<COLORREF> colors(6);
 
-	colors[0] = RGB(0,0,0);		// background
+	colors[0] = RGB(110,110,110);		// background
 	colors[1] = RGB(255, 138, 22);
 	// [2]
 	colors[3] = RGB(247, 123, 0);//::GetSysColor(COLOR_HIGHLIGHT);	// preview selection color

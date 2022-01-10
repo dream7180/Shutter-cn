@@ -16,6 +16,7 @@ ____________________________________________________________________________*/
 #include "Config.h"
 #include "CatchAll.h"
 #include "EnableCtrl.h"
+#include "GetDefaultGuiFont.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -120,8 +121,11 @@ BOOL CDescriptionDlg::InitDlg()
 		}
 	}
 
-	LOGFONT lf= g_Settings.lf_description_;
-	lf.lfHeight = -18;
+	//LOGFONT lf= g_Settings.lf_description_;
+	//lf.lfHeight = -18;
+	LOGFONT lf;
+	::GetDefaultGuiFont(lf);
+	lf.lfHeight -= 2;
 	fnd_edit_.CreateFontIndirect(&lf);
 
 	::SendMessageW(edit_, WM_SETFONT, reinterpret_cast<WPARAM>(fnd_edit_.GetSafeHandle()), 0);

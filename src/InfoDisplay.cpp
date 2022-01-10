@@ -80,7 +80,7 @@ bool InfoDisplay::Create(CWnd* parent, const GetTextFn& get_text, COLORREF rgb_b
 		CRect(0,0,0,0), parent, IDC_LIST))
 		return false;
 	
-	SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_DOUBLEBUFFER | LVS_EX_LABELTIP);
+	SetExtendedStyle(LVS_EX_FULLROWSELECT | LVS_EX_DOUBLEBUFFER | LVS_EX_LABELTIP | LVS_EX_GRIDLINES);
 	SetFont(&::GetDefaultGuiFont());
 	SetBkColor(rgb_back);
 	SetTextBkColor(rgb_back);
@@ -92,9 +92,10 @@ bool InfoDisplay::Create(CWnd* parent, const GetTextFn& get_text, COLORREF rgb_b
 	header_.SubclassWindow(hWnd);
 	header_.SetFont(&::GetDefaultGuiFont());
 
-	InsertColumn(0, _T("标签"), LVCFMT_LEFT, Pixels(40));
-	InsertColumn(1, _T("名称"), LVCFMT_LEFT, Pixels(130));
-	InsertColumn(2, _T("值"), LVCFMT_LEFT, Pixels(150));
+	//InsertColumn(0, _T("标签"), LVCFMT_LEFT, Pixels(0));
+	InsertColumn(0, _T(""), LVCFMT_LEFT, Pixels(0));
+	InsertColumn(1, _T("名称"), LVCFMT_LEFT, Pixels(120));
+	InsertColumn(2, _T("值"), LVCFMT_LEFT, Pixels(165));
 
 	// restore column widths
 

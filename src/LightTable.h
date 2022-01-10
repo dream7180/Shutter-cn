@@ -11,6 +11,8 @@ ____________________________________________________________________________*/
 
 #include "DockedPane.h"
 #include "PhotoInfoStorage.h"
+#include "ToolBarWnd.h"
+#include "ColorSets.h"
 struct ICMTransform;
 class PhotoCache;
 
@@ -89,4 +91,5 @@ private:
 	void OnTbDropDown(NMHDR* nmhdr, LRESULT* result);
 
 	LRESULT OnPrintClient(WPARAM HDC, LPARAM flags);
+	int header_h;
 };

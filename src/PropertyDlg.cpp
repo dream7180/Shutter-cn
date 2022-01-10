@@ -19,7 +19,7 @@ ____________________________________________________________________________*/
 #include "DlgListCtrl.h"
 #include <boost/ptr_container/ptr_vector.hpp>
 #include "ToolBarWnd.h"
-#include "viewer/FancyToolBar.h"
+//#include "viewer/FancyToolBar.h"
 #include "ArrowButton.h"
 #include "Profile.h"
 #include "DescriptionPane.h"
@@ -64,7 +64,7 @@ struct CPropertyDlg::Impl
 	boost::ptr_vector<Pane> panes_;
 
 	DlgListCtrl dlg_container_;
-	FancyToolBar templates_tb_;
+	ToolBarWnd templates_tb_;
 	CButton save_btn_;
 	CButton cancel_btn_;
 	ArrowButton btn_prev_;
@@ -88,7 +88,6 @@ struct CPropertyDlg::Impl
 	void CheckNextPrev(CPropertyDlg* dlg);
 	CRect GetShadowRect(CWnd* wnd) const;
 	void TemplatePopup(CWnd* wnd);
-	void OnTbDropDown(CWnd* parent, int cmd, size_t btn_index);
 	bool ReadText();
 	void SaveHistory();
 	void WriteToDlgControls();
@@ -125,7 +124,7 @@ void CPropertyDlg::DoDataExchange(CDataExchange* DX)
 {
 	DialogChild::DoDataExchange(DX);
 	DDX_Control(DX, IDC_CONTAINER, pImpl_->dlg_container_);
-//	DDX_Control(DX, IDC_TEMPLATES, pImpl_->templates_tb_);
+	//DDX_Control(DX, IDC_TEMPLATES, pImpl_->templates_tb_);
 	DDX_Control(DX, IDC_PREVIOUS, pImpl_->btn_prev_);
 	DDX_Control(DX, IDC_NEXT, pImpl_->btn_next_);
 	DDX_Control(DX, IDOK, pImpl_->save_btn_);
@@ -137,12 +136,14 @@ BEGIN_MESSAGE_MAP(CPropertyDlg, DialogChild)
 	ON_WM_ERASEBKGND()
 	ON_WM_SIZE()
 	ON_WM_DESTROY()
-//	ON_NOTIFY(TBN_DROPDOWN, IDC_TEMPLATES, OnTbDropDown)
+	ON_NOTIFY(TBN_DROPDOWN, IDC_TEMPLATES, OnTbDropDown)
+	//ON_UPDATE_COMMAND_UI(IDC_POPUP, OnUpdateTmpOptions)
 	ON_MESSAGE(WM_PRINTCLIENT, OnPrintClient)
 	ON_BN_CLICKED(IDC_PREVIOUS, OnPrev)
 	ON_BN_CLICKED(IDC_NEXT, OnNext)
 	ON_COMMAND(ID_SAVE, OnSaveTemplate)
 	ON_COMMAND(ID_LOAD, OnLoadTemplate)
+	ON_COMMAND(IDC_POPUP, onTemplatePopup)
 	ON_COMMAND_RANGE(ID_BROWSE_FOLDER_1, ID_BROWSE_FOLDER_1 + 999, OnLoadTemplateFile)	// reusing IDs here
 END_MESSAGE_MAP()
 
@@ -455,19 +456,22 @@ void CPropertyDlg::Impl::InitDlg(DialogChild* wnd)
 
 	if (CWnd* tb= wnd->GetDlgItem(IDC_TEMPLATES))
 	{ // toolbar
-		FancyToolBar::Params p;
-		p.shade = -0.4f;
-		p.desaturate = -1.0f;
+		//FancyToolBar::Params p;
+		//p.shade = -0.4f;
+		//p.desaturate = -1.0f;
 		int cmd= IDC_POPUP;
-		if (!templates_tb_.Create(wnd, "p", &cmd, IDB_INFO_BAND_OPT_HOT, &p))
+		//if (!templates_tb_.Create(wnd, "p", &cmd, IDB_INFO_BAND_OPT, &p))
+		if (!templates_tb_.Create("v", &cmd, IDB_INFO_BAND_OPT, 0, wnd, IDC_TEMPLATES))
 			throw String(_T("Failed to create a toolbar."));
 
-		templates_tb_.SetPadding(CRect(2,2,2,2));
+		templates_tb_.SetPadding(2, 2);
+		templates_tb_.AutoResize();
+		templates_tb_.SetOwnerDraw(wnd);
 	//	templates_tb_.SetOption(FancyToolBar::BEVEL_LOOK, false);
-		templates_tb_.SetOption(FancyToolBar::HOT_OVERLAY, false);
+		//templates_tb_.SetOption(FancyToolBar::HOT_OVERLAY, false);
 	//	templates_tb_.SetOption(FancyToolBar::SHIFT_BTN, false);
 
-		CSize s= templates_tb_.Size();
+		CSize s= templates_tb_.tb_size;
 		WINDOWPLACEMENT wp;
 		tb->GetWindowPlacement(&wp);
 		templates_tb_.SetWindowPos(0, wp.rcNormalPosition.left, wp.rcNormalPosition.top,
@@ -475,7 +479,7 @@ void CPropertyDlg::Impl::InitDlg(DialogChild* wnd)
 
 		tb->DestroyWindow();
 
-		templates_tb_.SetCommandCallback(boost::bind(&Impl::OnTbDropDown, this, wnd, _1, _2));
+		//templates_tb_.SetCommandCallback(boost::bind(&Impl::OnTbDropDown, this, wnd, _1, _2));
 		templates_tb_.SetDlgCtrlID(IDC_TEMPLATES);
 		templates_tb_.SetOnIdleUpdateState(false);
 
@@ -806,19 +810,9 @@ CRect CPropertyDlg::Impl::GetShadowRect(CWnd* wnd) const
 }
 
 
-void CPropertyDlg::Impl::OnTbDropDown(CWnd* parent, int cmd, size_t btn_index)
-{
-	switch (cmd)
-	{
-	case IDC_POPUP:
-		TemplatePopup(parent);
-		break;
-	}
-}
-
-
 void CPropertyDlg::Impl::TemplatePopup(CWnd* wnd)
 {
+	//templates_tb_.PressButton(IDC_POPUP);
 	CMenu menu;
 	if (!menu.LoadMenu(IDR_XMP_TEMPLATES))
 		return;
@@ -840,6 +834,26 @@ void CPropertyDlg::Impl::TemplatePopup(CWnd* wnd)
 }
 
 
+void CPropertyDlg::onTemplatePopup()
+{
+	pImpl_->TemplatePopup(this);
+}
+
+
+void CPropertyDlg::OnTbDropDown(NMHDR* nmhdr, LRESULT* result)//(CWnd* parent, int cmd, size_t btn_index)
+{
+	NMTOOLBAR* info= reinterpret_cast<NMTOOLBAR*>(nmhdr);
+	
+	switch (info->iItem)
+	{
+	case IDC_POPUP:
+		pImpl_->TemplatePopup(this);
+		break;
+	}
+	*result = TBDDRET_DEFAULT;
+}
+
+
 LRESULT CPropertyDlg::OnPrintClient(WPARAM wdc, LPARAM flags)
 {
 	if (CDC* dc= CDC::FromHandle(HDC(wdc)))
@@ -847,6 +861,11 @@ LRESULT CPropertyDlg::OnPrintClient(WPARAM wdc, LPARAM flags)
 
 	return 1;
 }
+
+//void CPropertyDlg::OnUpdateTmpOptions(CCmdUI* cmd_ui)
+//{
+//	cmd_ui->Enable();
+//}
 
 
 void CPropertyDlg::PhotoLoaded(PhotoInfoPtr photo, const XmpData& data)

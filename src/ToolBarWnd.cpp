@@ -554,7 +554,7 @@ void ToolBarWnd::AutoResize()
 	AutoSize();
 
 	// get tb size
-	CSize tb_size;
+	//CSize tb_size;
 	GetMaxSize(&tb_size);
 
 	if (WhistlerLook::IsAvailable())	// work aroud bug in CmnCtrl prior to v.6

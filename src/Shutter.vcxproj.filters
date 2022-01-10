@@ -444,9 +444,9 @@
     <ClCompile Include="viewer\DrawSeparatorBar.cpp">
       <Filter>Viewer</Filter>
     </ClCompile>
-    <ClCompile Include="viewer\FancyToolBar.cpp">
+    <!--ClCompile Include="viewer\FancyToolBar.cpp">
       <Filter>Viewer</Filter>
-    </ClCompile>
+    </ClCompile-->
     <ClCompile Include="LightTable.cpp">
       <Filter>Viewer</Filter>
     </ClCompile>
@@ -465,9 +465,9 @@
     <ClCompile Include="ViewerTagPane.cpp">
       <Filter>Viewer</Filter>
     </ClCompile>
-    <ClCompile Include="ViewerToolBar.cpp">
+    <!--ClCompile Include="ViewerToolBar.cpp">
       <Filter>Viewer</Filter>
-    </ClCompile>
+    </ClCompile-->
     <ClCompile Include="MemoryStatus\MemoryStatDlg.cpp">
       <Filter>MemoryStat</Filter>
     </ClCompile>
@@ -510,9 +510,9 @@
     <ClCompile Include="TagBarView.cpp">
       <Filter>Panels</Filter>
     </ClCompile>
-    <ClCompile Include="TaskBarView.cpp">
+    <!--ClCompile Include="TaskBarView.cpp">
       <Filter>Panels</Filter>
-    </ClCompile>
+    </ClCompile-->
     <ClCompile Include="CopyMoveDlg.cpp">
       <Filter>Tools</Filter>
     </ClCompile>
@@ -537,11 +537,11 @@
     <ClCompile Include="EditFileInfo.cpp">
       <Filter>Tools</Filter>
     </ClCompile>
-    <ClCompile Include="ExifExport.cpp">
+    <!--ClCompile Include="ExifExport.cpp">
       <Filter>Tools</Filter>
     </ClCompile>
     <ClCompile Include="ExportExifDlg.cpp">
-      <Filter>Tools</Filter>
+      <Filter>Tools</Filter-->
     </ClCompile>
     <ClCompile Include="ExtractingThread.cpp">
       <Filter>Tools</Filter>
@@ -1125,6 +1125,9 @@
     <ClCompile Include="ColorProfile.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
+	<ClCompile Include="ColorSets.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
     <ClCompile Include="Data.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
@@ -1432,6 +1435,9 @@
     <ClInclude Include="ColorProfile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+	<ClInclude Include="ColorSets.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Columns.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1600,9 +1606,9 @@
     <ClInclude Include="ExifBlock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ExifExport.h">
+    <!--ClInclude Include="ExifExport.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
+    </ClInclude-->
     <ClInclude Include="ExifPro.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1618,9 +1624,9 @@
     <ClInclude Include="ExifViewReBar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ExportExifDlg.h">
+    <!--ClInclude Include="ExportExifDlg.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
+    </ClInclude-->
     <ClInclude Include="ExprCalculator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -2344,9 +2350,9 @@
     <ClInclude Include="TagsManageDlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TaskBarView.h">
+    <!--ClInclude Include="TaskBarView.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
+    </ClInclude-->
     <ClInclude Include="Tasks.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -2419,9 +2425,9 @@
     <ClInclude Include="ViewerTagPane.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ViewerToolBar.h">
+    <!--ClInclude Include="ViewerToolBar.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
+    </ClInclude-->
     <ClInclude Include="ViewPane.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -2479,9 +2485,9 @@
     <ClInclude Include="viewer\DarkCloseBar.h">
       <Filter>Viewer</Filter>
     </ClInclude>
-    <ClInclude Include="viewer\FancyToolBar.h">
+    <!--ClInclude Include="viewer\FancyToolBar.h">
       <Filter>Viewer</Filter>
-    </ClInclude>
+    </ClInclude-->
     <ClInclude Include="viewer\PreviewBandWnd.h">
       <Filter>Viewer</Filter>
     </ClInclude>
@@ -2523,9 +2529,6 @@
     <Image Include="res\address_tb.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\aparat.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\arrow_down.bmp">
       <Filter>Resource Files</Filter>
     </Image>
@@ -2538,36 +2541,15 @@
     <Image Include="res\auto-complete.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\bitmap1.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <!--Image Include="res\browser.ico">
-      <Filter>Resource Files</Filter>
-    </Image-->
-    <Image Include="res\browser_tbar.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\BrowserToolBar.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <!--<Image Include="res\BrowserToolBar30.png">
-      <Filter>Resource Files</Filter>
-    </Image>-->
-    <Image Include="res\BrowserTools.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <!--Image Include="res\camera.ico">
-      <Filter>Resource Files</Filter>
-    </Image-->
     <Image Include="res\cancel-filter.png">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\cancel.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <!--Image Include="res\catalog.ico">
-      <Filter>Resource Files</Filter>
-    </Image-->
     <Image Include="res\CatalogHelp_1.png">
       <Filter>Resource Files</Filter>
     </Image>
@@ -2586,58 +2568,19 @@
     <Image Include="res\character.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\checked_btn.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\chevron-hot.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\chevron.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\chevron.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\chevron_big.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\chevron_big_hot.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\chevron_hot.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <!--Image Include="res\close_bar.bmp">
-      <Filter>Resource Files</Filter>
-    </Image-->
-    <!--Image Include="res\close_bar_hot.bmp">
-      <Filter>Resource Files</Filter>
-    </Image-->
     <Image Include="res\close_tb.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\closebar.bmp">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\closebar.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <!--Image Include="res\copy.ico">
-      <Filter>Resource Files</Filter>
-    </Image-->
     <Image Include="res\ctrl_draw_images.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\CustomFilters.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\descending.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\dock_bar.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\draw_toolbar.bmp">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\empty.bmp">
@@ -2655,25 +2598,10 @@
     <Image Include="res\Envelope.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <!--Image Include="res\error_icon.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\ExifPro.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\ExifProDoc.ico">
-      <Filter>Resource Files</Filter>
-    </Image-->
     <Image Include="res\ExifProVista.ico">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\eye_drop.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\file1.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\file2.ico">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\file_icons.png">
@@ -2688,91 +2616,34 @@
     <Image Include="res\FileTypeIndicators.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\filter_b.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\filter_bar.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\find_tb.png">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\flip_horizontally.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\flip_vertically.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\folder.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\folder_pane_big_tb.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\folder_pane_tb.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\folder_popup.bmp">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\FolderViewCtrlTb.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <!--Image Include="res\funnel-icon.png">
-      <Filter>Resource Files</Filter>
-    </Image-->
     <Image Include="res\funnel-small.png">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\funnel.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <!--Image Include="res\grid_pattern.bmp">
-      <Filter>Resource Files</Filter>
-    </Image-->
     <Image Include="res\grip.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <!--<Image Include="res\group_header_icons.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>-->
     <Image Include="res\GroupHeaderIcons.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <!--Image Include="res\HeaderImages.png">
-      <Filter>Resource Files</Filter>
-    </Image-->
-    <Image Include="res\HelpBtn.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <!--Image Include="res\HelpBtn.png">
-      <Filter>Resource Files</Filter>
-    </Image-->
-    <Image Include="res\horz_scrollbar.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\horz_vert_tb.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\hot_arr_btn.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\hot_arr_overlay.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\hot_img.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\hot_overlay.png">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\icm_icons.bmp">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\icm_toolbar.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\icon1.ico">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\img_effects.bmp">
@@ -2784,81 +2655,24 @@
     <Image Include="res\img_manip_icons.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\indicators.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\Indicators.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\indicators2.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\info_band_opt.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\info_band_opt_hot.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\info_bar.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\info_toolbar.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <!--Image Include="res\info_toolbar.png">
-      <Filter>Resource Files</Filter>
-    </Image-->
-    <Image Include="res\infobar.bmp">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\InfoToolbar.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\InfoToolBarBig.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\layouts.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\layouts.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <!--Image Include="res\layouts_thumbs.bmp">
-      <Filter>Resource Files</Filter>
-    </Image-->
     <Image Include="res\light-bulb.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <!--Image Include="res\light_table_bgnd.bmp">
-      <Filter>Resource Files</Filter>
-    </Image-->
-    <Image Include="res\light_table_sep.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\light_table_tb.bmp">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\light_table_tb.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\light_table_tb_dis.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <!--Image Include="res\LightTableHeader.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\LightTableHeader.png">
-      <Filter>Resource Files</Filter>
-    </Image-->
-    <Image Include="res\main_toolbar.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\marked.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <!--Image Include="res\mask.bmp">
-      <Filter>Resource Files</Filter>
-    </Image-->
     <Image Include="res\menu-btn-right.bmp">
       <Filter>Resource Files</Filter>
     </Image>
@@ -2871,58 +2685,13 @@
     <Image Include="res\move.ico">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\navigation.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\navigation_dis.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\noExif.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\obj_list.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\obj_list3.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\obj_list4.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\obj_list_2.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\operation.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\output.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\pane_too.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\pane_toolbar.bmp">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\pane_toolbar.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <!--Image Include="res\pane_toolbar_big.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\pane_toolbar_big_hot.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\pane_toolbar_hot.png">
-      <Filter>Resource Files</Filter>
-    </Image-->
     <Image Include="res\pattern.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\photo.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\photo.ico">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\photo_1.bmp">
@@ -2949,58 +2718,7 @@
     <Image Include="res\photo_8.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <!--Image Include="res\photos_dis_tb.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\photos_dis_tb.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\photos_tb.bmp">
-      <Filter>Resource Files</Filter>
-    </Image-->
     <Image Include="res\photos_tb.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <!--<Image Include="res\PhotosToolbarBig.png">
-      <Filter>Resource Files</Filter>
-    </Image>-->
-    <Image Include="res\placeholder.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\placeholder3.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\placeholder_2.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\png6.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <!--Image Include="res\preview_backgnd.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\preview_backgnd_btm.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\preview_backgnd_top.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\preview_backgnd_vert.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\preview_backgnd_vert_right.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\preview_backgnd_vert_top.bmp">
-      <Filter>Resource Files</Filter>
-    </Image-->
-    <Image Include="res\preview_scrollbar.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\preview_scrollbar_v.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\preview_version.jpg">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\print_dlg_tb.bmp">
@@ -3033,88 +2751,16 @@
     <Image Include="res\RunSlideShow.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\separator_img.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\Shadow.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\shortcuts.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\slider_bar.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\small_arrow_down.png">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\Stars.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\TabCaption.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\TabCaptionBig.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\TabCaptionEnd.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\TabCaptionEndBig.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\TabShape.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\TabShapeBig.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\TabShapeEnd.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\TabShapeEndBig.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\TaggedSeparateDirs.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\TaggedSingleDir.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\tags_checkboxes.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\tags_checkboxes_dis.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <!--Image Include="res\tags_edit.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\tags_no_edit.ico">
-      <Filter>Resource Files</Filter>
-    </Image-->
-    <Image Include="res\tags_ok.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\tags_ok_dis.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\tags_toolbar.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\TagsToolbar.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <!--<Image Include="res\TagsToolbarBig.png">
-      <Filter>Resource Files</Filter>
-    </Image>-->
-    <Image Include="res\task_bar.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\task_bar.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\task_bar_tb.bmp">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\tb_edit.bmp">
@@ -3132,15 +2778,6 @@
     <Image Include="res\TimeLineTb.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <!--Image Include="res\TimeLineTbDis.png">
-      <Filter>Resource Files</Filter>
-    </Image-->
-    <Image Include="res\toolbar_close.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\toolbar_close_2.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\TransferToolOper.png">
       <Filter>Resource Files</Filter>
     </Image>
@@ -3153,64 +2790,27 @@
     <Image Include="res\TransferToolOper3.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\transparent_bar.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\trashcan.bmp">
+    <Image Include="res\trashcan.png">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\Triangles.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\vert_scrollbar.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <!--Image Include="res\view_caption.png">
-      <Filter>Resource Files</Filter>
-    </Image-->
     <Image Include="res\viewer.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <!--Image Include="res\viewer_rebar_backgnd.bmp">
-      <Filter>Resource Files</Filter>
-    </Image-->
-    <Image Include="res\viewer_toolbar.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\ViewerToolbar.bmp">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\ViewerToolbar.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <!--<Image Include="res\ViewerToolbarBig.png">
-      <Filter>Resource Files</Filter>
-    </Image>-->
-    <!--<Image Include="res\ViewerToolbarDis.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\ViewerToolbarDis.png">
-      <Filter>Resource Files</Filter>
-    </Image>-->
     <Image Include="res\warning.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\warning_2.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\zoombar.bmp">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\ZoomBar.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\about.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\about-alpha.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\HelpBtn.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\copy-anim.avi">
@@ -3241,12 +2841,6 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="res\nodrop.cur">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="res\png3.bin">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="res\png5.bin">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="res\pointing.cur">

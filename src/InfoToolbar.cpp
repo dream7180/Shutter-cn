@@ -53,7 +53,7 @@ bool CInfoToolbar::Create(CWnd* parent, UINT id)
 
 	tool_bar_wnd_.SetPadding(8, 10);
 
-	if (!tool_bar_wnd_.Create("PXPx", anCommands, IDB_INFO_TOOLBAR, IDS_INFO_TOOLBAR, parent, id))
+	if (!tool_bar_wnd_.Create("PXPx", anCommands, IDB_INFO_TOOLBAR, NULL/*IDS_INFO_TOOLBAR*/, parent, id))
 		return false;
 
 	AddFixedBand(&tool_bar_wnd_, 1);

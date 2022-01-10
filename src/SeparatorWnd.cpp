@@ -223,8 +223,10 @@ void SeparatorWnd::DrawSeparatorBar(CDC& dc, CRect rect, bool horizontal)
 		dc.FillSolidRect(pos.x, pos.y, rect.Width() - array_count(shades), rect.Height(), gray);
 */
 	dc.FillSolidRect(rect.left, rect.top, rect.Width(), rect.Height(), gray);
-	dc.FillSolidRect(rect.left, rect.top, rect.Width(), 1, RGB(178, 178, 178));
-	rect.DeflateRect(0,2,0,0);
+	dc.FillSolidRect(rect.left, rect.top, rect.Width(), 1, RGB(160, 160, 160));
+	dc.FillSolidRect(rect.left, rect.top, 1, rect.Height(), RGB(160, 160, 160));
+	//rect.DeflateRect(0,2,0,0);
+	rect.DeflateRect(1,1,0,0);
 	DrawSeparatorRivets(dc, rect, horizontal);
 }
 

@@ -38,7 +38,7 @@ ____________________________________________________________________________*/
 #include "viewer/SeparatorWnd2.h"
 #include "viewer/DarkCloseBar.h"
 #include "viewer/ViewCaption.h"
-#include "ViewerToolBar.h"
+//#include "ViewerToolBar.h"
 #include "PhotoInfo.h"
 #include "TagsBar.h"
 #include "Profile.h"
@@ -58,6 +58,7 @@ ____________________________________________________________________________*/
 #include "DateTimeUtils.h"
 #include "ViewerTagPane.h"
 #include "GetDefaultGuiFont.h"
+#include "ColorSets.h"
 
 extern AutoPtr<PhotoCache> global_photo_cache;		// one central photo cache
 extern void OpenPhotograph(const TCHAR* photo_path, CWnd* wnd, bool raw);
@@ -76,8 +77,8 @@ namespace {
 	const TCHAR* REG_REBAR_LAYOUT= _T("ReBarLayout");
 	const TCHAR* REG_INFO_BAND_FIELDS= _T("InfoBandFields");
 
-	const COLORREF VIEWER_TEXT_COLOR= RGB(220,220,220);
-	const COLORREF LABEL_COLOR= RGB(139,139,147);
+	const COLORREF VIEWER_TEXT_COLOR= RGB(20,20,20);
+	//const COLORREF LABEL_COLOR= g_Colorsets.color_viewer_label;//RGB(130,130,130);
 
 	class TaskPending	// when any photo task is pending main window is disabled
 	{
@@ -104,10 +105,10 @@ namespace {
 
 struct Pane
 {
-	Pane() : pane_(true)
+	Pane() : pane_(/*true*/)
 	{
 		caption_.text_color_ = VIEWER_TEXT_COLOR;
-		caption_.label_color_ = LABEL_COLOR;
+		caption_.label_color_ = g_Colorsets.color_previewband_bg;//LABEL_COLOR;
 	}
 
 	bool IsValid() const
@@ -574,7 +575,7 @@ struct ViewerDlg::Impl : InfoBandNotification, ResizeWnd, ViewPaneNotifications
 	void Synch(bool incremental);
 	void Destroy(CWnd* wnd);
 	void SlideShowOptions(CWnd* wnd);
-	void ViewerOptions(CWnd* wnd, bool press_btn);
+	void ViewerOptions(CWnd* wnd);//, bool press_btn);
 	void Delete(CWnd* wnd);
 	void ResetSettings();	// call after settings have changed
 	void SetColors(const std::vector<COLORREF>& colors);
@@ -611,7 +612,7 @@ struct ViewerDlg::Impl : InfoBandNotification, ResizeWnd, ViewPaneNotifications
 	static CString wndClass_;
 
 	CWnd* wnd_;	// viewer window (self)
-	ViewerToolBar	toolbar_;			// toolbar band
+	ToolBarWnd	toolbar_;			// toolbar band
 	InfoBand		status_wnd_;		// info band
 	DarkCloseBar	close_wnd_;			// close btn band
 	LightTable		light_table_;		// light table pane
@@ -825,7 +826,7 @@ ViewerDlg::Impl::Impl(PhotoInfoStorage& storage, PhotoCache* cache, VectPhotoInf
 	profileInfoBarNameField_.Register(REGISTRY_ENTRY_VIEWER, _T("InfoBandNameField"), true);
 	profileShowPhotoDescription_.Register(REGISTRY_ENTRY_VIEWER, _T("ShowPhotoDescription"), true);
 	profileUseScrollBars_.Register(REGISTRY_ENTRY_VIEWER, _T("UseScrollBars"), true);
-	profileHorzPreviewBar_.Register(REGISTRY_ENTRY_VIEWER, _T("HorzPreviewBar"), false);
+	profileHorzPreviewBar_.Register(REGISTRY_ENTRY_VIEWER, _T("HorzPreviewBar"), true);
 	//profileTagsInPreviewBar_.Register(REGISTRY_ENTRY_VIEWER, _T("TagsInPreviewBar"), true);
 	profileSmoothScroll_.Register(REGISTRY_ENTRY_VIEWER, _T("SmoothScroll"), false);
 	profileMultiViewEnabled_.Register(REGISTRY_ENTRY_VIEWER, _T("MultiView"), false);
@@ -852,8 +853,8 @@ ViewerDlg::Impl::Impl(PhotoInfoStorage& storage, PhotoCache* cache, VectPhotoInf
 	status_wnd_.show_zoom_ = profileInfoBarZoomField_;
 	status_wnd_.show_name_ = profileInfoBarNameField_;
 	GetProfileVector(REGISTRY_ENTRY_VIEWER, REG_INFO_BAND_FIELDS, status_wnd_.fields_);
-	status_wnd_.text_color_ = VIEWER_TEXT_COLOR;
-	status_wnd_.label_color_ = LABEL_COLOR;
+	//status_wnd_.text_color_ = VIEWER_TEXT_COLOR;
+	//status_wnd_.label_color_ = LABEL_COLOR;
 
 	showMagnifierLens_ = false;
 
@@ -1025,10 +1026,10 @@ BEGIN_MESSAGE_MAP(ViewerDlg, CFrameWnd)
 	ON_COMMAND_RANGE(ID_VIEWER_BAR_DATE_TIME, ID_VIEWER_BAR_NO_LABELS, OnChangePreviewLabels)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_VIEWER_BAR_DATE_TIME, ID_VIEWER_BAR_NO_LABELS, OnUpdateEnableLabels)
 
-	ON_COMMAND(ID_SMALL_ICONS, OnSmallIcons)
-	ON_COMMAND(ID_LARGE_ICONS, OnLargeIcons)
-	ON_UPDATE_COMMAND_UI(ID_SMALL_ICONS, OnUpdateSmallIcons)
-	ON_UPDATE_COMMAND_UI(ID_LARGE_ICONS, OnUpdateLargeIcons)
+	//ON_COMMAND(ID_SMALL_ICONS, OnSmallIcons)
+	//ON_COMMAND(ID_LARGE_ICONS, OnLargeIcons)
+	//ON_UPDATE_COMMAND_UI(ID_SMALL_ICONS, OnUpdateSmallIcons)
+	//ON_UPDATE_COMMAND_UI(ID_LARGE_ICONS, OnUpdateLargeIcons)
 	ON_COMMAND(ID_HIDE_LIGHT_TABLE, OnHideLightTable)
 	ON_COMMAND(ID_HIDE_TAG_PANE, OnHideTagPane)
 	//ON_COMMAND(ID_VIEWER_BAR_OVERLAY_TAGS, OnToggleTagsInPreviewBar)
@@ -1039,6 +1040,7 @@ BEGIN_MESSAGE_MAP(ViewerDlg, CFrameWnd)
 	ON_UPDATE_COMMAND_UI(ID_VIEWER_BAR_CENTER, OnUpdateToggleCenterImage)
 	ON_MESSAGE(WM_APPCOMMAND, OnAppCommand)
 	ON_COMMAND(ID_OPEN_PHOTO, OnOpenPhoto)
+	ON_COMMAND(ID_PROPETIES, OnShowProperties)
 	ON_COMMAND(ID_TOGGLE_MULTIPLE_PANES, OnToggleMultiView)
 	ON_COMMAND(ID_COMPARE_MULTIPLE, OnToggleMultiView)
 	ON_UPDATE_COMMAND_UI(ID_COMPARE_MULTIPLE, OnUpdateMultiView)
@@ -1102,6 +1104,7 @@ void ViewerDlg::Impl::Resize(CWnd* wnd)
 
 	int y_pos= 0;
 	int x_pos= 0;
+	int pv_height = 0;
 
 	if (rebar_.GetStyle() & WS_VISIBLE)
 	{
@@ -1110,7 +1113,7 @@ void ViewerDlg::Impl::Resize(CWnd* wnd)
 
 		if (close_wnd_.CWnd::GetStyle() & WS_VISIBLE)
 		{
-			int w= DarkCloseBar::CLOSE_BAR_WIDTH;
+			int w= close_wnd_.tbsize.cx + 1;//DarkCloseBar::CLOSE_BAR_WIDTH;
 			width -= SetWindowSize(close_wnd_, cl_rect.right - w, 0, w, h).cx;
 		}
 
@@ -1119,10 +1122,14 @@ void ViewerDlg::Impl::Resize(CWnd* wnd)
 
 	if (preview_.GetStyle() & WS_VISIBLE)
 	{
+		int sep_h = separator_.GetHeight();
 		if (preview_.IsHorizontalOrientation())
-		{
-			y_pos += SetWindowSize(preview_, 0, y_pos, wnd_size.cx, previewPaneHeight_).cy;
-			y_pos += SetWindowSize(separator_, 0, y_pos, wnd_size.cx, separator_.GetHeight()).cy;
+		{	
+			int _height = wnd_size.cy - previewPaneHeight_;
+			//y_pos += SetWindowSize(preview_, 0, y_pos, wnd_size.cx, previewPaneHeight_).cy;
+			//y_pos += SetWindowSize(separator_, 0, y_pos, wnd_size.cx, separator_.GetHeight()).cy;
+			pv_height += SetWindowSize(separator_, 0, _height - sep_h, wnd_size.cx, sep_h).cy;
+			pv_height += SetWindowSize(preview_, 0, _height, wnd_size.cx, previewPaneHeight_).cy;
 		}
 		else
 		{
@@ -1130,7 +1137,7 @@ void ViewerDlg::Impl::Resize(CWnd* wnd)
 			int width= previewPaneHeight_;
 
 			x_pos += SetWindowSize(preview_, 0, y_pos, width, height).cx;
-			x_pos += SetWindowSize(separator_, x_pos, y_pos, separator_.GetHeight(), height).cx;
+			x_pos += SetWindowSize(separator_, x_pos, y_pos, sep_h, height).cx;
 		}
 
 		preview_.Invalidate();
@@ -1138,25 +1145,25 @@ void ViewerDlg::Impl::Resize(CWnd* wnd)
 	}
 
 	int right= cl_rect.right;
+	
+	if (light_table_.IsVisible())
+	{
+		int width= std::min<int>(light_table_.GetWidth(), wnd_size.cx - x_pos);
+		if (width < 0)
+			width = 0;
+		wnd_size.cx -= SetWindowSize(light_table_, cl_rect.right - width, y_pos, width, wnd_size.cy - y_pos - pv_height).cx;
+		right -= width;
+	}
 
 	if (tags_pane_.IsVisible())
 	{
 		int width= std::min<int>(tags_pane_.GetWidth(), wnd_size.cx - x_pos);
 		if (width < 0)
 			width = 0;
-		wnd_size.cx -= SetWindowSize(tags_pane_, cl_rect.right - width, y_pos, width, wnd_size.cy - y_pos).cx;
-		right -= width;
+		wnd_size.cx -= SetWindowSize(tags_pane_, right - width, y_pos, width, wnd_size.cy - y_pos - pv_height).cx;
 	}
 
-	if (light_table_.IsVisible())
-	{
-		int width= std::min<int>(light_table_.GetWidth(), wnd_size.cx - x_pos);
-		if (width < 0)
-			width = 0;
-		wnd_size.cx -= SetWindowSize(light_table_, right - width, y_pos, width, wnd_size.cy - y_pos).cx;
-	}
-
-	displays_.Resize(x_pos, y_pos, CSize(wnd_size.cx - x_pos, wnd_size.cy - y_pos));
+	displays_.Resize(x_pos, y_pos, CSize(wnd_size.cx - x_pos, wnd_size.cy - y_pos - pv_height));
 
 	SetInfo();
 }
@@ -1271,9 +1278,24 @@ void ViewerDlg::Impl::SwitchPreviewBarLabels(LabelType labels)
 void ViewerDlg::Impl::Create(CWnd* wnd, Logger& log)
 {
 	wnd_ = wnd;
+	const int commands[]=
+	{
+		ID_PHOTO_FIRST, ID_PHOTO_PREV, ID_PHOTO_LIST, ID_PHOTO_NEXT, ID_PHOTO_LAST,
+		ID_START_SLIDE_SHOW, //ID_STOP_SLIDE_SHOW,
+		ID_ZOOM_OUT, ID_ZOOM_IN, ID_ZOOM_100, ID_ZOOM_FIT, ID_MAGNIFIER_LENS,
+		//ID_VIEWER_BAR, 
+		ID_TOGGLE_LIGHT_TABLE,
+//		ID_COMPARE_MULTIPLE,
+		ID_JPEG_ROTATE_90_CCW, ID_JPEG_ROTATE_90_CW,
+		ID_VIEWER_OPTIONS,// ID_TAGS_BAR,
+		ID_ROTATE_90_CCW, ID_ROTATE_90_CW
+	};
 
-	VERIFY(toolbar_.Create(wnd, AFX_IDW_TOOLBAR));
+	//VERIFY(toolbar_.Create(wnd, AFX_IDW_TOOLBAR));
+	VERIFY(toolbar_.Create("ppppp|m|ppxxp|xppvpp", commands, IDB_VIEWER_TOOLBAR, 0, wnd, AFX_IDW_TOOLBAR));
 	LOG_FILENAME(log); log << "toolbar created\n";
+	toolbar_.CreateDisabledImageList(IDB_VIEWER_TOOLBAR, -0.6f, +0.5f);
+	toolbar_.SetOwnerDraw(wnd);
 
 	VERIFY(status_wnd_.Create(wnd, this));
 	LOG_FILENAME(log); log << "status created\n";
@@ -1282,7 +1304,7 @@ void ViewerDlg::Impl::Create(CWnd* wnd, Logger& log)
 	LOG_FILENAME(log); log << "close wnd created\n";
 	ShowCloseBar(false);
 
-	preview_.Create(wnd);
+	preview_.Create(wnd, false);
 	preview_.EnableToolTips(balloons_enabled_);
 	preview_.KeepCurrentItemCentered(keep_current_img_centered_);
 
@@ -1502,9 +1524,9 @@ void ViewerDlg::Impl::EraseBandBk(CDC& dc, int id, CRect band, bool in_line)
 {
 	if (!in_line && id == Impl::INFOBAR)
 		infbar_.Draw(&dc, band, 0);
-	else
+	//else
 		//rebar_bgnd_.Draw(&dc, band, 0);
-		dc.FillSolidRect(band,RGB(45,45,45));
+		dc.FillSolidRect(band,RGB(240,240,240));//RGB(45,45,45));
 }
 
 
@@ -1702,7 +1724,7 @@ BOOL ViewerDlg::OnEraseBkgnd(CDC* dc)
 	// this window shouldn't be visible, it's completely covered
 	CRect rect(0,0,0,0);
 	GetClientRect(rect);
-	dc->FillSolidRect(rect, RGB(0,0,0));
+	dc->FillSolidRect(rect, g_Colorsets.color_viewer_label);
 
 	return true;
 }
@@ -1823,7 +1845,7 @@ void ViewerDlg::OnTbDropDown(NMHDR* nmhdr, LRESULT* result)
 	//	break;
 
 	case ID_VIEWER_OPTIONS:
-		pImpl_->ViewerOptions(this, false);
+		pImpl_->ViewerOptions(this);//, false);
 		break;
 
 	case ID_START_SLIDE_SHOW:
@@ -2529,17 +2551,17 @@ void ViewerDlg::Impl::SlideShowOptions(CWnd* wnd)
 
 void ViewerDlg::OnViewerOptions()
 {
-	pImpl_->ViewerOptions(this, true);
+	pImpl_->ViewerOptions(this);//, true);
 }
 
 
-void ViewerDlg::Impl::ViewerOptions(CWnd* wnd, bool press_btn)
+void ViewerDlg::Impl::ViewerOptions(CWnd* wnd)//, bool press_btn)
 {
 	if (!toolbar_visible_)
 		return;
 
-	if (press_btn)
-		toolbar_.PressButton(ID_VIEWER_OPTIONS);
+	//if (press_btn)
+	//	toolbar_.PressButton(ID_VIEWER_OPTIONS);
 
 	CMenu menu;
 	if (!menu.LoadMenu(IDR_VIEWER_OPTIONS))
@@ -2555,8 +2577,8 @@ void ViewerDlg::Impl::ViewerOptions(CWnd* wnd, bool press_btn)
 		popup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, rect.left, rect.bottom, wnd);
 	}
 
-	if (press_btn)
-		toolbar_.PressButton(ID_VIEWER_OPTIONS, false);
+	//if (press_btn)
+	//	toolbar_.PressButton(ID_VIEWER_OPTIONS, false);
 }
 
 
@@ -2780,18 +2802,38 @@ void ViewerDlg::Impl::StartSlideShow(CWnd* wnd)
 			rect |= wp.rcNormalPosition;
 			rebar_.ModifyStyle(WS_VISIBLE, 0);
 
-			if (full_screen_)
-				close_wnd_.ModifyStyle(WS_VISIBLE, 0);
+			//if (full_screen_)
+			ShowCloseBar(false);//close_wnd_.ModifyStyle(WS_VISIBLE, 0);
+			
 		}
-
+		
+		if (light_table_.GetStyle() & WS_VISIBLE)
+			light_table_.Show(false);
+		if (tags_pane_.GetStyle() & WS_VISIBLE)
+			tags_pane_.Show(false);
+		
 		if (!rect.IsRectEmpty())
 		{
 			//TODO: scrolling is failing sometimes...
 			CSmoothScroll scroll(wnd);
 			scroll.Hide(rect, FirstPane().GetBackgndColor());
 		}
+		if(!maximized_) {
+			wnd_style_ = wnd->GetStyle();
+			wnd->GetWindowRect(wnd_rectangle_);
+		}
+		if(full_screen_) Resize(wnd);
+		else{
+			wnd->ModifyStyle(CAPTION_STYLES, 0);
+			//CRect window_rect(0,0,0,0);
+			wnd->GetWindowRect(rect);
+			rect= ::GetFullScreenRect(rect);
+			::AdjustWindowRectEx(rect, wnd->GetStyle(), false, wnd->GetExStyle());
+			wnd->SetWindowPos(0, rect.left, rect.top, rect.Width(), rect.Height(), SWP_NOZORDER | SWP_FRAMECHANGED);
+			InformTaskBar(wnd, true);
+		}
 
-		Resize(wnd);
+		//Resize(wnd);
 	}
 
 	slideShowDelay_ = profileSlideShowDelay_ * 4;	// delay in seconds times 4
@@ -2831,12 +2873,13 @@ void ViewerDlg::Impl::StopSlideShow(CWnd* wnd)
 		if (toolbar_visible_)
 		{
 			rebar_.ModifyStyle(0, WS_VISIBLE);
+			ShowCloseBar(true);
 
-			if (full_screen_)
-				close_wnd_.ModifyStyle(0, WS_VISIBLE);
+			if (full_screen_ || maximized_)
+				ShowCloseBar(true);//close_wnd_.ModifyStyle(0, WS_VISIBLE);
 		}
-
-		Resize(wnd);
+		
+		WndMode(wnd);
 	}
 }
 
@@ -3071,7 +3114,7 @@ void ViewerDlg::Impl::ResetColors()
 	//list_bar_wnd_.ResetColors();
 	//list_bar_wnd_.Invalidate();
 
-	light_table_.SetBackgndColor(FirstPane().GetBackgndColor());
+	light_table_.SetBackgndColor(g_Colorsets.color_gui);//FirstPane().GetBackgndColor());
 	//tags_pane_
 
 	const double NORMAL= 1.0;
@@ -3586,12 +3629,12 @@ void ViewerDlg::OnUpdateVertPreviewBar(CCmdUI* cmd_ui)
 	cmd_ui->SetRadio(!pImpl_->preview_.IsHorizontalOrientation());
 }
 
-
+/*
 void ViewerDlg::OnSmallIcons()
 {
 	if (pImpl_->toolbar_.SmallIcons())
 	{
-		pImpl_->rebar_.BandResized(pImpl_->toolbar_, pImpl_->toolbar_.Size());
+		pImpl_->rebar_.BandResized(pImpl_->toolbar_, pImpl_->toolbar_.tbsize);
 		pImpl_->Resize(this);
 	}
 }
@@ -3600,7 +3643,7 @@ void ViewerDlg::OnLargeIcons()
 {
 	if (pImpl_->toolbar_.LargeIcons())
 	{
-		pImpl_->rebar_.BandResized(pImpl_->toolbar_, pImpl_->toolbar_.Size());
+		pImpl_->rebar_.BandResized(pImpl_->toolbar_, pImpl_->toolbar_.tbsize);
 		pImpl_->Resize(this);
 	}
 }
@@ -3617,7 +3660,7 @@ void ViewerDlg::OnUpdateLargeIcons(CCmdUI* cmd_ui)
 	cmd_ui->SetRadio(!pImpl_->toolbar_.IsSmallSet());
 }
 
-/*
+
 void ViewerDlg::OnToggleTagsInPreviewBar()
 {
 	pImpl_->show_tags_in_previewbar_ = !pImpl_->show_tags_in_previewbar_;
@@ -3670,6 +3713,24 @@ void ViewerDlg::OnOpenPhoto()
 		::OpenPhotograph(pImpl_->photos_[pImpl_->cur_image_index_]->GetOriginalPath().c_str(), this, pImpl_->photos_[pImpl_->cur_image_index_]->IsRaw());
 }
 
+void ViewerDlg::OnShowProperties()
+{
+	if (static_cast<size_t>(pImpl_->cur_image_index_) < pImpl_->photos_.size())
+	{
+		SHELLEXECUTEINFO ShExecInfo = {0};
+		ShExecInfo.cbSize = sizeof(SHELLEXECUTEINFO);
+		ShExecInfo.fMask = SEE_MASK_INVOKEIDLIST;
+		ShExecInfo.hwnd = NULL;
+		ShExecInfo.lpVerb = _T("properties");
+		CString photo_path = pImpl_->photos_[pImpl_->cur_image_index_]->GetOriginalPath().c_str();
+		ShExecInfo.lpFile = photo_path;
+		ShExecInfo.lpParameters = _T(""); 
+		ShExecInfo.lpDirectory = NULL;
+		ShExecInfo.nShow = SW_SHOW;
+		ShExecInfo.hInstApp = NULL; 
+		ShellExecuteEx(&ShExecInfo);
+	}
+}
 
 void ViewerDlg::OnToggleSmoothScroll()
 {
@@ -3927,8 +3988,8 @@ void ViewerDlg::OnLightTableDeleteAllOthers()
 		if (photos.empty())
 			return;
 
-		if (MessageBox(_T("Warning! All images except those in a light table will be deleted.\nAre you sure?"),
-				_T("Deleting Images"), MB_ICONQUESTION | MB_YESNO) != IDYES)
+		if (MessageBox(_T("警告！除了看版台里的图像，其余全部都会被删除。\n确定吗？"),
+				_T("正在删除图像"), MB_ICONQUESTION | MB_YESNO) != IDYES)
 			return;
 
 		pImpl_->host_->SelectAndDelete(photos);
@@ -4063,14 +4124,14 @@ void ViewPanes::Create(CWnd* parent, const boost::function<void (ViewPane*)>& vi
 	path_to_photo_ = path_to_photo;
 
 	{
-		int cmd1= ID_TOGGLE_VIEW_LAYOUT;
-		VERIFY(display_[0].caption_.Create(parent, IDB_HORZ_VERT_TB, &cmd1, 1,
+		int cmd1[]= { ID_TOGGLE_VIEW_LAYOUT, 1 };// ID_TOGGLE_VIEW_LAYOUT;
+		VERIFY(display_[0].caption_.Create(parent, "p.", IDB_CLOSE_TB, cmd1, 1,
 			boost::bind(&ViewPanes::ViewClicked, this, &display_[0].pane_)));
 
 		for (size_t i= 1; i < COUNT; ++i)
 		{
-			int cmd2= ID_CLOSE_VIEW;
-			VERIFY(display_[i].caption_.Create(parent, IDB_CLOSE_TB, &cmd2, 1,
+			const int cmd2[]= { 1, ID_CLOSE_VIEW };//ID_CLOSE_VIEW;
+			VERIFY(display_[i].caption_.Create(parent, ".p", IDB_CLOSE_TB, cmd2, 1,
 				boost::bind(&ViewPanes::ViewClicked, this, &display_[i].pane_)));
 		}
 	}
