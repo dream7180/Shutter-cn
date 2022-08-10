@@ -95,7 +95,7 @@
 #define PACKAGE_NAME "LibTIFF Software"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "LibTIFF Software 4.3.0"
+#define PACKAGE_STRING "LibTIFF Software 4.4.0"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "tiff"
@@ -104,7 +104,7 @@
 #define PACKAGE_URL ""
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "4.3.0"
+#define PACKAGE_VERSION "4.4.0"
 
 /* Size of size_t */
 #define SIZEOF_SIZE_T 8
@@ -116,7 +116,7 @@
 #define USE_WIN32_FILEIO 1
 
 /* Version number of package */
-#define VERSION "4.3.0"
+#define VERSION "4.4.0"
 
 /* Support WEBP compression */
 /* #undef WEBP_SUPPORT */

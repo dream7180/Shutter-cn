@@ -77,7 +77,7 @@ private:
 	DlgAutoResize resize_;
 	static int active_page_index_;
 	CSize min_size_;
-	WindowPosition position_;
+	//WindowPosition position_;
 
 	void OnSize(UINT type, int cx, int cy);
 	void OnGetMinMaxInfo(MINMAXINFO* mmi);

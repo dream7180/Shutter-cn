@@ -25,7 +25,7 @@ dnl OF THIS SOFTWARE.
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.64)
-AC_INIT([LibTIFF Software],[4.3.0],[tiff@lists.maptools.org],[tiff])
+AC_INIT([LibTIFF Software],[4.4.0],[tiff@lists.maptools.org],[tiff])
 AC_CONFIG_AUX_DIR(config)
 AC_CONFIG_MACRO_DIR(m4)
 AC_LANG(C)
@@ -33,14 +33,14 @@ AC_LANG(C)
 dnl Compute the canonical host (run-time) system type variable
 AC_CANONICAL_HOST
 
-AM_INIT_AUTOMAKE(tar-ustar)
+AM_INIT_AUTOMAKE([dist-xz tar-ustar])
 dnl Do not rebuild generated files every time
 AM_MAINTAINER_MODE
 
 dnl Versioning.
 dnl Don't fill the ALPHA_VERSION field, if not applicable.
 LIBTIFF_MAJOR_VERSION=4
-LIBTIFF_MINOR_VERSION=3
+LIBTIFF_MINOR_VERSION=4
 LIBTIFF_MICRO_VERSION=0
 LIBTIFF_ALPHA_VERSION=
 LIBTIFF_VERSION=$LIBTIFF_MAJOR_VERSION.$LIBTIFF_MINOR_VERSION.$LIBTIFF_MICRO_VERSION$LIBTIFF_ALPHA_VERSION
@@ -76,9 +76,9 @@ dnl  5. If any interfaces have been added since the last public release, then
 dnl     increment age.
 dnl  6. If any interfaces have been removed since the last public release,
 dnl     then set age to 0.                                
-LIBTIFF_CURRENT=12
+LIBTIFF_CURRENT=13
 LIBTIFF_REVISION=0
-LIBTIFF_AGE=7
+LIBTIFF_AGE=8
 LIBTIFF_VERSION_INFO=$LIBTIFF_CURRENT:$LIBTIFF_REVISION:$LIBTIFF_AGE
 
 # This is a special hack for OpenBSD and MirOS systems. The dynamic linker
@@ -159,6 +159,9 @@ AM_SILENT_RULES
 
 tiff_libs_private=
 AC_SUBST(tiff_libs_private)
+
+tiff_requires_private=
+AC_SUBST(tiff_requires_private)
 
 dnl We don't need to add math library to all targets
 case "${host_os}" in
@@ -646,6 +649,14 @@ dnl Check for liblerc.
 dnl ---------------------------------------------------------------------------
 
 HAVE_LERC=no
+STATIC_LERC=no
+
+if test "$enable_static" = "no"; then
+    static_lerc=no
+else
+    static_lerc=yes
+fi
+AM_CONDITIONAL([STATIC_LERC], [ test "$static_lerc" = yes ])
 
 AC_ARG_ENABLE(lerc,
       AS_HELP_STRING([--disable-lerc],
@@ -1080,7 +1091,7 @@ dnl ---------------------------------------------------------------------------
 
 AC_SUBST(LIBDIR)
 
-AC_CONFIG_HEADERS([config.h libtiff/tif_config.h libtiff/tiffconf.h port/libport_config.h])
+AC_CONFIG_HEADERS([config/config.h libtiff/tif_config.h libtiff/tiffconf.h port/libport_config.h])
 
 AC_CONFIG_FILES([Makefile \
 		 build/Makefile \
@@ -1095,15 +1106,15 @@ AC_CONFIG_FILES([Makefile \
 		 contrib/stream/Makefile \
 		 contrib/tags/Makefile \
 		 contrib/win_dib/Makefile \
-                 html/Makefile \
+		 html/Makefile \
 		 html/images/Makefile \
 		 html/man/Makefile \
-                 libtiff-4.pc \
-                 libtiff/Makefile \
-                 man/Makefile \
+		 libtiff-4.pc \
+		 libtiff/Makefile \
+		 man/Makefile \
 		 port/Makefile \
 		 test/Makefile \
-                 tools/Makefile])
+		 tools/Makefile])
 AC_OUTPUT
 
 dnl ---------------------------------------------------------------------------

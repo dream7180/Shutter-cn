@@ -148,4 +148,4 @@ Notes on releasing.
       scp tiff-*.tar.gz tiff-*.tar.gz.sig tiff-*.zip tiff-*.zip.sig \
          bfriesen@upload.osgeo.org:/osgeo/download/libtiff
 
-18. Announce to list, tiff@lists.maptools.org
+18. Announce to list: tiff@lists.osgeo.org

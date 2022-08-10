@@ -1385,8 +1385,8 @@
 #define ID_HIDE_TAG_PANE                34398
 #define ID_APPLY_TAGS                   34399
 #define ID_TAG_FILTER                   34401
-#define ID_HELP_CHECKFORUPDATES         34404
-#define ID_UPDATE_CHECK                 34405
+//#define ID_HELP_CHECKFORUPDATES         34404
+//#define ID_UPDATE_CHECK                 34405
 #define ID__HORIZONTALLAYOUT            34406
 #define ID__VERTICALLAYOUT              34407
 #define ID_TOOLBAR_HORIZONTAL           34408

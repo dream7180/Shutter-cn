@@ -137,8 +137,8 @@ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 DIST_COMMON = $(srcdir)/Makefile.am $(am__libtiffinclude_HEADERS_DIST) \
 	$(noinst_HEADERS) $(am__DIST_COMMON)
 mkinstalldirs = $(install_sh) -d
-CONFIG_HEADER = $(top_builddir)/config.h tif_config.h tiffconf.h \
-	$(top_builddir)/port/libport_config.h
+CONFIG_HEADER = $(top_builddir)/config/config.h tif_config.h \
+	tiffconf.h $(top_builddir)/port/libport_config.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 PROGRAMS = $(noinst_PROGRAMS)
@@ -226,7 +226,7 @@ AM_V_at = $(am__v_at_@AM_V@)
 am__v_at_ = $(am__v_at_@AM_DEFAULT_V@)
 am__v_at_0 = @
 am__v_at_1 = 
-DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir) -I$(top_builddir)/port
+DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/config -I$(top_builddir)/port
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = ./$(DEPDIR)/mkg3states.Po \
@@ -471,6 +471,7 @@ srcdir = @srcdir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 tiff_libs_private = @tiff_libs_private@
+tiff_requires_private = @tiff_requires_private@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
@@ -513,7 +514,9 @@ libtiffxx_la_LIBADD = $(LIBTIFF)
 libtiffxx_la_DEPENDENCIES = libtiff.la
 mkg3states_SOURCES = mkg3states.c tif_fax3.h
 mkg3states_LDADD = $(LIBPORT)
-AM_CPPFLAGS = -I$(top_srcdir)/libtiff -I$(top_srcdir)/port
+@STATIC_LERC_FALSE@extra_CPPFLAGS = 
+@STATIC_LERC_TRUE@extra_CPPFLAGS = -DLERC_STATIC
+AM_CPPFLAGS = -I$(top_srcdir)/libtiff -I$(top_srcdir)/port $(extra_CPPFLAGS)
 all: tif_config.h tiffconf.h
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 

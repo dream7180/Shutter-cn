@@ -60,16 +60,26 @@ int CALLBACK PropSheetCallback(HWND hWnd, UINT message, LPARAM lParam)
 
 
 OptionsDlg::OptionsDlg(CWnd* parent_wnd, std::vector<uint16>& columns_idx, std::vector<uint16>& balloon_fields, const boost::function<void (CWnd* parent)>& define_columns, int select_page, Columns& columns)
- : CPropertySheet(IDS_OPTIONS, parent_wnd, select_page), page_columns_(columns), page_balloons_(columns),
-	position_(L"OptionsDlg")
+ : CPropertySheet(IDS_OPTIONS, parent_wnd, select_page), page_columns_(columns), page_balloons_(columns)//,
+	//position_(L"OptionsDlg")
 {
 	min_size_ = CSize(0, 0);
 	m_strCaption = RString(IDS_OPTIONS);
 	m_psh.pszCaption = m_strCaption;
 
-	m_psh.dwFlags |= PSH_NOAPPLYNOW | PSH_HASHELP | PSH_USECALLBACK;
-	//m_psh.dwFlags &= ~(/*PSH_HASHELP |*/ PSH_USECALLBACK);
+	//m_psh.dwFlags |= PSH_NOAPPLYNOW | PSH_HASHELP | PSH_USECALLBACK;
+	m_psh.dwFlags |= PSH_NOAPPLYNOW;// | PSH_USECALLBACK;
+	m_psh.dwFlags &= ~(PSH_HASHELP | PSH_USECALLBACK);
+	//m_psh.dwFlags &= ~PSH_HASHELP;
 	m_psh.pfnCallback = PropSheetCallback;
+	
+	page_general_.m_psp.dwFlags &= ~PSP_HASHELP;
+	page_columns_.m_psp.dwFlags &= ~PSP_HASHELP;
+	page_appearance_.m_psp.dwFlags &= ~PSP_HASHELP;
+	page_file_types_.m_psp.dwFlags &= ~PSP_HASHELP;
+	page_balloons_.m_psp.dwFlags &= ~PSP_HASHELP;
+	page_cache_.m_psp.dwFlags &= ~PSP_HASHELP;
+	page_advanced_.m_psp.dwFlags &= ~PSP_HASHELP;
 
 	AddPage(&page_general_);
 	AddPage(&page_columns_);
@@ -252,9 +262,9 @@ BOOL OptionsDlg::OnInitDialog()
 	min_size_ = rect.Size();
 
 	CRect wnd_rect= rect;
-	if (position_.IsRegEntryPresent())
-		wnd_rect = position_.GetLocation(true);
-	else
+	//if (position_.IsRegEntryPresent())
+	//	wnd_rect = position_.GetLocation(true);
+	//else
 		wnd_rect.InflateRect(10, 0);		// initially start bigger than at min size
 	MoveWindow(wnd_rect);
 
@@ -289,7 +299,7 @@ void OptionsDlg::OnDestroy()
 {
 	active_page_index_ = GetActiveIndex();
 
-	position_.StoreState(*this);
+	//position_.StoreState(*this);
 
 	CPropertySheet::OnDestroy();
 }

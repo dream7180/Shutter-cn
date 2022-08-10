@@ -31,7 +31,7 @@ set(port_HEADERS libport.h)
 
 # Only build if any needed features are missing
 if(NOT HAVE_GETOPT)
-  add_library(port STATIC)
+  add_library(port STATIC ../placeholder.h)
 
   # Add getopt if missing
   if(NOT HAVE_GETOPT)
