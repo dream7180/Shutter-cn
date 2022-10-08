@@ -10,7 +10,7 @@ if(CMAKE_EXECUTABLE_SUFFIX)
 endif()
 
 project(libjpeg-turbo C)
-set(VERSION 2.1.3)
+set(VERSION 2.1.4)
 set(COPYRIGHT_YEAR "1991-2022")
 string(REPLACE "." ";" VERSION_TRIPLET ${VERSION})
 list(GET VERSION_TRIPLET 0 VERSION_MAJOR)
@@ -909,10 +909,8 @@ if(CPU_TYPE STREQUAL "x86_64" OR CPU_TYPE STREQUAL "i386")
     set(DEFAULT_FLOATTEST sse)
   elseif(CPU_TYPE STREQUAL "x86_64")
     set(DEFAULT_FLOATTEST no-fp-contract)
-  elseif(CPU_TYPE STREQUAL "i386" AND MSVC)
-    set(DEFAULT_FLOATTEST msvc)
   # else we can't really set an intelligent default for i386.  The appropriate
-  # value could be 387, no-fp-contract, or fp-contract, depending on the
+  # value could be no-fp-contract, fp-contract, 387, or msvc, depending on the
   # compiler and compiler options.  We leave it to the user to set FLOATTEST
   # manually.
   endif()
@@ -1503,8 +1501,11 @@ if(UNIX OR MINGW)
     DESTINATION ${CMAKE_INSTALL_MANDIR}/man1)
 endif()
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/pkgscripts/libjpeg.pc
-  ${CMAKE_CURRENT_BINARY_DIR}/pkgscripts/libturbojpeg.pc
   DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
+if(WITH_TURBOJPEG)
+  install(FILES ${CMAKE_CURRENT_BINARY_DIR}/pkgscripts/libturbojpeg.pc
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
+endif()
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/pkgscripts/${CMAKE_PROJECT_NAME}Config.cmake
   ${CMAKE_CURRENT_BINARY_DIR}/pkgscripts/${CMAKE_PROJECT_NAME}ConfigVersion.cmake

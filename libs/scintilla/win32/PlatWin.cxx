@@ -448,6 +448,9 @@ void Font::Release() {
 template<typename T, int lengthStandard>
 class VarBuffer {
 	T bufferStandard[lengthStandard];
+	// Private so VarBuffer objects can not be copied
+	VarBuffer(const VarBuffer &);
+	VarBuffer &operator=(const VarBuffer &);
 public:
 	T *buffer;
 	VarBuffer(size_t length) : buffer(0) {
@@ -2459,20 +2462,22 @@ void ListBoxX::Draw(DRAWITEMSTRUCT *pDrawItem) {
 						);
 					ID2D1DCRenderTarget *pDCRT = 0;
 					HRESULT hr = pD2DFactory->CreateDCRenderTarget(&props, &pDCRT);
-					RECT rcWindow;
-					GetClientRect(pDrawItem->hwndItem, &rcWindow);
-					hr = pDCRT->BindDC(pDrawItem->hDC, &rcWindow);
 					if (SUCCEEDED(hr)) {
-						surfaceItem->Init(pDCRT, pDrawItem->hwndItem);
-						pDCRT->BeginDraw();
-						int left = pDrawItem->rcItem.left + ItemInset.x + ImageInset.x;
-						PRectangle rcImage(left, pDrawItem->rcItem.top,
-							left + images.GetWidth(), pDrawItem->rcItem.bottom);
-						surfaceItem->DrawRGBAImage(rcImage,
-							pimage->GetWidth(), pimage->GetHeight(), pimage->Pixels());
-						delete surfaceItem;
-						pDCRT->EndDraw();
-						pDCRT->Release();
+						RECT rcWindow;
+						GetClientRect(pDrawItem->hwndItem, &rcWindow);
+						hr = pDCRT->BindDC(pDrawItem->hDC, &rcWindow);
+						if (SUCCEEDED(hr)) {
+							surfaceItem->Init(pDCRT, pDrawItem->hwndItem);
+							pDCRT->BeginDraw();
+							int left = pDrawItem->rcItem.left + ItemInset.x + ImageInset.x;
+							PRectangle rcImage(left, pDrawItem->rcItem.top,
+								left + images.GetWidth(), pDrawItem->rcItem.bottom);
+							surfaceItem->DrawRGBAImage(rcImage,
+								pimage->GetWidth(), pimage->GetHeight(), pimage->Pixels());
+							delete surfaceItem;
+							pDCRT->EndDraw();
+							pDCRT->Release();
+						}
 					}
 #endif
 				}

@@ -6,6 +6,7 @@
 // The License.txt file describes the conditions under which this software may be distributed.
 
 #include <string.h>
+#include <assert.h>
 
 #include <vector>
 #include <map>
@@ -140,6 +141,7 @@ ViewStyle::ViewStyle(const ViewStyle &source) {
 		// Can't just copy fontname as its lifetime is relative to its owning ViewStyle
 		styles[sty].fontName = fontNames.Save(source.styles[sty].fontName);
 	}
+	nextExtendedStyle = source.nextExtendedStyle;
 	for (int mrk=0; mrk<=MARKER_MAX; mrk++) {
 		markers[mrk] = source.markers[mrk];
 	}
@@ -180,6 +182,7 @@ ViewStyle::ViewStyle(const ViewStyle &source) {
 	caretcolour = source.caretcolour;
 	additionalCaretColour = source.additionalCaretColour;
 	showCaretLineBackground = source.showCaretLineBackground;
+	alwaysShowCaretLineBackground = source.alwaysShowCaretLineBackground;
 	caretLineBackground = source.caretLineBackground;
 	caretLineAlpha = source.caretLineAlpha;
 	edgecolour = source.edgecolour;
@@ -190,8 +193,8 @@ ViewStyle::ViewStyle(const ViewStyle &source) {
 	someStylesForceCase = false;
 	leftMarginWidth = source.leftMarginWidth;
 	rightMarginWidth = source.rightMarginWidth;
-	for (int i=0; i < margins; i++) {
-		ms[i] = source.ms[i];
+	for (int margin=0; margin <= SC_MAX_MARGIN; margin++) {
+		ms[margin] = source.ms[margin];
 	}
 	maskInLine = source.maskInLine;
 	fixedColumnWidth = source.fixedColumnWidth;
@@ -224,6 +227,7 @@ void ViewStyle::Init(size_t stylesSize_) {
 	stylesSize = 0;
 	styles = NULL;
 	AllocStyles(stylesSize_);
+	nextExtendedStyle = 256;
 	fontNames.Clear();
 	ResetDefaultStyle();
 
@@ -274,6 +278,7 @@ void ViewStyle::Init(size_t stylesSize_) {
 	caretcolour = ColourDesired(0, 0, 0);
 	additionalCaretColour = ColourDesired(0x7f, 0x7f, 0x7f);
 	showCaretLineBackground = false;
+	alwaysShowCaretLineBackground = false;
 	caretLineBackground = ColourDesired(0xff, 0xff, 0);
 	caretLineAlpha = SC_ALPHA_NOALPHA;
 	edgecolour = ColourDesired(0xc0, 0xc0, 0xc0);
@@ -303,7 +308,7 @@ void ViewStyle::Init(size_t stylesSize_) {
 	ms[2].mask = 0;
 	fixedColumnWidth = leftMarginWidth;
 	maskInLine = 0xffffffff;
-	for (int margin=0; margin < margins; margin++) {
+	for (int margin=0; margin <= SC_MAX_MARGIN; margin++) {
 		fixedColumnWidth += ms[margin].width;
 		if (ms[margin].width > 0)
 			maskInLine &= ~ms[margin].mask;
@@ -354,6 +359,7 @@ void ViewStyle::Refresh(Surface &surface) {
 		CreateFont(styles[j]);
 	}
 
+	assert(frFirst);
 	frFirst->Realise(surface, zoomLevel, technology);
 
 	for (unsigned int k=0; k<stylesSize; k++) {
@@ -383,7 +389,7 @@ void ViewStyle::Refresh(Surface &surface) {
 
 	fixedColumnWidth = leftMarginWidth;
 	maskInLine = 0xffffffff;
-	for (int margin=0; margin < margins; margin++) {
+	for (int margin=0; margin <= SC_MAX_MARGIN; margin++) {
 		fixedColumnWidth += ms[margin].width;
 		if (ms[margin].width > 0)
 			maskInLine &= ~ms[margin].mask;
@@ -407,6 +413,16 @@ void ViewStyle::AllocStyles(size_t sizeNew) {
 	delete []styles;
 	styles = stylesNew;
 	stylesSize = sizeNew;
+}
+
+void ViewStyle::ReleaseAllExtendedStyles() {
+	nextExtendedStyle = 256;
+}
+
+int ViewStyle::AllocateExtendedStyles(int numberStyles) {
+	int startRange = static_cast<int>(nextExtendedStyle);
+	nextExtendedStyle += numberStyles;
+	return startRange;
 }
 
 void ViewStyle::EnsureStyle(size_t index) {
@@ -467,4 +483,3 @@ void ViewStyle::CalcLargestMarkerHeight() {
 		}
 	}
 }
-

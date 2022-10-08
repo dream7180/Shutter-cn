@@ -1,5 +1,5 @@
 libjpeg-turbo
-把bin里生成的jconfig.h,jconfigint.hjversion.h拷贝到libjpeg-turbo根目录
+把bin里生成的jconfig.h,jconfigint.h,jversion.h拷贝到libjpeg-turbo根目录
 -----------------------------------------------------------------
 TIFFLib
 用cmake configure生成tiffconf.h, tif_config.h拷进libtiff,

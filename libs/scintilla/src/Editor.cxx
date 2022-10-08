@@ -1606,7 +1606,7 @@ void Editor::LinesJoin() {
 		UndoGroup ug(pdoc);
 		bool prevNonWS = true;
 		for (int pos = targetStart; pos < targetEnd; pos++) {
-			if (IsEOLChar(pdoc->CharAt(pos))) {
+			if (pdoc->IsPositionInLineEnd(pos)) {
 				targetEnd -= pdoc->LenChar(pos);
 				pdoc->DelChar(pos);
 				if (prevNonWS) {
@@ -1775,7 +1775,7 @@ void Editor::PaintSelMargin(Surface *surfWindow, PRectangle &rc) {
 	PRectangle rcSelMargin = rcMargin;
 	rcSelMargin.right = rcMargin.left;
 
-	for (int margin = 0; margin < vs.margins; margin++) {
+	for (int margin = 0; margin <= SC_MAX_MARGIN; margin++) {
 		if (vs.ms[margin].width > 0) {
 
 			rcSelMargin.left = rcSelMargin.right;
@@ -1947,8 +1947,9 @@ void Editor::PaintSelMargin(Surface *surfWindow, PRectangle &rc) {
 				rcMarker.bottom = yposScreen + vs.lineHeight;
 				if (vs.ms[margin].style == SC_MARGIN_NUMBER) {
 					if (firstSubLine) {
-						char number[100];
-						sprintf(number, "%d", lineDoc + 1);
+						char number[100] = "";
+						if (lineDoc >= 0)
+							sprintf(number, "%d", lineDoc + 1);
 						if (foldFlags & SC_FOLDFLAG_LEVELNUMBERS) {
 							int lev = pdoc->GetLevel(lineDoc);
 							sprintf(number, "%c%c %03X %03X",
@@ -2193,7 +2194,7 @@ void Editor::LayoutLine(int line, Surface *surface, ViewStyle &vstyle, LineLayou
 			bool isBadUTF = isBadUTFNext;
 			isBadUTFNext = IsUnicodeMode() && BadUTF(ll->chars + charInLine + 1, numCharsInLine - charInLine - 1, trailBytes);
 			if ((ll->styles[charInLine] != ll->styles[charInLine + 1]) ||
-			        isControl || isControlNext || isBadUTF || isBadUTFNext) {
+			        isControl || isControlNext || isBadUTF || isBadUTFNext || ((charInLine+1) >= numCharsBeforeEOL)) {
 				ll->positions[startseg] = 0;
 				if (vstyle.styles[ll->styles[charInLine]].visible) {
 					if (isControl) {
@@ -2213,7 +2214,7 @@ void Editor::LayoutLine(int line, Surface *surface, ViewStyle &vstyle, LineLayou
 							        ll->positions + startseg + 1);
 						}
 						lastSegItalics = false;
-					} else if (isBadUTF) {
+					} else if ((isBadUTF) || (charInLine >= numCharsBeforeEOL)) {
 						char hexits[4];
 						sprintf(hexits, "x%2X", ll->chars[charInLine] & 0xff);
 						ll->positions[charInLine + 1] =
@@ -2504,7 +2505,15 @@ void Editor::DrawEOL(Surface *surface, ViewStyle &vsDraw, PRectangle rcLine, Lin
 			rcSegment.left = xStart + ll->positions[eolPos] - subLineStart + virtualSpace;
 			rcSegment.right = xStart + ll->positions[eolPos+1] - subLineStart + virtualSpace;
 			blobsWidth += rcSegment.Width();
-			const char *ctrlChar = ControlCharacterString(ll->chars[eolPos]);
+			char hexits[4];
+			const char *ctrlChar;
+			unsigned char chEOL = ll->chars[eolPos];
+			if (UTF8IsAscii(chEOL)) {
+				ctrlChar = ControlCharacterString(chEOL);
+			} else {
+				sprintf(hexits, "x%2X", chEOL);
+				ctrlChar = hexits;
+			}
 			int styleMain = ll->styles[eolPos];
 			ColourDesired textBack = TextBackground(vsDraw, overrideBackground, background, eolInSelection, false, styleMain, eolPos, ll);
 			ColourDesired textFore = vsDraw.styles[styleMain].fore;
@@ -2743,7 +2752,7 @@ void Editor::DrawLine(Surface *surface, ViewStyle &vsDraw, int line, int lineVis
 	// the color for the highest numbered one is used.
 	bool overrideBackground = false;
 	ColourDesired background;
-	if (caret.active && vsDraw.showCaretLineBackground && (vsDraw.caretLineAlpha == SC_ALPHA_NOALPHA) && ll->containsCaret) {
+	if ((caret.active || vsDraw.alwaysShowCaretLineBackground) && vsDraw.showCaretLineBackground && (vsDraw.caretLineAlpha == SC_ALPHA_NOALPHA) && ll->containsCaret) {
 		overrideBackground = true;
 		background = vsDraw.caretLineBackground;
 	}
@@ -3193,7 +3202,7 @@ void Editor::DrawLine(Surface *surface, ViewStyle &vsDraw, int line, int lineVis
 
 	// Draw any translucent whole line states
 	rcSegment = rcLine;
-	if (caret.active && vsDraw.showCaretLineBackground && ll->containsCaret) {
+	if ((caret.active || vsDraw.alwaysShowCaretLineBackground) && vsDraw.showCaretLineBackground && ll->containsCaret) {
 		SimpleAlphaRectangle(surface, rcSegment, vsDraw.caretLineBackground, vsDraw.caretLineAlpha);
 	}
 	marks = pdoc->GetMark(line);
@@ -3718,7 +3727,7 @@ long Editor::FormatRange(bool draw, Sci_RangeToFormat *pfr) {
 	// Modify the view style for printing as do not normally want any of the transient features to be printed
 	// Printing supports only the line number margin.
 	int lineNumberIndex = -1;
-	for (int margin = 0; margin < ViewStyle::margins; margin++) {
+	for (int margin = 0; margin <= SC_MAX_MARGIN; margin++) {
 		if ((vsPrint.ms[margin].style == SC_MARGIN_NUMBER) && (vsPrint.ms[margin].width > 0)) {
 			lineNumberIndex = margin;
 		} else {
@@ -3738,6 +3747,7 @@ long Editor::FormatRange(bool draw, Sci_RangeToFormat *pfr) {
 	vsPrint.whitespaceBackgroundSet = false;
 	vsPrint.whitespaceForegroundSet = false;
 	vsPrint.showCaretLineBackground = false;
+	vsPrint.alwaysShowCaretLineBackground = false;
 	// Don't highlight matching braces using indicators
 	vsPrint.braceHighlightIndicatorSet = false;
 	vsPrint.braceBadLightIndicatorSet = false;
@@ -3813,7 +3823,7 @@ long Editor::FormatRange(bool draw, Sci_RangeToFormat *pfr) {
 
 		// Copy this line and its styles from the document into local arrays
 		// and determine the x position at which each character starts.
-		LineLayout ll(8000);
+		LineLayout ll(pdoc->LineStart(lineDoc+1)-pdoc->LineStart(lineDoc)+1);
 		LayoutLine(lineDoc, surfaceMeasure, vsPrint, &ll, widthPrint);
 
 		ll.containsCaret = false;
@@ -3994,7 +4004,7 @@ void Editor::AddCharUTF(char *s, unsigned int len, bool treatAsDBCS) {
 					}
 				} else if (inOverstrike) {
 					if (positionInsert < pdoc->Length()) {
-						if (!IsEOLChar(pdoc->CharAt(positionInsert))) {
+						if (!pdoc->IsPositionInLineEnd(positionInsert)) {
 							pdoc->DelChar(positionInsert);
 							currentSel->ClearVirtualSpace();
 						}
@@ -4239,7 +4249,7 @@ void Editor::Clear() {
 					else
 						sel.Range(r) = SelectionPosition(InsertSpace(sel.Range(r).caret.Position(), sel.Range(r).caret.VirtualSpace()));
 				}
-				if ((sel.Count() == 1) || !IsEOLChar(pdoc->CharAt(sel.Range(r).caret.Position()))) {
+				if ((sel.Count() == 1) || !pdoc->IsPositionInLineEnd(sel.Range(r).caret.Position())) {
 					pdoc->DelChar(sel.Range(r).caret.Position());
 					sel.Range(r).ClearVirtualSpace();
 				}  // else multiple selection so don't eat line ends
@@ -4445,7 +4455,7 @@ void Editor::NotifyIndicatorClick(bool click, int position, bool shift, bool ctr
 bool Editor::NotifyMarginClick(Point pt, bool shift, bool ctrl, bool alt) {
 	int marginClicked = -1;
 	int x = 0;
-	for (int margin = 0; margin < ViewStyle::margins; margin++) {
+	for (int margin = 0; margin <= SC_MAX_MARGIN; margin++) {
 		if ((pt.x >= x) && (pt.x < x + vs.ms[margin].width))
 			marginClicked = margin;
 		x += vs.ms[margin].width;
@@ -5168,6 +5178,8 @@ int Editor::KeyCommand(unsigned int iMessage) {
 				SelectionPosition spCaret = sel.RangeMain().caret;
 				spCaret.SetVirtualSpace(spCaret.VirtualSpace() - 1);
 				MovePositionTo(spCaret);
+			} else if (sel.MoveExtends() && sel.selType == Selection::selStream) {
+				MovePositionTo(MovePositionSoVisible(SelectionPosition(sel.MainCaret() - 1), -1));
 			} else {
 				MovePositionTo(MovePositionSoVisible(
 					SelectionPosition((sel.LimitsForRectangularElseMain().start).Position() - 1), -1));
@@ -5203,6 +5215,8 @@ int Editor::KeyCommand(unsigned int iMessage) {
 				SelectionPosition spCaret = sel.RangeMain().caret;
 				spCaret.SetVirtualSpace(spCaret.VirtualSpace() + 1);
 				MovePositionTo(spCaret);
+			} else if (sel.MoveExtends() && sel.selType == Selection::selStream) {
+				MovePositionTo(MovePositionSoVisible(SelectionPosition(sel.MainCaret() + 1), 1));
 			} else {
 				MovePositionTo(MovePositionSoVisible(
 					SelectionPosition((sel.LimitsForRectangularElseMain().end).Position() + 1), 1));
@@ -6108,7 +6122,7 @@ bool Editor::PointInSelMargin(Point pt) {
 
 Window::Cursor Editor::GetMarginCursor(Point pt) {
 	int x = 0;
-	for (int margin = 0; margin < ViewStyle::margins; margin++) {
+	for (int margin = 0; margin <= SC_MAX_MARGIN; margin++) {
 		if ((pt.x >= x) && (pt.x < x + vs.ms[margin].width))
 			return static_cast<Window::Cursor>(vs.ms[margin].cursor);
 		x += vs.ms[margin].width;
@@ -6811,6 +6825,8 @@ void Editor::SetDocPointer(Document *document) {
 	braces[0] = invalidPosition;
 	braces[1] = invalidPosition;
 
+	vs.ReleaseAllExtendedStyles();
+
 	// Reset the contraction state to fully shown.
 	cs.Clear();
 	cs.InsertLines(0, pdoc->LinesTotal() - 1);
@@ -7040,7 +7056,7 @@ void Editor::AddStyledText(char *buffer, int appendLength) {
 }
 
 static bool ValidMargin(unsigned long wParam) {
-	return wParam < ViewStyle::margins;
+	return wParam <= SC_MAX_MARGIN;
 }
 
 static char *CharPtrFromSPtr(sptr_t lParam) {
@@ -7771,6 +7787,21 @@ sptr_t Editor::WndProc(unsigned int iMessage, uptr_t wParam, sptr_t lParam) {
 		pdoc->eolMode = wParam;
 		break;
 
+	case SCI_SETLINEENDTYPESALLOWED:
+		if (pdoc->SetLineEndTypesAllowed(wParam)) {
+			cs.Clear();
+			cs.InsertLines(0, pdoc->LinesTotal() - 1);
+			SetAnnotationHeights(0, pdoc->LinesTotal());
+			InvalidateStyleRedraw();
+		}
+		break;
+
+	case SCI_GETLINEENDTYPESALLOWED:
+		return pdoc->GetLineEndTypesAllowed();
+		
+	case SCI_GETLINEENDTYPESACTIVE:
+		return pdoc->GetLineEndTypesActive();
+		
 	case SCI_STARTSTYLING:
 		pdoc->StartStyling(wParam, static_cast<char>(lParam));
 		break;
@@ -8037,6 +8068,8 @@ sptr_t Editor::WndProc(unsigned int iMessage, uptr_t wParam, sptr_t lParam) {
 			verticalScrollBarVisible = wParam != 0;
 			SetScrollBars();
 			ReconfigureScrollBars();
+			if (verticalScrollBarVisible)
+				SetVerticalScrollPos();
 		}
 		break;
 
@@ -8067,6 +8100,9 @@ sptr_t Editor::WndProc(unsigned int iMessage, uptr_t wParam, sptr_t lParam) {
 	case SCI_SETCODEPAGE:
 		if (ValidCodePage(wParam)) {
 			if (pdoc->SetDBCSCodePage(wParam)) {
+				cs.Clear();
+				cs.InsertLines(0, pdoc->LinesTotal() - 1);
+				SetAnnotationHeights(0, pdoc->LinesTotal());
 				InvalidateStyleRedraw();
 			}
 		}
@@ -8321,6 +8357,13 @@ sptr_t Editor::WndProc(unsigned int iMessage, uptr_t wParam, sptr_t lParam) {
 		vs.showCaretLineBackground = wParam != 0;
 		InvalidateStyleRedraw();
 		break;
+	case SCI_GETCARETLINEVISIBLEALWAYS:
+		return vs.alwaysShowCaretLineBackground;
+	case SCI_SETCARETLINEVISIBLEALWAYS:
+		vs.alwaysShowCaretLineBackground = wParam != 0;
+		InvalidateStyleRedraw();
+		break;
+
 	case SCI_GETCARETLINEBACK:
 		return vs.caretLineBackground.AsLong();
 	case SCI_SETCARETLINEBACK:
@@ -9122,6 +9165,13 @@ sptr_t Editor::WndProc(unsigned int iMessage, uptr_t wParam, sptr_t lParam) {
 
 	case SCI_ANNOTATIONGETSTYLEOFFSET:
 		return vs.annotationStyleOffset;
+
+	case SCI_RELEASEALLEXTENDEDSTYLES:
+		vs.ReleaseAllExtendedStyles();
+		break;
+
+	case SCI_ALLOCATEEXTENDEDSTYLES:
+		return vs.AllocateExtendedStyles(wParam);
 
 	case SCI_ADDUNDOACTION:
 		pdoc->AddUndoAction(wParam, lParam & UNDO_MAY_COALESCE);
