@@ -543,7 +543,7 @@
 #define IDC_LABEL_2                     1111
 #define IDR_TRANSFER_SYMBOLS            1112
 #define IDC_PAGES                       1112
-#define IDR_TOOLBAR_CONTEXT             1113
+//#define IDR_TOOLBAR_CONTEXT             1113
 #define IDC_LABEL_0                     1113
 #define IDC_LABEL_PAGE                  1113
 #define IDR_VIEWER_POPUP                1114
@@ -1268,8 +1268,8 @@
 #define ID_TASK_TOUCH_UP                34101
 #define ID_ABOUT_LIBS                   34105
 #define ID_CANCEL_SORT_BY_SIMILARITY    34106
-#define ID_SMALL_ICONS                  34110
-#define ID_LARGE_ICONS                  34111
+//#define ID_SMALL_ICONS                  34110
+//#define ID_LARGE_ICONS                  34111
 #define ID_VIEW_PICTURES                34112
 #define IDS_FOLDER_LIST_VIEW_TB         34115
 #define IDS_INFO_BAND_OPT               34116
