@@ -220,7 +220,7 @@ String NikonNote::TagName(uint16 tag)
 	case 0x11: name = _T("缩略图 IFD 偏移");			break;
 	case 0x12: name = _T("闪光补偿");				break;
 	case 0x13: name = _T("请求的感光度");			break;
-	case 0x16: name = _T("照片图角坐标");		break;
+	case 0x16: name = _T("图像图角坐标");		break;
 	case 0x17: name = _T("闪光灯曝光补偿");	break;
 	case 0x18: name = _T("使用闪光灯包围补偿");	break;
 	case 0x19: name = _T("使用自动曝光包围补偿");	break;

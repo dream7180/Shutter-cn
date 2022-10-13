@@ -567,10 +567,10 @@ void FilePaneWnd::Impl::SetInfo()
 	CString str;
 	if (count <= 0)
 		str = _T("无项目");
-	else if (count == 1)
-		str = _T("1 个项目");
+	//else if (count == 1)
+	//	str = _T("1 个项目");
 	else
-		str.Format(_T("%d 项目"), count);
+		str.Format(_T("%d 个项目"), count);
 
 	const TCHAR* p= str;
 	status_bar_.SendMessage(SB_SETTEXT, SBT_NOBORDERS, LPARAM(p));

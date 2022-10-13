@@ -504,7 +504,7 @@ void CPropertyDlg::Impl::InitDlg(DialogChild* wnd)
 	//-------------------------------------------------
 	{
 		boost::ptr_vector<Field>& fields= fields2_;
-		fields.reserve(14);
+		fields.reserve(13);
 		fields.push_back(new Field(_T("描述作者"), &data_.DescriptionWriter));
 		fields.push_back(new Field(_T("标题"), 2, &data_.Headline));
 		fields.push_back(new Field());

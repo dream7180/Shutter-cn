@@ -219,7 +219,7 @@ int DecoderJob::Impl::Decode()
 	catch (JPEGException& ex)
 	{
 		pending_ = false;
-		std::wstring ttl= L"读取错误 \"" + file_ + L'"';
+		std::wstring ttl= L"解码错误 \"" + file_ + L'"';
 		std::wstring details;
 		if (const wchar_t* msg= ex.GetMessage())
 		{

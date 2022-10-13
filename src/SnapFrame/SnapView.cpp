@@ -50,10 +50,10 @@ BEGIN_MESSAGE_MAP(SnapView, CFrameWnd)
 	ON_WM_MOUSEACTIVATE()
 	ON_WM_ACTIVATE()
 	ON_WM_DESTROY()
-	ON_COMMAND(ID_PANE_CONTEXT_HELP, OnPaneContextHelp)
+	//ON_COMMAND(ID_PANE_CONTEXT_HELP, OnPaneContextHelp)
 	//}}AFX_MSG_MAP
 	// Standard printing commands
-	ON_COMMAND_EX(ID_HELP, OnHelp)
+	//ON_COMMAND_EX(ID_HELP, OnHelp)
 	ON_NOTIFY(TBN_GETINFOTIP, IDB_PANE_TOOLBAR, OnGetInfoTip)
 	ON_MESSAGE(WM_XBUTTONDOWN, OnXButtonDown)
 END_MESSAGE_MAP()
@@ -76,7 +76,7 @@ SnapView::SnapView()
 	child_view_ = 0;
 	current_doc_ = 0;
 	active_ = false;
-	is_context_help_wnd_ = false;
+	//is_context_help_wnd_ = false;
 	separator_base_color_ = ::GetSysColor(COLOR_BTNFACE);// COLOR_INACTIVECAPTION);
 
 	background_color_ = g_Settings.pane_caption_colors_[SnapFrame::C_BACKGROUND].SelectedColor();
@@ -276,12 +276,12 @@ void SnapView::OnGetInfoTip(NMHDR* nmhdr, LRESULT* result)	// provide tool tip t
 }
 
 
-void SnapView::InitialUpdate(const TCHAR* title, const TCHAR* ctx_help_topic)
+void SnapView::InitialUpdate(const TCHAR* title)//, const TCHAR* ctx_help_topic)
 {
 	frame_ = dynamic_cast<SnapFrame*>(GetParent());
 	ASSERT(frame_);
 	//ASSERT(ctx_help_topic);
-	ctx_help_topic_ = ctx_help_topic;
+	//ctx_help_topic_ = ctx_help_topic;
 	caption_wnd_.SetFrame(frame_);
 	caption_wnd_.SetTitle(title);
 }
@@ -542,12 +542,12 @@ void SnapView::OnPaneRestore()
 	frame_->PaneRestore(this);
 }
 
-
+/*
 void SnapView::OnPaneContextHelp()
 {
 	frame_->PaneContextHelp(this);
 }
-
+*/
 
 // hit test: report back the edge below pos
 //
@@ -697,11 +697,11 @@ bool SnapView::CreateClient(PaneConstruction* construction, UINT pane_flags)
 	child_view_ = view; //static_cast<CView*>(view);
 */
 	// this is a way to find out if our child view is a context help window
-	is_context_help_wnd_ = false; //child_view_->SendMessage(SNAP_WND_MSG_DISP_CTX_HELP) == 'ok';
+	//is_context_help_wnd_ = false; //child_view_->SendMessage(SNAP_WND_MSG_DISP_CTX_HELP) == 'ok';
 
 	// display default help topic
-	if (is_context_help_wnd_)
-		DisplayHelp(GetContextHelpTopic());
+	//if (is_context_help_wnd_)
+	//	DisplayHelp(GetContextHelpTopic());
 
 	return true;
 }
@@ -769,7 +769,7 @@ void SnapView::OnUpdateFrameTitle(BOOL add_to_title)
 		frame_->OnUpdateFrameTitle(add_to_title);
 }
 
-
+/*
 BOOL SnapView::OnHelp(UINT)
 {
 	if (active_ && frame_)
@@ -814,7 +814,7 @@ CString SnapView::GetContextHelpTopic() const
 
 	return ctx_help_topic_;
 }
-
+*/
 
 // add a toolbar to the caption free space
 void SnapView::AddBand(CWnd* toolbar, CWnd* owner, std::pair<int, int> min_max_width, bool resizable/*= false*/)

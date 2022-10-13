@@ -393,7 +393,7 @@ void PreviewPane::PaneHidden()
 
 void PreviewPane::CurrentChanged(PhotoInfoPtr photo)
 {
-TRACE(_T("当前照片: %s\n"), photo ? photo->GetName().c_str() : _T("-无-"));
+TRACE(_T("当前图像: %s\n"), photo ? photo->GetName().c_str() : _T("-无-"));
 	if (photo)
 		LoadPhoto(*photo);
 	else

@@ -95,7 +95,7 @@ void SetPhotoAsWallpaper(const PhotoInfo& photo)
 	TCHAR temp[MAX_PATH];
 	::GetTempPath(array_count(temp), temp);
 	Path path(temp);
-	path.AppendDir(_T("ExifPro-Wallpaper.bmp"), false);
+	path.AppendDir(_T("Shutter-Wallpaper.bmp"), false);
 
 	img.Save(path.c_str());
 

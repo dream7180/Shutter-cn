@@ -625,13 +625,13 @@ BOOL RenameToolDlg::OnGetToolTipInfo(UINT id, NMHDR* nmhdr, LRESULT* result)
 		switch (impl_->new_names_[line].error_)
 		{
 		case RenameFileThread::NoFile:
-			tip = L"照片不可用";
+			tip = L"图像不可用";
 			break;
 		case RenameFileThread::ReadOnlyFile:
-			tip = L"照片仅只读";
+			tip = L"图像仅只读";
 			break;
 		case RenameFileThread::FileNameConflict:
-			tip = L"照片的新名称已存在";
+			tip = L"图像的新名称已存在";
 			break;
 		case RenameFileThread::DirNameConflict:
 			tip = L"不能使用新名称, 因为有一个文件夹已有相同名字";
@@ -647,7 +647,7 @@ BOOL RenameToolDlg::OnGetToolTipInfo(UINT id, NMHDR* nmhdr, LRESULT* result)
 		}
 		break;
 	case NewName::NameConflict:
-		tip = L"新名称已被占用N";
+		tip = L"新名称已被占用";
 		break;
 	case NewName::InvalidName:
 		tip = L"无效文件名";

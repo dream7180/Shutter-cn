@@ -11,7 +11,7 @@ ____________________________________________________________________________*/
 #include "stdafx.h"
 #include "resource.h"
 #include "ImageLabelDlg.h"
-#include "LoadImageList.h"
+//#include "LoadImageList.h"
 
 
 // ImageLabelDlg configuration dialog for the main view
@@ -52,8 +52,8 @@ BOOL ImageLabelDlg::OnInitDialog()
 	tree_1_.InitTree();
 	tree_2_.InitTree();
 
-	VERIFY(::LoadImageList(imageList_, IDB_PHOTOS_TB, 18, ::GetSysColor(COLOR_3DFACE)));
-	tab_ctrl_.SetImageList(&imageList_);
+	//VERIFY(::LoadImageList(imageList_, IDB_PHOTOS_TB, 18, ::GetSysColor(COLOR_3DFACE)));
+	//tab_ctrl_.SetImageList(&imageList_);
 
 	tab_ctrl_.InsertItem(0, _T("缩略图模式"), 4);
 	tab_ctrl_.InsertItem(1, _T("预览模式"), 7);

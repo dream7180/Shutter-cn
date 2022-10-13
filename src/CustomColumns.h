@@ -32,7 +32,7 @@ public:
 
 	std::size_t size() const	{ return CUST_COLUMNS; }
 
-	const static std::size_t CUST_COLUMNS= 15;
+	const static std::size_t CUST_COLUMNS= 12;
 
 	void assign(const CustomColumns& src);
 

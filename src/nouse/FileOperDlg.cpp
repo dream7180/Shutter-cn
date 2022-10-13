@@ -64,7 +64,7 @@ BOOL FileOperDlg::OnInitDialog()
 
 	//SubclassHelpBtn(copy_operation_ ? _T("ToolCopy.htm") : _T("ToolMove.htm"));
 
-	SetWindowText(copy_operation_ ? _T("复制照片") : _T("移动照片"));
+	SetWindowText(copy_operation_ ? _T("复制图像") : _T("移动图像"));
 	btn_ok_.SetWindowText(copy_operation_ ? _T("复制") : _T("移动"));
 
 	return TRUE;  // return TRUE unless you set the focus to a control

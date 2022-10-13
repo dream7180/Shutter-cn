@@ -2787,7 +2787,8 @@ void ExifView::AddTaggedPhotos(VectPhotoInfo::iterator begin, VectPhotoInfo::ite
 		// wsprintf used over stringstream for speed...
 		TCHAR buf[128];
 		int rating= photo.GetRating();
-		wsprintf(buf, rating > 1 ? _T("%d 星") : _T("%d 星"), rating);
+		//wsprintf(buf, rating > 1 ? _T("%d 星") : _T("%d 星"), rating);
+		wsprintf(buf, _T("%d 星"), rating);
 		label = buf;
 		icon = PhotoCtrl::STAR;
 	}
@@ -4214,8 +4215,8 @@ void ExifView::DeletePhotos(bool warn)
 		if (selected.empty())
 		{
 			if (warn)
-				new BalloonMsg(&GetListCtrl(), _T("没有选定的照片"),
-					_T("请选择要删除的照片."), BalloonMsg::IERROR);
+				new BalloonMsg(&GetListCtrl(), _T("没有选定的图像"),
+					_T("请选择要删除的图像."), BalloonMsg::IERROR);
 			return;
 		}
 
@@ -4224,8 +4225,8 @@ void ExifView::DeletePhotos(bool warn)
 			if (!selected[i]->CanDelete())
 			{
 				if (warn)
-					new BalloonMsg(&GetListCtrl(), _T("未能删除照片"),
-					_T("选定的照片不能删除."), BalloonMsg::IERROR);
+					new BalloonMsg(&GetListCtrl(), _T("未能删除图像"),
+					_T("选定的图像不能删除."), BalloonMsg::IERROR);
 				return;
 			}
 
@@ -4234,12 +4235,12 @@ void ExifView::DeletePhotos(bool warn)
 			CString msg;
 			if (selected.size() == 1)
 			{
-				msg = _T("有一张选定的照片,\n\n");
+				msg = _T("有一张选定的图像,\n\n");
 				msg += selected.front()->GetOriginalPath().GetFileNameAndExt().c_str();
 				msg += _T("\n\n确认删除?");
 			}
 			else
-				msg.Format(_T("有 %d 张选定的照片.\n\n确认删除?"), static_cast<int>(selected.size()));
+				msg.Format(_T("有 %d 张选定的图像.\n\n确认删除?"), static_cast<int>(selected.size()));
 
 			DeleteConfirmationDlg dlg(this, msg);
 			if (dlg.DoModal() != IDOK)
@@ -4324,8 +4325,8 @@ void ExifView::FileOperation(bool copy)
 
 		if (selected.empty())
 		{
-			new BalloonMsg(&GetListCtrl(), _T("没有选定的照片"),
-				_T("请先选择要复制/移动的照片."), BalloonMsg::IERROR);
+			new BalloonMsg(&GetListCtrl(), _T("没有选定的图像"),
+				_T("请先选择要复制/移动的图像."), BalloonMsg::IERROR);
 			return;
 		}
 
@@ -4423,8 +4424,8 @@ void ExifView::OnTaskResize()
 
 		if (selected.empty())
 		{
-			new BalloonMsg(&GetListCtrl(), _T("没有选定的照片"),
-				_T("请先选择要改变尺寸的照片."), BalloonMsg::IERROR);
+			new BalloonMsg(&GetListCtrl(), _T("没有选定的图像"),
+				_T("请先选择要改变尺寸的图像."), BalloonMsg::IERROR);
 			return;
 		}
 
@@ -4445,8 +4446,8 @@ void ExifView::OnTaskGenSlideShow()
 
 		if (selected.empty())
 		{
-			new BalloonMsg(&GetListCtrl(), _T("没有选定的照片"),
-				_T("请先选择要制作幻灯片的照片."), BalloonMsg::IERROR);
+			new BalloonMsg(&GetListCtrl(), _T("没有选定的图像"),
+				_T("请先选择要制作幻灯片的图像."), BalloonMsg::IERROR);
 			return;
 		}
 
@@ -4467,8 +4468,8 @@ void ExifView::OnTaskGenHTMLAlbum()
 
 		if (selected.empty())
 		{
-			new BalloonMsg(&GetListCtrl(), _T("没有选定的照片"),
-				_T("请先选择要制作 HTML 相册的照片."), BalloonMsg::IERROR);
+			new BalloonMsg(&GetListCtrl(), _T("没有选定的图像"),
+				_T("请先选择要制作 HTML 相册的图像."), BalloonMsg::IERROR);
 			return;
 		}
 
@@ -5475,7 +5476,7 @@ void ExifView::OnTaskCopyTagged()
 
 		if (tagged_photos.empty())
 		{
-			new BalloonMsg(&GetListCtrl(), _T("没有标签的照片"),
+			new BalloonMsg(&GetListCtrl(), _T("没有标签的图像"),
 				_T("请先给图片添加标签."), BalloonMsg::IERROR);
 			return;
 		}

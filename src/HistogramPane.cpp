@@ -56,7 +56,7 @@ bool HistogramPane::Create(CWnd* parent)
 	if (!PaneWnd::Create(AfxRegisterWndClass(0, ::LoadCursor(NULL, IDC_ARROW)), 0, WS_CHILD | WS_VISIBLE, CRect(0,0,0,0), parent, -1))
 		return false;
 
-	int w= 100;
+	int w= 120;
 	int h= 200;
 	if (!channels_wnd_.Create(WS_CHILD | WS_VISIBLE | CBS_DROPDOWNLIST | CBS_HASSTRINGS, CRect(0, 0, w, h), this, IDC_CHANNEL))
 		return false;

@@ -395,7 +395,7 @@ bool EditFileInfo::DoModal()
 	if (!photo.CanEditIPTC(err_code))
 	{
 		String msg= err_code == -1 ?
-			_T("照片 '") + photo.GetOriginalPath() + _T("'\n不能打开以写入.") :
+			_T("图像 '") + photo.GetOriginalPath() + _T("'\n不能打开以写入.") :
 			_T("此类型图像不支持编辑文件信息.");
 		parent_wnd_->MessageBox(msg.c_str(), 0, MB_OK | MB_ICONWARNING);
 		return false;

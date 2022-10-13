@@ -46,10 +46,10 @@ public:
 
 	SnapFrame* GetFrame() const			{ return frame_; }
 
-	CString GetContextHelpTopic() const;
+	//CString GetContextHelpTopic() const;
 
 	// returns true if this is context help window
-	bool IsContextHelpWnd() const			{ return is_context_help_wnd_; }
+	//bool IsContextHelpWnd() const			{ return is_context_help_wnd_; }
 
 	CWnd* GetChildView() const				{ return child_view_; }
 
@@ -84,7 +84,7 @@ public:
 
 	bool CreateClient(PaneConstruction* construction, UINT pane_flags);
 
-	void InitialUpdate(const TCHAR* title, const TCHAR* ctx_help_topic);
+	void InitialUpdate(const TCHAR* title);//, const TCHAR* ctx_help_topic);
 
 	void Activate(bool active);
 
@@ -92,7 +92,7 @@ public:
 	void SetTitle(const TCHAR* title);
 
 	// display help in the client help window (if it is context help window)
-	void DisplayHelp(const TCHAR* ctx_help_topic);
+	//void DisplayHelp(const TCHAR* ctx_help_topic);
 
 	// add a toolbar to the caption free space
 	void AddBand(CWnd* toolbar, CWnd* owner, std::pair<int, int> min_max_width, bool resizable= false);
@@ -146,9 +146,9 @@ protected:
 	afx_msg int OnMouseActivate(CWnd* desktop_wnd, UINT hit_test, UINT message);
 	afx_msg void OnActivate(UINT state, CWnd* wnd_other, BOOL minimized);
 	afx_msg void OnDestroy();
-	afx_msg void OnPaneContextHelp();
+	//afx_msg void OnPaneContextHelp();
 	//}}AFX_MSG
-	afx_msg BOOL OnHelp(UINT);
+	//afx_msg BOOL OnHelp(UINT);
 	DECLARE_MESSAGE_MAP()
 	LRESULT OnXButtonDown(WPARAM wParam, LPARAM lParam);
 
@@ -174,9 +174,9 @@ private:
 	// is this wnd and child view active?
 	bool active_;
 	// context help topic (file name)
-	CString ctx_help_topic_;
+	//CString ctx_help_topic_;
 	// true if this is context help window
-	bool is_context_help_wnd_;
+	//bool is_context_help_wnd_;
 	//
 	COLORREF background_color_;
 

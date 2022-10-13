@@ -157,7 +157,7 @@ bool ImageManipulationDlg::InitDialog()
 		{
 			// message and bail
 			//
-			MessageBox(_T("未能载入选定的照片."));
+			MessageBox(_T("未能载入选定的图像."));
 
 			EndDialog(IDCANCEL);
 			return true;
@@ -687,7 +687,7 @@ void ImageManipulationDlg::OnOK()
 			{
 				// message and bail
 				//
-				MessageBox(_T("不能载入选定的照片."));
+				MessageBox(_T("不能载入选定的图像."));
 				return;
 			}
 		}

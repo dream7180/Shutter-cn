@@ -181,7 +181,7 @@ BOOL CopyMoveDlg::InitDialog()
 
 	//SubclassHelpBtn(impl_.copy_operation_ ? _T("ToolCopy.htm") : _T("ToolMove.htm"));
 
-	SetWindowText(impl_.copy_operation_ ? _T("复制照片") : _T("移动照片"));
+	SetWindowText(impl_.copy_operation_ ? _T("复制图像") : _T("移动图像"));
 	btn_ok_.SetWindowText(impl_.copy_operation_ ? _T("复制") : _T("移动"));
 
 	COLORREF dark= ::CalcShade(::GetSysColor(COLOR_3DFACE), -5.0f);// -21.5f);

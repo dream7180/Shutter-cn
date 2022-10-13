@@ -951,10 +951,11 @@ void CFilterDialog_4::SetStars(int stars)
 	stars_.SetRating(stars);
 
 	CString label;
-	if (stars == 1)
-		label = _T("显示至少 1 星的图像");
-	else if (stars > 0)
-		label.Format(_T("显示至少 %d 星"), stars);
+	//if (stars == 1)
+	//	label = _T("显示至少 1 星的图像");
+	//else if (stars > 0)
+	if (stars > 0)
+		label.Format(_T("显示至少 %d 星的图像"), stars);
 	else
 		label = _T("显示全部图像");
 

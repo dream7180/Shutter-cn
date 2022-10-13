@@ -36,7 +36,7 @@ void RenamePhoto(PhotoInfoPtr photo, const String& file_name, bool replace_name_
 		return;	// no change in name
 
 	if (renamed.FileExists())
-		throw std::exception("请选择另外的名称.\n指定的文件名称已存在File with a specified name already exists.");
+		throw std::exception("请选择另外的名称.\n指定的文件名称已存在.");
 
 	// new name
 	String name= replace_name_and_ext ? renamed.GetFileName() : file_name;

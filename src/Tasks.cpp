@@ -1186,7 +1186,7 @@ bool CTaskExtractJpegs::Extract()
 	//OrientationOfImages orientation= FindCommonOrientation(photos_);
 
 	ExtractJpegDlg dlg(parent_);
-	HeaderDialog dlgHdr(dlg, _T("抽取 JPEG"), HeaderDialog::IMG_EXTRACT);
+	HeaderDialog dlgHdr(dlg, _T("提取 JPEG"), HeaderDialog::IMG_EXTRACT);
 	if (dlgHdr.DoModal() != IDOK)
 		return false;
 
@@ -1224,7 +1224,7 @@ bool CTaskExtractJpegs::Extract()
 
 	ImgProcessingPool proc(std::auto_ptr<ImgProcessingThread>(new ExtractingThread(photos, dlg.GetParams())));
 
-	ProcessingProgressDlg progress(parent_, proc, _T("正在抽取 JPEG 图像"), 0,
+	ProcessingProgressDlg progress(parent_, proc, _T("正在提取 JPEG 图像"), 0,
 		ProcessingProgressDlg::AUTO_CLOSE | ProcessingProgressDlg::OUTPUT_ONLY);
 
 	if (progress.DoModal() != IDOK)

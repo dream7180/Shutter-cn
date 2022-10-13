@@ -63,7 +63,7 @@ void ExtractingThread::Process(size_t index)
 	uint32 bytes_left= info.jpeg_data_size_;
 
 	if (bytes_left == 0)
-		throw String(_T("源照片中未能找到内嵌图像\n") + info.src_file_path_);
+		throw String(_T("源图像中未能找到内嵌图像\n") + info.src_file_path_);
 
 	// start storing result
 	SetOperationLabel(IDS_RESIZE_STORING);

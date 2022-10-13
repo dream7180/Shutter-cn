@@ -60,7 +60,7 @@ protected:
 	afx_msg BOOL OnEraseBkgnd(CDC* dc);
 	afx_msg void OnPaint();
 	afx_msg void OnSize(UINT type, int cx, int cy);
-	afx_msg void OnContextMenu(CWnd* wnd, CPoint point);
+	//afx_msg void OnContextMenu(CWnd* wnd, CPoint point);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

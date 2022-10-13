@@ -54,7 +54,7 @@ struct PaneLayoutInfo
 	PaneLayoutInfo(PaneConstruction& construction, const CRect& rect, const TCHAR* pane_title, /*const TCHAR* ctx_help_topic,*/
 		UINT pane_flags, int neighbor_index, PaneEdgeFlag neighbor_edge, PaneEdgeFlag side_pane_position, int last_size= 0)
 		: view_construction_(construction), pane_location_rect_(rect),
-		  pane_title_(pane_title), ctx_help_topic_(0), pane_flags_(pane_flags),
+		  pane_title_(pane_title), /*ctx_help_topic_(0), */pane_flags_(pane_flags),
 		  neighbor_index_(neighbor_index), neighbor_edge_(static_cast<SnapView::Insert>(neighbor_edge)),
 		  side_pane_position_(static_cast<SnapView::Insert>(side_pane_position)), last_size_(last_size)
 	{}
@@ -62,7 +62,7 @@ struct PaneLayoutInfo
 	PaneConstruction& view_construction_;
 	CRect pane_location_rect_;
 	const TCHAR* pane_title_;
-	const TCHAR* ctx_help_topic_;
+	//const TCHAR* ctx_help_topic_;
 	UINT pane_flags_;
 	int neighbor_index_;
 	SnapView::Insert neighbor_edge_;
@@ -157,7 +157,7 @@ public:
 	// open closed pane
 	void PaneOpen(SnapView* view);
 	// display context help
-	void PaneContextHelp(SnapView* view);
+	//void PaneContextHelp(SnapView* view);
 	// toggle pane: open if closed, close if opened
 	void PaneToggle(SnapView* view);
 
@@ -183,7 +183,7 @@ public:
 	SnapView* GetActiveSnapView();
 
 	// display context help in help pane
-	void DisplayContextHelp(const TCHAR* ctx_help_topic);
+	//void DisplayContextHelp(const TCHAR* ctx_help_topic);
 
 	// send tab (snap frame) change notification
 	bool SendTabChangeNotification();
@@ -342,7 +342,7 @@ private:
 		void SendShowNotification(bool show);
 		bool SendTabChangeNotification();
 
-		SnapView* FindHelpView() const;		// find context help view window
+		//SnapView* FindHelpView() const;		// find context help view window
 	};
 
 	class WndPos

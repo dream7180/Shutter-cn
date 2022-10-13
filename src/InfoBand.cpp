@@ -338,7 +338,7 @@ void InfoBand::OptionsPopup(CPoint pos)
 }
 
 
-void InfoBand::OnContextMenu(CWnd*, CPoint pos)
-{
-	OptionsPopup(pos);
-}
+//void InfoBand::OnContextMenu(CWnd*, CPoint pos)
+//{
+//	OptionsPopup(pos);
+//}

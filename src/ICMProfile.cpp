@@ -50,7 +50,7 @@ String ICMProfile::GetRenderingIntent(bool is_short/*= true*/) const
 	switch (rendering_)
 	{
 	case PICTURE:
-		return is_short ? _T("可感知") : _T("可感知 (常规照片)");
+		return is_short ? _T("可感知") : _T("可感知 (常规图像)");
 
 	case GRAPHIC:
 		return is_short ? _T("饱和度") : _T("饱和度 (图形, 图表)");

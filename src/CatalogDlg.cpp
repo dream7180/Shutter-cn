@@ -186,7 +186,7 @@ void CatalogDlg::Impl::SetFitInBoxLabel()
 	{
 		int n= IMG_SIZES[pos];
 		oStringstream ost;
-		ost << _T("(fit in a ") << n << _T(" by ") << n << _T(" box)");
+		ost << _T("(适合 ") << n << _T(" by ") << n << _T(" 方框)");
 
 		wnd_->SetDlgItemText(IDC_FIT_BOX, ost.str().c_str());
 	}

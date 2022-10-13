@@ -182,7 +182,7 @@ void HistogramImg::OnLButtonUp(UINT flags, CPoint point)
 		rect.bottom = (rect.bottom - image_rect_.top) * bmp_rect.Height() / image_rect_.Height();
 		oStringstream ost;
 		if (rect == bmp_rect)
-			ost << _T("整张照片");
+			ost << _T("整张图像");
 		else
 			ost << _T("矩形 从 (") << rect.left << _T(", ") << rect.top << _T(") 至 (") << rect.right << _T(", ") << rect.bottom << _T(")");
 		rect_label_wnd_->SetWindowText(ost.str().c_str());

@@ -188,7 +188,7 @@ void OptionsGeneral::OnOpenRawApp()
 {
 	CFolderSelect fs(this);
 
-	CString file= fs.DoSelectFile(_T("选择应用程序用于打开 Raw 照片"), CSIDL_PROGRAM_FILES, _T("exe"));
+	CString file= fs.DoSelectFile(_T("选择应用程序用于打开 Raw 图像"), CSIDL_PROGRAM_FILES, _T("exe"));
 
 	if (!file.IsEmpty())
 		SetDlgItemText(IDC_OPEN_RAW_PHOTO_APP, file);

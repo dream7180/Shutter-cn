@@ -158,7 +158,7 @@ bool SnapFrame::CreatePanes(const PaneLayoutInfoArray& PanesInfo, FramePageCreat
 		ColorCfg& c= g_Settings.pane_caption_colors_[C_SEPARATOR];
 		view->SetSeparatorBaseColor(c.SelectedColor());
 
-		view->InitialUpdate(PanesInfo.pane_layout_[i].pane_title_, PanesInfo.pane_layout_[i].ctx_help_topic_);
+		view->InitialUpdate(PanesInfo.pane_layout_[i].pane_title_);//, PanesInfo.pane_layout_[i].ctx_help_topic_);
 	}
 
 	// collect windows; assign them pane ids
@@ -2363,7 +2363,7 @@ bool SnapFrame::WndInfoVector::SendTabChangeNotification()
 	return false;
 }
 
-
+/*
 SnapView* SnapFrame::WndInfoVector::FindHelpView() const	// find context help view window
 {
 	for (const_iterator it= begin(); it != end(); ++it)
@@ -2372,7 +2372,7 @@ SnapView* SnapFrame::WndInfoVector::FindHelpView() const	// find context help vi
 
 	return 0;
 }
-
+*/
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -2997,7 +2997,7 @@ SnapView* SnapFrame::GetActiveSnapView()
 
 
 // display context help in help pane
-//
+/*
 void SnapFrame::DisplayContextHelp(const TCHAR* ctx_help_topic)
 {
 	if (ctx_help_topic == 0)
@@ -3043,7 +3043,7 @@ void SnapFrame::PaneContextHelp(SnapView* view)
 	PaneOpen(ctx_help);
 #endif
 }
-
+*/
 
 // send tab (snap frame) change notification
 bool SnapFrame::SendTabChangeNotification()

@@ -26,7 +26,7 @@
 #define IDR_COMPOSITION_POPUP_MENU      140
 #define IDI_FILE1                       140
 #define ID_RELOAD                       140
-#define IDD_VIEWER                      141
+//#define IDD_VIEWER                      141
 #define ID_STOP_SCAN                    141
 #define IDI_VIEWER                      142
 #define IDD_HISTOGRAM                   142
@@ -868,7 +868,7 @@
 #define ID_INSERT_CHAR_14               32830
 #define ID_TOOLS                        32830
 #define ID_INSERT_CHAR_15               32831
-#define ID_VIEW_WND_BAR                 32831
+//#define ID_VIEW_WND_BAR                 32831
 #define ID_INSERT_CHAR_16               32832
 #define ID_STOP_SCANNING                32832
 #define ID_INSERT_CHAR_17               32833
@@ -957,13 +957,13 @@
 #define IDS_DISTRIBUTION_TB             33417
 #define IDS_TRANSFER_TB                 33418
 #define IDS_ALL_FILES                   33419
-#define IDS_MAIN_TOOLBAR                33446
+//#define IDS_MAIN_TOOLBAR                33446
 #define IDS_BROWSER_TOOLBAR             33447
 //#define IDS_INFO_TOOLBAR                33448
 #define IDS_VIEWER_TOOLBAR              33449
 #define ID_IMAGES_PANE                  33450
 #define IDS_OPTIONS                     33451
-#define IDS_TASK_BAR                    33452
+//#define IDS_TASK_BAR                    33452
 #define ID_PREVIEW                      33453
 #define IDS_SELECT_OUTPUT_FOLDER        33454
 #define ID_GROUP_FOLDER                 33455
@@ -1225,7 +1225,7 @@
 #define ID_PANE_CLOSE                   34023
 #define ID_PANE_MAXIMIZE                34024
 #define ID_PANE_RESTORE                 34025
-#define ID_PANE_CONTEXT_HELP            34026
+//#define ID_PANE_CONTEXT_HELP            34026
 #define ID_PANE_MINIMIZE                34028
 #define ID_PANE_ZOOM                    34029
 #define ID_PANES_RESET                  34030

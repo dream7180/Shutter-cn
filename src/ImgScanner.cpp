@@ -848,11 +848,11 @@ void ImgScanner::ReadImage(SmartPhotoPtr& info, const Path& path, uint64 file_le
 	}
 	catch (String& str)
 	{
-		LogError(_T("加载照片出错. ") + str, path);
+		LogError(_T("加载图像出错. ") + str, path);
 	}
 	catch (std::exception& ex)
 	{
-		LogError(_T("加载照片出错. ") + CString(ex.what()), path);
+		LogError(_T("加载图像出错. ") + CString(ex.what()), path);
 	}
 	catch (ImageStat err)
 	{
@@ -860,7 +860,7 @@ void ImgScanner::ReadImage(SmartPhotoPtr& info, const Path& path, uint64 file_le
 	}
 	catch (...)
 	{
-		LogError(_T("加载照片出错."), path);
+		LogError(_T("加载图像出错."), path);
 	}
 
 	try

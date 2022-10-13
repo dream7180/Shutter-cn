@@ -241,7 +241,7 @@ void OptionsCache::SetRAMLabel()
 	int RAM_MB= percent > 0 ? static_cast<int>(total_phys_mem / 1024 * percent / 100 / 1024) : 0;
 
 	CString ram;
-	ram.Format(_T("= %d MB 内存"), RAM_MB);
+	ram.Format(_T("= %d MB 储存"), RAM_MB);
 
 	SetDlgItemText(IDC_RAM, ram);
 }
@@ -347,7 +347,7 @@ void OptionsCache::OnOpenRawApp()
 {
 	CFolderSelect fs(this);
 
-	CString file= fs.DoSelectFile(_T("选择应用程序用于打开 Raw 照片"), CSIDL_PROGRAM_FILES, _T("exe"));
+	CString file= fs.DoSelectFile(_T("选择应用程序用于打开 Raw 图像"), CSIDL_PROGRAM_FILES, _T("exe"));
 
 	if (!file.IsEmpty())
 		SetDlgItemText(IDC_OPEN_RAW_PHOTO_APP, file);

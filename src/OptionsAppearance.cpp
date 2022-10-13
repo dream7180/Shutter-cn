@@ -187,7 +187,7 @@ struct OptionsAppearance::Impl : GridCtrlNotification, PhotoCtrlNotification
 				_T("描述字体"),
 				_T("预览栏亮度"),
 			//	_T("Reserved, unused"),
-				_T("选定的照片"),
+				_T("选定的图像"),
 				_T("标签背景"),
 				_T("标签文本"),
 				0
