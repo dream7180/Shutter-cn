@@ -59,7 +59,7 @@ bool DarkCloseBar::Create(CWnd* parent)
 
 CString DarkCloseBar::Toolbar::GetToolTip(int cmdId)
 {
-	CString tip;
+	/*CString tip;
 
 	if (cmdId == SC_RESTORE)
 		tip.LoadString(IDS_RESTOR_WND);
@@ -70,7 +70,8 @@ CString DarkCloseBar::Toolbar::GetToolTip(int cmdId)
 	else
 		return ToolBarWnd::GetToolTip(cmdId);
 
-	return tip;
+	return tip;*/
+	return _T("");
 }
 
 

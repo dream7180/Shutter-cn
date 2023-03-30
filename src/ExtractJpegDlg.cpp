@@ -125,7 +125,7 @@ ExtractFormat ExtractJpegDlg::GetParams() const
 {
 	ExtractFormat p;
 
-	p.preserve_exif_block_ = false;
+	p.preserve_exif_block_ = true;
 	p.copy_tags_ = true;
 
 	return p;

@@ -41,7 +41,7 @@ bool CloseBar::Create(CWnd* parent, bool close_and_restore/*= true*/)
 
 CString CloseBar::GetToolTip(int cmd_id)
 {
-	CString tip;
+	/*CString tip;
 
 	if (cmd_id == SC_RESTORE)
 		tip.LoadString(IDS_RESTOR_WND);
@@ -50,7 +50,8 @@ CString CloseBar::GetToolTip(int cmd_id)
 	else
 		return ToolBarWnd::GetToolTip(cmd_id);
 
-	return tip;
+	return tip;*/
+	return _T("");
 }
 
 

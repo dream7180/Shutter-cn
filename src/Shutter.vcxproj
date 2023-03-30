@@ -951,7 +951,7 @@
     <ClCompile Include="Cache.cpp" />
     <ClCompile Include="CatchAll.cpp" />
     <ClCompile Include="ColorProfile.cpp" />
-	<ClCompile Include="ColorSets.cpp" />
+    <ClCompile Include="ColorSets.cpp" />
     <ClCompile Include="Data.cpp" />
     <ClCompile Include="DecoderJob.cpp" />
     <ClCompile Include="DelayedDirectoryChangeHandler.cpp" />
@@ -1054,7 +1054,7 @@
     <ClInclude Include="ColorMenu.h" />
     <ClInclude Include="ColorMngDlg.h" />
     <ClInclude Include="ColorProfile.h" />
-	<ClInclude Include="ColorSets.h" />
+    <ClInclude Include="ColorSets.h" />
     <ClInclude Include="Columns.h" />
     <ClInclude Include="ColumnTree.h" />
     <ClInclude Include="Config.h" />

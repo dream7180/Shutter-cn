@@ -25,7 +25,7 @@ CResizeOptionsDlg::CResizeOptionsDlg(CWnd* parent /*=NULL*/)
 	: CDialog(CResizeOptionsDlg::IDD, parent)
 {
 	resizing_method_ = 2;
-	preserve_exif_block_ = false;
+	preserve_exif_block_ = true;
 	baseline_jpeg_ = false;
 	progressive_jpeg_ = false;
 	copyTags_ = false;

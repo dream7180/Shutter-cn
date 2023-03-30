@@ -1180,9 +1180,9 @@
 #define IDS_FILTER_BAR                  33826
 #define IDS_MARGINS                     33827
 #define IDS_ZOOMBAR                     33828
-#define IDS_CLOSE_WND                   33829
-#define IDS_RESTOR_WND                  33830
-#define IDS_MINIMIZE_WND                33831
+//#define IDS_CLOSE_WND                   33829
+//#define IDS_RESTOR_WND                  33830
+//#define IDS_MINIMIZE_WND                33831
 #define ID_MASK_JPEG                    33900
 #define ID_MASK_PSD                     33901
 #define ID_MASK_TIFF                    33902

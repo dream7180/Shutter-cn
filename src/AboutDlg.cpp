@@ -148,7 +148,7 @@ BOOL AboutDlg::OnInitDialog()
 		SetWindowPos(0, 0, 0, rect.Width(), rect.Height(), SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE);
 		GetDlgItem(IDC_LINK_2)->SetWindowText(L"Free software released under the terms of the <a href=\"" GPL_SITE L"\">GNU Public License</a>");
 		//GetDlgItem(IDC_LINK)->SetWindowText(L"项目主页: <a href=\"" WEB_SITE L"\">https://gitee.com/dream7180/Shutter</a>\n\n其他链接: <a href=\"" BLOG_SITE L"\">我的博客</a>, 本软件基于已停止开发的 <a href=\"" CODE_SITE L"\">ExifPro</a>");//, <a href=\"" OFF_SITE L"\">www.exifpro.com</a>");
-		GetDlgItem(IDC_LINK)->SetWindowText(L"项目主页: <a href=\"" WEB_SITE L"\">https://gitee.com/dream7180/Shutter</a>\n\n本软件基于已停止开发的 <a href=\"" CODE_SITE L"\">ExifPro</a>");//, <a href=\"" OFF_SITE L"\">www.exifpro.com</a>");
+		GetDlgItem(IDC_LINK)->SetWindowText(L"项目主页: <a href=\"" WEB_SITE L"\">https://gitee.com/dream7180/Shutter</a>\n\nShutter 基于已停止开发的 <a href=\"" CODE_SITE L"\">ExifPro</a>");//, <a href=\"" OFF_SITE L"\">www.exifpro.com</a>");
 		GetDlgItem(IDC_VERSION)->SetWindowText(version_);
 		image_.SetImage(IDR_ABOUT);
 		

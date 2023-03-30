@@ -59,7 +59,7 @@ Config::Config()
 #else
 	db_file_length_limit_mb_ = 3 * 1024;	// 3 GB
 #endif
-	image_blending_ = 0;					// always
+	image_blending_ = 1;					// 0-always, 1-in slide show only
 	read_thumbs_from_db_ = false;			// by default keep jpeg thumbs in memory
 	allow_magnifying_above100_ = false;
 	allow_zoom_to_fill_ = false;
